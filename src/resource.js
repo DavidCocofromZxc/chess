@@ -32,6 +32,7 @@ var res = {
     backgroundIcon  : "res/Other/background.jpg",
     GameIcon        : "res/Other/icon.png",
     God_png         : "res/Other/god.png",
+    downArrow_png   : "res/Other/iconDownArrow.png",
 
     //
     black_bishop_png    : "res/Chess/black_bishop.png",
