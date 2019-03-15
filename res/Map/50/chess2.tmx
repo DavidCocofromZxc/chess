@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="8" height="8" tilewidth="50" tileheight="50" nextobjectid="1">
+ <tileset firstgid="1" name="012-PortTown02-2" tilewidth="50" tileheight="50" tilecount="168" columns="8">
+  <image source="012-PortTown02-2.png" width="400" height="1050"/>
+ </tileset>
+ <layer name="bg" width="8" height="8">
+  <data encoding="base64">
+   BQAAAA4AAAAFAAAADgAAAAUAAAAOAAAABQAAAA4AAAAOAAAABQAAAA4AAAAFAAAADgAAAAUAAAAOAAAABQAAAAUAAAAOAAAABQAAAA4AAAAFAAAADgAAAAUAAAAOAAAADgAAAAUAAAAOAAAABQAAAA4AAAAFAAAADgAAAAUAAAAFAAAADgAAAAUAAAAOAAAABQAAAA4AAAAFAAAADgAAAA4AAAAFAAAADgAAAAUAAAAOAAAABQAAAA4AAAAFAAAABQAAAA4AAAAFAAAADgAAAAUAAAAOAAAABQAAAA4AAAAOAAAABQAAAA4AAAAFAAAADgAAAAUAAAAOAAAABQAAAA==
+  </data>
+ </layer>
+</map>

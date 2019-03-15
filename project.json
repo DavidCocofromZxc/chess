@@ -1,0 +1,30 @@
+{
+    "project_type": "javascript",
+
+    "debugMode" : 1,
+    "showFPS" : true,
+    "frameRate" : 60,
+    "noCache" : false,
+    "id" : "gameCanvas",
+    "renderMode" : 0,
+    "engineDir":"frameworks/cocos2d-html5",
+
+    "modules" : ["cocos2d","ccui"],
+
+    "jsList" : [
+        "src/resource.js",
+
+        "src/Scene/MainScene.js",
+        "src/Scene/LoginScene.js",
+        "src/Scene/GodScene.js",
+
+
+        "src/Node/Chess.js",
+        "src/Node/GWDialogue.js",
+
+        "src/Utils/Enemu.js",
+
+        "src/Custom/GWText.js"
+
+    ]
+}
