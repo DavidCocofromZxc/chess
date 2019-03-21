@@ -19,12 +19,21 @@
         "src/Scene/GodScene.js",
 
 
-        "src/Node/Chess.js",
-        "src/Node/GWDialogue.js",
-
         "src/Utils/Enemu.js",
 
-        "src/Custom/GWText.js"
+
+        "src/Custom/GWText.js",
+        "src/Custom/GWChess.js",
+        "src/Custom/GWCheckerboard.js",
+
+
+        "src/Node/Chess.js",
+        "src/Node/GWDialogue.js",
+        "src/Node/GWPiece.js",
+        "src/Node/GWMonster.js"
+
+
+
 
     ]
 }

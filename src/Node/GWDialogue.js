@@ -6,8 +6,11 @@
 
 var GWDialogue = cc.Sprite.extend({
 
+
+
     ctor: function (fileName,rect,rotated) {
         this._super(fileName,rect,rotated);
+        this.setOpacity(0)
         this.showBody();
         return true;
     },
@@ -16,13 +19,16 @@ var GWDialogue = cc.Sprite.extend({
     //展示躯体
     showBody:function(){
 
-        var fadIn = cc.fadeIn(1);
+        // var fadIn = cc.fadeIn(1);
+        var fadTo = cc.fadeTo(1,255 * 0.6);
         var scale = cc.scaleTo(1,2.5);
-        var spawn = cc.spawn(fadIn,scale);
+        var spawn = cc.spawn(fadTo,scale);
 
         var action = cc.sequence(spawn,cc.callFunc(
             function () {
-                this.parent.startConversation();
+                if(this.parent.startConversation != undefined){
+                    this.parent.startConversation();
+                }
             }
             ,this));
         this.runAction(action);

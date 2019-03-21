@@ -1,4 +1,7 @@
 
+
+// 象棋 棋子类
+
 var Chess = cc.Sprite.extend({
 
     moveRecord      :[],   //对棋子移动情况的记录
@@ -19,18 +22,14 @@ var Chess = cc.Sprite.extend({
     },
 
 
-
+    //选中棋子
     pickUp:function(){
-        // cc.log("pickUp",this.campColor,this.chessType);
-        // var blink = cc.blink(0.2,1);
-        // var scalse =
-        // this.runAction(blink);
         this.setScale(1.1);
         this.setOpacity(220);
         this._isPickUp = true;
-
     },
 
+    //放下棋子
     pickDown:function(){
         this.setScale(1.0);
         this.setOpacity(255);
@@ -119,6 +118,7 @@ var Chess = cc.Sprite.extend({
     },
 
 
+    // 移动棋子在Map中到pos位置
     moveInMap:function(pos,y){
 
         this.pickDown();
@@ -147,21 +147,9 @@ var Chess = cc.Sprite.extend({
         }
 
 
-        var size = MAPSH.getTileSize();//50
-        //
-        // this.x = this.parent.tiledMapRectArray[movePos.x][movePos.y].x + size.width/2;
-        // this.y = this.parent.tiledMapRectArray[movePos.x][movePos.y].y + size.height/2;
+        //50
+        var size = MAPSH.getTileSize();
 
-        // this.moveTo(1,this.parent.tiledMapRectArray[movePos.x][movePos.y].x + size.width/2,this.parent.tiledMapRectArray[movePos.x][movePos.y].y + size.height/2);
-
-
-
-        // var particle1 = new cc.ParticleSystem(res.particle1_violet);
-        // particle1.duration = 0.5;
-        // this.addChild(particle1);
-        // particle1.setPosition(this.width/2 ,this.height/2 );
-        //
-        //
         var duration = 0.5;
 
 

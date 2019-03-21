@@ -29,7 +29,7 @@ var LoginLayer = cc.Layer.extend({
     beginParticle   :   null,   //背景光效
     mainMenu        :   null,
 
-    // sprite:null,
+
     ctor:function () {
         this._super();
         this.loadUI();
@@ -39,13 +39,15 @@ var LoginLayer = cc.Layer.extend({
     loadUI:function () {
 
 
-        //
+        //粒子
         var particle = new cc.ParticleSystem(res.particle_move_piantou);
         this.addChild(particle);
         particle.setPosition(   this.width/2,
                                         this.height/4 * 3);
         this.beginParticle = particle;
 
+
+        //Menu
 
         var beginGame = new cc.LabelTTF("开始游戏","Arial",36);
         var beginGameItem = new cc.MenuItemLabel(beginGame,this.beginAction,this);
@@ -59,8 +61,6 @@ var LoginLayer = cc.Layer.extend({
         var sequence = cc.sequence(delay,anminB,anminC,anminD);
         beginGame.runAction(sequence.repeatForever());
 
-
-
         var exit = new cc.LabelTTF("继续","Arial",36);
         var exitItem = new cc.MenuItemLabel(exit,this.exitAction,this);
         exitItem.setPosition(beginGameItem.x,beginGameItem.y - 80);
@@ -69,6 +69,10 @@ var LoginLayer = cc.Layer.extend({
         var menu = new cc.Menu(beginGameItem,exitItem)
         this.mainMenu = menu;
         this.addChild(menu);
+
+        menu.setOpacity(0);
+        var fadeIn = cc.fadeIn(5);
+        menu.runAction(fadeIn);
 
 
     },

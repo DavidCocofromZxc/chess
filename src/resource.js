@@ -26,6 +26,7 @@ var res = {
     //
     bg_tmx      : "res/Map/32/chess.tmx",
     bg50_tmx    : "res/Map/50/chess2.tmx",
+    bg5x5_tmx   : "res/Map/55/chessMap5x5.tmx",
 
 
     //other
@@ -47,6 +48,13 @@ var res = {
     white_pawn_png      : "res/Chess/white_pawn.png",
     white_queen_png     : "res/Chess/white_queen.png",
     white_rook_png      : "res/Chess/white_rook.png",
+
+    //monster
+    monster_plist_26    : "res/Chess/monster26.plist",
+    monster_png_26      : "res/Chess/monster26.png",
+
+    //game other
+    crystal             : "res/Chess/new/crystal.png",
 
 
     //粒子
