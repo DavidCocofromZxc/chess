@@ -8,4 +8,6 @@ QQ : 670633205
     Starting today，i will keep updating my game development diary.
     to record ideas in my mind,and daily trivialities.
     
-    1.i need some UI in my GameScenen.first ,button will be join.i will write button class
+    1.i need some UI in my GameScenen.first ,button will be join.i will write button class;
+    2.tomorrow ,i must to buy some Yu Gi Oh card，to give more Originality;
+    
