@@ -14,9 +14,6 @@
     "jsList" : [
         "src/resource.js",
 
-        "src/zzz/MainScene.js",
-        "src/zzz/Chess.js",
-
 
         "src/Scene/BaseScene.js",
         "src/Scene/LoginScene.js",
@@ -30,7 +27,6 @@
 
         "src/Custom/GWText.js",
         "src/Custom/GWMessage.js",
-        "src/Custom/GWChess.js",
         "src/Custom/GWMailbox.js",
         "src/Custom/GWDialogue.js",
 
@@ -43,6 +39,6 @@
         "src/Custom/Piece/GWBuilding.js",
 
 
-        "src/Custom/GWCard/GWCard.js"
+        "src/Custom/Card/GWCard.js"
     ]
 }

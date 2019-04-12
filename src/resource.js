@@ -37,19 +37,6 @@ var res = {
     leftArrow_png   : "res/Other/iconLeftArrow.png",
     //
 
-    //
-    black_bishop_png    : "res/Chess/black_bishop.png",
-    black_king_png      : "res/Chess/black_king.png",
-    black_knight_png    : "res/Chess/black_knight.png",
-    black_pawn_png      : "res/Chess/black_pawn.png",
-    black_queen_png     : "res/Chess/black_queen.png",
-    black_rook_png      : "res/Chess/black_rook.png",
-    white_bishop_png    : "res/Chess/white_bishop.png",
-    white_king_png      : "res/Chess/white_king.png",
-    white_knight_png    : "res/Chess/white_knight.png",
-    white_pawn_png      : "res/Chess/white_pawn.png",
-    white_queen_png     : "res/Chess/white_queen.png",
-    white_rook_png      : "res/Chess/white_rook.png",
 
     //monster
     monster_plist_26    : "res/Chess/monster26.plist",

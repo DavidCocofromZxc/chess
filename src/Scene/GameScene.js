@@ -137,12 +137,6 @@ var GameLayer = BaseScene.extend({
         }
     },
 
-
-
-    //
-
-
-
     //准备开始游戏
     notStartGame:function(){
         this.gameStageState = GameStageStateEnemu.notStarting;

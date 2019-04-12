@@ -80,6 +80,15 @@ var GWGameCheckerboard = GWCheckerboard.extend({
     eventTouchChessAction:function(state,obj){
         switch (state) {
             case 0:
+
+                var event = new cc.EventCustom(SHOW_CARD_EVENT);
+                var data = {
+                    card:obj.showCard(),
+                };
+                event.setUserData(data);
+                cc.eventManager.dispatchEvent(event);//
+
+
                 break;
             case 1://
                 var chess = obj;
@@ -101,20 +110,11 @@ var GWGameCheckerboard = GWCheckerboard.extend({
                     // cc.eventManager.dispatchEvent(event2);//
                 }
 
-                // chess.lookUpCard();
-
-                //
-                // var event2 = new cc.EventCustom(SHOW_CARD_EVENT);
-                // var data2 = {
-                //     card:chess.showCard()
-                // };
-                // event.setUserData(data2);
-                // cc.eventManager.dispatchCustomEvent(event2);
 
 
                 var event = new cc.EventCustom(SHOW_CARD_EVENT);
                 var data = {
-                    card:chess.showCard(),
+                    card:obj.showCard(),
                 };
                 event.setUserData(data);
                 cc.eventManager.dispatchEvent(event);//
