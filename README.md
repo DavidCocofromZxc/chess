@@ -1,5 +1,7 @@
 # chess
 
-a demo from zxc .
+I'm making a chess game with cocos-js.
 
-i use cocos-js to make it.
+
+QQ : 670633205
+

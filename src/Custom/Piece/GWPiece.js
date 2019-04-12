@@ -5,6 +5,12 @@
 * 专用棋子类
 * */
 
+/**
+ *
+ *  棋子基础类
+ *
+ * */
+
 
 
 
@@ -32,6 +38,17 @@ var SummoningStateEnemu = {
 };
 
 
+//棋子出现动画类型
+var ChessAnimeEnemu = {
+
+    MOVE     :"move",    // 移动进入
+    FADEIN   :"FADEIN",  // 淡出
+};
+
+
+
+
+
 
 var GWPiece = cc.Sprite.extend({
 
@@ -55,6 +72,8 @@ var GWPiece = cc.Sprite.extend({
 
 
     //<<<<<<<<<<<<<<<<< 国王骰 >>>>>>>>>>>>>>>>>>>>>>
+    chessID         :-99999,
+
     movingDistance  :1,//移动范围
     movingDirection :[1,1,1,1,0,0,0,0],//移动8方向
 
@@ -62,23 +81,55 @@ var GWPiece = cc.Sprite.extend({
     summonDirection :[1,1,1,1,0,0,0,0],//召唤8方向
 
 
-    defultColor     :null,  //默认颜色，用于取消选中时找回
 
-    StateSummoning  :SummoningStateEnemu.inHand,
+    StateSummoning  :SummoningStateEnemu.inHand,        //召唤状态（当前在手中、还是在棋盘上、未来可能有更多分类）
 
 
-    enlargeCoefficient:1.1,
-
+    enlargeCoefficient:1.1,                             //缩放比例
 
 
 
+    defultColor     :null,                              //默认颜色，用于取消选中时找回
 
+
+    myCard          :null,      //用于跟踪卡
+
+
+    //这里用fileName构造
     ctor: function (fileName,rect,rotated) {
+
         this._super(fileName,rect,rotated);
-        this.defultColor = this.getColor();
+        this.defultColor = this.getColor();//记录原始颜色
         return;
     },
 
+    //
+    // initPiece:function(chessID){
+    //
+    //     var piece = null;
+    //     var pieceName = "";
+    //
+    //     if(chessID >= 0){
+    //         if(chessID < 20000 ){//基础棋子类
+    //             pieceName = res.crystal;
+    //             piece = new GWBuilding(pieceName);
+    //         }else{//怪物棋子类
+    //             switch (chessID) {
+    //                 case 20001:
+    //                     pieceName = "26";
+    //                     break;
+    //                 default:
+    //                     break;
+    //             }
+    //             piece = new GWMonster(pieceName);
+    //         }
+    //     }else {
+    //         console.log("棋子创建异常");
+    //     }
+    //
+    //
+    //     return piece;
+    // },
 
 
 
@@ -346,66 +397,7 @@ var GWPiece = cc.Sprite.extend({
         let inx = movePos.x - this.chessInMapX;
         let iny = movePos.y - this.chessInMapY;
 
-        let jt = inx > 0 ?"进":"退";
-        let zy = iny > 0 ?"右":"左";
-
-        if(inx == 0){
-            cc.log("" + this.campColor + " " + this.chessType + zy + Math.abs(iny));
-        }else if (iny == 0){
-            cc.log("" + this.campColor + " " + this.chessType + jt + Math.abs(inx));
-        }else{
-            cc.log("" + this.campColor + " " + this.chessType + zy + Math.abs(iny) + "" + jt + Math.abs(inx));
-        }
-
-
-        //50
-        var size = MAPSH.getTileSize();
-
-        var duration = 0.5;
-
-
-        var p = cc.p(
-                    this.parent.tiledMapRectArray[movePos.x][movePos.y].x + this.anchorX * size.width,
-                    this.parent.tiledMapRectArray[movePos.x][movePos.y].y + this.anchorY * size.height)
-        var move = cc.moveTo(duration,p);
-        this.runAction(move);
-
-
-
-        var name = "res/Chess/Particle/blackFire2.plist";
-        if(this.campColor == CampEnemu.WHITE){
-            name = "res/Chess/Particle/blackFire3.plist";
-        }
-
-        var particle2 = new cc.ParticleSystem(name);
-        this.addChild(particle2);
-        particle2.duration = duration;
-        particle2.setPosition(this.width/2,this.height/2);
-
-        //
-        this.chessInMapX = movePos.y;
-        this.chessInMapY = movePos.x;
-
-    },
-
-
-    joinInMap:function (pos,y) {
-
-        this.pickDown();
-
-        var movePos = {x:0,y:0};
-        if( y === undefined){
-            movePos = pos;
-        }else{
-            movePos.x = pos;
-            movePos.y = y;
-        }
-
-
-        //本次增量
-        let inx = movePos.x ;//- this.chessInMapX;
-        let iny = movePos.y ;//- this.chessInMapY;
-
+        //log
         // let jt = inx > 0 ?"进":"退";
         // let zy = iny > 0 ?"右":"左";
         //
@@ -420,21 +412,207 @@ var GWPiece = cc.Sprite.extend({
 
         //50
         var size = MAPSH.getTileSize();
+
         var duration = 0.5;
-        cc.log(this.anchorX ,this.anchorY);
+
 
         var rect = this.parent.tiledMapRectArray[movePos.y][movePos.x];
+        var p = cc.p(
+            rect.x + this.anchorX * size.width,
+            rect.y + this.anchorY * size.height)
+        var move = cc.moveTo(duration,p);
+        this.runAction(move);
 
+
+        //粒子效果
+        // var name = "res/Chess/Particle/blackFire2.plist";
+        // if(this.campColor == CampEnemu.WHITE){
+        //     name = "res/Chess/Particle/blackFire3.plist";
+        // }
+        //
+        // var particle2 = new cc.ParticleSystem(name);
+        // this.addChild(particle2);
+        // particle2.duration = duration;
+        // particle2.setPosition(this.width/2,this.height/2);
+
+
+
+        //渲染层级
+        var localZor = LocalZorderEnemu.CHESS;
+        switch (iny) {
+            case 0:
+                localZor = LocalZorderEnemu.CHESS0;
+                break;
+            case 1:
+                localZor = LocalZorderEnemu.CHESS1;
+                break;
+            case 2:
+                localZor = LocalZorderEnemu.CHESS2;
+                break;
+            case 3:
+                localZor = LocalZorderEnemu.CHESS3;
+                break;
+            case 4:
+                localZor = LocalZorderEnemu.CHESS4;
+                break;
+            case 5:
+                localZor = LocalZorderEnemu.CHESS5;
+                break;
+            case 6:
+                localZor = LocalZorderEnemu.CHESS6;
+                break;
+            case 7:
+                localZor = LocalZorderEnemu.CHESS7;
+                break;
+            case 8:
+                localZor = LocalZorderEnemu.CHESS8;
+                break;
+            default:
+                break;
+        }
+        this.setLocalZOrder(localZor);
+
+        this.chessInMapX = movePos.x;
+        this.chessInMapY = movePos.y;
+
+    },
+
+
+
+
+    //
+    joinInMap:function (pos,y,animType) {
+
+        this.pickDown();
+
+        //棋盘坐标
+        var movePos = {x:0,y:0};
+        if( y === undefined){
+            movePos = pos;
+        }else{
+            movePos.x = pos;
+            movePos.y = y;
+        }
+
+
+
+        //50
+        var size = MAPSH.getTileSize();
+        var rect = this.parent.tiledMapRectArray[movePos.y][movePos.x];
+        //获得位置
         var p = cc.p(   rect.x + this.anchorX * size.width,
                         rect.y + this.anchorY * size.height
                     )
 
-        var move = cc.moveTo(duration,p);
+        //
+        var duration = 0.5;
+
+        //移动进入
+        var move = null ;
+
+        //
+        if(animType == ChessAnimeEnemu.FADEIN){
+            this.setOpacity(0);
+            this.setPosition(p);
+            move = cc.fadeIn(duration * 3)//cc.moveTo(duration, p);
+        }else{//默认move进入
+            move = cc.moveTo(duration, p);
+        }
         this.runAction(move);
 
-        this.chessInMapX = inx;
-        this.chessInMapY = iny;
+
+
+
+        //渲染层级
+        var localZor = LocalZorderEnemu.CHESS;
+        switch ( movePos.y) {
+            case 0:
+                localZor = LocalZorderEnemu.CHESS0;
+                break;
+            case 1:
+                localZor = LocalZorderEnemu.CHESS1;
+                break;
+            case 2:
+                localZor = LocalZorderEnemu.CHESS2;
+                break;
+            case 3:
+                localZor = LocalZorderEnemu.CHESS3;
+                break;
+            case 4:
+                localZor = LocalZorderEnemu.CHESS4;
+                break;
+            case 5:
+                localZor = LocalZorderEnemu.CHESS5;
+                break;
+            case 6:
+                localZor = LocalZorderEnemu.CHESS6;
+                break;
+            case 7:
+                localZor = LocalZorderEnemu.CHESS7;
+                break;
+            case 8:
+                localZor = LocalZorderEnemu.CHESS8;
+                break;
+            default:
+                break;
+        }
+        this.setLocalZOrder(localZor);
+
+        this.StateSummoning = SummoningStateEnemu.inCheckerboard;//召唤状态
+        this.chessInMapX = movePos.x;
+        this.chessInMapY = movePos.y;
     },
+
+    // setChessInMapY:function (value) {
+    //
+    // },
+
+    lookUpCard:function () {
+        // this.addChild(card);
+        // card.setPosition(0,0);
+    },
+
+    showCard:function () {
+
+        if(this.myCard == null){
+            this.myCard = new GWCard();
+        }
+        return this.myCard;
+    }
 
 
 });
+
+
+
+GWPiece.initPiece = function(chessID){
+
+    var piece = null;
+    var pieceName = "";
+
+
+
+    //通过id进行Data绑定
+    //需要完成 ：构造，data绑定，图片的Anchor
+    if(chessID >= 0){
+        if(chessID < 20000 ){//基础棋子类
+            //
+            pieceName = res.crystal;
+            //
+            piece = new GWBuilding(pieceName);
+            piece.setAnchorPoint(0.5,0);
+        }else{//怪物棋子类
+            switch (chessID) {
+                case 20001:
+                    pieceName = "26";
+                    break;
+                default:
+                    break;
+            }
+            piece = new GWMonster(pieceName);
+        }
+    }else {
+        console.log("棋子创建异常");
+    }
+    return piece;
+};

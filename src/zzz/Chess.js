@@ -1,5 +1,12 @@
 
 
+
+/**
+ *
+ *  原项目 象棋棋子
+ *
+ * */
+
 // 象棋 棋子类
 
 var Chess = cc.Sprite.extend({

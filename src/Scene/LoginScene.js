@@ -23,6 +23,16 @@
  ****************************************************************************/
 
 
+
+
+/**
+ *
+ *  引导入口
+ *
+ * */
+
+
+
 var LoginLayer = cc.Layer.extend({
 
 
@@ -31,6 +41,10 @@ var LoginLayer = cc.Layer.extend({
 
 
     ctor:function () {
+
+        this.beginParticle = null;
+        this.mainMenu = null;
+
         this._super();
         this.loadUI();
         return true;
@@ -38,6 +52,7 @@ var LoginLayer = cc.Layer.extend({
 
     loadUI:function () {
 
+        this.removeAllChildren();
 
         //粒子
         var particle = new cc.ParticleSystem(res.particle_move_piantou);
@@ -47,9 +62,8 @@ var LoginLayer = cc.Layer.extend({
         this.beginParticle = particle;
 
 
-        //Menu
-
-        var beginGame = new cc.LabelTTF("开始游戏","Arial",36);
+        //button A
+        var beginGame = new cc.LabelTTF("教程入口","Arial",36);
         var beginGameItem = new cc.MenuItemLabel(beginGame,this.beginAction,this);
         beginGameItem.setPosition(0,0);
 
@@ -61,12 +75,20 @@ var LoginLayer = cc.Layer.extend({
         var sequence = cc.sequence(delay,anminB,anminC,anminD);
         beginGame.runAction(sequence.repeatForever());
 
-        var exit = new cc.LabelTTF("继续","Arial",36);
+        //button B
+        var exit = new cc.LabelTTF("主游戏","Arial",36);
         var exitItem = new cc.MenuItemLabel(exit,this.exitAction,this);
         exitItem.setPosition(beginGameItem.x,beginGameItem.y - 80);
 
+        //button C
+        var next = new cc.LabelTTF("测试入口","Arial",36);
+        var nextItem = new cc.MenuItemLabel(next,this.nextAction,this);
+        nextItem.setPosition(exitItem.x,exitItem.y - 80);
 
-        var menu = new cc.Menu(beginGameItem,exitItem)
+
+
+        //Menu
+        var menu = new cc.Menu(beginGameItem,exitItem,nextItem)
         this.mainMenu = menu;
         this.addChild(menu);
 
@@ -79,23 +101,27 @@ var LoginLayer = cc.Layer.extend({
 
     beginAction:function(){
         cc.log("touch beginAction");
-        let aa = false;//第一次点击进入
-        if(!aa){
-            let duration = 2;//消失时间
-            this.beginParticle.duration  = duration;
-            let anim = cc.fadeOut(duration);
-            this.mainMenu.runAction(anim);
-            cc.director.runScene(new GodScene());//
-        }else{
-            cc.director.runScene(new MainScene());//
-        }
-
+        cc.director.pushScene(new GodScene());
     },
 
     exitAction:function(){
         cc.log("touch exitAction");
+        cc.director.pushScene(new GameScene());
+    },
+    
+    
+    nextAction:function () {
+        cc.log("touch nextAction");
+        cc.director.pushScene(new NetWorkScene());
+    },
 
-        cc.director.runScene(new MainScene());//
+
+    //
+    onExit:function(){
+        this._super();
+        console.log("LoginScene onExit:");
+        this.beginParticle.removeFromParent();
+        this.mainMenu.removeFromParent();
     },
 
 

@@ -98,7 +98,18 @@ cc.game.onStart = function(){
     // cc.view.setOrientation(cc.ORIENTATION_PORTRAIT);
 
     // Setup the resolution policy and design resolution size
-    cc.view.setDesignResolutionSize(960, 640, cc.ResolutionPolicy.SHOW_ALL);
+    // cc.view.setDesignResolutionSize(960, 640, cc.ResolutionPolicy.FIXED_HEIGHT);
+
+
+    cc.view.setDesignResolutionSize(1136, 640, cc.ResolutionPolicy.FIXED_HEIGHT);
+    // cc.view.setDesignResolutionSize(1136, 640, cc.ResolutionPolicy.FIXED_HEIGHT);
+    // cc.director.setContentScaleFactor(768 / 640);
+    // cc.view.enableRetina(cc.sys.os == cc.sys.O)
+
+    cc.view.setResizeCallback(callback);
+
+
+
 
     // The game will be resized when browser size change
     cc.view.resizeWithBrowserSize(true);
@@ -109,4 +120,18 @@ cc.game.onStart = function(){
         cc.director.runScene(new LoginScene());
     }, this);
 };
+
+
+var callback = function(){
+    if(cc.winSize.width < cc.winSize.height){
+        cc.log("横屏");
+    }else if(cc.winSize.width > cc.winSize.height){
+        cc.log("竖屏");
+    }else{
+        cc.log("无变化");
+    }
+};
+
+
+
 cc.game.run();

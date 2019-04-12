@@ -1,5 +1,15 @@
 
-let ALLOWPLACE_COLOR = cc.color(102,182,129,255*0.4);
+
+
+/**
+ *
+ *  全局枚举类
+ *
+ * */
+
+
+
+let ALLOWPLACE_COLOR = cc.color(61,153,209,255*0.4);
 let NOT_ALLOWPLACE_COLOR = cc.color(219,54,71,255*0.4);
 
 
@@ -22,16 +32,17 @@ var MAPSH = null;
 
 
 
-// 阵营
+// 阵营 /落子状态
 var CampEnemu = {
 
-    NONE    :"none",//无
-    BLACK   :"black",//黑
-    WHITE   :"white",//白
-
+    NONE    :"none",    //无
+    BLACK   :"black",   //黑
+    WHITE   :"white",   //白
     //
-    BLACK_SUM   :"black_sum",//无棋但可以召唤黑
-    WHITE_SUM   :"white_sum",//无棋但可以召唤白
+    // //<<<<国王
+    // SUM_BLACK   :"black_sum",//无棋但可以召唤黑
+    // SUM_WHITE   :"white_sum",//无棋但可以召唤白
+    // SUM_ALL     :"all_sum",  //无棋但都可以召唤
 
 };
 
@@ -42,6 +53,18 @@ var CampEnemu = {
 //<<<<<<<<<< 国王骰 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 //<<<<<<<<<< 国王骰 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 //<<<<<<<<<< 国王骰 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+/**
+ *
+ *  国王骰 全局枚举类
+ *
+ * */
+
+
+let COLOR_ALLOWSUMMON = cc.color(102,182,129,255*0.4);
+
+
+
 //渲染 层级控制
 let LocalZorderEnemu = {
 
@@ -66,7 +89,8 @@ let LocalZorderEnemu = {
 let PieceTypeEnemu = {
 
     BASE            :   0,//基础棋子
-    MONSTER         :   1,//怪物棋子
+    BUILDING        :   1,//建筑物棋子
+    MONSTER         :   2,//怪物棋子
 };
 
 
@@ -86,8 +110,18 @@ var OwnerEnemu = {
 //棋子类型
 var ChessTypeEnemu = {
 
+    /**
+     * key:ABCDE
+     * A:棋子类型   BC：棋子种族编号   DE：棋子独立编号
+     * */
 
-    CRYSTAL     :"crystal",    // 水晶
+
+    CRYSTAL     :10001,         // 水晶
+    SNOW        :20001,         // 小雪
+
+
+    NONE        :-99999,//无类型
+
 
     //下面无用
 
@@ -100,4 +134,11 @@ var ChessTypeEnemu = {
     QUEEN       :"queen",   // 黑后
 
 };
+
+
+var FREE_DIALOGRE_EVENT = "SINGLE_SENTENCE";//每条对话结束的回调事件名
+var TEXT_CALLBACK_EVENT = "TEXT_CONTENT_OVER";//每条对话结束的回调事件名
+var MESSAGE_RECEIVE_EVENT = "MESSAGE_RECEIVE_EVENT";//接收信息
+
+var SHOW_CARD_EVENT = "SHOW_CARD_EVENT";//展示卡片
 

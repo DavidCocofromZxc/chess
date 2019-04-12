@@ -9,31 +9,40 @@
     "renderMode" : 0,
     "engineDir":"frameworks/cocos2d-html5",
 
-    "modules" : ["cocos2d","ccui"],
+    "modules" : ["cocos2d","ccui","external"],
 
     "jsList" : [
         "src/resource.js",
 
-        "src/Scene/MainScene.js",
+        "src/zzz/MainScene.js",
+        "src/zzz/Chess.js",
+
+
+        "src/Scene/BaseScene.js",
         "src/Scene/LoginScene.js",
         "src/Scene/GodScene.js",
+        "src/Scene/GameScene.js",
+        "src/Scene/NetWorkScene.js",
 
 
         "src/Utils/Enemu.js",
-
+        "src/Tool/XCTool.js",
 
         "src/Custom/GWText.js",
+        "src/Custom/GWMessage.js",
         "src/Custom/GWChess.js",
-        "src/Custom/GWCheckerboard.js",
+        "src/Custom/GWMailbox.js",
+        "src/Custom/GWDialogue.js",
+
+        "src/Custom/Checkerboard/GWCheckerboard.js",
+        "src/Custom/Checkerboard/GWIntroduceCheckerboard.js",
+        "src/Custom/Checkerboard/GWGameCheckerboard.js",
+
+        "src/Custom/Piece/GWPiece.js",
+        "src/Custom/Piece/GWMonster.js",
+        "src/Custom/Piece/GWBuilding.js",
 
 
-        "src/Node/Chess.js",
-        "src/Node/GWDialogue.js",
-        "src/Node/GWPiece.js",
-        "src/Node/GWMonster.js"
-
-
-
-
+        "src/Custom/GWCard/GWCard.js"
     ]
 }

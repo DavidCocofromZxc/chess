@@ -34,6 +34,8 @@ var res = {
     GameIcon        : "res/Other/icon.png",
     God_png         : "res/Other/god.png",
     downArrow_png   : "res/Other/iconDownArrow.png",
+    leftArrow_png   : "res/Other/iconLeftArrow.png",
+    //
 
     //
     black_bishop_png    : "res/Chess/black_bishop.png",
@@ -63,6 +65,20 @@ var res = {
     particle_move_dust_black    : "res/Particle/blackFire2.plist",
     particle_move_dust_white    : "res/Particle/blackFire3.plist",
     particle_move_piantou       : "res/Particle/piantouAnim.plist",
+
+
+    //ka
+    kadi                : "res/card/kadi.png",
+    kaditiao            : "res/card/kaditiao.png",
+    kakuang             : "res/card/kakuang.png",
+    katiao              : "res/card/katiao.png",
+
+    //card原画
+    guaiwu0001          : "res/card/monster/gw0001.png",
+
+    //ui
+    baceButton          : "res/UI/baceButton.png",
+
 
 
 };

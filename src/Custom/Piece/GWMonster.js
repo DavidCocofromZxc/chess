@@ -1,6 +1,13 @@
 
 
 
+/**
+ *
+ *  棋子类 ->怪物棋子类
+ *
+ * */
+
+
 //专用的怪物类
 
 var GWMonster = GWPiece.extend({
@@ -14,15 +21,52 @@ var GWMonster = GWPiece.extend({
     framesDefult    : [],
 
 
-    ctor: function (monsterName,fileName,rect,rotated) {
+    ctor: function (chessID,fileName,rect,rotated) {
+
+
+        //
+        // var fileName = "";
+        // //
+        // switch (chessID) {
+        //     case ChessTypeEnemu.CRYSTAL:
+        //         fileName = res.crystal;
+        //         break;
+        //     default:
+        //         break;
+        // }
+
+
+
+        var monsterName = "";
+
+        if(chessID >= 0){
+            if(chessID < 20000 ){//基础棋子类
+
+            }else{//怪物棋子类
+
+
+                switch (chessID) {
+                    case 20001:
+                        monsterName = "26";
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }else {
+            console.log("棋子创建异常");
+        }
+
+
 
         var monsterFileName = monsterName|"26";
         var plistName = "res/Chess/monster" + monsterFileName + ".plist";
         var pngName = "res/Chess/monster" + monsterFileName + ".png";
-
         cc.spriteFrameCache.addSpriteFrames(plistName,pngName);
-        this._super("#monster" + monsterFileName + "_1",rect,rotated);
-        this.enlargeCoefficient = 2;
+
+
+        this._super("#monster" + monsterFileName + "_1.png",rect,rotated);
+        this.enlargeCoefficient = 2;//
         this.pieceType = PieceTypeEnemu.MONSTER;
         this.loadAnimation(monsterFileName);
 
@@ -44,7 +88,6 @@ var GWMonster = GWPiece.extend({
 
         for(var i = 1 ; i <= 20 ; i++){
             var str = "monster" + monsterName + "_" + i + ".png";
-            cc.log("name:",str);
             var frame = cc.spriteFrameCache.getSpriteFrame(str);
             frames.push(frame);
 
