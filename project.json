@@ -38,7 +38,8 @@
         "src/Custom/Piece/GWMonster.js",
         "src/Custom/Piece/GWBuilding.js",
 
+        "src/Custom/Card/GWCard.js",
 
-        "src/Custom/Card/GWCard.js"
+        "src/Custom/UI/GWButton.js"
     ]
 }

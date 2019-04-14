@@ -43,10 +43,11 @@ let GameStageStateEnemu = {
 
 var GameLayer = BaseScene.extend({
     // var GameLayer = cc.Layer.extend({
-    textLabel           :   null,  //对话text条
-    checkerboard        :   null,  //棋盘
-    holdChess           :   null,  //举起棋子
-    sysMailbox          :   null,  //信箱
+    textLabel           :   null,   //对话text条
+    checkerboard        :   null,   //棋盘
+    holdChess           :   null,   //举起棋子
+    sysMailbox          :   null,   //信箱
+    btnRound            :   null,   //回合按钮
 
     roundSurplusTime    :   12,     //每回合决策时间 //60s
     countdownBeginTime  :   10,     //开始倒数的时间
@@ -67,6 +68,7 @@ var GameLayer = BaseScene.extend({
         this.loadCheckerboard();    //构造棋盘
         this.loadMessageView();     //构造信箱
         this.loadLabel();           //构造屏中提示文字
+        this.loadRoundButton();     //回合按钮
         this.scheduleUpdate();      //开启调度
         this.gameStageState = GameStageStateEnemu.notStart; //初始化游戏状态
         return true;
@@ -98,18 +100,14 @@ var GameLayer = BaseScene.extend({
         text.setPosition( cc.winSize.width/2, cc.winSize.height/2);
         this.textLabel = text;
     },
-    // //加载按钮
-    // loadLabel:function(){
-    //     // var button = new ccui.Button();
-    //     // this.addChild(button);
-    //     // button.loadTextures(res.baceButton,"","");
-    //     // button.setPosition(this.checkerboard.x + )
-    //     //
-    //     // // var text = new GWMessage();
-    //     // // this.addChild(text,LocalZorderEnemu.DialogueText);
-    //     // // text.setPosition( cc.winSize.width/2, cc.winSize.height/2);
-    //     // // this.textLabel = text;
-    // },
+    //加载按钮
+    loadRoundButton:function(){
+        var button  = new GWButton("回合结束");
+        this.addChild(button);
+        button.setPosition( cc.winSize.width/2 + this.checkerboard.width/2,
+                            cc.winSize.height/2 - button.height/2);
+        this.btnRound = button;
+    },
 
 
 
