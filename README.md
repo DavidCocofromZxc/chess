@@ -1,11 +1,10 @@
-# chess
+# development log
 
-I'm making a chess game with cocos-js.
-
-QQ : 670633205
+I'm making a chess game with cocos-js. You can link me QQ num 670633205.
 
 4.12
-    Starting today，i will keep updating my game development diary.
+    /n
+    Starting today,i will keep updating my game development diary.
     to record ideas in my mind,and daily trivialities.
     
     1.i need some UI in my GameScenen.first ,button will be join.i will write button class;
@@ -13,6 +12,7 @@ QQ : 670633205
     
     
 4.14
+    /n
     I am too lazy.
     On the weekend, I hardly knocked on the code. I attended a colleague's wedding.
     Button class simply wrote one. Icon is still not appropriate.
@@ -22,8 +22,8 @@ QQ : 670633205
     
     
 4.15
+    \n
     i must make a development plan.
-    
     plan:   2 months later, the game is ready to play.
             In this month, Network modules can be used，Then，i can link my friend Y.
             In this week, i must be solved Data issues and most basic view issues.
