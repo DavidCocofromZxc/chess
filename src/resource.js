@@ -65,7 +65,8 @@ var res = {
 
     //ui
     baceButton          : "res/UI/baceButton.png",
-
+    cardGroup           : "res/UI/cardGroup.png",
+    cardHand            : "res/UI/cardHand.png",
 
 
 };

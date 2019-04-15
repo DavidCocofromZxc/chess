@@ -14,7 +14,6 @@
     "jsList" : [
         "src/resource.js",
 
-
         "src/Scene/BaseScene.js",
         "src/Scene/LoginScene.js",
         "src/Scene/GodScene.js",
@@ -39,6 +38,8 @@
         "src/Custom/Piece/GWBuilding.js",
 
         "src/Custom/Card/GWCard.js",
+        "src/Custom/Card/GWCardGroup.js",
+        "src/Custom/Card/GWHandCard.js",
 
         "src/Custom/UI/GWButton.js"
     ]

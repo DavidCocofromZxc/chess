@@ -43,11 +43,13 @@ let GameStageStateEnemu = {
 
 var GameLayer = BaseScene.extend({
     // var GameLayer = cc.Layer.extend({
-    textLabel           :   null,   //对话text条
+    textLabel           :   null,   //对话text条//提示条
     checkerboard        :   null,   //棋盘
     holdChess           :   null,   //举起棋子
     sysMailbox          :   null,   //信箱
     btnRound            :   null,   //回合按钮
+    cardGroup           :   null,   //卡组
+    cardInHand          :   null,   //手卡
 
     roundSurplusTime    :   12,     //每回合决策时间 //60s
     countdownBeginTime  :   10,     //开始倒数的时间
@@ -69,6 +71,8 @@ var GameLayer = BaseScene.extend({
         this.loadMessageView();     //构造信箱
         this.loadLabel();           //构造屏中提示文字
         this.loadRoundButton();     //回合按钮
+        this.loadGroup();           //构造卡组
+        this.loadHandCard();        //构造手牌 -《模拟》
         this.scheduleUpdate();      //开启调度
         this.gameStageState = GameStageStateEnemu.notStart; //初始化游戏状态
         return true;
@@ -107,6 +111,21 @@ var GameLayer = BaseScene.extend({
         button.setPosition( cc.winSize.width/2 + this.checkerboard.width/2,
                             cc.winSize.height/2 - button.height/2);
         this.btnRound = button;
+    },
+    //加载卡组
+    loadGroup:function(){
+        var group  = new GWCardGroup("");
+        this.addChild(group);
+        group.setPosition( this.checkerboard.x + this.checkerboard.width,
+                            this.checkerboard.y);
+        this.cardGroup = group;
+    },
+    //加载手牌
+    loadHandCard:function(){
+        var hand = new GWHandCard();//ancher 0,1
+        this.addChild(hand);
+        hand.setPosition(this.checkerboard.x,this.checkerboard.y - 10);
+        this.cardInHand = hand;
     },
 
 

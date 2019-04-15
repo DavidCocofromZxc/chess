@@ -6,7 +6,6 @@
 
 var GWMailbox = ccui.ScrollView.extend({
 
-
     textList    :   [],
     uiTextList  :   [],
 
@@ -15,16 +14,13 @@ var GWMailbox = ccui.ScrollView.extend({
         this.textList = [];
         this.uiTextList = [];
 
-
         this._super();
-
 
         this.setAnchorPoint(0,0);
         this.setContentSize(cc.size(400,cc.winSize.height));
         this.setTouchEnabled(true);
         this.setBounceEnabled(true);//弹性
         this.setDirection(ccui.ScrollView.DIR_VERTICAL);//DIR_VERTICAL
-
 
         this.setBackGroundColorType(ccui.Layout.BG_COLOR_SOLID);
         this.setBackGroundColor(cc.color(200,200,200));
@@ -38,7 +34,6 @@ var GWMailbox = ccui.ScrollView.extend({
         let fontSize = 14;//字符font大小
         let chatWidth = 14;//单个字符宽度
         let chatHeight = 17;//行高
-
 
         // 清空面板
         this.removeAllChildren();
@@ -54,12 +49,7 @@ var GWMailbox = ccui.ScrollView.extend({
         }
 
 
-
-
-
         var singleRowMaxCount = parseInt(this.width/chatWidth);//计算当前最大单行字符数
-
-
         var fontList = []//空的UIlist
 
 
@@ -67,7 +57,6 @@ var GWMailbox = ccui.ScrollView.extend({
         for( var y = this.innerHeight , i = 0 ,len = this.textList.length ; i < len; i++ ){
             var text = this.textList[i];
             var rowCount = parseInt(text.length/singleRowMaxCount);//需要显示这条text的行数-用于计算height
-
 
             //换行符判断
             for(var j = 0,strlen = text.length ; j < strlen ; j++){
@@ -82,8 +71,6 @@ var GWMailbox = ccui.ScrollView.extend({
             fontList.push(rect);
             y -= chatHeight * (rowCount + 1);
 
-
-
             //超出屏幕的增加滑动height
             //<存在疑惑>
             //???为什么不会多加呢，还是已经多加了。看起来刚好而已
@@ -91,7 +78,6 @@ var GWMailbox = ccui.ScrollView.extend({
                 this.innerHeight += (-y);
             }
         }
-
 
         //label 放置
         for (var i = 0,len = this.textList.length ;i <len ;i++){
@@ -111,23 +97,15 @@ var GWMailbox = ccui.ScrollView.extend({
 
         // this.jumpToBottom();
         this.scrollToBottom(0.1,false);
-
-
     },
-
-
 
     //开启消息接收
     openMessageReceive:function(){
         this.registerEvent();
     },
 
-
-
-
     //注册事件
     registerEvent:function(){
-
         var listenerSing = cc.EventListener.create({
             event       :   cc.EventListener.CUSTOM,
             target      :   this,
@@ -140,6 +118,4 @@ var GWMailbox = ccui.ScrollView.extend({
         });
         cc.eventManager.addListener(listenerSing,this);
     },
-
-
 });
