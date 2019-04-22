@@ -8,83 +8,53 @@
  *
  * */
 
-
+// import Bmob from "hydrogen-js-sdk"
+// import Bmob from  ""
+// window.io;
 // var SocketIO = SocketIO || window.io;
 
 var NetWorkLayer = BaseScene.extend({
 
-    // socketIO        : null,
-
-
+    socketIO    :null,
 
     ctor:function () {
         this._super();
+        // this.loadSocketIO();
         this.test();
         return true;
     },
 
+    test:function () {
+        Bmob.initialize("ef0729f131d45699c3173d3fa16fe307", "05d0be62242c7a63ddcb2566253eaefd");
+        Bmob.User.login('admin','12345').then(res => {
+            console.log(res)
+        }).catch(err => {
+            console.log(err)
+        });
 
-    test:function(){
-
-
-
-
-        // var bg = new ccui.Layout();
-        // this.addChild(bg);
-        // bg.setBackGroundColorType(ccui.Layout.BG_COLOR_SOLID);
-        // bg.setBackGroundColor(cc.color(0,220,0));
-        // // bg.setBackGroundColorOpacity(255*0.5);
-        // bg.setPosition(0,0);
-        // bg.setContentSize(cc.winSize.width,cc.winSize.height);
-
-        // var card = new GWCard();
-        // this.addChild(card);
-        // card.setPosition(cc.winSize.width/2,cc.winSize.height/2);
-
-
-        var button  = new ccui.Button();
-        this.addChild(button);
-        button.loadTextures(res.baceButton,"","");
-        button.setPosition( 100,100);
-        button.setTouchEnabled(true);
-        button.addTouchEventListener(this.onTouchEvent,this);
-
-
-        var lbl = new ccui.Text("label","AmericanTypewriter","18");
-        button.addChild(lbl);
-        lbl.setAnchorPoint(0.5,0.5);
-        lbl.setPosition(lbl.parent.width/2,lbl.parent.height/2);
-
+        const query = Bmob.Query("monster");
+        query.find().then(res => {
+            console.log(res)
+        });
     },
 
+    loadSocketIO:function () {
+        var socketIO = SocketIO.connect('127.0.0.1:3000');
+        this.socketIO = socketIO;
+        var self = this;
+        socketIO.on("connect",function (data) {
+           cc.log("连接成功");
+           socketIO.emit('login',JSON.stringify("{msg:\"hi\"}"));
+        });
 
-
-
-    //附加button点击回调
-    onTouchEvent :function(sender,type){
-        cc.log("onTouchEvent");
-        switch (type) {
-            case ccui.Widget.TOUCH_BEGAN:
-                cc.log("TOUCH_BEGAN");
-                break;
-            case ccui.Widget.TOUCH_MOVED:
-                cc.log("TOUCH_MOVED");
-                break;
-            case ccui.Widget.TOUCH_ENDED:
-                cc.log("TOUCH_ENDED");
-                break;
-            case ccui.Widget.TOUCH_CANCELED:
-                cc.log("TOUCH_CANCELED");
-                break;
-            default:
-                break;
-        }
+        socketIO.on("login",function (obj) {
+            var data = JSON.parse(obj);
+            cc.log("login data:",data);
+        });
     },
-
-
-
-
 });
+
+
 
 var NetWorkScene = cc.Scene.extend({
     onEnter:function () {

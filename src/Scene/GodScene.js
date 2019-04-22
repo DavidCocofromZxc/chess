@@ -38,6 +38,12 @@ var GodLayer = BaseScene.extend({
         this.addChild(node,LocalZorderEnemu.Dialogue);
         node.setPosition(cc.winSize.width/2,cc.winSize.height/2);
         this.nodeSprite = node;
+        //绑定展示完成后的方法
+        node.showBodyOver = function(){
+            if(this.contentList != [] && this.contentList.length > 0){
+                this.textLabel.setContentListAndShowTops(this.contentList);
+            }
+        }.bind(this);
     },
     //加载对话文字
     loadLabel:function(){
@@ -118,13 +124,6 @@ var GodLayer = BaseScene.extend({
     /*
     *   logic
     * */
-    //展开对话
-    startConversation:function () {
-        cc.log("bodyShowOver");
-        if(this.contentList != [] && this.contentList.length > 0){
-            this.textLabel.setContentListAndShowTops(this.contentList);
-        }
-    },
     //对话人动作
     showDialogueAction:function(key,isOver){
 

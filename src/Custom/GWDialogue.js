@@ -6,16 +6,12 @@
 
 var GWDialogue = cc.Sprite.extend({
 
-
-
     ctor: function (fileName,rect,rotated) {
         this._super(fileName,rect,rotated);
         this.setOpacity(0)
         this.showBody();
         return true;
     },
-
-
     //展示躯体
     showBody:function(){
 
@@ -26,9 +22,7 @@ var GWDialogue = cc.Sprite.extend({
 
         var action = cc.sequence(spawn,cc.callFunc(
             function () {
-                if(this.parent.startConversation != undefined){
-                    this.parent.startConversation();
-                }
+                this.showBodyOver();
             }
             ,this));
         this.runAction(action);
@@ -38,7 +32,12 @@ var GWDialogue = cc.Sprite.extend({
         var blueSeq = cc.sequence(moveUp,moveDown).repeatForever();
         this.runAction(blueSeq);
     },
-
+    /**
+     *  bind 绑定函数用于 外部绑定
+     * */
+    showBodyOver:function(){
+        cc.log("showBodyOver null func");
+    },
 
 
 });

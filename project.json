@@ -9,7 +9,7 @@
     "renderMode" : 0,
     "engineDir":"frameworks/cocos2d-html5",
 
-    "modules" : ["cocos2d","ccui","external"],
+    "modules" : ["cocos2d","ccui","external","socketio","bmobSDK"],
 
     "jsList" : [
         "src/resource.js",
@@ -28,6 +28,8 @@
         "src/Custom/GWMessage.js",
         "src/Custom/GWMailbox.js",
         "src/Custom/GWDialogue.js",
+        "src/Custom/GWBloodBox.js",
+        "src/Custom/GWEnergyBox.js",
 
         "src/Custom/Checkerboard/GWCheckerboard.js",
         "src/Custom/Checkerboard/GWIntroduceCheckerboard.js",
@@ -40,6 +42,7 @@
         "src/Custom/Card/GWCard.js",
         "src/Custom/Card/GWCardGroup.js",
         "src/Custom/Card/GWHandCard.js",
+        "src/Custom/Card/GWCardsHandBox.js",
 
         "src/Custom/UI/GWButton.js"
     ]

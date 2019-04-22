@@ -65,10 +65,11 @@ var GWMonster = GWPiece.extend({
         cc.spriteFrameCache.addSpriteFrames(plistName,pngName);
 
 
-        this._super("#monster" + monsterFileName + "_1.png",rect,rotated);
+        // this._super("#monster" + monsterFileName + "_1.png",rect,rotated);
+        this._super(res.defaultMonster,rect,rotated);
         this.enlargeCoefficient = 2;//
         this.pieceType = PieceTypeEnemu.MONSTER;
-        this.loadAnimation(monsterFileName);
+        // this.loadAnimation(monsterFileName);
 
         return true;
     },

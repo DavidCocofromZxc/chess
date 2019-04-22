@@ -1,5 +1,11 @@
 
 
+/**
+ *
+ *  专用卡组类
+ *
+ * */
+
 
 
 var GWCardGroup = cc.Sprite.extend({
@@ -32,4 +38,12 @@ var GWCardGroup = cc.Sprite.extend({
         this.cardCount = 50;
         this.mainLabel.string = "" + this.cardCount ;
     },
+
+    pumpingCard:function (count) {
+        if(this.cardCount > count){
+            this.cardCount -= count;
+            this.mainLabel.string = "" + this.cardCount ;
+        }
+    },
+
 });

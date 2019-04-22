@@ -473,12 +473,10 @@
 
         "box2d" : [
             "core", "physics",
-
             "external/box2d/box2d.js"
         ],
         "chipmunk" : [
             "core", "physics",
-
             "external/chipmunk/chipmunk.js"
         ],
         "runtime":[
@@ -487,6 +485,9 @@
         ],
         "socketio" : [
             "external/socketio/socket.io.min.js"
+        ],
+        "bmobSDK"  : [
+            "external/bmobSDK/Bmob-1.7.0.min.js"
         ],
         "external" : ["box2d", "chipmunk", "socketio", "pluginx", "gaf"]
     },

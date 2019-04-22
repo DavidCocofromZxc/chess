@@ -81,12 +81,12 @@ var GWGameCheckerboard = GWCheckerboard.extend({
         switch (state) {
             case 0:
 
-                var event = new cc.EventCustom(SHOW_CARD_EVENT);
-                var data = {
-                    card:obj.showCard(),
-                };
-                event.setUserData(data);
-                cc.eventManager.dispatchEvent(event);//
+                // var event = new cc.EventCustom(SHOW_CARD_EVENT);
+                // var data = {
+                //     card:obj.showCard(),
+                // };
+                // event.setUserData(data);
+                // cc.eventManager.dispatchEvent(event);//
 
 
                 break;
@@ -112,12 +112,12 @@ var GWGameCheckerboard = GWCheckerboard.extend({
 
 
 
-                var event = new cc.EventCustom(SHOW_CARD_EVENT);
-                var data = {
-                    card:obj.showCard(),
-                };
-                event.setUserData(data);
-                cc.eventManager.dispatchEvent(event);//
+                // var event = new cc.EventCustom(SHOW_CARD_EVENT);
+                // var data = {
+                //     card:obj.showCard(),
+                // };
+                // event.setUserData(data);
+                // cc.eventManager.dispatchEvent(event);//
 
                 break;
             default:

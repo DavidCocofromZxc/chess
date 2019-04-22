@@ -21,38 +21,34 @@ var BaseLayer = cc.Layer.extend({
         this.bgColorLayer   = null;
 
         this._super();
-        this.loadButton();   //加载button
+        this.loadButton();      //加载button
+        // this.loadBgColorLayer();//bgColor
         return true;
     },
-
     //加载button
     loadButton:function(){
         var btn = new ccui.Button(res.leftArrow_png);
-        btn.setTouchEnabled(true);
-        btn.setAnchorPoint(0,0);
         btn.setScale(2,2);
-        btn.setPosition(20,cc.winSize.height/2);
-        // btn.setPosition( 20,cc.winSize.height - btn.height - 20);
+        this.addChild(btn,999);
+        let bj = 5;//边距
+        btn.setAnchorPoint(0,1);
+        btn.setPosition( bj,cc.winSize.height - btn.height - bj);
         //附加点击事件
+        btn.setTouchEnabled(true);
         btn.addTouchEventListener(this.onTouchEvent,this);//cc.widget.touch事件
-        this.addChild(btn);
         this.backButton = btn;
     },
-
-    //加载b g
-    loadButton:function(){
-        var btn = new ccui.Button(res.leftArrow_png);
-        btn.setTouchEnabled(true);
-        btn.setAnchorPoint(0,0);
-        btn.setScale(2,2);
-        btn.setPosition(20,cc.winSize.height/2);
-        // btn.setPosition( 20,cc.winSize.height - btn.height - 20);
-        //附加点击事件
-        btn.addTouchEventListener(this.onTouchEvent,this);//cc.widget.touch事件
-        this.addChild(btn);
-        this.backButton = btn;
+    //加载bg
+    loadBgColorLayer:function(){
+        var bg = new ccui.Layout();
+        this.addChild(bg,0);
+        bg.setBackGroundColorType(ccui.Layout.BG_COLOR_SOLID);
+        bg.setBackGroundColor(cc.color(100,100,100));
+        bg.setBackGroundColorOpacity(255);
+        bg.setAnchorPoint(0,0);
+        bg.setContentSize(cc.winSize.width,cc.winSize.height);
+        this.bgColorLayer = bg;
     },
-
     //touch事件
     onTouchEvent :function(sender,type){
         switch (type) {

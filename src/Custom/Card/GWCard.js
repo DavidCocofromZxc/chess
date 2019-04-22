@@ -1,10 +1,5 @@
 
 
-
-/*
-* 专用棋子类
-* */
-
 /**
  *
  *  卡牌基础 -< 未完成 >
@@ -52,7 +47,7 @@ var GWCard = cc.Sprite.extend({
 
         //<* 适配 *>
         // 模拟展开点
-        var targetPoint = cc.vertex2(cc.winSize.width/2,cc.winSize.height/2);
+        var targetPoint = cc.p(cc.winSize.width/2,cc.winSize.height/2);
 
         let cardWidth           = 220;  //卡宽度
         let cardHeight          = 300;  //卡高度
@@ -64,7 +59,15 @@ var GWCard = cc.Sprite.extend({
         let leftSpacing         = 20;   //左侧间距
         let bottomSpacing       = 25;   //底部间距
 
+        let attributeFontSize   = 20;   //基本属性字符font
+        let nameFontSize        = 7;    //名称字符font
+        let desFontSize         = 2;    //描述font
+        if(cc.sys.isNative){
+            attributeFontSize   = 25;
+            nameFontSize        = 15;
+            desFontSize         = 15;
 
+        }
 
         //
         // var head = new ccui.Layout();
@@ -85,12 +88,12 @@ var GWCard = cc.Sprite.extend({
 
 
 
-        var artPoint    = cc.vertex2(cardWidth/2,cardBottomHeight +cardBodyHeight/2);      //原画点
-        var fyPoint     = cc.vertex2(  leftSpacing,cardBottomHeight + cardWaistHeight + cardBodyHeight + 10);       //费用点
-        var namePoint   = cc.vertex2(leftSpacing +45,cardBottomHeight + cardWaistHeight + cardBodyHeight + 10);  //name
-        var gjPoint     = cc.vertex2(leftSpacing,bottomSpacing);                //攻击点
-        var smPoint     = cc.vertex2(leftSpacing +180 ,bottomSpacing);     //生命点
-        var dscPoint    = cc.vertex2(leftSpacing,cardBottomHeight -30);     //描述  //？30
+        var artPoint    = cc.p(cardWidth/2,cardBottomHeight +cardBodyHeight/2);      //原画点
+        var fyPoint     = cc.p(  leftSpacing,cardBottomHeight + cardWaistHeight + cardBodyHeight + 10);       //费用点
+        var namePoint   = cc.p(leftSpacing +45,cardBottomHeight + cardWaistHeight + cardBodyHeight + 10);  //name
+        var gjPoint     = cc.p(leftSpacing,bottomSpacing);                //攻击点
+        var smPoint     = cc.p(leftSpacing +180 ,bottomSpacing);     //生命点
+        var dscPoint    = cc.p(leftSpacing,cardBottomHeight -30);     //描述  //？30
 
 
 
@@ -175,22 +178,22 @@ var GWCard = cc.Sprite.extend({
 
 
         //费用
-        var fyLbl = new cc.LabelTTF("4","Arial",20);
+        var fyLbl = new cc.LabelTTF("4","Arial",attributeFontSize);
         fyLbl.setPosition(fyPoint.x,fyPoint.y);
         this.addChild(fyLbl,101);
         this.fyLabel = fyLbl;
 
 
         //攻击力
-        var gjLbl = new cc.LabelTTF("4","Arial",20);
-        gjLbl.setFontFillColor(0,0,0,255);
+        var gjLbl = new cc.LabelTTF("4","Arial",attributeFontSize);
+        gjLbl.setFontFillColor(cc.color(0,0,0));
         gjLbl.setPosition(gjPoint.x,gjPoint.y);
         this.addChild(gjLbl,101);
         this.attackLabel    = gjLbl;
 
         //生命力
-        var smLbl = new cc.LabelTTF("8","Arial",20);
-        smLbl.setFontFillColor(0,0,0,255);
+        var smLbl = new cc.LabelTTF("8","Arial",attributeFontSize);
+        smLbl.setFontFillColor(cc.color(0,0,0));
         smLbl.setPosition(smPoint.x,gjPoint.y);
         this.addChild(smLbl,101);
         this.lifeLabel = smLbl;
@@ -199,17 +202,17 @@ var GWCard = cc.Sprite.extend({
 
         //
         //名称
-        var name = new cc.LabelTTF("沉默の武者","Arial",7);
+        var name = new cc.LabelTTF("沉默の武者","Arial",nameFontSize);
         name.setPosition(namePoint.x,namePoint.y);
         this.addChild(name,101);
         this.nameLabel = name;
 
         var text = "沉默寡言的武者，对贸然来犯对的敌人给予猛烈的反击"
-        var sizeStr = XCReturnStringWidth(text,"Arial",2,180);
+        var sizeStr = XCReturnStringWidth(text,"Arial",desFontSize,180);
 
         //描述
-        var dsc = new cc.LabelTTF(sizeStr.str,"Arial",2);
-        dsc.setFontFillColor(0,0,0,255);
+        var dsc = new cc.LabelTTF(sizeStr.str,"Arial",desFontSize);
+        dsc.setFontFillColor(cc.color(0,0,0));
         dsc.setAnchorPoint(0,0);
         dsc.setPosition(dscPoint.x,dscPoint.y - sizeStr.h);
         this.addChild(dsc,101);

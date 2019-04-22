@@ -23,11 +23,15 @@
  ****************************************************************************/
 
 var res = {
-    //
-    bg_tmx      : "res/Map/32/chess.tmx",
-    bg50_tmx    : "res/Map/50/chess2.tmx",
-    bg5x5_tmx   : "res/Map/55/chessMap5x5.tmx",
 
+
+    //Game UI
+    baceButton          : "res/UI/baceButton.png",
+    cardGroup           : "res/UI/cardGroup.png",
+
+    //地图相关
+    bg5x5_tmx       : "res/Map/55/chessMap5x5.tmx", //地图
+    crystal         : "res/piece/new/crystal.png",  //水晶
 
     //other
     backgroundIcon  : "res/Other/background.jpg",
@@ -35,26 +39,25 @@ var res = {
     God_png         : "res/Other/god.png",
     downArrow_png   : "res/Other/iconDownArrow.png",
     leftArrow_png   : "res/Other/iconLeftArrow.png",
-    //
+    redHeart        : "res/Other/redHeart.png",
+    energy          : "res/Other/energy.png",
+
 
 
     //monster
-    monster_plist_26    : "res/Chess/monster26.plist",
-    monster_png_26      : "res/Chess/monster26.png",
+    monster_plist_26    : "res/piece/monster26.plist",
+    monster_png_26      : "res/piece/monster26.png",
+    defaultMonster      : "res/piece/monster/myMonster.png",
 
-    //game other
-    crystal             : "res/Chess/new/crystal.png",
+
 
 
     //粒子
-    particle_violet             : "res/Particle/VioletSmoke.plist",
-    particle1_violet            : "res/Particle/blackFire.plist",
-    particle_move_dust_black    : "res/Particle/blackFire2.plist",
-    particle_move_dust_white    : "res/Particle/blackFire3.plist",
     particle_move_piantou       : "res/Particle/piantouAnim.plist",
+    particle_blackFire          : "res/Particle/blackFire2x.plist",
 
 
-    //ka
+    //卡组成 UI
     kadi                : "res/card/kadi.png",
     kaditiao            : "res/card/kaditiao.png",
     kakuang             : "res/card/kakuang.png",
@@ -63,9 +66,8 @@ var res = {
     //card原画
     guaiwu0001          : "res/card/monster/gw0001.png",
 
-    //ui
-    baceButton          : "res/UI/baceButton.png",
-    cardGroup           : "res/UI/cardGroup.png",
+
+    //小卡
     cardHand            : "res/UI/cardHand.png",
 
 

@@ -108,20 +108,17 @@ var LoginLayer = cc.Layer.extend({
         cc.log("touch exitAction");
         cc.director.pushScene(new GameScene());
     },
-    
-    
+
     nextAction:function () {
         cc.log("touch nextAction");
         cc.director.pushScene(new NetWorkScene());
     },
 
-
     //
     onExit:function(){
         this._super();
         console.log("LoginScene onExit:");
-        this.beginParticle.removeFromParent();
-        this.mainMenu.removeFromParent();
+        this.removeAllChildren()
     },
 
 

@@ -515,6 +515,30 @@ var GWPiece = cc.Sprite.extend({
             this.setOpacity(0);
             this.setPosition(p);
             move = cc.fadeIn(duration * 3)//cc.moveTo(duration, p);
+
+
+            //particle_blackFire
+            var particleA = new cc.ParticleSystem(res.particle_blackFire);
+            this.addChild(particleA);
+            // particleA.setScale(0.5);
+            particleA.setAnchorPoint(0.5,0.5);
+            particleA.setPosition(this.width/2, this.height/2 -10);
+
+
+            // var particleB = new cc.ParticleSystem(res.particle_blackFire);
+            // this.addChild(particleB);
+            // particleB.setScale(0.5);
+            // particleB.setAnchorPoint(0.5,0.5);
+            // particleB.setPosition(this.width/2+20, this.height/2- 10);
+            //
+            //
+            // var particleC = new cc.ParticleSystem(res.particle_blackFire);
+            // this.addChild(particleC);
+            // particleC.setScale(0.5);
+            // particleC.setAnchorPoint(0.5,0.5);
+            // particleC.setPosition(this.width/2, this.height/2+ 30);
+
+
         }else{//默认move进入
             move = cc.moveTo(duration, p);
         }

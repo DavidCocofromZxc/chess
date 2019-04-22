@@ -17,9 +17,6 @@
 
 
 
-
-
-
 //游戏阶段状态
 let GameStageStateEnemu = {
 
@@ -48,31 +45,60 @@ var GameLayer = BaseScene.extend({
     holdChess           :   null,   //举起棋子
     sysMailbox          :   null,   //信箱
     btnRound            :   null,   //回合按钮
-    cardGroup           :   null,   //卡组
-    cardInHand          :   null,   //手卡
+    cardsHandBox        :   null,   //手卡区域
+
+    ourCardGroup        :   null,   //我方卡组
+    otherCardGroup      :   null,   //对方卡组
+    ourBloodBar         :   null,   //我方血条
+    otherBloodBar       :   null,   //对方血条
+    ourEnergy           :   null,   //我方能量槽
+    otherEnergy         :   null,   //对方能量槽
 
     roundSurplusTime    :   12,     //每回合决策时间 //60s
     countdownBeginTime  :   10,     //开始倒数的时间
 
     gameStageState      :   GameStageStateEnemu.stagnation,//
 
-
-
     lookCard            :   null,
-
-    // isNoStart       :true,
-    // isStart       :true,
-    // isMyRound   :false,
 
 
     ctor: function () {
+
+        this.textLabel      =   null,   //对话text条//提示条
+        this.checkerboard   =   null,   //棋盘
+        this.holdChess      =   null,   //举起棋子
+        this.sysMailbox     =   null,   //信箱
+        this.btnRound       =   null,   //回合按钮
+        this.cardsHandBox   =   null,   //手卡区域
+
+        this.ourCardGroup   =   null,   //我方卡组
+        this.otherCardGroup =   null,   //对方卡组
+        this.ourBloodBar    =   null,   //我方血条
+        this.otherBloodBar  =   null,   //对方血条
+        this.ourEnergy      =   null,   //我方法力
+        this.otherEnergy    =   null,   //对方法力
+
+        this.roundSurplusTime    =   12,     //每回合决策时间 //60s
+        this.countdownBeginTime  =   10,     //开始倒数的时间
+
+        this.gameStageState      =   GameStageStateEnemu.stagnation,//
+        this.lookCard            =   null,
+
         this._super();
         this.loadCheckerboard();    //构造棋盘
         this.loadMessageView();     //构造信箱
         this.loadLabel();           //构造屏中提示文字
         this.loadRoundButton();     //回合按钮
         this.loadGroup();           //构造卡组
+        this.loadBlood();           //构造血条
+        this.loadEnergy();
         this.loadHandCard();        //构造手牌 -《模拟》
+
+        //方便测试
+        // this.registerTouchEvent();
+        //通知棋盘 摆放国王
+        // this.checkerboard.initGameCrystal();
+
         this.scheduleUpdate();      //开启调度
         this.gameStageState = GameStageStateEnemu.notStart; //初始化游戏状态
         return true;
@@ -80,7 +106,7 @@ var GameLayer = BaseScene.extend({
     //加载棋盘
     loadCheckerboard:function () {
         var node = new GWGameCheckerboard();
-        this.addChild(node);
+        this.addChild(node,LocalZorderEnemu.MAP);
         node.setAnchorPoint(0,0);
         node.setPosition(   (cc.winSize.width - node.width)/2,
                                     (cc.winSize.height - node.height)/2);
@@ -89,8 +115,8 @@ var GameLayer = BaseScene.extend({
     //加载信息框
     loadMessageView:function () {
         var messageView = new GWMailbox();
-        this.addChild(messageView);
-        messageView.setPosition(10,10);
+        this.addChild(messageView,LocalZorderEnemu.UI);
+        messageView.setPosition(35,10);
         messageView.width = 200;
         messageView.height = cc.winSize.height -20;
         messageView.setOpacity(255* 0.8);
@@ -107,25 +133,83 @@ var GameLayer = BaseScene.extend({
     //加载按钮
     loadRoundButton:function(){
         var button  = new GWButton("回合结束");
-        this.addChild(button);
-        button.setPosition( cc.winSize.width/2 + this.checkerboard.width/2,
-                            cc.winSize.height/2 - button.height/2);
+        this.addChild(button,LocalZorderEnemu.UI);
+        button.setAnchorPoint(0,0.5);
+        button.setPosition( this.checkerboard.x + this.checkerboard.width + 5,//20缝隙
+            this.checkerboard.y + this.checkerboard.height/2);
         this.btnRound = button;
     },
-    //加载卡组
+    //加载双方卡组
     loadGroup:function(){
-        var group  = new GWCardGroup("");
-        this.addChild(group);
-        group.setPosition( this.checkerboard.x + this.checkerboard.width,
-                            this.checkerboard.y);
-        this.cardGroup = group;
+        //
+        var ourGroup  = new GWCardGroup("");
+        this.addChild(ourGroup,LocalZorderEnemu.UI);
+        ourGroup.setPosition(  this.checkerboard.x + this.checkerboard.width + 20,//缝隙
+            this.checkerboard.y);
+        this.ourCardGroup = ourGroup;
+        //
+        var otherCardGroup  = new GWCardGroup("");
+        this.addChild(otherCardGroup,LocalZorderEnemu.UI);
+        otherCardGroup.setAnchorPoint(1,1);
+        otherCardGroup.setPosition(  this.checkerboard.x - 20,
+                                            this.checkerboard.y + this.checkerboard.height);
+        this.otherCardGroup = otherCardGroup;
     },
-    //加载手牌
+    //加载双方血条
+    loadBlood:function(){
+        //
+        var blood = new GWBloodBox();
+        this.addChild(blood,LocalZorderEnemu.UI);
+        blood.setPosition(this.checkerboard.x + this.checkerboard.width/2,this.checkerboard.y);
+        this.ourBloodBar = blood;
+        //
+        var otherBloodBar = new GWBloodBox();
+        this.addChild(otherBloodBar,LocalZorderEnemu.UI);
+        otherBloodBar.setPosition( this.checkerboard.x + this.checkerboard.width/2,
+                                    this.checkerboard.y + this.checkerboard.height + 20);
+        this.otherBloodBar = otherBloodBar;
+    },
+    //加载双方法力
+    loadEnergy:function(){
+        //
+        var ourEnergy = new GWEnergyBox(10);
+        this.addChild(ourEnergy,LocalZorderEnemu.UI);
+        ourEnergy.setPosition(this.checkerboard.x + this.checkerboard.width,this.checkerboard.y);
+        this.ourBloodBar = ourEnergy;
+        //
+        var otherEnergy = new GWEnergyBox(10);
+        this.addChild(otherEnergy,LocalZorderEnemu.UI);
+        otherEnergy.setAnchorPoint(1,1)
+        otherEnergy.setPosition( this.checkerboard.x , this.checkerboard.y + this.checkerboard.height);
+        this.otherEnergy = otherEnergy;
+    },
+    //加载手牌区域
     loadHandCard:function(){
-        var hand = new GWHandCard();//ancher 0,1
-        this.addChild(hand);
-        hand.setPosition(this.checkerboard.x,this.checkerboard.y - 10);
-        this.cardInHand = hand;
+        var sideWidth = 20; //添加边宽
+        var hand = new GWCardsHandBox();//ancher 0,1
+        this.addChild(hand,LocalZorderEnemu.UI);
+        hand.setPosition(   this.checkerboard.x - sideWidth,
+                            this.checkerboard.y);
+        hand.setContentSize(this.checkerboard.width + 2*sideWidth,100);
+        this.cardsHandBox = hand;
+        //绑定选中事件
+        hand.selectCard = function(data){
+            if(this.lookCard != null){
+                this.lookCard.removeFromParent();
+                this.lookCard = null;
+            }
+            var card = new GWCard();
+            this.addChild(card,LocalZorderEnemu.CARD);
+            card.setPosition(this.checkerboard.x + this.checkerboard.width + 10 ,100);
+            card.setAnchorPoint(0,0);
+            this.lookCard = card;
+            this.checkerboard.pickUpCardInHand(card);
+        }.bind(this);
+        //绑定取消事件
+        hand.cancelSeleCard = function () {
+            cc.log("cancelSeleCard");
+            this.checkerboard.cancelPickUpCardInHand();
+        }.bind(this);
     },
 
 
@@ -133,9 +217,6 @@ var GameLayer = BaseScene.extend({
     /**
      * 主循环梳理:
      */
-
-
-
     //进入主循环
     joinMainLoop:function () {
         for(var round = 1; round < 3;round++){
@@ -161,15 +242,19 @@ var GameLayer = BaseScene.extend({
         //通知棋盘 摆放国王
         this.checkerboard.initGameCrystal();
         //摆放卡组。。
+        //抽取5张牌
+        this.ourCardGroup.pumpingCard(5);
+        this.cardsHandBox.addCard();
+        this.cardsHandBox.addCard();
+        this.cardsHandBox.addCard();
+        this.cardsHandBox.addCard();
+        this.cardsHandBox.addCard();
 
         //进入开始游戏
         this.gameStageState = GameStageStateEnemu.start;
         this.sysMailbox.sendMessage("游戏开始");
         this.textLabel.addShowText("游戏开始");
     },
-
-
-
 
     //开始游戏
     startGame:function(){
@@ -189,7 +274,14 @@ var GameLayer = BaseScene.extend({
 
     //抽卡
     pumpingCard:function(){
+
+        this.sysMailbox.sendMessage("抽卡");
+        // this.textLabel.addShowText( "抽卡");
+
         this.gameStageState = GameStageStateEnemu.pumpingCard;
+        //卡组中取出5张牌
+        this.ourCardGroup.pumpingCard(1);
+        this.cardsHandBox.addCard();
     },
 
 
@@ -265,82 +357,80 @@ var GameLayer = BaseScene.extend({
         cc.eventManager.addListener(onTouchEventListener, this);
 
 
-        // [事件监听]查看卡片事件
-        var listener = cc.EventListener.create({
-            event       :   cc.EventListener.CUSTOM,
-            target      :   this,
-            eventName   :   SHOW_CARD_EVENT,
-            callback    : function(event){
-                var target = event.getCurrentTarget();
-                var data =  event.getUserData();
-                //card加入棋盘
-                var card = data.card;
-                card.setPosition(target.checkerboard.x + target.checkerboard.width + 10 ,100);
-                target.addChild(card);
-                target.lookCard = card;
-            }
-        });
-        cc.eventManager.addListener(listener,this);
+
+        // // [事件监听]查看卡片事件
+        // var listener = cc.EventListener.create({
+        //     event       :   cc.EventListener.CUSTOM,
+        //     target      :   this,
+        //     eventName   :   SHOW_CARD_EVENT,
+        //     callback    : function(event){
+        //         cc.log("callback function");
+        //         var target = event.getCurrentTarget();
+        //         // var data =  event.getUserData();
+        //         //card加入棋盘 //show card
+        //         cc.log("callback card t",target);
+        //         cc.log("callback card c",target.checkerboard);
+        //
+        //
+        //         if(target.lookCard != null){
+        //             target.lookCard.removeFromParent();
+        //             target.lookCard = null;
+        //         }
+        //
+        //
+        //         var card = new GWCard();
+        //         target.addChild(card,LocalZorderEnemu.CARD);
+        //         card.setPosition(target.checkerboard.x + target.checkerboard.width + 10 ,100);
+        //         card.setAnchorPoint(0,0);
+        //         target.lookCard = card;
+        //         // target.addCard();
+        //         // //show summonoo
+        //         target.checkerboard.pickUpCardInHand(card);
+        //         //
+        //         // cc.log("callback over");
+        //     }
+        // });
+        // cc.eventManager.addListener(listener,this);
     },
-
-
-
+    //
+    // addCard:function(){
+    //     cc.log("addCard");
+    //     var card = new GWCard();
+    //     this.addChild(card,LocalZorderEnemu.CARD);
+    //     // card.setPosition(this.checkerboard.x + this.checkerboard.width + 10 ,100);
+    //     card.setPosition(0 ,0);
+    //     card.setAnchorPoint(0,0);
+    //     // this.lookCard = card;
+    //     // this.checkerboard.pickUpCardInHand(card);
+    // },
 
     //touch event
     onTouchBegan:function (touch,event) {
         cc.log("onTouchBegan");
-
-
         //获得主体
         var self = event.getCurrentTarget();
-
         //提前释放多余card
         if(self.lookCard != null){
             self.lookCard.removeFromParent();
             self.lookCard = null;
         }
-
-
         //将点击坐标转换为基于当前触发事件对象的本地坐标
         var posInNode = self.convertToNodeSpace(touch.getLocation());
-
-        // //棋盘区域范围
-        // var checkerboardRect = cc.rect( self.checkerboard.tmxMap.x,
-        //                                 self.checkerboard.tmxMap.y,
-        //                                 self.checkerboard.tmxMap.width,
-        //                                 self.checkerboard.tmxMap.height);
-
         //棋盘区域范围
         var checkerboardRect = cc.rect( self.checkerboard.x,
                                         self.checkerboard.y,
                                         self.checkerboard.width,
                                         self.checkerboard.height);
-
-        // //小雪区域范围
-        // var xiaoxueRect = cc.rect(  self.demoChess.x,
-        //     self.demoChess.y,
-        //     self.demoChess.width,
-        //     self.demoChess.height);
-
-        // //判断是否落在棋盘内
-        if(cc.rectContainsPoint(checkerboardRect,posInNode)){
-            self.checkerboard.onTouchEnded(touch);    //触发传递
-            return true;
-        }
-
-        // //判断是否落在选子区
-        // else if(cc.rectContainsPoint(xiaoxueRect,posInNode)){
-        //     cc.log("落在选棋内")
-        //     // self.demoChess.onTouchBegan(touch,event);   //触发传递
-        //     // self.demoChess.pickUp();
-        //     self.checkerboard.pickUpChessInHand(self.demoChess);
-        //
-        //     return true;
-        // }
-        else{
-            cc.log("no nothing")
-            return false;
-        }
+        //手牌区域
+        // *>这里的x,y其实和Ancher相关 -因为rectContainsPoint方法只会判断ancher（0，0）的rect
+        //所以下行y的写法更严谨
+        var cardGroupRect   = cc.rect(  self.cardsHandBox.x,
+                                        self.cardsHandBox.y * (1 - self.cardsHandBox.anchorY),
+                                        self.cardsHandBox.width,
+                                        self.cardsHandBox.height);
+        self.checkerboard.onTouchEnded(touch);//将触发传递至下层
+        self.cardsHandBox.onTouchEnded(touch);//将触发传递至下层
+        return true;//native下必须有return，否则触发次数会有问题
     },
 
 

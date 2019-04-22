@@ -81,6 +81,8 @@ let LocalZorderEnemu = {
 
     CHESS           :   220,
     MAP             :   200,
+    UI              :   200,
+    CARD            :   220,//提示牌
     Dialogue        :   220,
     DialogueText    :   250,
 };
