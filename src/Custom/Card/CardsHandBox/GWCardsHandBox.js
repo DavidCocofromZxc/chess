@@ -9,7 +9,14 @@
 
 
 var GWCardsHandBox = ccui.Layout.extend({
-
+    /**
+     * cardList 结构:
+     * {
+     *   card    :hand, 卡UI-Sprite
+     *   index   :index
+     *   uiData  :cardUIData
+     * }
+     * */
     cardList        :   [],     //手牌列表
     selectHandCard  :   null,   //选中的手牌
     showCard        :   null,   //展示的卡片
@@ -21,21 +28,25 @@ var GWCardsHandBox = ccui.Layout.extend({
 
         this._super();
         this.setAnchorPoint(0,1);
-        // this.setLayoutType(ccui.Layout.LINEAR_HORIZONTAL);
+        // 高亮测试
         // this.setBackGroundColorType(ccui.Layout.BG_COLOR_SOLID);
         // this.setBackGroundColor(cc.color(200,200,200));
         // this.setBackGroundColorOpacity(255 *0.8);
-
         return true;
     },
-    //
-    addCard:function () {
+    //加入到手牌<小牌>
+    //UI data
+    //cardUIData不存在则使用默认,isBack是否使用背面默认不用背面
+    addCard:function (cardUIData,isBack) {
+        var cardUrl = (cardUIData === undefined)?res.cardHand:"res/"+cardUIData.smallCardImage;
         //卡片构造加入
-        var hand = new GWHandCard();//ancher 0,1
+        var useBack = isBack||false;
+        var hand = new GWHandCard(cardUrl,useBack);//ancher 0,1
         this.addChild(hand);
         //
         var index = this.cardList.length;
-        this.cardList.push({card:hand,index:index});
+        this.cardList.push({card:hand,index:index,uiData:cardUIData});
+        //< UI 调整>
         //参数配置
         var maxWidth    = this.width;
         var cardWidth   = hand.width;
@@ -70,12 +81,11 @@ var GWCardsHandBox = ccui.Layout.extend({
             self.restoreScene();//点击在非法区域场景还原
             return false;//不合法直接return
         }
+        //< 点选查看的逻辑 >
         //可以再优化
-
-        var card = this.findTouchCard(posInNode);//查看
-
-        if(card != null){ //点击手牌
-
+        var cardData = this.findTouchCard(posInNode);//查看
+        if(cardData != null){ //点击手牌
+            var card = cardData.card;
             var isNeedSendMeg = false;
             //同一张卡->收起
             if(this.selectHandCard != null && this.selectHandCard == card){
@@ -96,15 +106,13 @@ var GWCardsHandBox = ccui.Layout.extend({
             }else{
                 cc.log("in rect !!!!!!!!!!!!!!!!!!!!! handbox 3");
             }
-
             if(isNeedSendMeg){
-                this.selectCard(new GWCard);
+                this.selectCard(cardData.uiData);
             }
         }
         else{
             this.restoreScene();
         }
-
     },
 
     //还原场景
@@ -115,38 +123,40 @@ var GWCardsHandBox = ccui.Layout.extend({
             this.cancelSeleCard();
         }
     },
-
-
-    //
+    //找出点击的卡
+    /**
+     * 返回对象 cardData
+     * {
+     *   card    :hand, 卡UI-Sprite
+     *   index   :index
+     *   uiData  :cardUIData
+     * }
+     * */
     findTouchCard:function (posInNode) {
         cc.log("findTouchCard",posInNode);
-
         for (var i = 0, len = this.cardList.length;i<len;i++) {
-            var card = this.cardList[i].card;
+            var cardData = this.cardList[i];//
+            var card = cardData.card;
             var cardGroupRect   = cc.rect(  card.x,
                                             (card.y - card.height),
                                             card.width,
                                             card.height);
             //判断是否落在手牌
             if(cc.rectContainsPoint(cardGroupRect,posInNode)){
-                return card;
+                return cardData;
             }
         }
         return null;
     },
-
-
+    //
     findTouchCardIndex:function (posInNode) {
         cc.log("findTouchCard",posInNode);
-
         for (var i = 0, len = this.cardList.length;i<len;i++) {
-
             var card = this.cardList[i].card;
             var cardGroupRect   = cc.rect(  card.x,
                 card.y * (1 - card.anchorY),
                 card.width,
                 card.height);
-
             //判断是否落在手牌
             if(cc.rectContainsPoint(cardGroupRect,posInNode)){
                 return i;
@@ -157,7 +167,7 @@ var GWCardsHandBox = ccui.Layout.extend({
     /**
      *  bind 绑定函数用于 外部绑定
      * */
-    selectCard:function(data){
+    selectCard:function(uiData){
         cc.log("selectCard null func:",data);
     },
     cancelSeleCard:function () {

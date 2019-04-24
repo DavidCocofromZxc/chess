@@ -13,7 +13,7 @@
 // window.io;
 // var SocketIO = SocketIO || window.io;
 
-var NetWorkLayer = BaseScene.extend({
+var NetWorkLayer = BaseLayer.extend({
 
     socketIO    :null,
 
@@ -21,42 +21,50 @@ var NetWorkLayer = BaseScene.extend({
         this._super();
         // this.loadSocketIO();
         this.test();
+        // this.loadHandCard();
         return true;
     },
 
     test:function () {
-        Bmob.initialize("ef0729f131d45699c3173d3fa16fe307", "05d0be62242c7a63ddcb2566253eaefd");
-        Bmob.User.login('admin','12345').then(res => {
-            console.log(res)
-        }).catch(err => {
-            console.log(err)
-        });
+        this.showLoading();
 
-        const query = Bmob.Query("monster");
+        const query = Bmob.Query("monsterData");
         query.find().then(res => {
-            console.log(res)
+            console.log("data",res)
+            var aa = new GWMonsterData();//.initMonsterObj(res[0]);
+            aa.initMonsterObj(res[0]);
+            cc.log("aa:",aa);
+            this.stopLoading();
         });
     },
 
-    loadSocketIO:function () {
-        var socketIO = SocketIO.connect('127.0.0.1:3000');
-        this.socketIO = socketIO;
-        var self = this;
-        socketIO.on("connect",function (data) {
-           cc.log("连接成功");
-           socketIO.emit('login',JSON.stringify("{msg:\"hi\"}"));
-        });
-
-        socketIO.on("login",function (obj) {
-            var data = JSON.parse(obj);
-            cc.log("login data:",data);
-        });
+    //加载手牌区域
+    loadHandCard:function(){
+        var hand = new GWCard();//ancher 0,1
+        hand.setPosition(200,200);
+        this.addChild(hand);
+        hand.setData(GWMonsterData.initMonsterData());
     },
+
+    // loadSocketIO:function () {
+    //     var socketIO = SocketIO.connect('127.0.0.1:3000');
+    //     this.socketIO = socketIO;
+    //     var self = this;
+    //     socketIO.on("connect",function (data) {
+    //        cc.log("连接成功");
+    //        socketIO.emit('login',JSON.stringify("{msg:\"hi\"}"));
+    //     });
+    //
+    //     socketIO.on("login",function (obj) {
+    //         var data = JSON.parse(obj);
+    //         cc.log("login data:",data);
+    //     });
+    // },
 });
 
 
 
-var NetWorkScene = cc.Scene.extend({
+var NetWorkScene = BaseScene.extend({
     onEnter:function () {
         this._super();
         var layer = new NetWorkLayer();

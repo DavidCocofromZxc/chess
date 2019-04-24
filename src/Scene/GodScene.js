@@ -10,25 +10,28 @@
 
 // var GodLayer = cc.Layer.extend({
 
-var GodLayer = BaseScene.extend({
+var GodLayer = BaseLayer.extend({
 
-    textLabel       :null,  //对话text条
-    nodeSprite      :null,  //对话的sptire
-    checkerboard    :null,  //棋盘
-    demoChess       :null,  //棋子
-
+    textLabel       : null, //对话text条
+    nodeSprite      : null, //对话的sptire
+    checkerboard    : null, //棋盘
+    ourCardGroup    : null, //我方卡组
+    cardsHandBox    : null, //我方手牌区域
+    lookCard        : null, //查看卡
     contentList     :[],
 
     ctor:function () {
+        this.lookCard = null;
+
         this._super();
         this.loadBody();
         this.loadLabel();
-        this.loadDemoChess();
+        // this.loadCheckerboard();
+        // this.loadGroup();
         this.loadContentList();
         this.registerEvent();
         return true;
     },
-
     /*
     *  init
     * */
@@ -51,18 +54,6 @@ var GodLayer = BaseScene.extend({
         this.addChild(text,LocalZorderEnemu.DialogueText);
         text.setPosition( cc.winSize.width/2, cc.winSize.height/2 - 100);
         this.textLabel = text;
-
-    },
-    //加载demo棋子
-    loadDemoChess:function () {
-        var chess = new GWMonster("26");
-        this.addChild(chess,LocalZorderEnemu.CHESS);
-        chess.chessType = ChessTypeEnemu.SNOW;
-        chess.setPosition(cc.winSize.width/2 + 300,cc.winSize.height/2);
-        chess.setAnchorPoint(0,0);
-        chess.StateSummoning = SummoningStateEnemu.inHand;
-        chess.setOpacity(0);
-        this.demoChess = chess;
     },
     //加载棋盘
     loadCheckerboard:function () {
@@ -70,12 +61,66 @@ var GodLayer = BaseScene.extend({
         this.addChild(node);
         node.setAnchorPoint(0,0);
         node.setPosition(   (cc.winSize.width - node.width)/2,
-                                    (cc.winSize.height - node.height)/2);
+            (cc.winSize.height - node.height)/2);
         this.checkerboard = node;
+    },
+    //加载卡组
+    loadGroup:function(){
+        //模拟数据流
+        var ourflow = "OXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2Nlg=";
+        //我方卡组
+        var ourGroup  = new GWCardGroup(ourflow);
+        this.addChild(ourGroup,LocalZorderEnemu.UI);
+        ourGroup.setPosition(  this.checkerboard.x + this.checkerboard.width + 20,//缝隙
+            this.checkerboard.y);
+        //抽卡事件
+        ourGroup.pumpCardAction = function (cardID) {
+            this.showLoading();
+            XCDATA().MONSTER_UITABLE.get(cardID).then(res => {
+                console.log(res)
+                this.cardsHandBox.addCard(res);
+                this.stopLoading();
+            }).catch(err => {
+                console.log(err)
+                this.stopLoading();
+            });
+        }.bind(this);
+        this.ourCardGroup = ourGroup;
+        // this.ourCardGroup.setOpacity(0.1 *255);
+        this.ourCardGroup.setOpacity(0);
+    },
+    //加载手牌区域
+    loadHandCard:function(){
+        var sideWidth = 20; //添加边宽
+        var hand = new GWCardsHandBox();//ancher 0,1
+        this.addChild(hand,LocalZorderEnemu.UI);
+        hand.setPosition(   this.checkerboard.x - sideWidth,
+            this.checkerboard.y);
+        hand.setContentSize(this.checkerboard.width + 2*sideWidth,100);
+        this.cardsHandBox = hand;
+        //绑定选中事件
+        hand.selectCard = function(data){
+            if(this.lookCard != null){
+                this.lookCard.removeFromParent();
+                this.lookCard = null;
+            }
+            var card = new GWCard();
+            this.addChild(card,LocalZorderEnemu.CARD);
+            card.setPosition(this.checkerboard.x + this.checkerboard.width + 10 ,100);
+            card.setAnchorPoint(0,0);
+            this.lookCard = card;
+            this.checkerboard.pickUpCardInHand(card);
+        }.bind(this);
+        //绑定取消事件
+        hand.cancelSeleCard = function () {
+            cc.log("cancelSeleCard");
+            this.checkerboard.cancelPickUpCardInHand();
+        }.bind(this);
     },
     //加载对话内容list
     loadContentList:function(){
-        this.contentList = [    "你好",//0
+        this.contentList = [
+            "你好",//0
             "我是这个世界的神",
             "我所处的世界已经支离破碎",
             "纵使是我、亦没有完整的肉身",
@@ -83,17 +128,17 @@ var GodLayer = BaseScene.extend({
             "我需要你",
             "帮我在主神的游戏中获得胜利",//6
             "我用仅有的力量，向你展现一次战斗",//7
-            "这是名为 \"国王骰\" 的游戏棋盘",//8
+            "这是名为 \"国王骰\" 的主神游戏",//8
             "两边的水晶是敌对双方的胜利目标",//9
-            "右侧是主神们随之游玩的棋子",//10
+            "右侧是主神们随之游玩的卡片",//10
             "他们是各大位面搜集而来的英灵、亡者和未生之物",
-            "这枚棋子叫小雪，它曾是我珍爱之物",//11
-            "现在点击选中小雪吧",//12
+            "这张卡是我叫做沉默番兵，它曾是我珍爱之物",
+            // "这枚棋子叫小雪，它曾是我珍爱之物",//11
+            "现在点击选中番兵吧",//12
         ];
     },
     //注册事件
     registerEvent:function(){
-
         //注册事件用于每一句对话结束的回调
         var listener = cc.EventListener.create({
             event       :   cc.EventListener.CUSTOM,
@@ -138,22 +183,27 @@ var GodLayer = BaseScene.extend({
                 var blueSeq = cc.sequence(fadIn,moveUp,fadOut);
                 this.nodeSprite.runAction(blueSeq);
                 break;
-            case "这是名为 \"国王骰\" 的游戏棋盘":
+            case "这是名为 \"国王骰\" 的主神游戏":
                 //
-                this.textLabel.setPosition(this.textLabel.x,this.textLabel.y - 170);
-                //显示棋盘
+                this.textLabel.setPosition(this.textLabel.x,this.textLabel.y - 100);
+                //加载&显示棋盘
                 this.loadCheckerboard();
+                this.loadGroup();
+                this.loadHandCard();
                 break;
             case "两边的水晶是敌对双方的胜利目标":
                 //加载 游戏逻辑-国王
                 this.checkerboard.initGameCrystal();
                 break;
-            case "右侧是主神们随之游玩的棋子":
+            case "右侧是主神们随之游玩的卡片":
                 //显示Demo棋子
                 var fadeIn = cc.fadeIn(2);
-                this.demoChess.runAction(fadeIn);
+                this.ourCardGroup.runAction(fadeIn);
                 break;
-            case "现在点击选中小雪吧":
+            case   "这张卡是我叫做沉默番兵，它曾是我珍爱之物":
+                this.ourCardGroup.pumpingCard(1);
+                break;
+            case "现在点击选中番兵吧":
                 this.registerTouchEvent();
                 break;
 
@@ -174,34 +224,8 @@ var GodLayer = BaseScene.extend({
             default:
                 break;
         }
-        // if(isOver){
-        //     this.textLabel.stopAllActions();
-        //     cc.eventManager.removeCustomListeners(this.textLabel.TEXT_CALLBACK_EVENT);
-        //     cc.eventManager.removeCustomListeners(this..TEXT_CALLBACK_EVENT);
-        //     this.textLabel.removeFromParent();
-        //     this.textLabel = null;
-        //     return ;
-        // }
     },
 
-    // registerFreeDialogue:function(){
-    //     // [事件监听]触摸事件
-    //     // var onTouchEventListener = cc.EventListener.create({
-    //     //     event           : cc.EventListener.TOUCH_ONE_BY_ONE,//单指模式
-    //     //     target          : this,
-    //     //     swallowTouches  : true,
-    //     //     callback    : function(event){
-    //     //         var target = event.getCurrentTarget();
-    //     //         var data =  event.getUserData();
-    //     //         //
-    //     //         target.showDialogueAction(data.index,data.isOver);
-    //     //     }
-    //     //     // onTouchBegan  : this.onTouchBegan,
-    //     //     // onTouchMoved  : this.onTouchMoved,
-    //     //     // onTouchEnded  : this.onTouchEnded
-    //     // });
-    //     // cc.eventManager.addListener(onTouchEventListener, this);
-    // },
     //注册触摸事件
     registerTouchEvent:function(){
 
@@ -217,51 +241,10 @@ var GodLayer = BaseScene.extend({
         cc.eventManager.addListener(onTouchEventListener, this);
     },
 
-
-
-
     //touch event
     onTouchBegan:function (touch,event) {
-
-
-
-        var self = event.getCurrentTarget();
-        //将点击坐标转换为基于当前触发事件对象的本地坐标
-        var posInNode = self.convertToNodeSpace(touch.getLocation());
-
-        //棋盘区域范围
-        var checkerboardRect = cc.rect( self.checkerboard.x,
-                                        self.checkerboard.y,
-                                        self.checkerboard.width,
-                                        self.checkerboard.height);
-
-        //小雪区域范围
-        var xiaoxueRect = cc.rect(  self.demoChess.x,
-                                    self.demoChess.y,
-                                    self.demoChess.width,
-                                    self.demoChess.height);
-
-        // //判断是否落在棋盘内
-        if(cc.rectContainsPoint(checkerboardRect,posInNode)){
-            cc.log("落在棋盘内")
-            self.checkerboard.onTouchEnded(touch);    //触发传递
-            return true;
-        }
-
-        // //判断是否落在选子区
-        else if(cc.rectContainsPoint(xiaoxueRect,posInNode)){
-            cc.log("落在选棋内")
-            // self.demoChess.onTouchBegan(touch,event);   //触发传递
-            // self.demoChess.pickUp();
-            self.checkerboard.pickUpChessInHand(self.demoChess);
-
-            return true;
-        }else{
-            cc.log("no nothing")
-            return false;
-        }
+        return true;
     },
-
 
 
     onTouchMoved:function (touch,event) {
@@ -271,13 +254,26 @@ var GodLayer = BaseScene.extend({
 
     onTouchEnded:function (touch,event) {
         cc.log("onTouchEnded");
+
+        var self = event.getCurrentTarget();
+        //将点击坐标转换为基于当前触发事件对象的本地坐标
+        // var posInNode = self.convertToNodeSpace(touch.getLocation());
+
+        // // 棋盘区域范围
+        // var checkerboardRect = cc.rect( self.checkerboard.x,
+        //                         self.checkerboard.y,
+        //                         self.checkerboard.width,
+        //                         self.checkerboard.height);
+        // 触发传递
+        self.checkerboard.onTouchEnded(touch);//将触发传递至下层
+        self.cardsHandBox.onTouchEnded(touch);
     },
 
 });
 
 
 
-var GodScene = cc.Scene.extend({
+var GodScene = BaseScene.extend({
 
     onEnter:function () {
         this._super();

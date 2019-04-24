@@ -14,15 +14,19 @@ var BaseLayer = cc.Layer.extend({
 
     backButton      :null,
     bgColorLayer    :null,
+    //下面这个两个可以封装在一起
+    loading         :null,
+    isShowloading   :false,
 
     ctor:function () {
-
         this.backButton     = null;
         this.bgColorLayer   = null;
+        this.loading        = null;
+        this.isShowloading  = false;
 
         this._super();
         this.loadButton();      //加载button
-        // this.loadBgColorLayer();//bgColor
+        this.loadBgColorLayer();//bgColor
         return true;
     },
     //加载button
@@ -42,12 +46,50 @@ var BaseLayer = cc.Layer.extend({
     loadBgColorLayer:function(){
         var bg = new ccui.Layout();
         this.addChild(bg,0);
-        bg.setBackGroundColorType(ccui.Layout.BG_COLOR_SOLID);
-        bg.setBackGroundColor(cc.color(100,100,100));
-        bg.setBackGroundColorOpacity(255);
         bg.setAnchorPoint(0,0);
+        // bg.setBackGroundColorType(ccui.Layout.BG_COLOR_SOLID);
+        // bg.setBackGroundColor(cc.color(100,100,100));
+        // bg.setBackGroundColorOpacity(255);
         bg.setContentSize(cc.winSize.width,cc.winSize.height);
         this.bgColorLayer = bg;
+    },
+    //显示加载条&加载状态
+    showLoading:function(){
+        if(this.loading == null){
+            var load = new cc.Sprite(res.loading);
+            this.addChild(load,999);
+            load.setAnchorPoint(0.5,0.5);
+            load.setPosition(cc.winSize.width/2,cc.winSize.height/2);
+            this.loading = load;
+        }
+        if(this.isShowloading == false){
+            var rotateA = cc.rotateBy(0.5,-180);
+            var rotateB = cc.rotateBy(0.25,-90);
+            var rotateC = cc.rotateBy(0.45,-90);
+            var sequence = cc.sequence(rotateA,rotateB,rotateC);
+            this.loading.runAction(sequence.repeatForever());
+            this.isShowloading = true;
+        }
+    },
+    //停止加载
+    stopLoading:function(){
+        if(this.loading != null){
+            // var load = new cc.Sprite(res.loading);
+            // this.addChild(load,999);
+            // load.setAnchorPoint(0.5,0.5);
+            // load.setPosition(cc.winSize.width/2,cc.winSize.height/2);
+            // this.loading = load;
+            this.loading.stopAllActions();
+            // this.isShowloading = false;
+            this.loading.removeFromParent();
+            this.loading = null;
+        }
+        if(this.isShowloading != false){
+            // this.loading.stopAllActions();
+            this.isShowloading = false;
+            // this.loading.removeFromParent();
+            // this.loading = null;
+        }
     },
     //touch事件
     onTouchEvent :function(sender,type){
@@ -66,8 +108,6 @@ var BaseLayer = cc.Layer.extend({
                 break;
         }
     },
-
-
 });
 
 

@@ -2,37 +2,68 @@
 
 /**
  *
- *  卡牌基础 -< 未完成 >
+ *  卡牌基础 -< 开展态 >
  *
  * */
 
 
 
 var GWCard = cc.Sprite.extend({
-
+    //组件
     fyLabel         : null,
     nameLabel       : null,
     dscLabel        : null,
     attackLabel     : null,
     lifeLabel       : null,
+    originalPainting: null,
+
+    //font
+    attributeFontSize   : 20,   //基本属性字符font
+    nameFontSize        : 7,    //名称字符font
+    desFontSize         : 2,    //描述font
+    //data
+    fyText          : "0",
+    gjText          : "0",
+    smText          : "0",
+    desText         : "...",
+    nameText        : "???",
+    fontName        : "Arial",
 
     ctor: function () {
+        //初始化
+        this.fyLabel          = null;
+        this.nameLabel        = null;
+        this.dscLabel         = null;
+        this.attackLabel      = null;
+        this.lifeLabel        = null;
+        this.originalPainting = null;
 
+        //初始化字体大小
+        this.attributeFontSize  = 20;
+        this.nameFontSize       = 7;
+        this.desFontSize        = 2;
+        //native下 修改字体大小
+        if(cc.sys.isNative){
+            this.attributeFontSize   = 25;
+            this.nameFontSize        = 15;
+            this.desFontSize         = 15;
+        }
+        //data defult
+        this.fyText         = "0";
+        this.gjText         = "0";
+        this.smText         = "0";
+        this.desText        = "...";
+        this.nameText       = "???";
+        this.fontName       = "Arial";
 
-        this.fyLabel        = null;
-        this.nameLabel      = null;
-        this.dscLabel       = null;
-        this.attackLabel    = null;
-        this.lifeLabel      = null;
-
-
+        //构建
         this._super();
-        this.test();
+        this.initCardUI();
         return;
     },
 
 
-    test:function(){
+    initCardUI:function(){
 
         /**
          *
@@ -59,35 +90,10 @@ var GWCard = cc.Sprite.extend({
         let leftSpacing         = 20;   //左侧间距
         let bottomSpacing       = 25;   //底部间距
 
-        let attributeFontSize   = 20;   //基本属性字符font
-        let nameFontSize        = 7;    //名称字符font
-        let desFontSize         = 2;    //描述font
-        if(cc.sys.isNative){
-            attributeFontSize   = 25;
-            nameFontSize        = 15;
-            desFontSize         = 15;
-
-        }
-
-        //
-        // var head = new ccui.Layout();
-        // this.addChild(head,1000);
-        // head.setBackGroundColorType(ccui.Layout.BG_COLOR_SOLID);
-        // head.setBackGroundColor(cc.color(100,100,100,100));
-        // head.setPosition(0,cardBodyHeight + cardBottomHeight);
-        // head.setContentSize(cardWidth,cardHeadHeight);
-
-
-        // var body = new ccui.Layout();
-        // this.addChild(body,1000);
-        // body.setBackGroundColorType(ccui.Layout.BG_COLOR_SOLID);
-        // body.setBackGroundColor(cc.color(100,100,100,250));
-        // body.setPosition(0,cardBodyHeight + cardBottomHeight);
-        // body.setContentSize(cardWidth,cardHeadHeight);
 
 
 
-
+        //<* 适配 计算点 *>
         var artPoint    = cc.p(cardWidth/2,cardBottomHeight +cardBodyHeight/2);      //原画点
         var fyPoint     = cc.p(  leftSpacing,cardBottomHeight + cardWaistHeight + cardBodyHeight + 10);       //费用点
         var namePoint   = cc.p(leftSpacing +45,cardBottomHeight + cardWaistHeight + cardBodyHeight + 10);  //name
@@ -96,67 +102,8 @@ var GWCard = cc.Sprite.extend({
         var dscPoint    = cc.p(leftSpacing,cardBottomHeight -30);     //描述  //？30
 
 
-
-
-        //
-        // var head = new ccui.Layout();
-        // this.addChild(head,1000);
-        // head.setLayoutType(ccui.Layout.LINEAR_HORIZONTAL);
-        // head.setBackGroundColorType(ccui.Layout.BG_COLOR_SOLID);
-        // head.setBackGroundColor(cc.color(100,100,100));
-        // head.setBackGroundColorOpacity(255*0.5);
-        // head.setPosition(0,cardBottomHeight + cardWaistHeight + cardBodyHeight);
-        // head.setContentSize(cardWidth,cardHeadHeight);
-        //
-        //
-        // //费用
-        // var fyLbl = new ccui.Text("4","Arial",20);
-        // fyLbl.setPosition(0,0);
-        // fyLbl.setAnchorPoint(0,0);
-        // head.addChild(fyLbl,101);
-        //
-        // //名称
-        // var name = new ccui.Text("沉默の武者","Arial",7);
-        // // name.setPosition(namePoint.x,namePoint.y);
-        // name.setAnchorPoint(0,0);
-        // head.addChild(name,101);
-
-
-
-
-
-        // var body = new ccui.Layout();
-        // this.addChild(body,1000);
-        // body.setBackGroundColorType(ccui.Layout.BG_COLOR_SOLID);
-        // body.setBackGroundColor(cc.color(100,100,100));
-        // body.setBackGroundColorOpacity(255*0.5);
-        // body.setPosition(0,cardBottomHeight + cardWaistHeight);
-        // body.setContentSize(cardWidth,cardBodyHeight);
-
-
-        // var waist = new ccui.Layout();
-        // this.addChild(waist,1000);
-        // waist.setBackGroundColorType(ccui.Layout.BG_COLOR_SOLID);
-        // waist.setBackGroundColor(cc.color(100,100,100));
-        // waist.setBackGroundColorOpacity(255*0.5);
-        // waist.setPosition(0,cardBottomHeight);
-        // waist.setContentSize(cardWidth,cardWaistHeight);
-        //
-        //
-        // //
-        // var bottom = new ccui.Layout();
-        // this.addChild(bottom,1000);
-        // bottom.setBackGroundColorType(ccui.Layout.BG_COLOR_SOLID);
-        // bottom.setBackGroundColor(cc.color(100,100,100));
-        // bottom.setBackGroundColorOpacity(255*0.5);
-        // bottom.setPosition(0,0);
-        // bottom.setContentSize(cardWidth,cardBottomHeight);
-
-
-
-
         //<* 图构 *>
-        var kaA = new cc.Sprite(res.kakuang);
+        var kaA = new cc.Sprite(res.kakuang);//monsterDefault
         kaA.setPosition(0,0);
         kaA.setAnchorPoint(0,0);
         var kaB = new cc.Sprite(res.katiao);
@@ -171,28 +118,29 @@ var GWCard = cc.Sprite.extend({
 
 
         //原画
-        var gw = new cc.Sprite(res.guaiwu0001);
+        var gw = new cc.Sprite(res.monsterDefault);//monsterDefault
         gw.setPosition(artPoint.x,artPoint.y);
         gw.setAnchorPoint(0.5,0.5);
+        this.originalPainting = gw;
 
 
 
         //费用
-        var fyLbl = new cc.LabelTTF("4","Arial",attributeFontSize);
+        var fyLbl = new cc.LabelTTF(this.fyText,this.fontName ,this.attributeFontSize);
         fyLbl.setPosition(fyPoint.x,fyPoint.y);
         this.addChild(fyLbl,101);
         this.fyLabel = fyLbl;
 
 
         //攻击力
-        var gjLbl = new cc.LabelTTF("4","Arial",attributeFontSize);
+        var gjLbl = new cc.LabelTTF(this.gjText,this.fontName ,this.attributeFontSize);
         gjLbl.setFontFillColor(cc.color(0,0,0));
         gjLbl.setPosition(gjPoint.x,gjPoint.y);
         this.addChild(gjLbl,101);
         this.attackLabel    = gjLbl;
 
         //生命力
-        var smLbl = new cc.LabelTTF("8","Arial",attributeFontSize);
+        var smLbl = new cc.LabelTTF(this.smText,this.fontName ,this.attributeFontSize);
         smLbl.setFontFillColor(cc.color(0,0,0));
         smLbl.setPosition(smPoint.x,gjPoint.y);
         this.addChild(smLbl,101);
@@ -202,16 +150,16 @@ var GWCard = cc.Sprite.extend({
 
         //
         //名称
-        var name = new cc.LabelTTF("沉默の武者","Arial",nameFontSize);
+        var name = new cc.LabelTTF(this.nameText,this.fontName ,this.nameFontSize);
         name.setPosition(namePoint.x,namePoint.y);
         this.addChild(name,101);
         this.nameLabel = name;
 
-        var text = "沉默寡言的武者，对贸然来犯对的敌人给予猛烈的反击"
-        var sizeStr = XCReturnStringWidth(text,"Arial",desFontSize,180);
+        var text = this.desText
+        var sizeStr = XCReturnStringWidth(text,this.fontName,this.desFontSize,180);
 
         //描述
-        var dsc = new cc.LabelTTF(sizeStr.str,"Arial",desFontSize);
+        var dsc = new cc.LabelTTF(sizeStr.str,this.fontName ,this.desFontSize);
         dsc.setFontFillColor(cc.color(0,0,0));
         dsc.setAnchorPoint(0,0);
         dsc.setPosition(dscPoint.x,dscPoint.y - sizeStr.h);
@@ -224,6 +172,33 @@ var GWCard = cc.Sprite.extend({
         this.addChild(kaC,80);
         this.addChild(gw,75);
         this.addChild(kaD,70);
+    },
+
+    setData:function(data,uiData){
+
+        var texture = cc.textureCache.addImage("res/card/monster/gw0001.png");
+        this.originalPainting.setTexture(texture);
+        //原画
+        //card/monster/gw0001.png
+        //uiData.originalPainting
+        // this.originalPainting.setSpriteFrame("res/card/monster/gw0001.png");
+        // this.originalPainting.setSprite()
+        //费用
+        this.fyLabel.setString(data.energy);
+        //攻击力
+        this.attackLabel.setString(data.attack);
+        //生命力
+        this.lifeLabel.setString(data.health);
+        //名称
+        this.nameLabel.setString(data.name);
+        //描述
+        let leftSpacing         = 20;   //左侧间距
+        let cardBottomHeight    = 93;   //卡底部高度 ok
+        var dscPoint    = cc.p(leftSpacing,cardBottomHeight -30);     //描述  //？30
+        var text = data.dsc;//
+        var sizeStr = XCReturnStringWidth(text,this.fontName,this.desFontSize,180);
+        this.dscLabel.setString(sizeStr.str);
+        this.dscLabel.setPosition(dscPoint.x,dscPoint.y - sizeStr.h);
     },
 
 

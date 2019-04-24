@@ -474,7 +474,6 @@ var GWPiece = cc.Sprite.extend({
 
         this.chessInMapX = movePos.x;
         this.chessInMapY = movePos.y;
-
     },
 
 
@@ -501,9 +500,7 @@ var GWPiece = cc.Sprite.extend({
         var rect = this.parent.tiledMapRectArray[movePos.y][movePos.x];
         //获得位置
         var p = cc.p(   rect.x + this.anchorX * size.width,
-                        rect.y + this.anchorY * size.height
-                    )
-
+                        rect.y + this.anchorY * size.height)
         //
         var duration = 0.5;
 
@@ -519,7 +516,7 @@ var GWPiece = cc.Sprite.extend({
 
             //particle_blackFire
             var particleA = new cc.ParticleSystem(res.particle_blackFire);
-            this.addChild(particleA);
+            this.addChild(particleA,999);
             // particleA.setScale(0.5);
             particleA.setAnchorPoint(0.5,0.5);
             particleA.setPosition(this.width/2, this.height/2 -10);

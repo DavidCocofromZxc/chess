@@ -47,21 +47,18 @@ var LoginLayer = cc.Layer.extend({
 
         this._super();
         this.loadUI();
+        this.loginBmob();//用户登录bmob
         return true;
     },
 
     loadUI:function () {
-
         this.removeAllChildren();
-
         //粒子
         var particle = new cc.ParticleSystem(res.particle_move_piantou);
         this.addChild(particle);
         particle.setPosition(   this.width/2,
                                         this.height/4 * 3);
         this.beginParticle = particle;
-
-
         //button A
         var beginGame = new cc.LabelTTF("教程入口","Arial",36);
         var beginGameItem = new cc.MenuItemLabel(beginGame,this.beginAction,this);
@@ -74,19 +71,14 @@ var LoginLayer = cc.Layer.extend({
 
         var sequence = cc.sequence(delay,anminB,anminC,anminD);
         beginGame.runAction(sequence.repeatForever());
-
         //button B
         var exit = new cc.LabelTTF("主游戏","Arial",36);
         var exitItem = new cc.MenuItemLabel(exit,this.exitAction,this);
         exitItem.setPosition(beginGameItem.x,beginGameItem.y - 80);
-
         //button C
         var next = new cc.LabelTTF("测试入口","Arial",36);
         var nextItem = new cc.MenuItemLabel(next,this.nextAction,this);
         nextItem.setPosition(exitItem.x,exitItem.y - 80);
-
-
-
         //Menu
         var menu = new cc.Menu(beginGameItem,exitItem,nextItem)
         this.mainMenu = menu;
@@ -95,8 +87,16 @@ var LoginLayer = cc.Layer.extend({
         menu.setOpacity(0);
         var fadeIn = cc.fadeIn(5);
         menu.runAction(fadeIn);
+    },
 
-
+    loginBmob:function(){
+        Bmob.initialize("ef0729f131d45699c3173d3fa16fe307", "05d0be62242c7a63ddcb2566253eaefd");
+        Bmob.User.login('admin','12345').then(res => {
+            console.log(res)
+            XCData.getInstance();//初始化
+        }).catch(err => {
+            console.log(err)
+        });
     },
 
     beginAction:function(){

@@ -9,7 +9,7 @@
     "renderMode" : 0,
     "engineDir":"frameworks/cocos2d-html5",
 
-    "modules" : ["cocos2d","ccui","external","socketio","bmobSDK"],
+    "modules" : ["cocos2d","ccui","external","bmobSDK"],
 
     "jsList" : [
         "src/resource.js",
@@ -23,6 +23,8 @@
 
         "src/Utils/Enemu.js",
         "src/Tool/XCTool.js",
+        "src/Tool/XCBase64Tool.js",
+        "src/Tool/XCData.js",
 
         "src/Custom/GWText.js",
         "src/Custom/GWMessage.js",
@@ -39,10 +41,12 @@
         "src/Custom/Piece/GWMonster.js",
         "src/Custom/Piece/GWBuilding.js",
 
+        "src/Custom/Data/GWMonsterData.js",
+
         "src/Custom/Card/GWCard.js",
         "src/Custom/Card/GWCardGroup.js",
         "src/Custom/Card/GWHandCard.js",
-        "src/Custom/Card/GWCardsHandBox.js",
+        "src/Custom/Card/CardsHandBox/GWCardsHandBox.js",
 
         "src/Custom/UI/GWButton.js"
     ]

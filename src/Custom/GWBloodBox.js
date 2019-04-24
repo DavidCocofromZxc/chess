@@ -3,7 +3,7 @@
 
 /**
  *
- *  专用血条类
+ *  国王专用/棋盘专用 血条类
  *
  * */
 
@@ -16,13 +16,13 @@ var GWBloodBox = ccui.Layout.extend({
         this._super();
         this.setAnchorPoint(0.5,0.5);
         this.setLayoutType(ccui.Layout.LINEAR_HORIZONTAL);
-        //高亮
+        //区域高亮
         // this.setBackGroundColorType(ccui.Layout.BG_COLOR_SOLID);
         // this.setBackGroundColor(cc.color(0,200,0));
         // this.setBackGroundColorOpacity(255 *0.5);
         //测试
         this.addHeartCount(3);
-        this.subtractHeart(1);
+        // this.subtractHeart(1);
 
         return true;
     },

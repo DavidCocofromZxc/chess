@@ -26,8 +26,9 @@ var res = {
 
 
     //Game UI
-    baceButton          : "res/UI/baceButton.png",
-    cardGroup           : "res/UI/cardGroup.png",
+    baceButton      : "res/UI/baceButton.png",
+    cardGroup       : "res/UI/cardGroup.png",
+    loading         : "res/UI/loading.png", //加载
 
     //地图相关
     bg5x5_tmx       : "res/Map/55/chessMap5x5.tmx", //地图
@@ -42,15 +43,10 @@ var res = {
     redHeart        : "res/Other/redHeart.png",
     energy          : "res/Other/energy.png",
 
-
-
     //monster
     monster_plist_26    : "res/piece/monster26.plist",
     monster_png_26      : "res/piece/monster26.png",
     defaultMonster      : "res/piece/monster/myMonster.png",
-
-
-
 
     //粒子
     particle_move_piantou       : "res/Particle/piantouAnim.plist",
@@ -65,9 +61,10 @@ var res = {
 
     //card原画
     guaiwu0001          : "res/card/monster/gw0001.png",
-
+    monsterDefault      : "res/card/monster/monsterDefault.png",
 
     //小卡
+    cardHandBack        : "res/UI/cardHandBack.png",//小卡背
     cardHand            : "res/UI/cardHand.png",
 
 

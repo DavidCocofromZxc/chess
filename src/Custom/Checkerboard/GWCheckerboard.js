@@ -138,8 +138,9 @@ var GWCheckerboard = cc.TMXTiledMap.extend({
             this.selectChess.pickDown();
             this.selectChess = null;
         }
-        //如果有
+        //如果 当前所展示的卡
         if(this.selectHandCard != null){
+            this.selectHandCard.removeFromParent();
             this.selectHandCard = null;
         }
     },
@@ -227,6 +228,9 @@ var GWCheckerboard = cc.TMXTiledMap.extend({
                     self.removeMapLayerArray();     //移除layer
                     self.selectChess.pickDown();   //取消棋子选中状态
                     self.selectChess = null;       //null化
+                }else{
+                    //说明选中棋子&但不在目标区域中
+                    this.restoreScene();
                 }
             }//未举起棋子&点击空白区域
             else if(self.tiledMapLeaveArray[result.cel][result.row] == CampEnemu.NONE){//点击空白区域
@@ -326,7 +330,6 @@ var GWCheckerboard = cc.TMXTiledMap.extend({
         }
         this.drawMapLayerArray(result,EnemuOtherLayer.SUMMON);
     },
-
     //绘制目标移动区域
     drawChessMovingLayer:function(chess){
         var result = [];
@@ -382,7 +385,6 @@ var GWCheckerboard = cc.TMXTiledMap.extend({
             this.addChild(layer,LAYER_LOCAL_ZORDER);
         }
     },
-
     //移除layer ->summon ->move
     removeMapLayerArray:function(layerType){
         //移除绘制
