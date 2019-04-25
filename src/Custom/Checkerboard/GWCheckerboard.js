@@ -115,8 +115,8 @@ var GWCheckerboard = cc.TMXTiledMap.extend({
     //  <*独立方法*>
     pickUpCardInHand:function(card){
         cc.log("pickUpCardInHand");
-        this.selectHandCard = card;
-        this.drawMapCurrentSummonLayer();
+        this.selectHandCard = card;//选中卡
+        this.drawMapCurrentSummonLayer();//绘制召唤区域
         this.eventTouchPickUpCardInHandAction(card);
     },
     // 取消选中
@@ -180,22 +180,24 @@ var GWCheckerboard = cc.TMXTiledMap.extend({
                         this.eventTouchSummonChessAction(1);
                     }else{//CampEnemu.NONE //目标区域无棋子，允许召唤"
                         cc.log("目标区域无棋子，允许召唤：",layerRect);
-                        /* 牌转化为棋子 */ /* 牌转化为棋子 */ /* 牌转化为棋子 */ /* 牌转化为棋子 */ /* 牌转化为棋子 */
-                        //从原来scene移除
-                        var chess = new GWMonster;//self.holder_Chess;
-                        chess.removeFromParent();
-                        // 加入到棋盘中
-                        self.addChild(chess);//渲染层级有封装
-                        this.arrayFriendsSurvivalChess.push(chess);//加入我方存活棋子
-                        self.tiledMapLeaveArray[result.cel][result.row] =  CampEnemu.BLACK;
-                        //棋子化处理 ->数据模拟
-                        chess.setAnchorPoint(0.5,0.5);
-                        chess.setScale(2);//放大
-                        chess.movingDistance = 9;
-                        chess.movingDirection = [1,1,1,1,1,1,1,1];
-                        //更新Map中位置映射
-                        chess.joinInMap(result.cel,result.row,ChessAnimeEnemu.FADEIN);
-                        XCLog("leaveList:",self.tiledMapLeaveArray);
+
+                        var chess = new GWMonster();
+                        // /* 牌转化为棋子 */ /* 牌转化为棋子 */ /* 牌转化为棋子 */ /* 牌转化为棋子 */ /* 牌转化为棋子 */
+                        // //从原来scene移除
+                        // var chess = new GWMonster;//self.holder_Chess;
+                        // chess.removeFromParent();
+                        // // 加入到棋盘中
+                        // self.addChild(chess);//渲染层级有封装
+                        // this.arrayFriendsSurvivalChess.push(chess);//加入我方存活棋子
+                        // self.tiledMapLeaveArray[result.cel][result.row] =  CampEnemu.BLACK;
+                        // //棋子化处理 ->数据模拟
+                        // chess.setAnchorPoint(0.5,0.5);
+                        // chess.setScale(2);//放大
+                        // chess.movingDistance = 9;
+                        // chess.movingDirection = [1,1,1,1,1,1,1,1];
+                        // //更新Map中位置映射
+                        // chess.joinInMap(result.cel,result.row,ChessAnimeEnemu.FADEIN);
+                        // XCLog("leaveList:",self.tiledMapLeaveArray);
                         this.eventTouchSummonChessAction(2,chess);//召唤棋子
                     }
                 }

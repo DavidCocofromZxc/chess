@@ -10,19 +10,96 @@
 
 
 
+let EnemuDataUrl = {
+    monsterData     :   0,
+    monsterUIData   :   1,
+};
+
+
+// var XCDATA = function() {
+//
+//     this.MONSTER_DATATABLE = [];
+//     this.MONSTER_UITABLE   = [];
+//
+//     // Bmob
+//     const monsterDataQuery = Bmob.Query("monsterData");
+//     monsterDataQuery.find().then(res => {
+//         this.MONSTER_DATATABLE = res;
+//     });
+//
+//     const monsterUIDataQuery = Bmob.Query("monsterUI");
+//     monsterUIDataQuery.find().then(res => {
+//         this.MONSTER_UITABLE = res;
+//     });
+//
+// };
+
+//
 function XCDATA(){
     // 如果已存在对应的实例
     if(typeof XCDATA.instance === 'object'){
         return XCDATA.instance
     }
-    //否则正常创建实例
-    this.MONSTER_DATATABLE = Bmob.Query("monsterData");
-    this.MONSTER_UITABLE   = Bmob.Query("monsterUI");
+
+    this.MONSTER_DATATABLE = [];
+    this.MONSTER_UITABLE   = [];
+
+    //Bmob
+    const monsterDataQuery = Bmob.Query("monsterData");
+    monsterDataQuery.find().then(res => {
+        this.MONSTER_DATATABLE = res;
+    });
+
+    const monsterUIDataQuery = Bmob.Query("monsterUI");
+    monsterUIDataQuery.find().then(res => {
+        this.MONSTER_UITABLE = res;
+    });
+
+    // findMonster:function(objectID){
+    //
+    // };
+    // var findMonster = function(objectID){
+    //     return "aaa";
+    // };
 
     // 缓存
-    XCDATA.instance = this
+    XCDATA.instance = this;
+    //data
+    XCDATA.findMonsterData = function(objectID){
+        var monsterData = null;
+        for(var i = 0 ,len = this.MONSTER_DATATABLE.length; i<len ;i++){
+            var obj = this.MONSTER_DATATABLE[i];
+            if(obj.objectId == objectID){
+                monsterData = obj;
+                break;
+            }
+        }
+        return monsterData;
+    }.bind(this);
+    XCDATA.getMonsterData = function(index){
+        var monsterData = null;
+        if(this.MONSTER_DATATABLE.length > index){
+            monsterData = this.MONSTER_DATATABLE[index];
+        }
+        return monsterData;
+    }.bind(this);
+
+    //ui data
+    XCDATA.findMonsterUIData = function(objectID){
+        var monsterData = null;
+        for(var i = 0 ,len = this.MONSTER_UITABLE.length; i<len ;i++){
+            var obj = this.MONSTER_UITABLE[i];
+            if(obj.objectId == objectID){
+                monsterData = obj;
+                break;
+            }
+        }
+        return monsterData;
+    }.bind(this);
+
     return this
-}
+};
+
 
 
 

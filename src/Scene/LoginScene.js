@@ -93,7 +93,8 @@ var LoginLayer = cc.Layer.extend({
         Bmob.initialize("ef0729f131d45699c3173d3fa16fe307", "05d0be62242c7a63ddcb2566253eaefd");
         Bmob.User.login('admin','12345').then(res => {
             console.log(res)
-            XCData.getInstance();//初始化
+            // XCData.getInstance();//初始化
+            XCDATA();
         }).catch(err => {
             console.log(err)
         });

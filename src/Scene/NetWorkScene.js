@@ -19,9 +19,6 @@ var NetWorkLayer = BaseLayer.extend({
 
     ctor:function () {
         this._super();
-        // this.loadSocketIO();
-        this.test();
-        // this.loadHandCard();
         return true;
     },
 

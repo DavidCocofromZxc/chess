@@ -153,15 +153,15 @@ var GameLayer = BaseLayer.extend({
         //抽卡事件
         ourGroup.pumpCardAction = function (cardID) {
             this.showLoading();//
-            //读取数据库
-            XCDATA().MONSTER_UITABLE.get(cardID).then(res => {
-                console.log(res)
-                this.cardsHandBox.addCard(res);
-                this.stopLoading();
-            }).catch(err => {
-                console.log(err)
-                this.stopLoading();
-            });
+            // //读取数据库
+            // XCDATA().MONSTER_UITABLE.get(cardID).then(res => {
+            //     console.log(res)
+            //     this.cardsHandBox.addCard(res);
+            //     this.stopLoading();
+            // }).catch(err => {
+            //     console.log(err)
+            //     this.stopLoading();
+            // });
         }.bind(this);
         this.ourCardGroup = ourGroup;
 
@@ -176,15 +176,15 @@ var GameLayer = BaseLayer.extend({
         //抽卡事件
         otherCardGroup.pumpCardAction = function (cardID) {
             this.showLoading();//
-            //读取数据库
-            XCDATA().MONSTER_UITABLE.get(cardID).then(res => {
-                console.log(res)
-                this.otherCardsHandBox.addCard(res,true);
-                this.stopLoading();
-            }).catch(err => {
-                console.log(err)
-                this.stopLoading();
-            });
+            // //读取数据库
+            // XCDATA().MONSTER_UITABLE.get(cardID).then(res => {
+            //     console.log(res)
+            //     this.otherCardsHandBox.addCard(res,true);
+            //     this.stopLoading();
+            // }).catch(err => {
+            //     console.log(err)
+            //     this.stopLoading();
+            // });
         }.bind(this);
         this.otherCardGroup = otherCardGroup;
         this.otherCardGroup.pumpingCard(1);
@@ -198,7 +198,7 @@ var GameLayer = BaseLayer.extend({
         this.ourBloodBar = blood;
         //
         var otherBloodBar = new GWBloodBox();
-        this.addChild(otherBloodBar,LocalZorderEnemu.UI);
+        this.addChild(otherBloodBar,LocalZorderEnemu.UI + 10);
         otherBloodBar.setPosition( this.checkerboard.x + this.checkerboard.width/2,
                                     this.checkerboard.y + this.checkerboard.height + 20);
         this.otherBloodBar = otherBloodBar;
@@ -225,29 +225,11 @@ var GameLayer = BaseLayer.extend({
         hand.setPosition(   this.checkerboard.x - sideWidth,
                             this.checkerboard.y);
         hand.setContentSize(this.checkerboard.width + 2*sideWidth,100);
-        //绑定选中事件
+        //绑定 手牌中的选卡选中事件
         hand.selectCard = function(uiData){
-            if(this.lookCard != null){
-                this.lookCard.removeFromParent();
-                this.lookCard = null;
-            }
-            var card = new GWCard();
-            this.addChild(card,LocalZorderEnemu.CARD);
-            card.setPosition(this.checkerboard.x + this.checkerboard.width + 10 ,100);
-            card.setAnchorPoint(0,0);
-            this.lookCard = card;
-            this.checkerboard.pickUpCardInHand(card);
-            //读取数据库
-            this.showLoading();
-            XCDATA().MONSTER_DATATABLE.get(uiData.objectId).then(data => {
-                console.log(data);
-                card.setData(data,uiData);
-                this.stopLoading();
-            }).catch(err => {
-                console.log(err)
-                this.stopLoading();
-            });
+            this.showLookCard(uiData);
         }.bind(this);
+
         //绑定取消事件
         hand.cancelSeleCard = function () {
             cc.log("cancelSeleCard");
@@ -265,26 +247,6 @@ var GameLayer = BaseLayer.extend({
         otherHand.setContentSize(this.checkerboard.width + 2*sideWidth,100);
         //绑定选中事件
         otherHand.selectCard = function(uiData){
-            // if(this.lookCard != null){
-            //     this.lookCard.removeFromParent();
-            //     this.lookCard = null;
-            // }
-            // var card = new GWCard();
-            // this.addChild(card,LocalZorderEnemu.CARD);
-            // card.setPosition(this.checkerboard.x + this.checkerboard.width + 10 ,100);
-            // card.setAnchorPoint(0,0);
-            // this.lookCard = card;
-            // this.checkerboard.pickUpCardInHand(card);
-            // //读取数据库
-            // this.showLoading();
-            // XCDATA().MONSTER_DATATABLE.get(uiData.objectId).then(data => {
-            //     console.log(data);
-            //     card.setData(data,uiData);
-            //     this.stopLoading();
-            // }).catch(err => {
-            //     console.log(err)
-            //     this.stopLoading();
-            // });
         }.bind(this);
         //绑定取消事件
         otherHand.cancelSeleCard = function () {
@@ -292,6 +254,34 @@ var GameLayer = BaseLayer.extend({
             // this.checkerboard.cancelPickUpCardInHand();
         }.bind(this);
         this.otherCardsHandBox = otherHand;
+    },
+
+    //侧栏-展示卡牌
+    showLookCard:function(uiData){
+        //如果当前已有在展示的卡牌、先移除
+        if(this.lookCard != null){
+            this.lookCard.removeFromParent();
+            this.lookCard = null;
+        }
+        //构造
+        var card = new GWCard();
+        this.addChild(card,LocalZorderEnemu.CARD);
+        card.setPosition(this.checkerboard.x + this.checkerboard.width + 10 ,100);
+        card.setAnchorPoint(0,0);
+        this.lookCard = card;
+
+        //读取数据库
+        this.showLoading();
+        // XCDATA().MONSTER_DATATABLE.get(uiData.objectId).then(data => {
+        //     console.log(data);
+        //     card.setData(data,uiData);//设置数据
+        //     this.checkerboard.pickUpCardInHand({data:data,uiData:uiData});//选卡传入
+        //     this.stopLoading();
+        // }).catch(err => {
+        //     console.log(err)
+        //     this.stopLoading();
+        //     cc.log("数据传入失败！！！");
+        // });
     },
 
 
@@ -365,6 +355,17 @@ var GameLayer = BaseLayer.extend({
     /**>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
     /**
      *  主循环
+     *
+     *  流程如下：
+     *  1。开始本局
+     *  2。双方各抽5张
+     *  3。裁判决定先后顺序
+     *  4。进入持方回合
+     *  5。回合循环
+     *      1。抽卡
+     *      2。执行操作->包含：召唤、移动、技能
+     *      3。回合结束
+     *      4。持方交换
      * */
     update:function (dt) {
         switch (this.gameStageState) {
