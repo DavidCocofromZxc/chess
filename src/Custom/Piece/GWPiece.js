@@ -11,11 +11,7 @@
  *
  * */
 
-
-
-
 //移动方向枚举
-
 var DirectionEnemu = {
     up:0,
     down:1,
@@ -28,15 +24,11 @@ var DirectionEnemu = {
     downRight:7,
 };
 
-
 //召唤状态
-
 var SummoningStateEnemu = {
-
     inHand:0,
     inCheckerboard:1,
 };
-
 
 //棋子出现动画类型
 var ChessAnimeEnemu = {
@@ -45,32 +37,19 @@ var ChessAnimeEnemu = {
     FADEIN   :"FADEIN",  // 淡出
 };
 
-
-
-
-
-
 var GWPiece = cc.Sprite.extend({
 
-
     pieceType       : PieceTypeEnemu.BASE,  //棋子类型：基础,野兽
-
     ownerType       : OwnerEnemu.UNKNOWN,   //阵营
 
     //other
-
     moveRecord      :[],   //对棋子移动情况的记录
-
     chessType       :"",   //枚举类型       //类似chessid
     campColor       :"",   //持方           //颜色和持方
-
     chessInMapX     :0,
     chessInMapY     :0,
 
     _isPickUp       :false,//当前到选中状态
-
-
-
     //<<<<<<<<<<<<<<<<< 国王骰 >>>>>>>>>>>>>>>>>>>>>>
     chessID         :-99999,
 
@@ -80,30 +59,19 @@ var GWPiece = cc.Sprite.extend({
     summonDistance  :1,//召唤范围
     summonDirection :[1,1,1,1,0,0,0,0],//召唤8方向
 
-
-
     StateSummoning  :SummoningStateEnemu.inHand,        //召唤状态（当前在手中、还是在棋盘上、未来可能有更多分类）
-
-
     enlargeCoefficient:1.1,                             //缩放比例
 
-
-
     defultColor     :null,                              //默认颜色，用于取消选中时找回
-
-
     myCard          :null,      //用于跟踪卡
-
 
     //这里用fileName构造
     ctor: function (fileName,rect,rotated) {
-
         this._super(fileName,rect,rotated);
         this.defultColor = this.getColor();//记录原始颜色
         return;
     },
 
-    //
     // initPiece:function(chessID){
     //
     //     var piece = null;
@@ -131,8 +99,6 @@ var GWPiece = cc.Sprite.extend({
     //     return piece;
     // },
 
-
-
     //选中棋子
     pickUp:function(){
         this.setScale(this.enlargeCoefficient);
@@ -154,22 +120,16 @@ var GWPiece = cc.Sprite.extend({
     //可移动区域
     getMovingRange:function(){
 
-
         var incrementValue = [];
         var selfpoint = {x:this.chessInMapX,y:this.chessInMapY};//当前位置
-
-
-
 
         //距离 （移动格数）
         for (var i = 1;i <= this.movingDistance ; i++){
             //方向
             for (var j = 0; j < this.movingDirection.length ; j ++){
 
-
                 var tagretX = 0;
                 var tagretY = 0;
-
 
                 //如果方向规则不同意
                 if(!this.movingDirection[j]){
@@ -218,7 +178,6 @@ var GWPiece = cc.Sprite.extend({
                 }
             }
         }
-
         return incrementValue;
     },
 
@@ -227,22 +186,16 @@ var GWPiece = cc.Sprite.extend({
     //可召唤区域
     getSummonRange:function(){
 
-
         var incrementValue = [];
         var selfpoint = {x:this.chessInMapX,y:this.chessInMapY};//当前位置
-
-
-
 
         //距离 （移动格数）
         for (var i = 1;i <= this.summonDistance ; i++){
             //方向
             for (var j = 0; j < this.summonDirection.length ; j ++){
 
-
                 var tagretX = 0;
                 var tagretY = 0;
-
 
                 //如果方向规则不同意
                 if(!this.summonDirection[j]){
@@ -291,12 +244,8 @@ var GWPiece = cc.Sprite.extend({
                 }
             }
         }
-
         return incrementValue;
     },
-
-
-
 
 
     //获取棋子移动规则
@@ -511,16 +460,13 @@ var GWPiece = cc.Sprite.extend({
         if(animType == ChessAnimeEnemu.FADEIN){
             this.setOpacity(0);
             this.setPosition(p);
-            move = cc.fadeIn(duration * 3)//cc.moveTo(duration, p);
-
-
+            move = cc.fadeIn(duration * 3)
             //particle_blackFire
             var particleA = new cc.ParticleSystem(res.particle_blackFire);
             this.addChild(particleA,999);
-            // particleA.setScale(0.5);
+
             particleA.setAnchorPoint(0.5,0.5);
             particleA.setPosition(this.width/2, this.height/2 -10);
-
 
             // var particleB = new cc.ParticleSystem(res.particle_blackFire);
             // this.addChild(particleB);
@@ -534,8 +480,6 @@ var GWPiece = cc.Sprite.extend({
             // particleC.setScale(0.5);
             // particleC.setAnchorPoint(0.5,0.5);
             // particleC.setPosition(this.width/2, this.height/2+ 30);
-
-
         }else{//默认move进入
             move = cc.moveTo(duration, p);
         }
@@ -589,8 +533,8 @@ var GWPiece = cc.Sprite.extend({
     // },
 
     lookUpCard:function () {
-        // this.addChild(card);
-        // card.setPosition(0,0);
+        // this.addChild(Card);
+        // Card.setPosition(0,0);
     },
 
     showCard:function () {

@@ -12,7 +12,7 @@ var GWCardsHandBox = ccui.Layout.extend({
     /**
      * cardList 结构:
      * {
-     *   card    :hand, 卡UI-Sprite
+     *   Card    :hand, 卡UI-Sprite
      *   index   :index
      *   uiData  :cardUIData
      * }
@@ -37,15 +37,18 @@ var GWCardsHandBox = ccui.Layout.extend({
     //加入到手牌<小牌>
     //UI data
     //cardUIData不存在则使用默认,isBack是否使用背面默认不用背面
-    addCard:function (cardUIData,isBack) {
-        var cardUrl = (cardUIData === undefined)?res.cardHand:"res/"+cardUIData.smallCardImage;
+    addCard:function (cardData,isBack) {
+        //
+        var skUrl = "res/Card/Little/sk"+cardData.ID+".png"
+        //获得小卡res
+        var cardUrl = (cardData === undefined || cardData == null)?res.cardHand:skUrl;
         //卡片构造加入
         var useBack = isBack||false;
         var hand = new GWHandCard(cardUrl,useBack);//ancher 0,1
         this.addChild(hand);
         //
         var index = this.cardList.length;
-        this.cardList.push({card:hand,index:index,uiData:cardUIData});
+        this.cardList.push({card:hand,index:index,data:cardData});//对象和数据 均放入list
         //< UI 调整>
         //参数配置
         var maxWidth    = this.width;
@@ -107,7 +110,7 @@ var GWCardsHandBox = ccui.Layout.extend({
                 cc.log("in rect !!!!!!!!!!!!!!!!!!!!! handbox 3");
             }
             if(isNeedSendMeg){
-                this.selectCard(cardData.uiData);
+                this.selectCard(cardData.data);
             }
         }
         else{
@@ -127,7 +130,7 @@ var GWCardsHandBox = ccui.Layout.extend({
     /**
      * 返回对象 cardData
      * {
-     *   card    :hand, 卡UI-Sprite
+     *   Card    :hand, 卡UI-Sprite
      *   index   :index
      *   uiData  :cardUIData
      * }
@@ -167,7 +170,7 @@ var GWCardsHandBox = ccui.Layout.extend({
     /**
      *  bind 绑定函数用于 外部绑定
      * */
-    selectCard:function(uiData){
+    selectCard:function(data){
         cc.log("selectCard null func:",data);
     },
     cancelSeleCard:function () {

@@ -174,14 +174,14 @@ var GWCard = cc.Sprite.extend({
         this.addChild(kaD,70);
     },
 
-    setData:function(data,uiData){
+    changeUiData:function(data,uiData){
 
-        var texture = cc.textureCache.addImage("res/card/monster/gw0001.png");
+        var texture = cc.textureCache.addImage("res/Card/monster/gw1001.png");
         this.originalPainting.setTexture(texture);
         //原画
-        //card/monster/gw0001.png
+        //Card/monster/gw1001.png
         //uiData.originalPainting
-        // this.originalPainting.setSpriteFrame("res/card/monster/gw0001.png");
+        // this.originalPainting.setSpriteFrame("res/Card/monster/gw1001.png");
         // this.originalPainting.setSprite()
         //费用
         this.fyLabel.setString(data.energy);

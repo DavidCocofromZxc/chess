@@ -19,7 +19,7 @@ var GWCheckerboard = cc.TMXTiledMap.extend({
     camp_Type                   : "",   //当前阵营
     tmxBgLayer                  : null, //bg 层
     selectChess                 : null, //选中棋子
-    selectHandCard              : null, //选中牌
+    selectHandCardData          : null, //选中牌data
 
     tiledMapRectArray           : [],   //地图rect数组，存储瓦片的rect信息
     tiledMapLeaveArray          : [],   //地图映射数组，存储瓦片的占用状态，有无棋子等等
@@ -35,7 +35,7 @@ var GWCheckerboard = cc.TMXTiledMap.extend({
         this.camp_Type      = "";
         this.tmxBgLayer     = null;
         this.selectChess    = null;
-        this.selectHandCard = null;
+        this.selectHandCardData = null;
 
         this.tiledMapRectArray  = [];
         this.tiledMapLeaveArray = [];
@@ -113,11 +113,18 @@ var GWCheckerboard = cc.TMXTiledMap.extend({
     },
 
     //  <*独立方法*>
+    // Card 应该传入UI Node 而不是数据对象
     pickUpCardInHand:function(card){
         cc.log("pickUpCardInHand");
-        this.selectHandCard = card;//选中卡
+        this.selectHandCardData = card;//选中卡
         this.drawMapCurrentSummonLayer();//绘制召唤区域
         this.eventTouchPickUpCardInHandAction(card);
+    },
+    pickUpDataInHand:function(data){
+        cc.log("pickUpCardInHand");
+        this.selectHandCardData = data;//选中卡data
+        this.drawMapCurrentSummonLayer();//绘制召唤区域
+        this.eventTouchPickUpCardInHandAction(data);
     },
     // 取消选中
     cancelPickUpCardInHand:function(){
@@ -139,9 +146,9 @@ var GWCheckerboard = cc.TMXTiledMap.extend({
             this.selectChess = null;
         }
         //如果 当前所展示的卡
-        if(this.selectHandCard != null){
-            this.selectHandCard.removeFromParent();
-            this.selectHandCard = null;
+        if(this.selectHandCardData != null){
+            // this.selectHandCard.removeFromParent();
+            this.selectHandCardData = null;
         }
     },
 
@@ -157,7 +164,6 @@ var GWCheckerboard = cc.TMXTiledMap.extend({
         var posInNode = self.convertToNodeSpace(touch.getLocation());       //在当前node中 点击位置
         var rect = cc.rect(0,0,self.width,self.height); //在当前坐标系中允许点击的范围
 
-
         if(!(cc.rectContainsPoint(rect,posInNode))){    //判断是否在允许的点击范围内
             self.restoreScene();//还原操作
             return false;//不合法直接return
@@ -168,37 +174,26 @@ var GWCheckerboard = cc.TMXTiledMap.extend({
         if (result.isInMap) {// 触摸到地图区域内
 
             //说明需要召唤
-            if(this.selectHandCard != null){
+            if(this.selectHandCardData != null){
                 //判断是否在召唤区域中
                 if(self.resultContainsSummonLayer(result)){
-                    var layerRect = self.tiledMapLeaveArray[result.cel][result.row];//取出目标区域映射
-                    if(layerRect == CampEnemu.BLACK){//目标区域有黑方棋子，不允许召唤
+                    // 判断对应召唤区域中的状态
+                    var layerRect = this.tiledMapLeaveArray[result.cel][result.row];//取出目标区域映射
+                    //目标区域有黑方棋子，不允许召唤
+                    if(layerRect == CampEnemu.BLACK){
                         cc.log("目标区域有黑方棋子，不允许召唤");
-                        this.eventTouchSummonChessAction(0);//传出回调
-                    }else if(layerRect == CampEnemu.WHITE){//目标区域有白方棋子，不允许召唤
+                    }//目标区域有白方棋子，不允许召唤
+                    else if(layerRect == CampEnemu.WHITE){
                         cc.log("目标区域有摆放棋子，不允许召唤");
-                        this.eventTouchSummonChessAction(1);
-                    }else{//CampEnemu.NONE //目标区域无棋子，允许召唤"
-                        cc.log("目标区域无棋子，允许召唤：",layerRect);
-
-                        var chess = new GWMonster();
-                        // /* 牌转化为棋子 */ /* 牌转化为棋子 */ /* 牌转化为棋子 */ /* 牌转化为棋子 */ /* 牌转化为棋子 */
-                        // //从原来scene移除
-                        // var chess = new GWMonster;//self.holder_Chess;
-                        // chess.removeFromParent();
-                        // // 加入到棋盘中
-                        // self.addChild(chess);//渲染层级有封装
-                        // this.arrayFriendsSurvivalChess.push(chess);//加入我方存活棋子
-                        // self.tiledMapLeaveArray[result.cel][result.row] =  CampEnemu.BLACK;
-                        // //棋子化处理 ->数据模拟
-                        // chess.setAnchorPoint(0.5,0.5);
-                        // chess.setScale(2);//放大
-                        // chess.movingDistance = 9;
-                        // chess.movingDirection = [1,1,1,1,1,1,1,1];
-                        // //更新Map中位置映射
-                        // chess.joinInMap(result.cel,result.row,ChessAnimeEnemu.FADEIN);
-                        // XCLog("leaveList:",self.tiledMapLeaveArray);
-                        this.eventTouchSummonChessAction(2,chess);//召唤棋子
+                    }//目标区域无棋子，允许召唤"
+                    else {
+                        //目标数据
+                        var data = this.selectHandCardData;
+                        //发起召唤
+                        if(self.eventTouchSummonChessStartAction(data)){
+                            self.joinChessPiecesInCheckBoard(data,result);
+                            self.eventTouchSummonChessEndAction(2,data);//召唤棋子结束回调
+                        }
                     }
                 }
             }
@@ -465,18 +460,45 @@ var GWCheckerboard = cc.TMXTiledMap.extend({
             y : index.y
         };
     },
+    //棋子加入棋盘
+    joinChessPiecesInCheckBoard:function(data,result){
 
+        var chess = new GWMonster(data);
+        this.addChild(chess);//渲染层级有封装
+        this.arrayFriendsSurvivalChess.push(chess);//加入我方存活棋子
+        this.tiledMapLeaveArray[result.cel][result.row] =  CampEnemu.BLACK;
+        chess.joinInMap(result.cel,result.row,ChessAnimeEnemu.FADEIN);
 
+        // /* 牌转化为棋子 */ /* 牌转化为棋子 */ /* 牌转化为棋子 */ /* 牌转化为棋子 */ /* 牌转化为棋子 */
+        // //从原来scene移除
+        // var chess = new GWMonster;//self.holder_Chess;
+        // chess.removeFromParent();
+        // // 加入到棋盘中
+        // self.addChild(chess);//渲染层级有封装
+        // this.arrayFriendsSurvivalChess.push(chess);//加入我方存活棋子
+        // self.tiledMapLeaveArray[result.cel][result.row] =  CampEnemu.BLACK;
+        // //棋子化处理 ->数据模拟
+        // chess.setAnchorPoint(0.5,0.5);
+        // chess.setScale(2);//放大
+        // chess.movingDistance = 9;
+        // chess.movingDirection = [1,1,1,1,1,1,1,1];
+        // //更新Map中位置映射
+        // chess.joinInMap(result.cel,result.row,ChessAnimeEnemu.FADEIN);
+        // XCLog("leaveList:",self.tiledMapLeaveArray);
 
-
-
+    },
 
     /**
      * Custom 自定义虚函数 用于重写or回调
      * */
+    //触摸事件 - 召唤棋子开始回调 - 用户判断发起召唤
+    eventTouchSummonChessStartAction:function(data){
+        cc.log("无继承 发起召唤 失败");
+        return false;
+    },
 
-    //触摸事件 - 召唤棋子回调
-    eventTouchSummonChessAction:function(state){
+    //触摸事件 - 召唤棋子结束回调
+    eventTouchSummonChessEndAction:function(state){
 
     },
     //触摸事件 - 移动棋子回调

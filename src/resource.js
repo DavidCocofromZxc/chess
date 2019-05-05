@@ -24,7 +24,6 @@
 
 var res = {
 
-
     //Game UI
     baceButton      : "res/UI/baceButton.png",
     cardGroup       : "res/UI/cardGroup.png",
@@ -35,37 +34,35 @@ var res = {
     crystal         : "res/piece/new/crystal.png",  //水晶
 
     //other
-    backgroundIcon  : "res/Other/background.jpg",
-    GameIcon        : "res/Other/icon.png",
     God_png         : "res/Other/god.png",
     downArrow_png   : "res/Other/iconDownArrow.png",
     leftArrow_png   : "res/Other/iconLeftArrow.png",
     redHeart        : "res/Other/redHeart.png",
     energy          : "res/Other/energy.png",
 
-    //monster
+    //monster 棋子
     monster_plist_26    : "res/piece/monster26.plist",
     monster_png_26      : "res/piece/monster26.png",
-    defaultMonster      : "res/piece/monster/myMonster.png",
+    defaultMonster      : "res/piece/monster/qz1001.png",
+    monster1001         : "res/piece/monster/qz1001.png",
 
     //粒子
     particle_move_piantou       : "res/Particle/piantouAnim.plist",
     particle_blackFire          : "res/Particle/blackFire2x.plist",
 
-
     //卡组成 UI
-    kadi                : "res/card/kadi.png",
-    kaditiao            : "res/card/kaditiao.png",
-    kakuang             : "res/card/kakuang.png",
-    katiao              : "res/card/katiao.png",
+    kadi                : "res/Card/Base/kadi.png",
+    kaditiao            : "res/Card/Base/kaditiao.png",
+    kakuang             : "res/Card/Base/kakuang.png",
+    katiao              : "res/Card/Base/katiao.png",
 
     //card原画
-    guaiwu0001          : "res/card/monster/gw0001.png",
-    monsterDefault      : "res/card/monster/monsterDefault.png",
+    guaiwu0001          : "res/Card/monster/gw1001.png",
+    monsterDefault      : "res/Card/monster/monsterDefault.png",
 
     //小卡
-    cardHandBack        : "res/UI/cardHandBack.png",//小卡背
-    cardHand            : "res/UI/cardHand.png",
+    cardHandBack        : "res/Card/Little/cardHandBack.png",//小卡背
+    cardHand            : "res/Card/Little/sk1001.png",
 
 
 };

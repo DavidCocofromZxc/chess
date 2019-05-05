@@ -102,17 +102,38 @@ var LoginLayer = cc.Layer.extend({
 
     beginAction:function(){
         cc.log("touch beginAction");
-        cc.director.pushScene(new GodScene());
+        if ( this.CheckDatabase){
+            cc.director.pushScene(new GodScene());
+        }else{
+            cc.log("CheckDatabase error");
+        }
     },
 
     exitAction:function(){
         cc.log("touch exitAction");
-        cc.director.pushScene(new GameScene());
+        if ( this.CheckDatabase){
+            cc.director.pushScene(new GameScene());
+        }else{
+            cc.log("CheckDatabase error");
+        }
     },
 
     nextAction:function () {
         cc.log("touch nextAction");
-        cc.director.pushScene(new NetWorkScene());
+        if ( this.CheckDatabase){
+            cc.director.pushScene(new NetWorkScene());
+        }else{
+            cc.log("CheckDatabase error");
+        }
+    },
+    //数据库检查
+    CheckDatabase:function(){
+        if(  XCDATA.instance.MONSTER_DATATABLE.length > 0 & XCDATA.instance.MONSTER_UITABLE.length > 0){
+            return true;
+        }else{
+            return false;
+        }
+
     },
 
     //

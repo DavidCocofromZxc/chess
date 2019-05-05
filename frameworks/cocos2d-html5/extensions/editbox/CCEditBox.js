@@ -116,7 +116,7 @@ cc.EDITBOX_INPUT_FLAG_PASSWORD = 0;
  * Indicates that the text entered is sensitive data that the
  * implementation must never store into a dictionary or table for use
  * in predictive, auto-completing, or other accelerated input schemes.
- * A credit card number is an example of sensitive data.
+ * A credit Card number is an example of sensitive data.
  * @constant
  * @type Number
  */

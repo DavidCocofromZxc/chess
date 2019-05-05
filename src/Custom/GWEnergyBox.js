@@ -45,13 +45,14 @@ var GWEnergyBox = ccui.Layout.extend({
         this.setPowerUI();
     },
     //减
-    subtractPower:function(count){
+    subtractPowerCount:function(count){
         if(this.powerCount > count){
             this.powerCount -= count;
+            this.setPowerUI();
+            return true;
         }else{
-            this.powerCount == 0;
+            return false;
         }
-        this.setPowerUI();
     },
     //重制UI
     setPowerUI:function () {

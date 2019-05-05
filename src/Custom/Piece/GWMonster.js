@@ -12,7 +12,7 @@
 
 var GWMonster = GWPiece.extend({
 
-
+    model           : null,
 
     framesUp        : [],
     framesDown      : [],
@@ -21,53 +21,28 @@ var GWMonster = GWPiece.extend({
     framesDefult    : [],
 
 
-    ctor: function (chessID,fileName,rect,rotated) {
+    ctor: function (model,fileName,rect,rotated) {
 
-
-        //
-        // var fileName = "";
-        // //
-        // switch (chessID) {
-        //     case ChessTypeEnemu.CRYSTAL:
-        //         fileName = res.crystal;
-        //         break;
-        //     default:
-        //         break;
-        // }
-
-
-
-        var monsterName = "";
-
-        if(chessID >= 0){
-            if(chessID < 20000 ){//基础棋子类
-
-            }else{//怪物棋子类
-
-
-                switch (chessID) {
-                    case 20001:
-                        monsterName = "26";
-                        break;
-                    default:
-                        break;
-                }
-            }
-        }else {
-            console.log("棋子创建异常");
+        var monsterName = "" //+ chessID;
+        if(model != null || model !== undefined){
+            monsterName = "" + model.ID;
+            this.model = model;
         }
 
-
-
-        var monsterFileName = monsterName|"26";
-        var plistName = "res/Chess/monster" + monsterFileName + ".plist";
-        var pngName = "res/Chess/monster" + monsterFileName + ".png";
-        cc.spriteFrameCache.addSpriteFrames(plistName,pngName);
+        // var monsterFileName = monsterName|"26";
+        // var plistName = "res/Chess/monster" + monsterFileName + ".plist";
+        //
+        // var pngName = "res/Chess/monster" + monsterFileName + ".png";
+        // cc.spriteFrameCache.addSpriteFrames(plistName,pngName);
 
 
         // this._super("#monster" + monsterFileName + "_1.png",rect,rotated);
-        this._super(res.defaultMonster,rect,rotated);
-        this.enlargeCoefficient = 2;//
+        if(monsterName == ""){
+            this._super(res.defaultMonster,rect,rotated);
+        }else{
+            this._super("res/piece/monster/qz"+model.ID+".png",rect,rotated);
+        }
+        this.enlargeCoefficient = 2;//缩放比例
         this.pieceType = PieceTypeEnemu.MONSTER;
         // this.loadAnimation(monsterFileName);
 

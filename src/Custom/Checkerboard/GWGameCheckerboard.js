@@ -9,6 +9,7 @@
 
 var GWGameCheckerboard = GWCheckerboard.extend({
 
+    delegate            :null,
 
     ctor: function (){
         this._super();
@@ -16,31 +17,30 @@ var GWGameCheckerboard = GWCheckerboard.extend({
     },
 
 
+    /**
+     * Custom 重写虚函数
+     * */
+    //发起召唤
+    eventTouchSummonChessStartAction:function(data){
+        return false;
+    },
 
-    //触摸事件 - 召唤棋子回调
-    eventTouchSummonChessAction:function(state,obj){
-        
-        switch (state) {
-            case 0:
-                break;
-            case 1:
-                break;
-            case 2:
-                var chess = obj;
+    //触摸事件 - 召唤棋子结束回调
+    eventTouchSummonChessEndAction:function(state,data){
 
-                if(chess.chessType == ChessTypeEnemu.SNOW){
-                    // var event = new cc.EventCustom(TEXT_CALLBACK_EVENT);
-                    // var data = {
-                    //     isOver  :   false,
-                    //     key     :   "小雪召唤成功",
-                    // };
-                    // event.setUserData(data);
-                    // cc.eventManager.dispatchEvent(event);//
-                }
-
-                break;
-            default:
-                break;
+        if(this.delegate != null  && this.delegate !== undefined){
+            this.delegate.eventTouchSummonChessEndAction(state,data);
+        }else{
+            switch (state) {
+                case 0:
+                    break;
+                case 1:
+                    break;
+                case 2:
+                    break;
+                default:
+                    break;
+            }
         }
     },
 
@@ -83,7 +83,7 @@ var GWGameCheckerboard = GWCheckerboard.extend({
 
                 // var event = new cc.EventCustom(SHOW_CARD_EVENT);
                 // var data = {
-                //     card:obj.showCard(),
+                //     Card:obj.showCard(),
                 // };
                 // event.setUserData(data);
                 // cc.eventManager.dispatchEvent(event);//
@@ -114,7 +114,7 @@ var GWGameCheckerboard = GWCheckerboard.extend({
 
                 // var event = new cc.EventCustom(SHOW_CARD_EVENT);
                 // var data = {
-                //     card:obj.showCard(),
+                //     Card:obj.showCard(),
                 // };
                 // event.setUserData(data);
                 // cc.eventManager.dispatchEvent(event);//

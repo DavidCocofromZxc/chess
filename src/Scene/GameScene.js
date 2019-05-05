@@ -112,8 +112,35 @@ var GameLayer = BaseLayer.extend({
         node.setAnchorPoint(0,0);
         node.setPosition(   (cc.winSize.width - node.width)/2,
                                     (cc.winSize.height - node.height)/2);
+        node.delegate = this;
         this.checkerboard = node;
+
+        //发起召唤
+        node.eventTouchSummonChessStartAction = function (data) {
+            cc.log(data);
+            let bool = this.ourEnergy.subtractPowerCount(data.energy);
+            let str = bool?"你消耗了"+ data.energy +"点能量":"你的能量不足";
+            this.sysMailbox.sendMessage(str);
+            return bool;
+        }.bind(this);
     },
+    //加载棋盘 delegate
+    //召唤结束的回调
+    eventTouchSummonChessEndAction:function(state,data){
+        switch (state) {
+            case 0:
+                break;
+            case 1:
+                break;
+            case 2:
+                this.sysMailbox.sendMessage("成功召唤\""+ data.name+"\"");
+                break;
+            default:
+                break;
+        }
+    },
+
+
     //加载信息框
     loadMessageView:function () {
         var messageView = new GWMailbox();
@@ -152,21 +179,14 @@ var GameLayer = BaseLayer.extend({
             this.checkerboard.y);
         //抽卡事件
         ourGroup.pumpCardAction = function (cardID) {
-            this.showLoading();//
-            // //读取数据库
-            // XCDATA().MONSTER_UITABLE.get(cardID).then(res => {
-            //     console.log(res)
-            //     this.cardsHandBox.addCard(res);
-            //     this.stopLoading();
-            // }).catch(err => {
-            //     console.log(err)
-            //     this.stopLoading();
-            // });
+            var cardData = XCDATA.findMonsterData(cardID);
+            this.cardsHandBox.addCard(cardData);
         }.bind(this);
         this.ourCardGroup = ourGroup;
 
         //模拟数据流
         var otherflow = "OXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2Nlg=";
+
         //对方卡组
         var otherCardGroup  = new GWCardGroup(otherflow);
         this.addChild(otherCardGroup,LocalZorderEnemu.UI);
@@ -175,19 +195,11 @@ var GameLayer = BaseLayer.extend({
                                             this.checkerboard.y + this.checkerboard.height);
         //抽卡事件
         otherCardGroup.pumpCardAction = function (cardID) {
-            this.showLoading();//
-            // //读取数据库
-            // XCDATA().MONSTER_UITABLE.get(cardID).then(res => {
-            //     console.log(res)
-            //     this.otherCardsHandBox.addCard(res,true);
-            //     this.stopLoading();
-            // }).catch(err => {
-            //     console.log(err)
-            //     this.stopLoading();
-            // });
+            var cardData = XCDATA.findMonsterData(cardID);
+            this.otherCardsHandBox.addCard(cardData);
         }.bind(this);
         this.otherCardGroup = otherCardGroup;
-        this.otherCardGroup.pumpingCard(1);
+        // this.otherCardGroup.pumpingCard(1);
     },
     //加载双方血条
     loadBlood:function(){
@@ -209,7 +221,7 @@ var GameLayer = BaseLayer.extend({
         var ourEnergy = new GWEnergyBox(10);
         this.addChild(ourEnergy,LocalZorderEnemu.UI);
         ourEnergy.setPosition(this.checkerboard.x + this.checkerboard.width,this.checkerboard.y);
-        this.ourBloodBar = ourEnergy;
+        this.ourEnergy = ourEnergy;
         //
         var otherEnergy = new GWEnergyBox(10);
         this.addChild(otherEnergy,LocalZorderEnemu.UI);
@@ -226,8 +238,8 @@ var GameLayer = BaseLayer.extend({
                             this.checkerboard.y);
         hand.setContentSize(this.checkerboard.width + 2*sideWidth,100);
         //绑定 手牌中的选卡选中事件
-        hand.selectCard = function(uiData){
-            this.showLookCard(uiData);
+        hand.selectCard = function(data){
+            this.showLookCard(data);
         }.bind(this);
 
         //绑定取消事件
@@ -257,7 +269,7 @@ var GameLayer = BaseLayer.extend({
     },
 
     //侧栏-展示卡牌
-    showLookCard:function(uiData){
+    showLookCard:function(model){
         //如果当前已有在展示的卡牌、先移除
         if(this.lookCard != null){
             this.lookCard.removeFromParent();
@@ -269,12 +281,15 @@ var GameLayer = BaseLayer.extend({
         card.setPosition(this.checkerboard.x + this.checkerboard.width + 10 ,100);
         card.setAnchorPoint(0,0);
         this.lookCard = card;
-
+        //
+        var data = XCDATA.findMonsterData(model.objectId);
+        card.changeUiData(data,model);//设置数据
+        this.checkerboard.pickUpDataInHand(data);//选卡传入
         //读取数据库
-        this.showLoading();
+        // this.showLoading();
         // XCDATA().MONSTER_DATATABLE.get(uiData.objectId).then(data => {
         //     console.log(data);
-        //     card.setData(data,uiData);//设置数据
+        //     Card.setData(data,uiData);//设置数据
         //     this.checkerboard.pickUpCardInHand({data:data,uiData:uiData});//选卡传入
         //     this.stopLoading();
         // }).catch(err => {
@@ -437,9 +452,9 @@ var GameLayer = BaseLayer.extend({
         //         cc.log("callback function");
         //         var target = event.getCurrentTarget();
         //         // var data =  event.getUserData();
-        //         //card加入棋盘 //show card
-        //         cc.log("callback card t",target);
-        //         cc.log("callback card c",target.checkerboard);
+        //         //card加入棋盘 //show Card
+        //         cc.log("callback Card t",target);
+        //         cc.log("callback Card c",target.checkerboard);
         //
         //
         //         if(target.lookCard != null){
@@ -448,14 +463,14 @@ var GameLayer = BaseLayer.extend({
         //         }
         //
         //
-        //         var card = new GWCard();
-        //         target.addChild(card,LocalZorderEnemu.CARD);
-        //         card.setPosition(target.checkerboard.x + target.checkerboard.width + 10 ,100);
-        //         card.setAnchorPoint(0,0);
-        //         target.lookCard = card;
+        //         var Card = new GWCard();
+        //         target.addChild(Card,LocalZorderEnemu.CARD);
+        //         Card.setPosition(target.checkerboard.x + target.checkerboard.width + 10 ,100);
+        //         Card.setAnchorPoint(0,0);
+        //         target.lookCard = Card;
         //         // target.addCard();
         //         // //show summonoo
-        //         target.checkerboard.pickUpCardInHand(card);
+        //         target.checkerboard.pickUpCardInHand(Card);
         //         //
         //         // cc.log("callback over");
         //     }
@@ -465,13 +480,13 @@ var GameLayer = BaseLayer.extend({
     //
     // addCard:function(){
     //     cc.log("addCard");
-    //     var card = new GWCard();
-    //     this.addChild(card,LocalZorderEnemu.CARD);
-    //     // card.setPosition(this.checkerboard.x + this.checkerboard.width + 10 ,100);
-    //     card.setPosition(0 ,0);
-    //     card.setAnchorPoint(0,0);
-    //     // this.lookCard = card;
-    //     // this.checkerboard.pickUpCardInHand(card);
+    //     var Card = new GWCard();
+    //     this.addChild(Card,LocalZorderEnemu.CARD);
+    //     // Card.setPosition(this.checkerboard.x + this.checkerboard.width + 10 ,100);
+    //     Card.setPosition(0 ,0);
+    //     Card.setAnchorPoint(0,0);
+    //     // this.lookCard = Card;
+    //     // this.checkerboard.pickUpCardInHand(Card);
     // },
 
     //touch event
