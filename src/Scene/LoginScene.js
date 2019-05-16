@@ -53,34 +53,44 @@ var LoginLayer = cc.Layer.extend({
 
     loadUI:function () {
         this.removeAllChildren();
+        //背景
         //粒子
         var particle = new cc.ParticleSystem(res.particle_move_piantou);
         this.addChild(particle);
         particle.setPosition(   this.width/2,
                                         this.height/4 * 3);
         this.beginParticle = particle;
-        //button A
+
+        //button
         var beginGame = new cc.LabelTTF("教程入口","Arial",36);
         var beginGameItem = new cc.MenuItemLabel(beginGame,this.beginAction,this);
         beginGameItem.setPosition(0,0);
-
         var delay = cc.delayTime(5);
         var anminB = cc.rotateTo(0.1,-5,-5);
         var anminC = cc.rotateTo(0.1,5,5);
         var anminD = cc.rotateTo(0.1,0,0);
-
         var sequence = cc.sequence(delay,anminB,anminC,anminD);
         beginGame.runAction(sequence.repeatForever());
-        //button B
-        var exit = new cc.LabelTTF("主游戏","Arial",36);
-        var exitItem = new cc.MenuItemLabel(exit,this.exitAction,this);
-        exitItem.setPosition(beginGameItem.x,beginGameItem.y - 80);
-        //button C
+
+
+        //button
+        var aiGame = new cc.LabelTTF("AI游戏","Arial",36);
+        var aiGameItem = new cc.MenuItemLabel(aiGame,this.aiGameAction,this);
+        aiGameItem.setPosition(beginGameItem.x,beginGameItem.y - 80);
+
+
+        //button
+        var netGame = new cc.LabelTTF("匹配游戏","Arial",36);
+        var netGameItem = new cc.MenuItemLabel(netGame,this.netGameAction,this);
+        netGameItem.setPosition(aiGameItem.x,aiGameItem.y - 80);
+
+        //button
         var next = new cc.LabelTTF("测试入口","Arial",36);
         var nextItem = new cc.MenuItemLabel(next,this.nextAction,this);
-        nextItem.setPosition(exitItem.x,exitItem.y - 80);
+        nextItem.setPosition(netGameItem.x,netGameItem.y - 80);
+
         //Menu
-        var menu = new cc.Menu(beginGameItem,exitItem,nextItem)
+        var menu = new cc.Menu(beginGameItem,aiGameItem,netGameItem,nextItem);
         this.mainMenu = menu;
         this.addChild(menu);
 
@@ -109,18 +119,29 @@ var LoginLayer = cc.Layer.extend({
         }
     },
 
-    exitAction:function(){
-        cc.log("touch exitAction");
-        if ( this.CheckDatabase){
+    aiGameAction:function(){
+        cc.log("touch aiGameAction");
+        if ( this.CheckDatabase()){
             cc.director.pushScene(new GameScene());
         }else{
             cc.log("CheckDatabase error");
         }
     },
+    netGameAction:function(){
+        cc.log("touch netGameAction");
+        // cc.alert()
+        alert("test");
+
+        // if ( this.CheckDatabase()){
+        //     cc.director.pushScene(new GameScene());
+        // }else{
+        //     cc.log("CheckDatabase error");
+        // }
+    },
 
     nextAction:function () {
         cc.log("touch nextAction");
-        if ( this.CheckDatabase){
+        if (this.CheckDatabase()){
             cc.director.pushScene(new NetWorkScene());
         }else{
             cc.log("CheckDatabase error");
@@ -133,7 +154,6 @@ var LoginLayer = cc.Layer.extend({
         }else{
             return false;
         }
-
     },
 
     //

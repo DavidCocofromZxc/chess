@@ -22,9 +22,11 @@ var GWGameCheckerboard = GWCheckerboard.extend({
      * */
     //发起召唤
     eventTouchSummonChessStartAction:function(data){
+        if(this.delegate != null  && this.delegate !== undefined){
+            return this.delegate.eventTouchSummonChessStartAction(data);
+        }
         return false;
     },
-
     //触摸事件 - 召唤棋子结束回调
     eventTouchSummonChessEndAction:function(state,data){
 
@@ -45,8 +47,14 @@ var GWGameCheckerboard = GWCheckerboard.extend({
     },
 
 
-    //触摸事件 - 移动棋子回调
-    eventTouchMoveChessAction:function(state,obj){
+    //触摸事件 - 棋子移动开始回调
+    eventTouchMoveChessStartAction:function(state){
+        if(this.delegate != null  && this.delegate !== undefined){
+            this.delegate.eventTouchMoveChessStartAction(state);
+        }
+    },
+    //触摸事件 - 棋子移动结束回调
+    eventTouchMoveChessEndAction:function(state){
         // switch (state) {
         //     case 0:
         //         break;

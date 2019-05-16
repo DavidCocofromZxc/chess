@@ -47,6 +47,7 @@
         "src/Custom/Card/GWCardGroup.js",
         "src/Custom/Card/GWHandCard.js",
         "src/Custom/Card/CardsHandBox/GWCardsHandBox.js",
+        "src/Custom/Card/CardsHandBox/GWCardsHandBlackBox.js",
 
         "src/Custom/UI/GWButton.js"
     ]

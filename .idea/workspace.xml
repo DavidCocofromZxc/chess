@@ -3,32 +3,18 @@
   <component name="ChangeListManager">
     <list default="true" id="2fdf7443-8d24-419e-acd9-71236268c457" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/cocos2d-html5/extensions/editbox/CCEditBox.js" beforeDir="false" afterPath="$PROJECT_DIR$/frameworks/cocos2d-html5/extensions/editbox/CCEditBox.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/cocos2d-x/cocos/scripting/js-bindings/script/ccui/jsb_cocos2d_ui.js" beforeDir="false" afterPath="$PROJECT_DIR$/frameworks/cocos2d-x/cocos/scripting/js-bindings/script/ccui/jsb_cocos2d_ui.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameworks/cocos2d-x/cocos/scripting/js-bindings/script/extension/jsb_cocos2d_extension.js" beforeDir="false" afterPath="$PROJECT_DIR$/frameworks/cocos2d-x/cocos/scripting/js-bindings/script/extension/jsb_cocos2d_extension.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/Other/background.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/Other/icon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/Particle/blackFire2x.plist" beforeDir="false" afterPath="$PROJECT_DIR$/res/Particle/blackFire2x.plist" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/UI/cardHand.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/Card/Little/sk1001.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/UI/cardHandBack.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/Card/Little/cardHandBack.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/card/kadi.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/Card/Base/kadi.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/card/kaditiao.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/Card/Base/kaditiao.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/card/kakuang.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/Card/Base/kakuang.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/card/katiao.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/Card/Base/katiao.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/card/monster/gw0001.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/Card/monster/gw1001.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/card/monster/monsterDefault.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/Card/monster/monsterDefault.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/piece/monster/myMonster.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/piece/monster/qz1001.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frameworks/cocos2d-html5/moduleConfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/frameworks/cocos2d-html5/moduleConfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project.json" beforeDir="false" afterPath="$PROJECT_DIR$/project.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/piece/monster26.plist" beforeDir="false" afterPath="$PROJECT_DIR$/res/piece/monster26.plist" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/piece/monster26.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/piece/monster26.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Custom/Card/CardsHandBox/GWCardsHandBox.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Custom/Card/CardsHandBox/GWCardsHandBox.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Custom/Card/GWCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Custom/Card/GWCard.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Custom/Checkerboard/GWCheckerboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Custom/Checkerboard/GWCheckerboard.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Custom/Checkerboard/GWGameCheckerboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Custom/Checkerboard/GWGameCheckerboard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Custom/GWEnergyBox.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Custom/GWEnergyBox.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Custom/Piece/GWMonster.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Custom/Piece/GWMonster.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Custom/Piece/GWPiece.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Custom/Piece/GWPiece.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Scene/GameScene.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scene/GameScene.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Scene/LoginScene.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scene/LoginScene.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tool/XCData.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tool/XCData.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resource.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/resource.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Scene/NetWorkScene.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scene/NetWorkScene.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -47,83 +33,38 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Scene/GameScene.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="407">
-              <caret line="127" column="13" selection-start-line="127" selection-start-column="13" selection-end-line="127" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Custom/GWEnergyBox.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="816">
-              <caret line="48" column="16" selection-start-line="48" selection-start-column="16" selection-end-line="48" selection-end-column="16" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/frameworks/cocos2d-html5/cocos2d/text-input/CCIMEDispatcher.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3417">
-              <caret line="201" column="8" selection-start-line="201" selection-start-column="8" selection-end-line="201" selection-end-column="8" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/frameworks/cocos2d-html5/cocos2d/core/platform/CCInputManager.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="7225">
-              <caret line="425" column="12" selection-start-line="425" selection-start-column="12" selection-end-line="425" selection-end-column="12" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/frameworks/cocos2d-html5/CCBoot.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="48382">
-              <caret line="2846" column="34" selection-start-line="2846" selection-start-column="34" selection-end-line="2846" selection-end-column="34" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Custom/Checkerboard/GWCheckerboard.js">
+        <entry file="file://$PROJECT_DIR$/frameworks/cocos2d-html5/external/bmobSDK/Bmob-1.7.0.min.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="66">
-              <caret line="196" column="21" selection-start-line="196" selection-start-column="21" selection-end-line="196" selection-end-column="21" />
+            <state relative-caret-position="119">
+              <caret line="7" column="18848" selection-start-line="7" selection-start-column="18848" selection-end-line="7" selection-end-column="18848" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Custom/Checkerboard/GWGameCheckerboard.js">
+        <entry file="file://$PROJECT_DIR$/frameworks/cocos2d-html5/cocos2d/core/CCDirector.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="424">
-              <caret line="33" column="12" lean-forward="true" selection-start-line="33" selection-start-column="12" selection-end-line="42" selection-end-column="13" />
+            <state relative-caret-position="7293">
+              <caret line="429" column="4" selection-start-line="429" selection-start-column="4" selection-end-line="429" selection-end-column="4" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Custom/Card/GWHandCard.js">
+        <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.dom.d.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="20" column="4" selection-start-line="20" selection-start-column="4" selection-end-line="20" selection-end-column="4" />
+            <state relative-caret-position="278647">
+              <caret line="16404" column="4" selection-start-line="16404" selection-start-column="4" selection-end-line="16404" selection-end-column="4" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/resource.js">
+        <entry file="file://$PROJECT_DIR$/frameworks/cocos2d-html5/CCDebugger.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="765">
-              <caret line="45" column="26" selection-start-line="45" selection-start-column="26" selection-end-line="45" selection-end-column="57" />
+            <state relative-caret-position="952">
+              <caret line="56" column="17" selection-start-line="56" selection-start-column="17" selection-end-line="56" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -144,24 +85,13 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>findTouchCard</find>
-      <find>cardBottomHeight</find>
-      <find>self.selectChess</find>
-      <find>removeMapLayerArray</find>
-      <find>otherCardGroup</find>
-      <find>ourCardGroup</find>
-      <find>init</find>
-      <find>otherCardsHandBox</find>
-      <find>eventTouchPickUpCardInHandAction</find>
       <find>XCDATA</find>
       <find>ActiveXObject</find>
       <find>pumpCardAction</find>
       <find>select</find>
       <find>selectHand</find>
-      <find>cardsHandBox</find>
       <find>.uiData</find>
       <find>showLookCard</find>
-      <find>selectCard</find>
       <find>pickUpCardInHand</find>
       <find>XCDATA.findMonsterData(model.objectId)</find>
       <find>findMonsterData</find>
@@ -172,8 +102,19 @@
       <find>joinChessPiecesInCheckBoard</find>
       <find>checkerboard</find>
       <find>ourEnergy</find>
-      <find>eventTouchSummonChessStartAction</find>
       <find>eventTouchSummonChessAction</find>
+      <find>eventTouchSummonChessStartAction</find>
+      <find>selectChess</find>
+      <find>restoreScene</find>
+      <find>eventTouchMoveChessAction</find>
+      <find>eventTouchMoveChessEndAction</find>
+      <find>selectCard</find>
+      <find>cardsHandBox</find>
+      <find>pumpingCard</find>
+      <find>Matchvs</find>
+      <find>MatchvsEngine</find>
+      <find>alert</find>
+      <find>toggle</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/src/Custom/GWCard</dir>
@@ -186,15 +127,12 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/Custom/GWIntroduceCheckerboard.js" />
-        <option value="$PROJECT_DIR$/src/Custom/GWGameCheckerboard.js" />
         <option value="$PROJECT_DIR$/src/Custom/GWCheckerboard.js" />
         <option value="$PROJECT_DIR$/src/Node/GWPiece.js" />
         <option value="$PROJECT_DIR$/src/Node/GWMonster.js" />
         <option value="$PROJECT_DIR$/src/Custom/Piece/GWBuilding/GWBuilding.js" />
         <option value="$PROJECT_DIR$/src/Custom/Piece/GWBuilding.js" />
         <option value="$PROJECT_DIR$/src/Bmob/matchvs.all.js" />
-        <option value="$PROJECT_DIR$/frameworks/cocos2d-html5/external/matchvsSDK/matchvs.all.js" />
         <option value="$USER_HOME$/CocosCreator/CocosCreator/KingChess/assets/Script/LoginScene.js" />
         <option value="$PROJECT_DIR$/frameworks/cocos2d-html5/external/socketio/socket.io.js" />
         <option value="$PROJECT_DIR$/src/Tool/XCTool.js" />
@@ -204,7 +142,6 @@
         <option value="$PROJECT_DIR$/src/zzz/Chess.js" />
         <option value="$PROJECT_DIR$/src/Custom/UI/GWButton.js" />
         <option value="$PROJECT_DIR$/src/Custom/GWMailbox.js" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/Custom/Card/GWHandCardGroup.js" />
         <option value="$PROJECT_DIR$/src/Utils/Enemu.js" />
         <option value="$PROJECT_DIR$/src/Custom/GWBloodStrip.js" />
@@ -212,35 +149,40 @@
         <option value="$PROJECT_DIR$/main.js" />
         <option value="$PROJECT_DIR$/src/Custom/GWDialogue.js" />
         <option value="$PROJECT_DIR$/../../server/server.js" />
-        <option value="$PROJECT_DIR$/frameworks/cocos2d-html5/moduleConfig.json" />
         <option value="$PROJECT_DIR$/src/Custom/Data/GWMonster.js" />
         <option value="$PROJECT_DIR$/src/Custom/Data/GWMonsterData.js" />
         <option value="$PROJECT_DIR$/src/Tool/MD5Tool.js" />
         <option value="$PROJECT_DIR$/src/Tool/XCBase64Tool.js" />
         <option value="$PROJECT_DIR$/src/Custom/Card/GWCardGroup.js" />
         <option value="$PROJECT_DIR$/src/Custom/Card/GWCardsHandBox.js" />
-        <option value="$PROJECT_DIR$/project.json" />
         <option value="$PROJECT_DIR$/src/Scene/BaseScene.js" />
         <option value="$PROJECT_DIR$/src/Scene/GodScene.js" />
         <option value="$PROJECT_DIR$/src/Custom/Card/GWHandCard.js" />
         <option value="$PROJECT_DIR$/src/Custom/GWBloodBox.js" />
         <option value="$PROJECT_DIR$/res/data/monsterData.json" />
-        <option value="$PROJECT_DIR$/src/Scene/NetWorkScene.js" />
         <option value="$PROJECT_DIR$/src/Custom/Piece/GWPiece.js" />
         <option value="$PROJECT_DIR$/src/Custom/Card/GWCard.js" />
         <option value="$PROJECT_DIR$/src/Tool/XCData.js" />
-        <option value="$PROJECT_DIR$/src/Scene/LoginScene.js" />
-        <option value="$PROJECT_DIR$/src/Custom/Card/CardsHandBox/GWCardsHandBox.js" />
         <option value="$PROJECT_DIR$/src/resource.js" />
-        <option value="$PROJECT_DIR$/src/Custom/Piece/GWMonster.js" />
         <option value="$PROJECT_DIR$/src/Custom/GWEnergyBox.js" />
         <option value="$PROJECT_DIR$/src/Custom/Checkerboard/GWGameCheckerboard.js" />
-        <option value="$PROJECT_DIR$/src/Scene/GameScene.js" />
+        <option value="$PROJECT_DIR$/src/Custom/Piece/GWMonster.js" />
+        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/Custom/Checkerboard/GWCheckerboard.js" />
+        <option value="$PROJECT_DIR$/src/Custom/Card/CardsHandBox/GWCardsHandBox.js" />
+        <option value="$PROJECT_DIR$/src/Custom/Card/CardsHandBox/GWCardsHandBlackBox.js" />
+        <option value="$PROJECT_DIR$/src/Scene/GameScene.js" />
+        <option value="$PROJECT_DIR$/frameworks/cocos2d-html5/moduleConfig.json" />
+        <option value="$PROJECT_DIR$/frameworks/cocos2d-html5/external/matchvsSDK/matchvs.all.js" />
+        <option value="$PROJECT_DIR$/src/Scene/NetWorkScene.js" />
+        <option value="$PROJECT_DIR$/project.json" />
+        <option value="$PROJECT_DIR$/src/Scene/LoginScene.js" />
+        <option value="$USER_HOME$/CocosCreator/CocosCreator/DarwinVillain/assets/script/Scene/LoginScene.js" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="23" />
     <option name="y" value="23" />
     <option name="width" value="1440" />
     <option name="height" value="822" />
@@ -263,47 +205,39 @@
             <path>
               <item name="chess" type="b2602c69:ProjectViewProjectNode" />
               <item name="chess" type="462c0819:PsiDirectoryNode" />
-              <item name="res" type="462c0819:PsiDirectoryNode" />
+              <item name="frameworks" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="chess" type="b2602c69:ProjectViewProjectNode" />
+              <item name="chess" type="462c0819:PsiDirectoryNode" />
+              <item name="frameworks" type="462c0819:PsiDirectoryNode" />
+              <item name="cocos2d-html5" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="chess" type="b2602c69:ProjectViewProjectNode" />
+              <item name="chess" type="462c0819:PsiDirectoryNode" />
+              <item name="frameworks" type="462c0819:PsiDirectoryNode" />
+              <item name="cocos2d-html5" type="462c0819:PsiDirectoryNode" />
+              <item name="external" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="chess" type="b2602c69:ProjectViewProjectNode" />
+              <item name="chess" type="462c0819:PsiDirectoryNode" />
+              <item name="frameworks" type="462c0819:PsiDirectoryNode" />
+              <item name="cocos2d-html5" type="462c0819:PsiDirectoryNode" />
+              <item name="external" type="462c0819:PsiDirectoryNode" />
+              <item name="matchvsSDK" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="chess" type="b2602c69:ProjectViewProjectNode" />
               <item name="chess" type="462c0819:PsiDirectoryNode" />
               <item name="res" type="462c0819:PsiDirectoryNode" />
-              <item name="Card" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="chess" type="b2602c69:ProjectViewProjectNode" />
-              <item name="chess" type="462c0819:PsiDirectoryNode" />
-              <item name="res" type="462c0819:PsiDirectoryNode" />
-              <item name="Card" type="462c0819:PsiDirectoryNode" />
-              <item name="Base" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="chess" type="b2602c69:ProjectViewProjectNode" />
-              <item name="chess" type="462c0819:PsiDirectoryNode" />
-              <item name="res" type="462c0819:PsiDirectoryNode" />
-              <item name="Card" type="462c0819:PsiDirectoryNode" />
-              <item name="Little" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="chess" type="b2602c69:ProjectViewProjectNode" />
-              <item name="chess" type="462c0819:PsiDirectoryNode" />
-              <item name="res" type="462c0819:PsiDirectoryNode" />
-              <item name="Card" type="462c0819:PsiDirectoryNode" />
-              <item name="monster" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="chess" type="b2602c69:ProjectViewProjectNode" />
-              <item name="chess" type="462c0819:PsiDirectoryNode" />
-              <item name="res" type="462c0819:PsiDirectoryNode" />
-              <item name="piece" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="chess" type="b2602c69:ProjectViewProjectNode" />
               <item name="chess" type="462c0819:PsiDirectoryNode" />
               <item name="res" type="462c0819:PsiDirectoryNode" />
               <item name="piece" type="462c0819:PsiDirectoryNode" />
-              <item name="monster" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="chess" type="b2602c69:ProjectViewProjectNode" />
@@ -315,6 +249,21 @@
               <item name="chess" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="Custom" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="chess" type="b2602c69:ProjectViewProjectNode" />
+              <item name="chess" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Custom" type="462c0819:PsiDirectoryNode" />
+              <item name="Card" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="chess" type="b2602c69:ProjectViewProjectNode" />
+              <item name="chess" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Custom" type="462c0819:PsiDirectoryNode" />
+              <item name="Card" type="462c0819:PsiDirectoryNode" />
+              <item name="CardsHandBox" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="chess" type="b2602c69:ProjectViewProjectNode" />
@@ -662,24 +611,41 @@
       <workItem from="1557017552106" duration="1666000" />
       <workItem from="1557019359229" duration="1778000" />
       <workItem from="1557021180603" duration="1830000" />
-      <workItem from="1557023038514" duration="1112000" />
+      <workItem from="1557023038514" duration="1469000" />
+      <workItem from="1557024858800" duration="1638000" />
+      <workItem from="1557026668177" duration="1184000" />
+      <workItem from="1557031469137" duration="632000" />
+      <workItem from="1557033462940" duration="1531000" />
+      <workItem from="1557035426396" duration="955000" />
+      <workItem from="1557037236793" duration="1742000" />
+      <workItem from="1557039050382" duration="1756000" />
+      <workItem from="1557040870017" duration="1118000" />
+      <workItem from="1557042705959" duration="1534000" />
+      <workItem from="1557114103028" duration="596000" />
+      <workItem from="1557281364599" duration="17000" />
+      <workItem from="1557368766010" duration="33000" />
+      <workItem from="1557899092446" duration="769000" />
+      <workItem from="1557899972400" duration="1127000" />
+      <workItem from="1557902847300" duration="66000" />
+      <workItem from="1557902961317" duration="498000" />
+      <workItem from="1557972871957" duration="17000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="402756000" />
+    <option name="totallyTimeSpent" value="418326000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="822" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20225511" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20225511" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32876712" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49928468" weight="0.32876712" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4989429" weight="0.49178082" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4989429" weight="0.36301368" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -692,26 +658,6 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Coverage" order="3" side_tool="true" weight="0.33333334" />
     </layout>
-    <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20084566" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32876712" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49928468" weight="0.32876712" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4989429" visible="true" weight="0.3849315" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" />
-      <window_info anchor="bottom" id="Terminal" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5010571" side_tool="true" weight="0.44520548" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Coverage" order="3" side_tool="true" weight="0.33333334" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -738,113 +684,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/frameworks/cocos2d-html5/cocos2d/core/sprites/CCSprite.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="11662">
-          <caret line="686" column="26" selection-start-line="686" selection-start-column="26" selection-end-line="686" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/frameworks/cocos2d-x/cocos/scripting/js-bindings/auto/api/jsb_cocos2dx_ui_auto_api.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="116773">
-          <caret line="6869" selection-start-line="6869" selection-end-line="6869" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Custom/GWBloodBox.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="30" selection-start-line="23" selection-start-column="30" selection-end-line="23" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/frameworks/cocos2d-html5/moduleConfig.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7735">
-          <caret line="455" column="50" selection-start-line="455" selection-start-column="50" selection-end-line="455" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/frameworks/cocos2d-html5/extensions/ccui/layouts/UILayout.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="26129">
-          <caret line="1537" selection-start-line="1537" selection-end-line="1537" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/data/monsterData.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" selection-start-line="16" selection-end-line="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/data/monsterUIData.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/frameworks/cocos2d-html5/external/bmobSDK/Bmob-1.7.0.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="16266" selection-start-column="16266" selection-end-column="16266" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/frameworks/cocos2d-html5/external/socketio/socket.io.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="620" selection-start-column="620" selection-end-column="620" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Scene/BaseScene.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1258">
-          <caret line="74" column="4" selection-start-line="74" selection-start-column="4" selection-end-line="74" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.scripthost.d.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="27" column="23" selection-start-line="27" selection-start-column="10" selection-end-line="27" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Tool/XCBase64Tool.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="82" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="82" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Tool/XCTool.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" selection-start-line="9" selection-end-line="10" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Scene/GodScene.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1955">
-          <caret line="115" column="30" selection-start-line="115" selection-start-column="30" selection-end-line="115" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/Particle/particleTexture.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/Particle/blackFire.plist">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Scene/NetWorkScene.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="34" column="11" selection-start-line="34" selection-start-column="11" selection-end-line="34" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/res/piece/monster26.plist">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -887,20 +726,6 @@
     <entry file="file://$PROJECT_DIR$/res/UI/baceButton.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Custom/Card/CardsHandBox/GWCardsHandBox.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2958">
-          <caret line="174" column="6" selection-start-line="174" selection-start-column="6" selection-end-line="174" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Scene/LoginScene.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1989">
-          <caret line="117" column="9" selection-start-line="117" selection-start-column="9" selection-end-line="117" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Custom/Card/GWCard.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2992">
@@ -908,29 +733,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Tool/XCData.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="731">
-          <caret line="43" column="4" selection-start-line="43" selection-start-column="4" selection-end-line="43" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/res/Card/monster/gw1001.png">
       <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Custom/Piece/GWMonster.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="714">
-          <caret line="42" column="17" selection-start-line="42" selection-start-column="17" selection-end-line="42" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Custom/Piece/GWPiece.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1054">
-          <caret line="62" column="22" selection-start-line="62" selection-start-column="4" selection-end-line="62" selection-end-column="22" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/res/Card/Little/sk1001.png">
       <provider selected="true" editor-type-id="images" />
@@ -955,6 +759,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/frameworks/cocos2d-html5/external/socketio/socket.io.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="597" selection-start-column="597" selection-end-column="597" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/frameworks/cocos2d-html5/cocos2d/core/platform/CCInputManager.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="7225">
@@ -969,10 +780,76 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Custom/Piece/GWPiece.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6154">
+          <caret line="362" selection-start-line="362" selection-end-line="362" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frameworks/cocos2d-html5/cocos2d/core/base-nodes/CCNode.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="26809">
+          <caret line="1577" column="48" lean-forward="true" selection-start-line="1577" selection-start-column="48" selection-end-line="1577" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="544">
+            <caret line="32" column="3" selection-start-line="32" selection-start-column="3" selection-end-line="32" selection-end-column="3" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Custom/Piece/GWMonster.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1564">
+          <caret line="92" column="33" selection-start-line="92" selection-start-column="33" selection-end-line="92" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Scene/GameScene.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2482">
+          <caret line="146" column="25" selection-start-line="146" selection-start-column="25" selection-end-line="146" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Custom/Card/CardsHandBox/GWCardsHandBlackBox.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Custom/Card/CardsHandBox/GWCardsHandBox.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="663">
+          <caret line="39" column="30" selection-start-line="39" selection-start-column="30" selection-end-line="39" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Custom/GWBloodBox.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="30" selection-start-line="23" selection-start-column="30" selection-end-line="23" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Custom/Checkerboard/GWGameCheckerboard.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="799">
+          <caret line="47" selection-start-line="47" selection-end-line="50" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Custom/Card/GWHandCard.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="4" selection-start-line="20" selection-start-column="4" selection-end-line="20" selection-end-column="4" />
+        <state relative-caret-position="170">
+          <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
         </state>
       </provider>
     </entry>
@@ -983,29 +860,112 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/res/piece/monster/qz1001.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Custom/Checkerboard/GWGameCheckerboard.js">
+    <entry file="file://$PROJECT_DIR$/frameworks/cocos2d-html5/external/matchvsSDK/matchvs.all.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="424">
-          <caret line="33" column="12" lean-forward="true" selection-start-line="33" selection-start-column="12" selection-end-line="42" selection-end-column="13" />
+        <state relative-caret-position="11492">
+          <caret line="17" column="659445" selection-start-line="17" selection-start-column="659432" selection-end-line="17" selection-end-column="659445" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Scene/GameScene.js">
+    <entry file="file://$PROJECT_DIR$/src/Scene/NetWorkScene.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="407">
-          <caret line="127" column="13" selection-start-line="127" selection-start-column="13" selection-end-line="127" selection-end-column="13" />
+        <state relative-caret-position="476">
+          <caret line="28" column="52" selection-start-line="28" selection-start-column="52" selection-end-line="28" selection-end-column="52" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Custom/Checkerboard/GWCheckerboard.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="196" column="21" selection-start-line="196" selection-start-column="21" selection-end-line="196" selection-end-column="21" />
+        <state relative-caret-position="6460">
+          <caret line="380" column="13" selection-start-line="380" selection-start-column="13" selection-end-line="381" selection-end-column="54" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/External/matchvs.all.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="11118">
+          <caret column="654708" selection-start-column="654708" selection-end-column="654708" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Tool/XCBase64Tool.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="82" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="82" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Tool/XCData.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="799">
+          <caret line="47" column="31" selection-start-line="47" selection-start-column="29" selection-end-line="47" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/CocosCreator/CocosCreator/DarwinVillain/assets/script/Scene/LoginScene.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="372">
+          <caret line="77" column="21" lean-forward="true" selection-start-line="77" selection-start-column="21" selection-end-line="77" selection-end-column="21" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Scene/LoginScene.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="129" column="11" selection-start-line="129" selection-start-column="7" selection-end-line="129" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="54" selection-start-line="11" selection-start-column="54" selection-end-line="11" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frameworks/cocos2d-html5/moduleConfig.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="650">
+          <caret line="491" column="19" selection-start-line="491" selection-start-column="9" selection-end-line="491" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frameworks/cocos2d-html5/README.mdown">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frameworks/cocos2d-html5/external/bmobSDK/Bmob-1.7.0.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="18848" selection-start-line="7" selection-start-column="18848" selection-end-line="7" selection-end-column="18848" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frameworks/cocos2d-html5/cocos2d/core/CCDirector.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7293">
+          <caret line="429" column="4" selection-start-line="429" selection-start-column="4" selection-end-line="429" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.dom.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="278647">
+          <caret line="16404" column="4" selection-start-line="16404" selection-start-column="4" selection-end-line="16404" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frameworks/cocos2d-html5/CCDebugger.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="952">
+          <caret line="56" column="17" selection-start-line="56" selection-start-column="17" selection-end-line="56" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/piece/monster/qz1001.png">
+      <provider selected="true" editor-type-id="images" />
     </entry>
   </component>
 </project>

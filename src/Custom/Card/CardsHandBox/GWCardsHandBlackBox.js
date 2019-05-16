@@ -3,12 +3,12 @@
 
 /**
  *
- *  专用手牌类- 手牌区域
+ *  专用手牌类- 对方手牌区域
  *
  * */
 
 
-var GWCardsHandBox = ccui.Layout.extend({
+var GWCardsHandBlackBox = ccui.Layout.extend({
     /**
      * cardList 结构:
      * {
@@ -44,7 +44,7 @@ var GWCardsHandBox = ccui.Layout.extend({
         var cardUrl = (cardData === undefined || cardData == null)?res.cardHand:skUrl;
         //卡片构造加入
         // var useBack = isBack||false;
-        var hand = new GWHandCard(cardUrl,false);//ancher 0,1
+        var hand = new GWHandCard(cardUrl,true);//ancher 0,1
         this.addChild(hand);
         //
         // var index = this.cardList.length;

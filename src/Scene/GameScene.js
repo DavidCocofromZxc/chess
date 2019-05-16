@@ -45,7 +45,7 @@ var GameLayer = BaseLayer.extend({
     holdChess           :   null,   //举起棋子
     sysMailbox          :   null,   //信箱
     btnRound            :   null,   //回合按钮
-    cardsHandBox        :   null,   //手卡区域
+    ourCardsHandBox        :   null,   //手卡区域
     otherCardsHandBox   :   null,   //对方手卡区域
 
     ourCardGroup        :   null,   //我方卡组
@@ -70,7 +70,7 @@ var GameLayer = BaseLayer.extend({
         this.holdChess      =   null,   //举起棋子
         this.sysMailbox     =   null,   //信箱
         this.btnRound       =   null,   //回合按钮
-        this.cardsHandBox   =   null,   //手卡区域
+        this.ourCardsHandBox   =   null,   //手卡区域
         this.otherCardsHandBox   =   null,   //对方手卡区域
 
         this.ourCardGroup   =   null,   //我方卡组
@@ -114,32 +114,7 @@ var GameLayer = BaseLayer.extend({
                                     (cc.winSize.height - node.height)/2);
         node.delegate = this;
         this.checkerboard = node;
-
-        //发起召唤
-        node.eventTouchSummonChessStartAction = function (data) {
-            cc.log(data);
-            let bool = this.ourEnergy.subtractPowerCount(data.energy);
-            let str = bool?"你消耗了"+ data.energy +"点能量":"你的能量不足";
-            this.sysMailbox.sendMessage(str);
-            return bool;
-        }.bind(this);
     },
-    //加载棋盘 delegate
-    //召唤结束的回调
-    eventTouchSummonChessEndAction:function(state,data){
-        switch (state) {
-            case 0:
-                break;
-            case 1:
-                break;
-            case 2:
-                this.sysMailbox.sendMessage("成功召唤\""+ data.name+"\"");
-                break;
-            default:
-                break;
-        }
-    },
-
 
     //加载信息框
     loadMessageView:function () {
@@ -159,13 +134,13 @@ var GameLayer = BaseLayer.extend({
         text.setPosition( cc.winSize.width/2, cc.winSize.height/2);
         this.textLabel = text;
     },
-    //加载按钮
+    //加载"结束游戏"按钮
     loadRoundButton:function(){
         var button  = new GWButton("回合结束");
         this.addChild(button,LocalZorderEnemu.UI);
         button.setAnchorPoint(0,0.5);
         button.setPosition( this.checkerboard.x + this.checkerboard.width + 5,//20缝隙
-            this.checkerboard.y + this.checkerboard.height/2);
+                            this.checkerboard.y + this.checkerboard.height/2);
         this.btnRound = button;
     },
     //加载双方卡组
@@ -180,7 +155,7 @@ var GameLayer = BaseLayer.extend({
         //抽卡事件
         ourGroup.pumpCardAction = function (cardID) {
             var cardData = XCDATA.findMonsterData(cardID);
-            this.cardsHandBox.addCard(cardData);
+            this.ourCardsHandBox.addCard(cardData);
         }.bind(this);
         this.ourCardGroup = ourGroup;
 
@@ -247,11 +222,11 @@ var GameLayer = BaseLayer.extend({
             cc.log("cancelSeleCard");
             this.checkerboard.cancelPickUpCardInHand();
         }.bind(this);
-        this.cardsHandBox = hand;
+        this.ourCardsHandBox = hand;
 
 
         var sideWidth = 20; //添加边宽
-        var otherHand = new GWCardsHandBox();//ancher 0,1
+        var otherHand = new GWCardsHandBlackBox();//ancher 0,1
         this.addChild(otherHand,LocalZorderEnemu.UI);
         otherHand.setAnchorPoint(0,0);
         otherHand.setPosition(   this.checkerboard.x - sideWidth,
@@ -285,21 +260,7 @@ var GameLayer = BaseLayer.extend({
         var data = XCDATA.findMonsterData(model.objectId);
         card.changeUiData(data,model);//设置数据
         this.checkerboard.pickUpDataInHand(data);//选卡传入
-        //读取数据库
-        // this.showLoading();
-        // XCDATA().MONSTER_DATATABLE.get(uiData.objectId).then(data => {
-        //     console.log(data);
-        //     Card.setData(data,uiData);//设置数据
-        //     this.checkerboard.pickUpCardInHand({data:data,uiData:uiData});//选卡传入
-        //     this.stopLoading();
-        // }).catch(err => {
-        //     console.log(err)
-        //     this.stopLoading();
-        //     cc.log("数据传入失败！！！");
-        // });
     },
-
-
 
     /**
      * 主循环梳理:
@@ -357,7 +318,6 @@ var GameLayer = BaseLayer.extend({
 
     //抽卡
     pumpingCard:function(){
-
         this.sysMailbox.sendMessage("抽卡");
         // this.textLabel.addShowText( "抽卡");
 
@@ -366,6 +326,49 @@ var GameLayer = BaseLayer.extend({
         this.ourCardGroup.pumpingCard(1);
     },
 
+
+
+
+    /**>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    /**
+     *  delegate 相关
+     */
+    //棋盘 delegate
+    //发起召唤的回调
+    eventTouchSummonChessStartAction:function(data){
+        //法力消耗判断
+        let bool = this.ourEnergy.subtractPowerCount(data.energy);
+        let str = bool?"你消耗了"+ data.energy +"点能量":"你的能量不足";
+        this.sysMailbox.sendMessage(str);
+        return bool;
+    },
+    //召唤结束的回调
+    eventTouchSummonChessEndAction:function(state,data){
+        switch (state) {
+            case 0:
+                break;
+            case 1:
+                break;
+            case 2:
+                this.ourCardsHandBox.releaseCard();
+                this.sysMailbox.sendMessage("成功召唤\""+ data.name+"\"");
+                break;
+            default:
+                break;
+        }
+    },
+
+
+    //触摸事件 - 棋子移动开始回调
+    eventTouchMoveChessStartAction:function(state){
+        switch (state) {
+            case 0:
+                this.sysMailbox.sendMessage("无法移动！行动次数不足");
+                break;
+            default:
+                break;
+        }
+    },
 
     /**>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
     /**
@@ -509,12 +512,12 @@ var GameLayer = BaseLayer.extend({
         //手牌区域
         // *>这里的x,y其实和Ancher相关 -因为rectContainsPoint方法只会判断ancher（0，0）的rect
         //所以下行y的写法更严谨
-        var cardGroupRect   = cc.rect(  self.cardsHandBox.x,
-                                        self.cardsHandBox.y * (1 - self.cardsHandBox.anchorY),
-                                        self.cardsHandBox.width,
-                                        self.cardsHandBox.height);
+        var cardGroupRect   = cc.rect(  self.ourCardsHandBox.x,
+                                        self.ourCardsHandBox.y * (1 - self.ourCardsHandBox.anchorY),
+                                        self.ourCardsHandBox.width,
+                                        self.ourCardsHandBox.height);
         self.checkerboard.onTouchEnded(touch);//将触发传递至下层
-        self.cardsHandBox.onTouchEnded(touch);//将触发传递至下层
+        self.ourCardsHandBox.onTouchEnded(touch);//将触发传递至下层
         return true;//native下必须有return，否则触发次数会有问题
     },
 

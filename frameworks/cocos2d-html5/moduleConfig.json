@@ -489,6 +489,9 @@
         "bmobSDK"  : [
             "external/bmobSDK/Bmob-1.7.0.min.js"
         ],
+        "matchvsSDK"  : [
+            "external/matchvsSDK/matchvs.all.js"
+        ],
         "external" : ["box2d", "chipmunk", "socketio", "pluginx", "gaf"]
     },
     "bootFile" : "CCBoot.js"

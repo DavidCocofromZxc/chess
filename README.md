@@ -29,3 +29,8 @@ I'm making a chess game with cocos-js. You can link me QQ num 670633205.
             In this week, i must be solved Data issues and most basic view issues.
     
     today,update handcard & cardGroup.
+    
+5.5
+    棋盘中可以优化：
+        移动次数仍大于1的单位应该播放默认动作，
+        移动次数用尽的单位应该停止所有动画，而产生静止的感觉

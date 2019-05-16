@@ -19,20 +19,38 @@ var NetWorkLayer = BaseLayer.extend({
 
     ctor:function () {
         this._super();
+        this.test();
         return true;
     },
 
     test:function () {
-        this.showLoading();
 
-        const query = Bmob.Query("monsterData");
-        query.find().then(res => {
-            console.log("data",res)
-            var aa = new GWMonsterData();//.initMonsterObj(res[0]);
-            aa.initMonsterObj(res[0]);
-            cc.log("aa:",aa);
-            this.stopLoading();
-        });
+        // var Matchvs = require("matchvs.all");
+        // var engine = new Matchvs.MatchvsEngine();
+        var engine = new MVS.MatchvsEngine();
+
+
+        // var Matchvs = require("matchvs.all");
+        // var engine = new Matchvs.MatchvsEngine();
+        // var winEngine = window.MatchvsEngine();
+        //
+        var response = new MVS.MatchvsResponse();
+        var result = winEngine.init(response,'Matchvs','alpha','200978', "4fd4a67c10e84e259a2c3c417b9114f4", 1);
+        if(result === 0) {
+            console.log("初始化请求成功");
+        }
+
+
+        // this.showLoading();
+        //
+        // const query = Bmob.Query("monsterData");
+        // query.find().then(res => {
+        //     console.log("data",res)
+        //     var aa = new GWMonsterData();//.initMonsterObj(res[0]);
+        //     aa.initMonsterObj(res[0]);
+        //     cc.log("aa:",aa);
+        //     this.stopLoading();
+        // });
     },
 
     //加载手牌区域
