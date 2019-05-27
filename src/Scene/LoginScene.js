@@ -37,13 +37,13 @@ var LoginLayer = cc.Layer.extend({
 
 
     beginParticle   :   null,   //背景光效
-    mainMenu        :   null,
+    // mainMenu        :   null,
 
 
     ctor:function () {
 
         this.beginParticle = null;
-        this.mainMenu = null;
+        // this.mainMenu = null;
 
         this._super();
         this.loadUI();
@@ -91,7 +91,7 @@ var LoginLayer = cc.Layer.extend({
 
         //Menu
         var menu = new cc.Menu(beginGameItem,aiGameItem,netGameItem,nextItem);
-        this.mainMenu = menu;
+        // this.mainMenu = menu;
         this.addChild(menu);
 
         menu.setOpacity(0);
@@ -149,6 +149,11 @@ var LoginLayer = cc.Layer.extend({
     },
     //数据库检查
     CheckDatabase:function(){
+        if(XCDATA.instance.MONSTER_DATATABLE === undefined || XCDATA.instance.MONSTER_UITABLE === undefined){
+            return false
+        }
+
+
         if(  XCDATA.instance.MONSTER_DATATABLE.length > 0 & XCDATA.instance.MONSTER_UITABLE.length > 0){
             return true;
         }else{

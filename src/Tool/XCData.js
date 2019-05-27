@@ -55,7 +55,6 @@ function XCDATA(){
         this.MONSTER_UITABLE = res;
     });
 
-
     // XCDATA
     XCDATA.findMonsterData = function(objectID){
         var monsterData = null;
