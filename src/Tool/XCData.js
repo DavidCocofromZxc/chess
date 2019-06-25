@@ -36,6 +36,7 @@ let EnemuDataUrl = {
 
 //
 function XCDATA(){
+
     // 如果已存在对应的实例
     if(typeof XCDATA.instance === 'object'){
         return XCDATA.instance
@@ -68,7 +69,6 @@ function XCDATA(){
         return monsterData;
     }.bind(this);
 
-
     XCDATA.findMonsterUIData = function(objectID){
         var monsterData = null;
         for(var i = 0 ,len = this.MONSTER_UITABLE.length; i<len ;i++){
@@ -89,7 +89,6 @@ function XCDATA(){
     //     return monsterData;
     // }.bind(this);
 
-
     // XCDATA.prototype.findMonsterUIData = function(objectID){
     //     var monsterData = null;
     //     for(var i = 0 ,len = this.MONSTER_UITABLE.length; i<len ;i++){
@@ -101,7 +100,6 @@ function XCDATA(){
     //     }
     //     return monsterData;
     // }.bind(this);
-
 
     // 缓存
     XCDATA.instance = this;

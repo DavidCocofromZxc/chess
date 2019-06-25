@@ -28,27 +28,29 @@ var GWCardsHandBox = ccui.Layout.extend({
 
         this._super();
         this.setAnchorPoint(0,1);
-        // 高亮测试
-        // this.setBackGroundColorType(ccui.Layout.BG_COLOR_SOLID);
-        // this.setBackGroundColor(cc.color(200,200,200));
-        // this.setBackGroundColorOpacity(255 *0.8);
+        // 高亮现实-用于测试
+        this.setBackGroundColorType(ccui.Layout.BG_COLOR_SOLID);
+        this.setBackGroundColor(cc.color(200,200,200));
+        this.setBackGroundColorOpacity(255 *0.2);
         return true;
     },
     //加入到手牌<小牌>
     //UI data
     //cardUIData不存在则使用默认,isBack是否使用背面默认不用背面
     addCard:function (cardData) {
-        //
+        //组合小卡url
         var skUrl = "res/Card/Little/sk"+cardData.ID+".png"
         //获得小卡res
         var cardUrl = (cardData === undefined || cardData == null)?res.cardHand:skUrl;
-        //卡片构造加入
-        // var useBack = isBack||false;
+        //构造小卡
         var hand = new GWHandCard(cardUrl,false);//ancher 0,1
-        this.addChild(hand);
-        //
+        //数据对象处理
         // var index = this.cardList.length;
         this.cardList.push({card:hand,index:0,data:cardData});//对象和数据 均放入list
+
+        // V
+        //加入手牌区域
+        this.addChild(hand);
         //< UI 调整>
         this.setCardsHandBoxUI();
     },

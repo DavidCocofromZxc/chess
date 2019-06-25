@@ -44,7 +44,11 @@
         "src/Custom/Data/GWMonsterData.js",
 
         "src/Custom/Card/GWCard.js",
-        "src/Custom/Card/GWCardGroup.js",
+        "src/Custom/Card/CardGroup/GWCardGroup.js",
+        "src/Custom/Card/CardGroup/GWCardGroupSelf.js",
+        "src/Custom/Card/CardGroup/GWCardGroupOther.js",
+
+
         "src/Custom/Card/GWHandCard.js",
         "src/Custom/Card/CardsHandBox/GWCardsHandBox.js",
         "src/Custom/Card/CardsHandBox/GWCardsHandBlackBox.js",

@@ -27,6 +27,7 @@ var res = {
     //Game UI
     baceButton      : "res/UI/baceButton.png",
     cardGroup       : "res/UI/cardGroup.png",
+    cardGroupSingle : "res/UI/cardGroupSingle@15x.png",
     loading         : "res/UI/loading.png", //加载
 
     //地图相关

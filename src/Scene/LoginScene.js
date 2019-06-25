@@ -39,7 +39,6 @@ var LoginLayer = cc.Layer.extend({
     beginParticle   :   null,   //背景光效
     // mainMenu        :   null,
 
-
     ctor:function () {
 
         this.beginParticle = null;
@@ -72,12 +71,12 @@ var LoginLayer = cc.Layer.extend({
         var sequence = cc.sequence(delay,anminB,anminC,anminD);
         beginGame.runAction(sequence.repeatForever());
 
+        cc.fadeIn()
 
         //button
         var aiGame = new cc.LabelTTF("AI游戏","Arial",36);
         var aiGameItem = new cc.MenuItemLabel(aiGame,this.aiGameAction,this);
         aiGameItem.setPosition(beginGameItem.x,beginGameItem.y - 80);
-
 
         //button
         var netGame = new cc.LabelTTF("匹配游戏","Arial",36);

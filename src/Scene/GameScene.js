@@ -65,26 +65,26 @@ var GameLayer = BaseLayer.extend({
 
     ctor: function () {
 
-        this.textLabel      =   null,   //对话text条//提示条
-        this.checkerboard   =   null,   //棋盘
-        this.holdChess      =   null,   //举起棋子
-        this.sysMailbox     =   null,   //信箱
-        this.btnRound       =   null,   //回合按钮
-        this.ourCardsHandBox   =   null,   //手卡区域
-        this.otherCardsHandBox   =   null,   //对方手卡区域
+        this.textLabel      =   null;   //对话text条//提示条
+        this.checkerboard   =   null;   //棋盘
+        this.holdChess      =   null;   //举起棋子
+        this.sysMailbox     =   null;   //信箱
+        this.btnRound       =   null;   //回合按钮
+        this.ourCardsHandBox   =   null;   //手卡区域
+        this.otherCardsHandBox   =   null;   //对方手卡区域
 
-        this.ourCardGroup   =   null,   //我方卡组
-        this.otherCardGroup =   null,   //对方卡组
-        this.ourBloodBar    =   null,   //我方血条
-        this.otherBloodBar  =   null,   //对方血条
-        this.ourEnergy      =   null,   //我方法力
-        this.otherEnergy    =   null,   //对方法力
+        this.ourCardGroup   =   null;   //我方卡组
+        this.otherCardGroup =   null;   //对方卡组
+        this.ourBloodBar    =   null;   //我方血条
+        this.otherBloodBar  =   null;   //对方血条
+        this.ourEnergy      =   null;   //我方法力
+        this.otherEnergy    =   null;   //对方法力
 
-        this.roundSurplusTime    =   12,     //每回合决策时间 //60s
-        this.countdownBeginTime  =   10,     //开始倒数的时间
+        this.roundSurplusTime    =   12;     //每回合决策时间 //60s
+        this.countdownBeginTime  =   10;     //开始倒数的时间
 
-        this.gameStageState      =   GameStageStateEnemu.stagnation,//
-        this.lookCard            =   null,
+        this.gameStageState      =   GameStageStateEnemu.stagnation;//
+        this.lookCard            =   null;
 
         this._super();
         this.loadCheckerboard();    //构造棋盘
@@ -148,12 +148,12 @@ var GameLayer = BaseLayer.extend({
         //模拟数据流
         var ourflow = "OXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2Nlg=";
         //我方卡组
-        var ourGroup  = new GWCardGroup(ourflow);
+        var ourGroup  = new GWCardGroupSelf(ourflow);
         this.addChild(ourGroup,LocalZorderEnemu.UI);
         ourGroup.setPosition(  this.checkerboard.x + this.checkerboard.width + 20,//缝隙
             this.checkerboard.y);
         //抽卡事件
-        ourGroup.pumpCardAction = function (cardID) {
+        ourGroup.pumpCardEventAction = function (cardID) {
             var cardData = XCDATA.findMonsterData(cardID);
             this.ourCardsHandBox.addCard(cardData);
         }.bind(this);
@@ -163,13 +163,13 @@ var GameLayer = BaseLayer.extend({
         var otherflow = "OXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2Nlg=";
 
         //对方卡组
-        var otherCardGroup  = new GWCardGroup(otherflow);
+        var otherCardGroup  = new GWCardGroupOther(otherflow);
         this.addChild(otherCardGroup,LocalZorderEnemu.UI);
         otherCardGroup.setAnchorPoint(1,1);
         otherCardGroup.setPosition(  this.checkerboard.x - 20,
                                             this.checkerboard.y + this.checkerboard.height);
         //抽卡事件
-        otherCardGroup.pumpCardAction = function (cardID) {
+        otherCardGroup.pumpCardEventAction = function (cardID) {
             var cardData = XCDATA.findMonsterData(cardID);
             this.otherCardsHandBox.addCard(cardData);
         }.bind(this);
