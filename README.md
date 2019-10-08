@@ -1,3 +1,8 @@
+#Project directory
+
+
+
+
 # development log
 
 I'm making a chess game with cocos-js. You can link me QQ num 670633205.
@@ -34,3 +39,11 @@ I'm making a chess game with cocos-js. You can link me QQ num 670633205.
     棋盘中可以优化：
         移动次数仍大于1的单位应该播放默认动作，
         移动次数用尽的单位应该停止所有动画，而产生静止的感觉
+        
+6.25
+    想法：
+    1.更换引擎的想法暂时延后，还是先做点东西出来吧
+    2.选中卡&棋子时、左侧的提示卡牌内容应该再补充，类似移动步数、次数
+    3.召唤卡牌时，左侧的法力值闪烁以提示用户当前费用更好，可否召唤颜色不同。
+    4.在喵点时，最好有提示框。
+    5.卡牌上应该有费用、攻击、移动等图标。

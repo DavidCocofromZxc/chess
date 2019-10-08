@@ -17,6 +17,9 @@ var GWCard = cc.Sprite.extend({
     lifeLabel       : null,
     originalPainting: null,
 
+    //icon
+    fyIcon          : null,//
+
     //font
     attributeFontSize   : 20,   //基本属性字符font
     nameFontSize        : 7,    //名称字符font
@@ -38,6 +41,9 @@ var GWCard = cc.Sprite.extend({
         this.lifeLabel        = null;
         this.originalPainting = null;
 
+        //
+        this.fyIcon           = null;
+
         //初始化字体大小
         this.attributeFontSize  = 20;
         this.nameFontSize       = 7;
@@ -57,7 +63,7 @@ var GWCard = cc.Sprite.extend({
         this.fontName       = "Arial";
 
         //构建
-        this._super();
+        this._super(res.kadi);  //默认需要有一个构建，否则各种在外部width/size获取不到
         this.initCardUI();
         return;
     },
@@ -76,12 +82,14 @@ var GWCard = cc.Sprite.extend({
          * */
 
 
-        //<* 适配 *>
+        // <* 适配 *>
+        // 建议UI适配修改这里
         // 模拟展开点
         var targetPoint = cc.p(cc.winSize.width/2,cc.winSize.height/2);
 
         let cardWidth           = 220;  //卡宽度
         let cardHeight          = 300;  //卡高度
+
         let cardHeadHeight      = 27;   //卡顶部高度
         let cardBodyHeight      = 165;  //卡主体高度
         let cardWaistHeight     = 15;   //卡腰高度
@@ -94,12 +102,15 @@ var GWCard = cc.Sprite.extend({
 
 
         //<* 适配 计算点 *>
-        var artPoint    = cc.p(cardWidth/2,cardBottomHeight +cardBodyHeight/2);      //原画点
+        //原画点：卡宽/2
+        var artPoint    = cc.p(cardWidth/2,cardBottomHeight +cardWaistHeight +cardBodyHeight/2);    //ancher(0.5,0.5)
         var fyPoint     = cc.p(  leftSpacing,cardBottomHeight + cardWaistHeight + cardBodyHeight + 10);       //费用点
-        var namePoint   = cc.p(leftSpacing +45,cardBottomHeight + cardWaistHeight + cardBodyHeight + 10);  //name
+        var fyIconPoint = cc.p(  leftSpacing -1,cardBottomHeight + cardWaistHeight + cardBodyHeight + 10 + 2);       //费用点
+        var namePoint   = cc.p(leftSpacing +45,cardBottomHeight + cardWaistHeight + cardBodyHeight + 6);//ancher(0,0)
         var gjPoint     = cc.p(leftSpacing,bottomSpacing);                //攻击点
         var smPoint     = cc.p(leftSpacing +180 ,bottomSpacing);     //生命点
         var dscPoint    = cc.p(leftSpacing,cardBottomHeight -30);     //描述  //？30
+
 
 
         //<* 图构 *>
@@ -112,9 +123,9 @@ var GWCard = cc.Sprite.extend({
         var kaC = new cc.Sprite(res.kaditiao);
         kaC.setPosition(0,0);
         kaC.setAnchorPoint(0,0);
-        var kaD = new cc.Sprite(res.kadi);
-        kaD.setPosition(0,0);
-        kaD.setAnchorPoint(0,0);
+        // var kaD = new cc.Sprite(res.kadi);
+        // kaD.setPosition(0,0);
+        // kaD.setAnchorPoint(0,0);
 
 
         //原画
@@ -123,14 +134,18 @@ var GWCard = cc.Sprite.extend({
         gw.setAnchorPoint(0.5,0.5);
         this.originalPainting = gw;
 
-
-
         //费用
         var fyLbl = new cc.LabelTTF(this.fyText,this.fontName ,this.attributeFontSize);
         fyLbl.setPosition(fyPoint.x,fyPoint.y);
         this.addChild(fyLbl,101);
         this.fyLabel = fyLbl;
 
+        //费用icon
+        var fyIcon = new cc.Sprite(res.kaFY);
+        fyIcon.setPosition(fyIconPoint.x,fyIconPoint.y);
+        fyIcon.setScale(1.5);
+        this.addChild(fyIcon,100);
+        this.fyIcon = fyIcon;
 
         //攻击力
         var gjLbl = new cc.LabelTTF(this.gjText,this.fontName ,this.attributeFontSize);
@@ -166,12 +181,11 @@ var GWCard = cc.Sprite.extend({
         this.addChild(dsc,101);
         this.dscLabel = dsc;
 
-
-        this.addChild(kaA,100);
-        this.addChild(kaB,90);
-        this.addChild(kaC,80);
-        this.addChild(gw,75);
-        this.addChild(kaD,70);
+        this.addChild(kaA,90);
+        this.addChild(kaB,80);
+        this.addChild(kaC,70);
+        this.addChild(gw,65);
+        // this.addChild(kaD,70);
     },
 
     changeUiData:function(data,uiData){

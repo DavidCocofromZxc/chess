@@ -326,9 +326,6 @@ var GameLayer = BaseLayer.extend({
         this.ourCardGroup.pumpingCard(1);
     },
 
-
-
-
     /**>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
     /**
      *  delegate 相关

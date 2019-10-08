@@ -52,10 +52,20 @@ var res = {
     particle_blackFire          : "res/Particle/blackFire2x.plist",
 
     //卡组成 UI
-    kadi                : "res/Card/Base/kadi.png",
-    kaditiao            : "res/Card/Base/kaditiao.png",
-    kakuang             : "res/Card/Base/kakuang.png",
-    katiao              : "res/Card/Base/katiao.png",
+    kadi                : "res/Card/Base/kaBasedi.png",
+    kaditiao            : "res/Card/Base/kaBaseditiao.png",
+    kakuang             : "res/Card/Base/kaBasekuang.png",
+    katiao              : "res/Card/Base/kaBasetiao.png",
+
+    //卡组成 基础icon
+    kaFY               : "res/Card/Base/kaIconF.png",//费用
+    kaGJL              : "res/Card/Base/kaIconG.png",//攻击力
+    kaYDL              : "res/Card/Base/kaIconM.png",//移动力
+    kaSMZ              : "res/Card/Base/kaIconS.png",//生命值
+
+    //卡组成 特性
+    kaT_FJ             : "res/Card/Base/TX_FJ.png",//反击
+
 
     //card原画
     guaiwu0001          : "res/Card/monster/gw1001.png",
