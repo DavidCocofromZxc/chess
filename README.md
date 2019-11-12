@@ -1,6 +1,16 @@
 #Project directory
-
-
+-res 资源文件
+|-Card 卡牌组成
+|-data
+|-Map
+|-Other
+|-Particle
+|-piece
+|-UI
+|-loading.js
+-
+-src 脚本文件
+|
 
 
 # development log

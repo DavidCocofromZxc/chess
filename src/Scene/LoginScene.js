@@ -7,25 +7,19 @@
  *
  * */
 
-
-
 var LoginLayer = cc.Layer.extend({
-
-
-    beginParticle   :   null,   //背景光效
-    // mainMenu        :   null,
-
+    _beginParticle   :      null,   //背景光效
+    _titleNameList   :      [],
     ctor:function () {
-
-        this.beginParticle = null;
-        // this.mainMenu = null;
-
+        //data init
+        this._beginParticle = null;
+        this._titleNameList = ["教程入口","AI游戏","匹配游戏","测试入口"];
+        this.loginBmob();//用户登录bmob
+        //ctor
         this._super();
         this.loadUI();
-        this.loginBmob();//用户登录bmob
         return true;
     },
-
     loadUI:function () {
         this.removeAllChildren();
         //背景
@@ -34,46 +28,36 @@ var LoginLayer = cc.Layer.extend({
         this.addChild(particle);
         particle.setPosition(   this.width/2,
                                         this.height/4 * 3);
-        this.beginParticle = particle;
-
+        this._beginParticle = particle;
         //button
-        var beginGame = new cc.LabelTTF("教程入口","Arial",36);
-        var beginGameItem = new cc.MenuItemLabel(beginGame,this.beginAction,this);
-        beginGameItem.setPosition(0,0);
+        var btn0 = new cc.LabelTTF(this._titleNameList[0],"Arial",36);
+        var btn1 = new cc.LabelTTF(this._titleNameList[1],"Arial",36);
+        var btn2 = new cc.LabelTTF(this._titleNameList[2],"Arial",36);
+        var btn3 = new cc.LabelTTF(this._titleNameList[3],"Arial",36);
+        //菜单项
+        var item0 = new cc.MenuItemLabel(btn0,this.btn0Action,this);
+        item0.setPosition(0,0);
+        var item1 = new cc.MenuItemLabel(btn1,this.btn1Action,this);
+        item1.setPosition(item0.x,item0.y - 80);
+        var item2 = new cc.MenuItemLabel(btn2,this.btn2Action,this);
+        item2.setPosition(item1.x,item1.y - 80);
+        var item3 = new cc.MenuItemLabel(btn3,this.btn3Action,this);
+        item3.setPosition(item2.x,item2.y - 80);
+        //Menu
+        var menu = new cc.Menu(item0,item1,item2,item3);
+        this.addChild(menu);
+        //动画：抖动
         var delay = cc.delayTime(5);
         var anminB = cc.rotateTo(0.1,-5,-5);
         var anminC = cc.rotateTo(0.1,5,5);
         var anminD = cc.rotateTo(0.1,0,0);
         var sequence = cc.sequence(delay,anminB,anminC,anminD);
-        beginGame.runAction(sequence.repeatForever());
-
-        cc.fadeIn()
-
-        //button
-        var aiGame = new cc.LabelTTF("AI游戏","Arial",36);
-        var aiGameItem = new cc.MenuItemLabel(aiGame,this.aiGameAction,this);
-        aiGameItem.setPosition(beginGameItem.x,beginGameItem.y - 80);
-
-        //button
-        var netGame = new cc.LabelTTF("匹配游戏","Arial",36);
-        var netGameItem = new cc.MenuItemLabel(netGame,this.netGameAction,this);
-        netGameItem.setPosition(aiGameItem.x,aiGameItem.y - 80);
-
-        //button
-        var next = new cc.LabelTTF("测试入口","Arial",36);
-        var nextItem = new cc.MenuItemLabel(next,this.nextAction,this);
-        nextItem.setPosition(netGameItem.x,netGameItem.y - 80);
-
-        //Menu
-        var menu = new cc.Menu(beginGameItem,aiGameItem,netGameItem,nextItem);
-        // this.mainMenu = menu;
-        this.addChild(menu);
-
+        btn1.runAction(sequence.repeatForever());
+        //动画：渐出
         menu.setOpacity(0);
         var fadeIn = cc.fadeIn(5);
         menu.runAction(fadeIn);
     },
-
     loginBmob:function(){
         Bmob.initialize("ef0729f131d45699c3173d3fa16fe307", "05d0be62242c7a63ddcb2566253eaefd");
         Bmob.User.login('admin','12345').then(res => {
@@ -84,8 +68,8 @@ var LoginLayer = cc.Layer.extend({
             console.log(err)
         });
     },
-
-    beginAction:function(){
+    //Actions
+    btn0Action:function(){
         cc.log("touch beginAction");
         if ( this.CheckDatabase){
             cc.director.pushScene(new GodScene());
@@ -93,8 +77,7 @@ var LoginLayer = cc.Layer.extend({
             cc.log("CheckDatabase error");
         }
     },
-
-    aiGameAction:function(){
+    btn1Action:function(){
         cc.log("touch aiGameAction");
         if ( this.CheckDatabase()){
             cc.director.pushScene(new GameScene());
@@ -102,10 +85,10 @@ var LoginLayer = cc.Layer.extend({
             cc.log("CheckDatabase error");
         }
     },
-    netGameAction:function(){
+    btn2Action:function(){
         cc.log("touch netGameAction");
         // cc.alert()
-        alert("test");
+        // alert("test");
 
         // if ( this.CheckDatabase()){
         //     cc.director.pushScene(new GameScene());
@@ -113,8 +96,7 @@ var LoginLayer = cc.Layer.extend({
         //     cc.log("CheckDatabase error");
         // }
     },
-
-    nextAction:function () {
+    btn3Action:function () {
         cc.log("touch nextAction");
         if (this.CheckDatabase()){
             cc.director.pushScene(new NetWorkScene());
@@ -127,23 +109,18 @@ var LoginLayer = cc.Layer.extend({
         if(XCDATA.instance.MONSTER_DATATABLE === undefined || XCDATA.instance.MONSTER_UITABLE === undefined){
             return false
         }
-
-
         if(  XCDATA.instance.MONSTER_DATATABLE.length > 0 & XCDATA.instance.MONSTER_UITABLE.length > 0){
             return true;
         }else{
             return false;
         }
     },
-
     //
     onExit:function(){
         this._super();
         console.log("LoginScene onExit:");
         this.removeAllChildren()
     },
-
-
 });
 
 

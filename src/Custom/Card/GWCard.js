@@ -21,9 +21,10 @@ var GWCard = cc.Sprite.extend({
     fyIcon          : null,//
 
     //font
-    attributeFontSize   : 20,   //基本属性字符font
-    nameFontSize        : 7,    //名称字符font
-    desFontSize         : 2,    //描述font
+    attributeFontSize   : 0,   //基本属性字符font
+    nameFontSize        : 0,    //名称字符font
+    desFontSize         : 0,    //描述font
+
     //data
     fyText          : "0",
     gjText          : "0",
@@ -46,8 +47,8 @@ var GWCard = cc.Sprite.extend({
 
         //初始化字体大小
         this.attributeFontSize  = 20;
-        this.nameFontSize       = 7;
-        this.desFontSize        = 2;
+        this.nameFontSize       = 14;
+        this.desFontSize        = 10;
         //native下 修改字体大小
         if(cc.sys.isNative){
             this.attributeFontSize   = 25;
@@ -104,9 +105,9 @@ var GWCard = cc.Sprite.extend({
         //<* 适配 计算点 *>
         //原画点：卡宽/2
         var artPoint    = cc.p(cardWidth/2,cardBottomHeight +cardWaistHeight +cardBodyHeight/2);    //ancher(0.5,0.5)
-        var fyPoint     = cc.p(  leftSpacing,cardBottomHeight + cardWaistHeight + cardBodyHeight + 10);       //费用点
-        var fyIconPoint = cc.p(  leftSpacing -1,cardBottomHeight + cardWaistHeight + cardBodyHeight + 10 + 2);       //费用点
-        var namePoint   = cc.p(leftSpacing +45,cardBottomHeight + cardWaistHeight + cardBodyHeight + 6);//ancher(0,0)
+        var fyPoint     = cc.p(leftSpacing,cardBottomHeight + cardWaistHeight + cardBodyHeight + 10);       //费用点
+        var fyIconPoint = cc.p(leftSpacing -1,cardBottomHeight + cardWaistHeight + cardBodyHeight + 10 + 2);       //费用点
+        var namePoint   = cc.p(leftSpacing +47,cardBottomHeight + cardWaistHeight + cardBodyHeight + 8);//ancher(0,0)
         var gjPoint     = cc.p(leftSpacing,bottomSpacing);                //攻击点
         var smPoint     = cc.p(leftSpacing +180 ,bottomSpacing);     //生命点
         var dscPoint    = cc.p(leftSpacing,cardBottomHeight -30);     //描述  //？30
