@@ -99,7 +99,7 @@ var LoginLayer = cc.Layer.extend({
     btn3Action:function () {
         cc.log("touch nextAction");
         if (this.CheckDatabase()){
-            cc.director.pushScene(new NetWorkScene());
+            cc.director.pushScene(new TestWorkScene());
         }else{
             cc.log("CheckDatabase error");
         }

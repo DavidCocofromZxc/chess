@@ -7,6 +7,8 @@
  * */
 
 
+//GWCardGroup.pumpingOneCardAnim -->> GWCardGroupSelf.pumpingOneCardAnim
+
 
 var GWCardGroupSelf = GWCardGroup.extend({
 
@@ -17,6 +19,7 @@ var GWCardGroupSelf = GWCardGroup.extend({
 
     // <私有>抽卡动画
     pumpingOneCardAnim:function(callback){
+        //构造一张手牌小卡
         var cardSingle = new cc.Sprite(res.cardGroupSingle);
         this.addChild(cardSingle);
         cardSingle.setPosition(this.width/2 ,this.height/2);

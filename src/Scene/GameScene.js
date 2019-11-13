@@ -31,6 +31,7 @@ let GameStageStateEnemu = {
     myRound             :   30,
     myRounding          :   31,
     pumpingCard         :   32,
+    otherRound          :   33,
 
     oppositeRound       :   40,
     stagnation          :   -99,
@@ -83,7 +84,7 @@ var GameLayer = BaseLayer.extend({
         this.roundSurplusTime    =   12;     //每回合决策时间 //60s
         this.countdownBeginTime  =   10;     //开始倒数的时间
 
-        this.gameStageState      =   GameStageStateEnemu.stagnation;//
+        // this.gameStageState      =   GameStageStateEnemu.stagnation;//
         this.lookCard            =   null;
 
         this._super();
@@ -91,10 +92,11 @@ var GameLayer = BaseLayer.extend({
         this.loadMessageView();     //构造信箱
         this.loadLabel();           //构造屏中提示文字
         this.loadRoundButton();     //回合按钮
-        this.loadGroup();           //构造卡组
         this.loadBlood();           //构造血条
-        this.loadEnergy();
-        this.loadHandCard();        //构造手牌 -《模拟》
+        this.loadEnergy();          //构造法力
+        this.loadHandCard();        //构造手牌区
+        this.loadGroup();           //构造卡组
+
 
         //方便测试
         this.registerTouchEvent();
@@ -134,7 +136,7 @@ var GameLayer = BaseLayer.extend({
         text.setPosition( cc.winSize.width/2, cc.winSize.height/2);
         this.textLabel = text;
     },
-    //加载"结束游戏"按钮
+    //加载"回合"按钮
     loadRoundButton:function(){
         var button  = new GWButton("回合结束");
         this.addChild(button,LocalZorderEnemu.UI);
@@ -142,6 +144,20 @@ var GameLayer = BaseLayer.extend({
         button.setPosition( this.checkerboard.x + this.checkerboard.width + 5,//20缝隙
                             this.checkerboard.y + this.checkerboard.height/2);
         this.btnRound = button;
+        button.addClickEventListener(function(){
+            this.sysMailbox.sendMessage("回合结束");
+            this.textLabel.addShowText("回合结束");
+            this.gameStageState = GameStageStateEnemu.otherRound;
+            var anminA = cc.scaleTo(0.3,1,0);
+            var anminB = cc.scaleTo(0.3,1,1);
+            var sth = cc.callFunc(function(){
+                button.setTitleText("对方回合");
+                button.setTouchEnabled(false);
+                button.setColor(cc.color(100,100,100));
+            },this);
+            var sequence = cc.sequence(anminA,sth,anminB);
+            button.runAction(sequence);
+        }.bind(this));
     },
     //加载双方卡组
     loadGroup:function(){
@@ -150,18 +166,19 @@ var GameLayer = BaseLayer.extend({
         //我方卡组
         var ourGroup  = new GWCardGroupSelf(ourflow);
         this.addChild(ourGroup,LocalZorderEnemu.UI);
-        ourGroup.setPosition(  this.checkerboard.x + this.checkerboard.width + 20,//缝隙
-            this.checkerboard.y);
-        //抽卡事件
+        ourGroup.setPosition( //缝隙20
+                this.checkerboard.x + this.checkerboard.width + 20,
+                                this.checkerboard.y);
+        //注册抽卡完成时候的回调事件
         ourGroup.pumpCardEventAction = function (cardID) {
             var cardData = XCDATA.findMonsterData(cardID);
             this.ourCardsHandBox.addCard(cardData);
         }.bind(this);
         this.ourCardGroup = ourGroup;
 
+
         //模拟数据流
         var otherflow = "OXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2Nlg=";
-
         //对方卡组
         var otherCardGroup  = new GWCardGroupOther(otherflow);
         this.addChild(otherCardGroup,LocalZorderEnemu.UI);
@@ -318,12 +335,22 @@ var GameLayer = BaseLayer.extend({
 
     //抽卡
     pumpingCard:function(){
-        this.sysMailbox.sendMessage("抽卡");
-        // this.textLabel.addShowText( "抽卡");
 
         this.gameStageState = GameStageStateEnemu.pumpingCard;
+        this.textLabel.addShowText( "抽卡");
+        this.sysMailbox.sendMessage("抽卡");
         //卡组中取出1张牌
         this.ourCardGroup.pumpingCard(1);
+    },
+
+    //交换回合
+    exchangeRound:function(){
+
+        // this.gameStageState =
+        // this.textLabel.addShowText( "抽卡");
+        // this.sysMailbox.sendMessage("抽卡");
+        // //卡组中取出1张牌
+        // this.ourCardGroup.pumpingCard(1);
     },
 
     /**>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -392,9 +419,10 @@ var GameLayer = BaseLayer.extend({
                 this.startGame();
                 break;
             case GameStageStateEnemu.myRound:
-                //抽卡
-                this.pumpingCard();//抽卡
-                //允许行动
+                this.textLabel.addShowText("回合开始");
+                this.sysMailbox.sendMessage("回合开始");
+                this.pumpingCard();
+                //允许行动-开放注册
                 this.registerTouchEvent();
                 // //计时开始
                 // this.roundSurplusTime -= dt;
@@ -414,6 +442,8 @@ var GameLayer = BaseLayer.extend({
                 //     this.roundSurplusTime = 12;
                 //     this.countdownBeginTime = 10;
                 // }
+                break;
+            case  GameStageStateEnemu.otherRound:
                 break;
         }
 

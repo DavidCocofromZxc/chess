@@ -9,19 +9,22 @@
 
 
 var GWCardGroup = cc.Sprite.extend({
+    //UI about
     mainLabel         : null,   //顶部label
+    drawCardAnimationDuration   : 0.5,  //抽卡动画持续时间
+    drawCardDistance            : 100,  //抽卡移动距离
+    drawCardAnimationZoomRatio  : 0.65, //抽卡动画缩放比例
+
+    //data about
     cardList          : [],     //卡列表
 
-    drawCardAnimationDuration   : 0.5,  //抽卡动画持续时间
-    drawCardDistance    :   100,        //抽卡移动距离
-    drawCardAnimationZoomRatio  : 0.65, //抽卡动画缩放比例
 
 
     ctor: function(flow) {
         this.mainLabel = null;
         this.cardList  = (flow === undefined)?[]: XCBase64.arrayDecode(flow);//flow不存在则使用默认
-        this.drawCardAnimationDuration = 0.5;
-        this.drawCardDistance = 100;
+        this.drawCardAnimationDuration  = 0.5;
+        this.drawCardDistance           = 100;
         this.drawCardAnimationZoomRatio = 0.65;
 
         this._super(res.cardGroup);
@@ -46,7 +49,7 @@ var GWCardGroup = cc.Sprite.extend({
         // this.cardList.length = 50;
         this.mainLabel.string = "" + this.cardList.length;
     },
-    
+
     //抽卡 循环count次
     pumpingCard:function (count) {
         //递归 count 次

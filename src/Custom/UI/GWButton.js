@@ -1,28 +1,23 @@
 
 
-
+/**
+ * 专用button类
+ * */
 
 var GWButton = ccui.Button.extend({
 
-    mainLabel         : null,
+
 
     ctor: function (text) {
         this._super();
         //load
         this.loadTextures(res.baceButton,"","");//
-        this.loadLabel(text);
+        this.setTitleText(text);
         //set
         this.setAnchorPoint(0,0);
         this.setTouchEnabled(true);
         this.addTouchEventListener(this.onTouchEvent,this);
         return true;
-    },
-    loadLabel:function (text) {
-        var str = text || "label";//
-        var lbl = new ccui.Text(str,"AmericanTypewriter","18");
-        this.addChild(lbl);
-        lbl.setAnchorPoint(0.5,0.5);
-        lbl.setPosition(this.width/2,this.height/2);
     },
     //附加button点击回调
     onTouchEvent :function(sender,type){
@@ -44,6 +39,18 @@ var GWButton = ccui.Button.extend({
                 break;
         }
     },
+
+
+    //弃之
+    // mainLabel         : null,
+    // this.loadLabel();
+    // loadLabel:function (text) {
+    //     var str = text || "label";//
+    //     var lbl = new ccui.Text(str,"AmericanTypewriter","18");
+    //     this.addChild(lbl);
+    //     lbl.setAnchorPoint(0.5,0.5);
+    //     lbl.setPosition(this.width/2,this.height/2);
+    // },
 
 
 });

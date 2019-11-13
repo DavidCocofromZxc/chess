@@ -14,7 +14,7 @@
 // var SocketIO = SocketIO || window.io;
 // var mvs ;
 
-var NetWorkLayer = BaseLayer.extend({
+var TestWorkLayer = BaseLayer.extend({
 
     socketIO    :null,
 
@@ -42,8 +42,8 @@ var NetWorkLayer = BaseLayer.extend({
         this.bgColorLayer.setBackGroundColor(cc.color(100,100,100));
         this.bgColorLayer.setBackGroundColorOpacity(255);
 
-        // this.test();
-        this.showLookCard();
+        this.test();
+        // this.showLookCard();
         return true;
     },
 
@@ -58,6 +58,27 @@ var NetWorkLayer = BaseLayer.extend({
         //     this.ourCardGroup.pumpingCard(5);
         //     this.otherCardGroup.pumpingCard(5);
         // },1,"ok");
+
+        var button  = new GWButton("回合结束");
+        this.addChild(button,LocalZorderEnemu.UI);
+        button.setAnchorPoint(0,0.5);
+        // button.setPosition( this.checkerboard.x + this.checkerboard.width + 5,//20缝隙
+            button.setPosition( 400,400);
+        // this.btnRound = button;
+        button.addClickEventListener(function(){
+            // this.sysMailbox.sendMessage("回合结束");
+            // this.textLabel.addShowText("回合结束");
+            this.gameStageState = GameStageStateEnemu.otherRound;//
+            var anminA = cc.scaleTo(0.3,1,0);
+            var anminB = cc.scaleTo(0.3,1,1);
+            var sth = cc.callFunc(function(){
+                    button.setTitleText("对方回合");
+                    button.setTouchEnabled(false);
+                    button.setColor(cc.color(100,100,100));
+            },this);
+            var sequence = cc.sequence(anminA,sth,anminB);
+            button.runAction(sequence);
+        }.bind(this));
     },
 
     //侧栏-展示卡牌
@@ -180,10 +201,10 @@ var NetWorkLayer = BaseLayer.extend({
 
 
 
-var NetWorkScene = BaseScene.extend({
+var TestWorkScene = BaseScene.extend({
     onEnter:function () {
         this._super();
-        var layer = new NetWorkLayer();
+        var layer = new TestWorkLayer();
         this.addChild(layer);
     }
 });

@@ -18,7 +18,7 @@
         "src/Scene/LoginScene.js",
         "src/Scene/GodScene.js",
         "src/Scene/GameScene.js",
-        "src/Scene/NetWorkScene.js",
+        "src/Scene/TestWorkScene.js",
 
 
         "src/Utils/Enemu.js",
