@@ -1,13 +1,9 @@
 
 /**
  * 开发板：
- * 1.屏幕适配
- * 2.主循环问题
- * 3.文字表现框
- * 4.逐字出现的text
+ * 1.自由阶段-进攻-数据开发
+ * 2.选中即可打印数据
  * */
-
-
 
 /**
  *
@@ -15,11 +11,8 @@
  *
  * */
 
-
-
 //游戏阶段状态
 let GameStageStateEnemu = {
-
     // < *ing > 是用于 *挂起的中转状态，
     // eg：notStart进入后，直接notStarting，防止轮训器不断轮训notStart进入
     notStart            :   0,
@@ -56,13 +49,21 @@ var GameLayer = BaseLayer.extend({
     ourEnergy           :   null,   //我方能量槽
     otherEnergy         :   null,   //对方能量槽
 
-    roundSurplusTime    :   12,     //每回合决策时间 //60s
-    countdownBeginTime  :   10,     //开始倒数的时间
 
     gameStageState      :   GameStageStateEnemu.stagnation,//
-
     lookCard            :   null,
+    isAllowControl      :   false,  //控制是否允许点击
 
+
+    currentRoundSurplusTime :   10,     //当前决策时间
+    currentCountdownTime    :   10,     //剩下倒计时时间
+    /**
+     *  以后用js 网络配置
+     * */
+    //配置项-
+    beginGameDrawCount  :   5,      //游戏开始时抽卡数量
+    roundSurplusTime    :   60,     //每回合决策时间 //60s
+    countdownTime       :   10,     //倒计时时间
 
     ctor: function () {
 
@@ -71,7 +72,7 @@ var GameLayer = BaseLayer.extend({
         this.holdChess      =   null;   //举起棋子
         this.sysMailbox     =   null;   //信箱
         this.btnRound       =   null;   //回合按钮
-        this.ourCardsHandBox   =   null;   //手卡区域
+        this.ourCardsHandBox     =   null;   //手卡区域
         this.otherCardsHandBox   =   null;   //对方手卡区域
 
         this.ourCardGroup   =   null;   //我方卡组
@@ -81,8 +82,8 @@ var GameLayer = BaseLayer.extend({
         this.ourEnergy      =   null;   //我方法力
         this.otherEnergy    =   null;   //对方法力
 
-        this.roundSurplusTime    =   12;     //每回合决策时间 //60s
-        this.countdownBeginTime  =   10;     //开始倒数的时间
+        this.currentRoundSurplusTime    =   this.roundSurplusTime;     //每回合决策时间 //60s
+        this.currentCountdownTime       =   this.countdownTime;        //开始倒数的时间
 
         // this.gameStageState      =   GameStageStateEnemu.stagnation;//
         this.lookCard            =   null;
@@ -99,7 +100,7 @@ var GameLayer = BaseLayer.extend({
 
 
         //方便测试
-        this.registerTouchEvent();
+        // this.registerTouchEvent();
         //通知棋盘 摆放国王
         // this.checkerboard.initGameCrystal();
 
@@ -117,7 +118,6 @@ var GameLayer = BaseLayer.extend({
         node.delegate = this;
         this.checkerboard = node;
     },
-
     //加载信息框
     loadMessageView:function () {
         var messageView = new GWMailbox();
@@ -143,21 +143,16 @@ var GameLayer = BaseLayer.extend({
         button.setAnchorPoint(0,0.5);
         button.setPosition( this.checkerboard.x + this.checkerboard.width + 5,//20缝隙
                             this.checkerboard.y + this.checkerboard.height/2);
-        this.btnRound = button;
-        button.addClickEventListener(function(){
-            this.sysMailbox.sendMessage("回合结束");
-            this.textLabel.addShowText("回合结束");
-            this.gameStageState = GameStageStateEnemu.otherRound;
-            var anminA = cc.scaleTo(0.3,1,0);
-            var anminB = cc.scaleTo(0.3,1,1);
-            var sth = cc.callFunc(function(){
+
+        button.addClickFlipAnimCustomEvent(
+            function(){
+                this.gameStageState = GameStageStateEnemu.otherRound;
+            },function (){
                 button.setTitleText("对方回合");
                 button.setTouchEnabled(false);
                 button.setColor(cc.color(100,100,100));
-            },this);
-            var sequence = cc.sequence(anminA,sth,anminB);
-            button.runAction(sequence);
-        }.bind(this));
+            });
+        this.btnRound = button;
     },
     //加载双方卡组
     loadGroup:function(){
@@ -171,11 +166,10 @@ var GameLayer = BaseLayer.extend({
                                 this.checkerboard.y);
         //注册抽卡完成时候的回调事件
         ourGroup.pumpCardEventAction = function (cardID) {
-            var cardData = XCDATA.findMonsterData(cardID);
-            this.ourCardsHandBox.addCard(cardData);
+            var cardData = XCDATA.findMonsterData(cardID);  //找到对应Data
+            this.ourCardsHandBox.addCard(cardData);         //置入手牌中
         }.bind(this);
         this.ourCardGroup = ourGroup;
-
 
         //模拟数据流
         var otherflow = "OXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2Nlg=";
@@ -223,8 +217,8 @@ var GameLayer = BaseLayer.extend({
     },
     //加载手牌区域
     loadHandCard:function(){
-        var sideWidth = 20; //添加边宽
-        var hand = new GWCardsHandBox();//ancher 0,1
+        var sideWidth = 20; //添加边距
+        var hand = new GWCardsHandBox();//ancher 0,1    //透明手牌区域，常用于己方。
         this.addChild(hand,LocalZorderEnemu.UI);
         hand.setPosition(   this.checkerboard.x - sideWidth,
                             this.checkerboard.y);
@@ -241,9 +235,8 @@ var GameLayer = BaseLayer.extend({
         }.bind(this);
         this.ourCardsHandBox = hand;
 
-
-        var sideWidth = 20; //添加边宽
-        var otherHand = new GWCardsHandBlackBox();//ancher 0,1
+        var sideWidth = 20; //添加边距
+        var otherHand = new GWCardsHandBlackBox();//ancher 0,1  //黑背手牌区域，常用于对方。
         this.addChild(otherHand,LocalZorderEnemu.UI);
         otherHand.setAnchorPoint(0,0);
         otherHand.setPosition(   this.checkerboard.x - sideWidth,
@@ -277,6 +270,8 @@ var GameLayer = BaseLayer.extend({
         var data = XCDATA.findMonsterData(model.objectId);
         card.changeUiData(data,model);//设置数据
         this.checkerboard.pickUpDataInHand(data);//选卡传入
+        //
+        XCLookModel(model);
     },
 
     /**
@@ -300,47 +295,60 @@ var GameLayer = BaseLayer.extend({
         }
     },
     //准备开始游戏
-    notStartGame:function(){
+    readyToStartGame:function(){
         this.gameStageState = GameStageStateEnemu.notStarting;
         //创建相关。。
         //通知棋盘 摆放国王
         this.checkerboard.initGameCrystal();
         //摆放卡组。。
-        //抽取5张牌
-        this.ourCardGroup.pumpingCard(5);
-        this.otherCardGroup.pumpingCard(5);
 
         //进入开始游戏
-        this.gameStageState = GameStageStateEnemu.start;
         this.sysMailbox.sendMessage("游戏开始");
         this.textLabel.addShowText("游戏开始");
         this.sysMailbox.sendMessage("双方各自抽5张");
+
+        // //抽取5张牌
+        this.ourCardGroup.pumpingCard(this.beginGameDrawCount);
+        this.otherCardGroup.pumpingCard(this.beginGameDrawCount);
+        this.gameStageState = GameStageStateEnemu.start;//stagnation//start
     },
 
-    //开始游戏
+    //开始本局
     startGame:function(){
         this.gameStageState = GameStageStateEnemu.starting;
         this.sysMailbox.sendMessage("裁判投币决定先后手");
-        this.textLabel.addShowText( "裁判投币决定先后手");
-        //决定先后手
-        // var isOpen = Math.round(Math.random());
-        var who = "先";//isOpen?"先":"后";
-        this.sysMailbox.sendMessage("你获得了"+ who +"手");
-        this.textLabel.addShowText( "你获得了"+ who +"手",
-            function(){
-            // 判断
-                this.gameStageState = GameStageStateEnemu.myRound;
+        this.textLabel.addShowText( "裁判投币决定先后手",function () {
+            cc.log("textlabel 裁判");
+            var jb = new GWGold();
+            this.addChild(jb,LocalZorderEnemu.DialogueGold);
+            jb.setPosition(screen.width / 2, screen.height / 2);
+
+            var self = this;
+            var result =  jb.playCoinAnimation(
+                function () {
+                    var str = "你获得了" + (result ? "先" : "后") + "手";
+                    // this.sysMailbox.sendMessage(str);
+                    self.sysMailbox.sendMessage(str);
+                    self.textLabel.addShowText(str);
+                    // this.textLabel.addShowText(str);
+                    cc.log(str);
+            }, 1,function(){
+                    jb.removeFromParent();
+                    //模拟先手情况
+                    self.gameStageState = GameStageStateEnemu.myRound;//stagnation//start
+                    cc.log("yeah");
+                });
         },this);
     },
 
     //抽卡
     pumpingCard:function(){
-
         this.gameStageState = GameStageStateEnemu.pumpingCard;
         this.textLabel.addShowText( "抽卡");
         this.sysMailbox.sendMessage("抽卡");
         //卡组中取出1张牌
-        this.ourCardGroup.pumpingCard(1);
+        this.ourCardGroup.pumpingCard(1); //抽卡时会自动调起ourCardGroup'pumpCardEventAction
+        this.gameStageState = GameStageStateEnemu.myRounding;
     },
 
     //交换回合
@@ -360,7 +368,7 @@ var GameLayer = BaseLayer.extend({
     //棋盘 delegate
     //发起召唤的回调
     eventTouchSummonChessStartAction:function(data){
-        //法力消耗判断
+        // //法力消耗判断
         let bool = this.ourEnergy.subtractPowerCount(data.energy);
         let str = bool?"你消耗了"+ data.energy +"点能量":"你的能量不足";
         this.sysMailbox.sendMessage(str);
@@ -411,37 +419,42 @@ var GameLayer = BaseLayer.extend({
      * */
     update:function (dt) {
         switch (this.gameStageState) {
+            //开始游戏-准备工作
             case GameStageStateEnemu.notStart:
-                this.notStartGame();//开始游戏准备工作
+                this.readyToStartGame();
                 break;
-                //开始本局
+            //开始本局
             case GameStageStateEnemu.start:
                 this.startGame();
                 break;
+            //回合开始
             case GameStageStateEnemu.myRound:
                 this.textLabel.addShowText("回合开始");
                 this.sysMailbox.sendMessage("回合开始");
-                this.pumpingCard();
-                //允许行动-开放注册
-                this.registerTouchEvent();
-                // //计时开始
-                // this.roundSurplusTime -= dt;
-                // //如果计时 进入倒计时 -则读秒
-                // if(this.roundSurplusTime < this.countdownBeginTime ){
-                //     cc.log(this.roundSurplusTime,this.countdownBeginTime);
-                //     this.sysMailbox.sendMessage(parseInt(this.countdownBeginTime));
-                //     this.countdownBeginTime -= 1//每读一次，读秒次数量/时间-1
-                // }
-                //
-                // //读秒时间耗尽-说明我方回合时间到-进入搁置状态
-                // if(this.countdownBeginTime < 0 ){
-                //     //搁置-时间到-进入对方回合
-                //     this.gameStageState = GameStageStateEnemu.stagnation;
-                //     this.sysMailbox.sendMessage("回合结束");
-                //     //时间重制
-                //     this.roundSurplusTime = 12;
-                //     this.countdownBeginTime = 10;
-                // }
+                this.pumpingCard();//开场抽牌
+                break;
+            case GameStageStateEnemu.myRounding:
+                if(this.isAllowControl === false){
+                    //允许行动-开放注册
+                    this.registerTouchEvent();
+                }
+                //计时开始
+                this.currentRoundSurplusTime -= dt;
+                //如果计时 进入倒计时 -则读秒
+                if(this.currentRoundSurplusTime < this.currentCountdownTime ){
+                    cc.log("roundSurplusTime:",this.currentRoundSurplusTime,"this.countdownBeginTime:",this.currentCountdownTime);
+                    this.sysMailbox.sendMessage(parseInt(this.currentCountdownTime));
+                    this.currentCountdownTime -= 1;//每读一次，读秒次数量/时间-1
+                }
+                //读秒时间耗尽-说明我方回合时间到-进入搁置状态
+                if(this.currentCountdownTime < 0 ){
+                    //搁置-时间到-进入对方回合
+                    this.gameStageState = GameStageStateEnemu.stagnation;
+                    this.sysMailbox.sendMessage("回合结束");
+                    //时间重制
+                    this.currentRoundSurplusTime    = this.roundSurplusTime;
+                    this.currentCountdownTime       = this.countdownTime;
+                }
                 break;
             case  GameStageStateEnemu.otherRound:
                 break;
@@ -459,7 +472,7 @@ var GameLayer = BaseLayer.extend({
 
     //注册触摸事件
     registerTouchEvent:function(){
-
+        this.isAllowControl = true;
         // [事件监听]触摸事件
         var onTouchEventListener = cc.EventListener.create({
             event           : cc.EventListener.TOUCH_ONE_BY_ONE,//单指模式
@@ -562,15 +575,10 @@ var GameLayer = BaseLayer.extend({
 
 });
 
-
-
-
 var GameScene = BaseScene.extend({
-
     onEnter:function () {
         this._super();
         var layer = new GameLayer();
         this.addChild(layer);
     }
-
 });

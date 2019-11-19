@@ -48,9 +48,9 @@ var GWCheckerboard = cc.TMXTiledMap.extend({
         //地图构造
         this._super(res.bg5x5_tmx);
         //其他构造
-        this.loadTiledMap();
-        this.loadMapRectArray();    // 地图区域 rect
-        this.loadMapLeaveArray(); // 瓦片地图区域映射
+        this.loadTiledMap();        // 初始化部分参数+记录
+        this.loadMapRectArray();    // 地图区域 rectArray 构造
+        this.loadMapLeaveArray();   // 瓦片地图区域映射
         return true;
     },
     // 瓦片地图区域[二维区域] -old
@@ -112,14 +112,21 @@ var GWCheckerboard = cc.TMXTiledMap.extend({
         otherking.setColor(cc.color(100,100,100));
     },
 
+
+
+
+    /**
+     *  手牌区域-互动方法
+     *
+     */
     //  <*独立方法*>
     // Card 应该传入UI Node 而不是数据对象
-    pickUpCardInHand:function(card){
-        cc.log("pickUpCardInHand");
-        this.selectHandCardData = card;//选中卡
-        this.drawMapCurrentSummonLayer();//绘制召唤区域
-        this.eventTouchPickUpCardInHandAction(card);
-    },
+    // pickUpCardInHand:function(card){
+    //     cc.log("pickUpCardInHand");
+    //     this.selectHandCardData = card;//选中卡
+    //     this.drawMapCurrentSummonLayer();//绘制召唤区域
+    //     this.eventTouchPickUpCardInHandAction(card);
+    // },
     pickUpDataInHand:function(data){
         cc.log("pickUpCardInHand");
         this.selectHandCardData = data;//选中卡data
@@ -136,8 +143,7 @@ var GWCheckerboard = cc.TMXTiledMap.extend({
     /**
      * touch event 用于上层方法传递事件
      * */
-
-    //还原场景
+    //还原场景      -还原至无选中，无召唤区域，无移动区域
     restoreScene:function(){
         this.removeMapLayerArray();
         //如果有选中棋子-> 还原
@@ -168,100 +174,100 @@ var GWCheckerboard = cc.TMXTiledMap.extend({
             self.restoreScene();//还原操作
             return false;//不合法直接return
         }
-
         //点击结果
         var result = self.getInfoFromMapByPos(posInNode.x, posInNode.y);//根据posInNode 获取瓦片信息
         if (result.isInMap) {// 触摸到地图区域内
-
             //说明需要召唤
             if(this.selectHandCardData != null){
-                //判断是否在召唤区域中
-                if(self.resultContainsSummonLayer(result)){
-                    // 判断对应召唤区域中的状态
-                    var layerRect = this.tiledMapLeaveArray[result.cel][result.row];//取出目标区域映射
-                    //目标区域有黑方棋子，不允许召唤
-                    if(layerRect == CampEnemu.BLACK){
-                        cc.log("目标区域有黑方棋子，不允许召唤");
-                    }//目标区域有白方棋子，不允许召唤
-                    else if(layerRect == CampEnemu.WHITE){
-                        cc.log("目标区域有摆放棋子，不允许召唤");
-                    }//目标区域无棋子，允许召唤"
-                    else {
-                        //目标数据
-                        var data = this.selectHandCardData;
-                        //发起召唤
-                        if(self.eventTouchSummonChessStartAction(data)){//召唤其他判断-这里是给上层做法力值判断
-                            self.joinChessPiecesInCheckBoard(data,result);//加入到棋盘中
-                            self.eventTouchSummonChessEndAction(2,data);//召唤棋子结束回调
-                        }
-                    }
-                }
+                cc.log("当前有选中手牌");
+                // //判断是否在召唤区域中
+                // if(self.resultContainsSummonLayer(result)){
+                //     // 判断对应召唤区域中的状态
+                //     var layerRect = this.tiledMapLeaveArray[result.cel][result.row];//取出目标区域映射
+                //     //目标区域有黑方棋子，不允许召唤
+                //     if(layerRect == CampEnemu.BLACK){
+                //         cc.log("目标区域有黑方棋子，不允许召唤");
+                //     }//目标区域有白方棋子，不允许召唤
+                //     else if(layerRect == CampEnemu.WHITE){
+                //         cc.log("目标区域有摆放棋子，不允许召唤");
+                //     }//目标区域无棋子，允许召唤"
+                //     else {
+                //         //目标数据
+                //         var data = this.selectHandCardData;
+                //         //发起召唤
+                //         if(self.eventTouchSummonChessStartAction(data)){//召唤其他判断-这里是给上层做法力值判断
+                //             self.joinChessPiecesInCheckBoard(data,result);//加入到棋盘中
+                //             self.eventTouchSummonChessEndAction(2,data);//召唤棋子结束回调
+                //         }
+                //     }
+                // }
             }
             //说明移动棋子
             else if(self.selectChess != null){
-                // self.restoreScene();//还原操作
-                // 判断是否在移动区域中
-                if(self.resultContainsMoveLayer(result)){
-                    //行动次数判断
-                    if(self.selectChess.currentMoveTimes < 1){
-                        this.eventTouchMoveChessStartAction(0);//发出开始移动的失败的回调
-                    }else{
-                        var layerRect = self.tiledMapLeaveArray[result.cel][result.row];//取出目标区域映射
-                        if(layerRect == CampEnemu.BLACK){//目标区域有黑方棋子，不允许落子
-                            cc.log("目标区域有我方棋子，不允许落子");
-                            // this.eventTouchMoveChessAction(0);//发出回调
-                        }else if(layerRect == CampEnemu.WHITE){//"目标区域有对方棋子，不允许落子"
-                            cc.log("目标区域有对方棋子，不允许落子");
-                            // this.eventTouchMoveChessAction(1);//发出回调
-                        }else{//CampEnemu.NONE //目标区域无棋子，允许落子"
-
-                            cc.log("目标区域无棋子，允许落子：",layerRect);
-                            // <修改映射关系>
-                            var chess = self.selectChess;
-                            //原来位置
-                            self.tiledMapLeaveArray[chess.chessInMapX][chess.chessInMapY] = CampEnemu.NONE;
-                            //现在位置
-                            self.tiledMapLeaveArray[result.cel][result.row] =  CampEnemu.BLACK;//
-                            //播放-棋子移动
-                            chess.moveInMap(result.cel,result.row);
-
-                            XCLog("leaveList:",self.tiledMapLeaveArray);
-                            this.eventTouchMoveChessEndAction(2,chess);
-                        }
-                    }
-                }
-                //重制棋盘
-                this.restoreScene();
+                cc.log("当前有选中棋子");
+                // // self.restoreScene();//还原操作
+                // // 判断是否在移动区域中
+                // if(self.resultContainsMoveLayer(result)){
+                //     //行动次数判断
+                //     if(self.selectChess.currentMoveTimes < 1){
+                //         this.eventTouchMoveChessStartAction(0);//发出开始移动的失败的回调
+                //     }else{
+                //         var layerRect = self.tiledMapLeaveArray[result.cel][result.row];//取出目标区域映射
+                //         if(layerRect == CampEnemu.BLACK){//目标区域有黑方棋子，不允许落子
+                //             cc.log("目标区域有我方棋子，不允许落子");
+                //             // this.eventTouchMoveChessAction(0);//发出回调
+                //         }else if(layerRect == CampEnemu.WHITE){//"目标区域有对方棋子，不允许落子"
+                //             cc.log("目标区域有对方棋子，不允许落子");
+                //             // this.eventTouchMoveChessAction(1);//发出回调
+                //         }else{//CampEnemu.NONE //目标区域无棋子，允许落子"
+                //
+                //             cc.log("目标区域无棋子，允许落子：",layerRect);
+                //             // <修改映射关系>
+                //             var chess = self.selectChess;
+                //             //原来位置
+                //             self.tiledMapLeaveArray[chess.chessInMapX][chess.chessInMapY] = CampEnemu.NONE;
+                //             //现在位置
+                //             self.tiledMapLeaveArray[result.cel][result.row] =  CampEnemu.BLACK;//
+                //             //播放-棋子移动
+                //             chess.moveInMap(result.cel,result.row);
+                //
+                //             XCLog("leaveList:",self.tiledMapLeaveArray);
+                //             this.eventTouchMoveChessEndAction(2,chess);
+                //         }
+                //     }
+                // }
+                // //重制棋盘
+                // this.restoreScene();
             }//未举起棋子&点击空白区域
             else if(self.tiledMapLeaveArray[result.cel][result.row] == CampEnemu.NONE){//点击空白区域
                 this.eventTouchBlankAction();//发出回调
             }//未举起棋子&点击非空白区域  -->选中棋子
             //操作棋子
             else{
-                self.restoreScene();//还原操作
-                var currentChess = self.pickUpChessInMapPoint(posInNode);//根据posInNode获得当前选中棋子
-                if(currentChess === undefined){
-                    return ;//无棋子直接结束
-                }
-                //能到这里说有棋子
-                currentChess.pickUp();//选中当前棋子
-                self.selectChess = currentChess;//选中
-                XCLog("leaveList:",self.tiledMapLeaveArray);//格式化打印棋盘状态
-                //<不同棋子类型，操作不同>
-                //基础类型棋子 点击后查看召唤区域
-                if(currentChess.pieceType == PieceTypeEnemu.BASE || currentChess.pieceType == PieceTypeEnemu.BUILDING ){
-                    // 绘制召唤区域
-                    self.drawMapCurrentSummonLayer();
-                    this.eventTouchChessAction(0,currentChess);
-                }else{//其他类型棋子（目前是怪物类型） 点击后查看移动区域
-                    // //绘制Move区域
-                    self.drawChessMovingLayer(currentChess);
-                    this.eventTouchChessAction(1,currentChess);
-                }
+                // self.restoreScene();//还原操作
+                // var currentChess = self.pickUpChessInMapPoint(posInNode);//根据posInNode获得当前选中棋子
+                // if(currentChess === undefined){
+                //     return ;//无棋子直接结束
+                // }
+                // //能到这里说有棋子
+                // currentChess.pickUp();//选中当前棋子
+                // self.selectChess = currentChess;//选中
+                // XCLog("leaveList:",self.tiledMapLeaveArray);//格式化打印棋盘状态
+                // XCLookModel(self.selectChess.model);
+                // //<不同棋子类型，操作不同>
+                // //基础类型棋子 点击后查看召唤区域
+                // if(currentChess.pieceType == PieceTypeEnemu.BASE || currentChess.pieceType == PieceTypeEnemu.BUILDING ){
+                //     // 绘制召唤区域
+                //     self.drawMapCurrentSummonLayer();
+                //     this.eventTouchChessAction(0,currentChess);
+                // }else{//其他类型棋子（目前是怪物类型） 点击后查看移动区域
+                //     // //绘制Move区域
+                //     self.drawChessMovingLayer(currentChess);
+                //     this.eventTouchChessAction(1,currentChess);
+                // }
             }
         }
     },
-
     //判断是否在召唤区域中
     resultContainsSummonLayer:function(result){
         for(var  i = 0 ,len = this.arraySummonLayerInMap.length; i < len ; i++){
@@ -346,7 +352,6 @@ var GWCheckerboard = cc.TMXTiledMap.extend({
             if( leave == CampEnemu.BLACK || leave == CampEnemu.WHITE ){
                 isSureChess = true;
             }
-
             // 通过增量 计算得出映射 将映射传递
             result.push({   isAllow:!isSureChess,
                             posInMap:{

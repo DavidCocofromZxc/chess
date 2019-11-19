@@ -84,6 +84,7 @@ let LocalZorderEnemu = {
     UI              :   200,
     CARD            :   220,//提示牌
     Dialogue        :   220,
+    DialogueGold    :   230,
     DialogueText    :   250,
 };
 

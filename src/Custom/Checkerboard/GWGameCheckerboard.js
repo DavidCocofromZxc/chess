@@ -29,7 +29,6 @@ var GWGameCheckerboard = GWCheckerboard.extend({
     },
     //触摸事件 - 召唤棋子结束回调
     eventTouchSummonChessEndAction:function(state,data){
-
         if(this.delegate != null  && this.delegate !== undefined){
             this.delegate.eventTouchSummonChessEndAction(state,data);
         }else{
@@ -45,8 +44,6 @@ var GWGameCheckerboard = GWCheckerboard.extend({
             }
         }
     },
-
-
     //触摸事件 - 棋子移动开始回调
     eventTouchMoveChessStartAction:function(state){
         if(this.delegate != null  && this.delegate !== undefined){

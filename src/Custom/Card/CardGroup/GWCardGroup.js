@@ -18,8 +18,6 @@ var GWCardGroup = cc.Sprite.extend({
     //data about
     cardList          : [],     //卡列表
 
-
-
     ctor: function(flow) {
         this.mainLabel = null;
         this.cardList  = (flow === undefined)?[]: XCBase64.arrayDecode(flow);//flow不存在则使用默认
@@ -57,7 +55,7 @@ var GWCardGroup = cc.Sprite.extend({
         this.pumpingOneCardAnim(function(){
             cc.log("pumpingOneCardAnim callback");
             var card = this.pumpingOneCard();
-            this.pumpCardEventAction(card); //抽卡事件
+            this.pumpCardEventAction(card); //调起-抽卡事件
             this.pumpingCard(count -1);
         }.bind(this));
     },

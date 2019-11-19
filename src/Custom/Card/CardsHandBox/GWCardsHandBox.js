@@ -1,25 +1,28 @@
 
-
-
 /**
  *
  *  专用手牌类- 手牌区域
  *
  * */
-
-
 var GWCardsHandBox = ccui.Layout.extend({
     /**
      * cardList 结构:
      * {
-     *   Card    :hand, 卡UI-Sprite
-     *   index   :index
-     *   uiData  :cardUIData
+     *   Card    :hand, 卡UI-Sprite     //小卡
+     *   index   :index                 //所在索引
+     *   uiData  :cardUIData            //放大视图
      * }
      * */
-    cardList        :   [],     //手牌列表
+    cardList        :   [],     //手牌列表-//视图逻辑的list
     selectHandCard  :   null,   //选中的手牌
     showCard        :   null,   //展示的卡片
+
+    /**
+     *  以后用js 网络配置
+     * */
+    //配置项-
+    cardWidth       :   50,//
+    cardFX          :   10,
 
     ctor: function() {
         this.cardList       = [];
@@ -47,27 +50,37 @@ var GWCardsHandBox = ccui.Layout.extend({
         //数据对象处理
         // var index = this.cardList.length;
         this.cardList.push({card:hand,index:0,data:cardData});//对象和数据 均放入list
-
         // V
         //加入手牌区域
         this.addChild(hand);
         //< UI 调整>
-        this.setCardsHandBoxUI();
+        this.setCardsHandBoxUI(hand);
     },
     //UI重制
-    setCardsHandBoxUI:function(){
+    setCardsHandBoxUI:function(hand){
         //参数配置
-        var maxWidth    = this.width;
-        var cardWidth   = 50//hand.width;
-        var fx          = 10;   //缝隙
-        var bj          = (maxWidth - this.cardList.length * (cardWidth + fx))/2//边距
+        var maxWidth    = this.width;           //手牌区域宽度
+        var cardWidth   = this.cardWidth;       //每张手牌宽度
+        var fx          = this.cardFX;          //缝隙
+        var bj          = (maxWidth - this.cardList.length * (cardWidth + fx))/2;//边距
+        if(bj < 0){
+            fx = 5;
+            bj = (maxWidth - this.cardList.length * (cardWidth + fx))/2;
+        }
+        //
+        if(hand !== undefined && (typeof hand === "object")){
+            // 调整hand 位置
+            // 主要目的是为了保证hand已经在this区域中，可以让后面的调整动画变完整
+            var y           = this.height - fx;
+            hand.setPosition(maxWidth - cardWidth,y);
+        }
         //遍历修改位置
         for(var i = 0 ,len = this.cardList.length;i < len; i++){
             this.cardList[i].index = i;
             var hand = this.cardList[i].card;
             var x = bj + i *(cardWidth + fx);
             var y = this.height - fx;
-            hand.setPosition(x,y);
+            hand.runAction(cc.moveTo(0.5,x,y));
         }
     },
 
