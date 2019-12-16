@@ -40,14 +40,19 @@ var ChessAnimeEnemu = {
 var GWPiece = cc.Sprite.extend({
 
     pieceType       : PieceTypeEnemu.BASE,  //棋子类型：基础,野兽
-    ownerType       : OwnerEnemu.UNKNOWN,   //阵营
+    campType        : CampEnemu.UNKNOWN,
+
 
     //other
     moveRecord      :[],   //对棋子移动情况的记录
     chessType       :"",   //枚举类型       //类似chessid
     campColor       :"",   //持方           //颜色和持方
-    chessInMapX     :0,
-    chessInMapY     :0,
+
+
+    // chessInMapX     :0,
+    // chessInMapY     :0,
+    mapPos          :{x:0,y:0},
+
 
     _isPickUp       :false,//当前到选中状态
     //<<<<<<<<<<<<<<<<< 国王骰 >>>>>>>>>>>>>>>>>>>>>>
@@ -94,10 +99,14 @@ var GWPiece = cc.Sprite.extend({
     //     }else {
     //         console.log("棋子创建异常");
     //     }
-    //
-    //
     //     return piece;
     // },
+
+
+    /**
+     *  操作fun
+     *
+     * */
 
     //选中棋子
     pickUp:function(){
@@ -118,24 +127,20 @@ var GWPiece = cc.Sprite.extend({
 
 
     //可移动区域
+    //获得可移动点数组
     getMovingRange:function(){
-
         var incrementValue = [];
-        var selfpoint = {x:this.chessInMapX,y:this.chessInMapY};//当前位置
-
+        var selfpoint = this.mapPos;//{x:this.chessInMapX,y:this.chessInMapY};//当前位置
         //距离 （移动格数）
         for (var i = 1;i <= this.movingDistance ; i++){
             //方向
             for (var j = 0; j < this.movingDirection.length ; j ++){
-
                 var tagretX = 0;
                 var tagretY = 0;
-
                 //如果方向规则不同意
                 if(!this.movingDirection[j]){
                     break;
                 }
-
                 switch (j) {
                     case DirectionEnemu.up:
                         tagretY += i;
@@ -149,7 +154,6 @@ var GWPiece = cc.Sprite.extend({
                     case DirectionEnemu.right:
                         tagretX += i;
                         break;
-
                     case DirectionEnemu.upLeft:
                         tagretX -= i;
                         tagretY += i;
@@ -184,24 +188,20 @@ var GWPiece = cc.Sprite.extend({
 
 
     //可召唤区域
+    //获得可召唤点
     getSummonRange:function(){
-
         var incrementValue = [];
-        var selfpoint = {x:this.chessInMapX,y:this.chessInMapY};//当前位置
-
+        var selfpoint = this.mapPos;//{x:this.chessInMapX,y:this.chessInMapY};//当前位置
         //距离 （移动格数）
         for (var i = 1;i <= this.summonDistance ; i++){
             //方向
             for (var j = 0; j < this.summonDirection.length ; j ++){
-
                 var tagretX = 0;
                 var tagretY = 0;
-
                 //如果方向规则不同意
                 if(!this.summonDirection[j]){
                     break;
                 }
-
                 switch (j) {
                     case DirectionEnemu.up:
                         tagretY += i;
@@ -215,7 +215,6 @@ var GWPiece = cc.Sprite.extend({
                     case DirectionEnemu.right:
                         tagretX += i;
                         break;
-
                     case DirectionEnemu.upLeft:
                         tagretX -= i;
                         tagretY += i;
@@ -329,11 +328,9 @@ var GWPiece = cc.Sprite.extend({
     // },
 
 
-    // 移动棋子在Map中到pos位置
-    moveInMap:function(pos,y){
 
-        this.pickDown();
 
+    setMapPos:function(pos,y){
         var movePos = {x:0,y:0};
         if( y === undefined){
             movePos = pos;
@@ -341,30 +338,30 @@ var GWPiece = cc.Sprite.extend({
             movePos.x = pos;
             movePos.y = y;
         }
+        // this.chessInMapX
+        this.mapPos = movePos;
+    },
 
+
+    // 移动棋子在Map中到pos位置
+    moveInMap:function(pos,y){
+        this.pickDown();
+        var movePos = {x:0,y:0};
+        if( y === undefined){
+            movePos = pos;
+        }else{
+            movePos.x = pos;
+            movePos.y = y;
+        }
         //本次增量
-        let inx = movePos.x - this.chessInMapX;
-        let iny = movePos.y - this.chessInMapY;
+        let inx = movePos.x - this.mapPos.x;
+        let iny = movePos.y - this.mapPos.y;
 
-        //log
-        // let jt = inx > 0 ?"进":"退";
-        // let zy = iny > 0 ?"右":"左";
-        //
-        // if(inx == 0){
-        //     cc.log("" + this.campColor + " " + this.chessType + zy + Math.abs(iny));
-        // }else if (iny == 0){
-        //     cc.log("" + this.campColor + " " + this.chessType + jt + Math.abs(inx));
-        // }else{
-        //     cc.log("" + this.campColor + " " + this.chessType + zy + Math.abs(iny) + "" + jt + Math.abs(inx));
-        // }
 
 
         //50
-        var size = MAPSH.getTileSize();
-
-        var duration = 0.5;
-
-
+        var size = 50;//MAPSH.getTileSize();
+        var duration = 0.5;//以后做成系统配置
         var rect = this.parent.tiledMapRectArray[movePos.y][movePos.x];
         var p = cc.p(
             rect.x + this.anchorX * size.width,
@@ -421,112 +418,96 @@ var GWPiece = cc.Sprite.extend({
         }
         this.setLocalZOrder(localZor);
 
-        this.chessInMapX = movePos.x;
-        this.chessInMapY = movePos.y;
+        // this.chessInMapX = movePos.x;
+        // this.chessInMapY = movePos.y;
+        this.mapPos = movePos;
     },
 
 
 
 
+    // //加入到棋盘中某位置
+    // joinInMap:function (pos,y,animType) {
+    //     this.pickDown();
+    //     //棋盘坐标
+    //     var movePos = {x:0,y:0};
+    //     if( y === undefined){
+    //         movePos = pos;
+    //     }else{
+    //         movePos.x = pos;
+    //         movePos.y = y;
+    //     }
+    //     //50
+    //     var size = MAPSH.getTileSize();
+    //     var rect = this.parent.tiledMapRectArray[movePos.y][movePos.x];
+    //     //获得位置
+    //     var p = cc.p(   rect.x + this.anchorX * size.width,
+    //                     rect.y + this.anchorY * size.height)
+    //     //
+    //     var duration = 0.5;
+    //     //移动进入
+    //     var move = null ;
+    //     //
+    //     if(animType == ChessAnimeEnemu.FADEIN){
+    //         this.setOpacity(0);
+    //         this.setPosition(p);
+    //         move = cc.fadeIn(duration * 3)
+    //         //particle_blackFire
+    //         var particleA = new cc.ParticleSystem(res.particle_blackFire);
+    //         this.addChild(particleA,999);
     //
-    joinInMap:function (pos,y,animType) {
-
-        this.pickDown();
-
-        //棋盘坐标
-        var movePos = {x:0,y:0};
-        if( y === undefined){
-            movePos = pos;
-        }else{
-            movePos.x = pos;
-            movePos.y = y;
-        }
-
-
-
-        //50
-        var size = MAPSH.getTileSize();
-        var rect = this.parent.tiledMapRectArray[movePos.y][movePos.x];
-        //获得位置
-        var p = cc.p(   rect.x + this.anchorX * size.width,
-                        rect.y + this.anchorY * size.height)
-        //
-        var duration = 0.5;
-
-        //移动进入
-        var move = null ;
-
-        //
-        if(animType == ChessAnimeEnemu.FADEIN){
-            this.setOpacity(0);
-            this.setPosition(p);
-            move = cc.fadeIn(duration * 3)
-            //particle_blackFire
-            var particleA = new cc.ParticleSystem(res.particle_blackFire);
-            this.addChild(particleA,999);
-
-            particleA.setAnchorPoint(0.5,0.5);
-            particleA.setPosition(this.width/2, this.height/2 -10);
-
-            // var particleB = new cc.ParticleSystem(res.particle_blackFire);
-            // this.addChild(particleB);
-            // particleB.setScale(0.5);
-            // particleB.setAnchorPoint(0.5,0.5);
-            // particleB.setPosition(this.width/2+20, this.height/2- 10);
-            //
-            //
-            // var particleC = new cc.ParticleSystem(res.particle_blackFire);
-            // this.addChild(particleC);
-            // particleC.setScale(0.5);
-            // particleC.setAnchorPoint(0.5,0.5);
-            // particleC.setPosition(this.width/2, this.height/2+ 30);
-        }else{//默认move进入
-            move = cc.moveTo(duration, p);
-        }
-        this.runAction(move);
+    //         particleA.setAnchorPoint(0.5,0.5);
+    //         particleA.setPosition(this.width/2, this.height/2 -10);
+    //     }else{//默认move进入
+    //         move = cc.moveTo(duration, p);
+    //     }
+    //     this.runAction(move);
+    //
+    //     //渲染层级
+    //     var localZor = LocalZorderEnemu.CHESS;
+    //     switch ( movePos.y) {
+    //         case 0:
+    //             localZor = LocalZorderEnemu.CHESS0;
+    //             break;
+    //         case 1:
+    //             localZor = LocalZorderEnemu.CHESS1;
+    //             break;
+    //         case 2:
+    //             localZor = LocalZorderEnemu.CHESS2;
+    //             break;
+    //         case 3:
+    //             localZor = LocalZorderEnemu.CHESS3;
+    //             break;
+    //         case 4:
+    //             localZor = LocalZorderEnemu.CHESS4;
+    //             break;
+    //         case 5:
+    //             localZor = LocalZorderEnemu.CHESS5;
+    //             break;
+    //         case 6:
+    //             localZor = LocalZorderEnemu.CHESS6;
+    //             break;
+    //         case 7:
+    //             localZor = LocalZorderEnemu.CHESS7;
+    //             break;
+    //         case 8:
+    //             localZor = LocalZorderEnemu.CHESS8;
+    //             break;
+    //         default:
+    //             break;
+    //     }
+    //     this.setLocalZOrder(localZor);
+    //
+    //     this.StateSummoning = SummoningStateEnemu.inCheckerboard;//召唤状态
+    //     // this.chessInMapX = movePos.x;
+    //     // this.chessInMapY = movePos.y;
+    //     this.mapPos = movePos;
+    // },
 
 
 
 
-        //渲染层级
-        var localZor = LocalZorderEnemu.CHESS;
-        switch ( movePos.y) {
-            case 0:
-                localZor = LocalZorderEnemu.CHESS0;
-                break;
-            case 1:
-                localZor = LocalZorderEnemu.CHESS1;
-                break;
-            case 2:
-                localZor = LocalZorderEnemu.CHESS2;
-                break;
-            case 3:
-                localZor = LocalZorderEnemu.CHESS3;
-                break;
-            case 4:
-                localZor = LocalZorderEnemu.CHESS4;
-                break;
-            case 5:
-                localZor = LocalZorderEnemu.CHESS5;
-                break;
-            case 6:
-                localZor = LocalZorderEnemu.CHESS6;
-                break;
-            case 7:
-                localZor = LocalZorderEnemu.CHESS7;
-                break;
-            case 8:
-                localZor = LocalZorderEnemu.CHESS8;
-                break;
-            default:
-                break;
-        }
-        this.setLocalZOrder(localZor);
 
-        this.StateSummoning = SummoningStateEnemu.inCheckerboard;//召唤状态
-        this.chessInMapX = movePos.x;
-        this.chessInMapY = movePos.y;
-    },
 
     // setChessInMapY:function (value) {
     //
@@ -536,9 +517,7 @@ var GWPiece = cc.Sprite.extend({
         // this.addChild(Card);
         // Card.setPosition(0,0);
     },
-
     showCard:function () {
-
         if(this.myCard == null){
             this.myCard = new GWCard();
         }
@@ -546,26 +525,33 @@ var GWPiece = cc.Sprite.extend({
     }
 
 
+
 });
 
 
 
+//工厂模式-
+//根据ID去分拣类
+//0-20000为建筑棋子，20000以上为怪物棋子
 GWPiece.initPiece = function(chessID){
 
     var piece = null;
     var pieceName = "";
-
-
 
     //通过id进行Data绑定
     //需要完成 ：构造，data绑定，图片的Anchor
     if(chessID >= 0){
         if(chessID < 20000 ){//基础棋子类
             //
-            pieceName = res.crystal;
+            pieceName = "res/piece/building/"+ chessID + ".png";  //水晶//res.crystal;
             //
             piece = new GWBuilding(pieceName);
-            piece.setAnchorPoint(0.5,0);
+            piece.setAnchorPoint(0.5,0);//默认修改瞄点
+
+
+
+
+
         }else{//怪物棋子类
             switch (chessID) {
                 case 20001:

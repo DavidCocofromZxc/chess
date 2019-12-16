@@ -27,7 +27,6 @@ let LAYER_LOCAL_ZORDER = 21;  //落子范围/区域层级  //绿区
 
 var TILE_MAP_SIZE = 32;
 
-var MAPSH = null;
 
 
 
@@ -35,9 +34,12 @@ var MAPSH = null;
 // 阵营 /落子状态
 var CampEnemu = {
 
-    NONE    :"none",    //无
-    BLACK   :"black",   //黑
-    WHITE   :"white",   //白
+    NONE    :"none",    //无棋子
+    BLACK   :"black",   //黑棋子
+    WHITE   :"white",   //白棋子
+    UNKNOWN :"unKonwn", //未知棋子
+    NENTRAL :"neutral", //中立敌对棋子
+    PEACE   :"peace",   //中立和平棋子
     //
     // //<<<<国王
     // SUM_BLACK   :"black_sum",//无棋但可以召唤黑
@@ -98,16 +100,6 @@ let PieceTypeEnemu = {
 
 
 
-// 阵营
-var OwnerEnemu = {
-
-    UNKNOWN     : "unknown",//未知的
-    NEUTRAL     : "neutral",//无
-    FRIENDS     : "Friends",//黑
-    ENEMY       : "enemy",//白
-
-};
-
 
 
 //棋子类型
@@ -119,11 +111,12 @@ var ChessTypeEnemu = {
      * */
 
 
-    CRYSTAL     :10001,         // 水晶
-    SNOW        :20001,         // 小雪
+    CRYSTAL         :10001,         // 水晶
+    BLACK_CRYSTAL   :10002,
+    SNOW            :20001,         // 小雪
 
 
-    NONE        :-99999,//无类型
+    NONE            :-99999,//无类型
 
 
     //下面无用

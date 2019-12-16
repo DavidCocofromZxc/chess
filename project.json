@@ -36,6 +36,7 @@
         "src/Custom/Checkerboard/GWCheckerboard.js",
         "src/Custom/Checkerboard/GWIntroduceCheckerboard.js",
         "src/Custom/Checkerboard/GWGameCheckerboard.js",
+        "src/Custom/Checkerboard/GWMatchCheckerboard.js",
 
         "src/Custom/Piece/GWPiece.js",
         "src/Custom/Piece/GWMonster.js",

@@ -24,6 +24,19 @@ var TestWorkLayer = BaseLayer.extend({
 
     dt  : 0,//暂时记录时间
 
+    gameStageState      :   GameStageStateEnemu.stagnation,//
+
+    currentRoundSurplusTime :   10,     //当前决策时间
+    currentCountdownTime    :   10,     //剩下倒计时时间
+
+    isAllowControl      :false,
+    /**
+     *  以后用js 网络配置
+     * */
+    //配置项-
+    beginGameDrawCount  :   1,      //游戏开始时抽卡数量
+    roundSurplusTime    :   60,     //每回合决策时间 //60s
+    countdownTime       :   10,     //倒计时时间
 
     ctor:function () {
         this._super();
@@ -34,7 +47,7 @@ var TestWorkLayer = BaseLayer.extend({
         this.otherCardGroup =   null;   //对方卡组
 
         this.dt = 0;
-
+        this.isAllowControl = false;
         //test
         // this.bgColorLayer.setBackGroundColorType(ccui.Layout.BG_COLOR_SOLID);
         // this.bgColorLayer.setBackGroundColor(cc.color(100,100,100));
@@ -56,15 +69,21 @@ var TestWorkLayer = BaseLayer.extend({
         this.loadHandCard();        //构造手牌区
         this.loadGroup();           //构造卡组
 
-        this.checkerboard.initGameCrystal();
+        // this.checkerboard.initGameCrystal();
         // this.showLookCard();
 
+        //test
+        this.ourCardGroup.pumpingCard(1); //抽卡时会自动调起ourCardGroup'pumpCardEventAction
+        this.checkerboard.initGameCrystal();
         this.registerTouchEvent();
-        this.ourCardGroup.pumpingCard(1);
+
+        // this.ourCardGroup.pumpingCard(1);
+        // this.scheduleUpdate();      //开启调度
+        // this.gameStageState = GameStageStateEnemu.notStart; //初始化游戏状态
     },
     //加载棋盘
     loadCheckerboard:function () {
-        var node = new GWGameCheckerboard();
+        var node = new GWMatchCheckerboard();
         this.addChild(node,LocalZorderEnemu.MAP);
         node.setAnchorPoint(0,0);
         node.setPosition(   (cc.winSize.width - node.width)/2,
@@ -320,6 +339,131 @@ var TestWorkLayer = BaseLayer.extend({
         this._super();
         console.log("GameScene onExit:");
     },
+
+
+
+    /**>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+     /**
+     *  主循环
+     *
+     *  流程如下：
+     *  1。开始本局
+     *  2。双方各抽5张
+     *  3。裁判决定先后顺序
+     *  4。进入持方回合
+     *  5。回合循环
+     *      1。抽卡
+     *      2。执行操作->包含：召唤、移动、技能
+     *      3。回合结束
+     *      4。持方交换
+     * */
+    update:function (dt) {
+        switch (this.gameStageState) {
+            //开始游戏-准备工作
+            case GameStageStateEnemu.notStart:
+                this.readyToStartGame();
+                break;
+            //开始本局
+            case GameStageStateEnemu.start:
+                this.startGame();
+                break;
+            //回合开始
+            case GameStageStateEnemu.myRound:
+
+                this.sysMailbox.sendMessage("回合开始");
+                this.textLabel.addShowText("回合开始",this.pumpingCard(),this);
+                // this.pumpingCard();//开场抽牌
+                break;
+            case GameStageStateEnemu.myRounding:
+                if(this.isAllowControl === false){
+                    //允许行动-开放注册
+                    this.registerTouchEvent();
+                }
+                this.gameStageState = GameStageStateEnemu.stagnation;
+                // //计时开始
+                // this.currentRoundSurplusTime -= dt;
+                // //如果计时 进入倒计时 -则读秒
+                // if(this.currentRoundSurplusTime < this.currentCountdownTime ){
+                //     cc.log("roundSurplusTime:",this.currentRoundSurplusTime,"this.countdownBeginTime:",this.currentCountdownTime);
+                //     this.sysMailbox.sendMessage(parseInt(this.currentCountdownTime));
+                //     this.currentCountdownTime -= 1;//每读一次，读秒次数量/时间-1
+                // }
+                // //读秒时间耗尽-说明我方回合时间到-进入搁置状态
+                // if(this.currentCountdownTime < 0 ){
+                //     //搁置-时间到-进入对方回合
+                //     this.gameStageState = GameStageStateEnemu.stagnation;
+                //     this.sysMailbox.sendMessage("回合结束");
+                //     //时间重制
+                //     this.currentRoundSurplusTime    = this.roundSurplusTime;
+                //     this.currentCountdownTime       = this.countdownTime;
+                // }
+                break;
+            case  GameStageStateEnemu.otherRound:
+                break;
+        }
+    },
+
+
+    //准备开始游戏
+    readyToStartGame:function(){
+        this.gameStageState = GameStageStateEnemu.notStarting;
+        //创建相关。。
+        //通知棋盘 摆放国王
+        this.checkerboard.initGameCrystal();
+        //摆放卡组。。
+
+        //进入开始游戏
+        this.sysMailbox.sendMessage("游戏开始");
+        this.textLabel.addShowText("游戏开始");
+        this.sysMailbox.sendMessage("双方各自抽5张");
+
+        // //抽取5张牌
+        this.ourCardGroup.pumpingCard(this.beginGameDrawCount);
+        this.otherCardGroup.pumpingCard(this.beginGameDrawCount);
+        this.gameStageState = GameStageStateEnemu.start;//stagnation//start
+    },
+
+    //开始本局
+    startGame:function(){
+        this.gameStageState = GameStageStateEnemu.starting;
+        this.sysMailbox.sendMessage("裁判投币决定先后手");
+        this.textLabel.addShowText( "裁判投币决定先后手",function () {
+            cc.log("textlabel 裁判");
+            var jb = new GWGold();
+            this.addChild(jb,LocalZorderEnemu.DialogueGold);
+            jb.setPosition(screen.width / 2, screen.height / 2);
+
+            var self = this;
+            var result =  jb.playCoinAnimation(
+                function () {
+                    var str = "你获得了" + (result ? "先" : "后") + "手";
+                    // this.sysMailbox.sendMessage(str);
+                    self.sysMailbox.sendMessage(str);
+                    self.textLabel.addShowText(str);
+                    // this.textLabel.addShowText(str);
+                    cc.log(str);
+                }, 1,function(){
+                    jb.removeFromParent();
+                    //模拟先手情况
+                    self.gameStageState = GameStageStateEnemu.myRound;//stagnation//start
+                    cc.log("yeah");
+                });
+        },this);
+    },
+
+
+    //抽卡
+    pumpingCard:function(){
+        this.gameStageState = GameStageStateEnemu.pumpingCard;
+        this.textLabel.addShowText( "抽卡");
+        this.sysMailbox.sendMessage("抽卡");
+        //卡组中取出1张牌
+        this.ourCardGroup.pumpingCard(1); //抽卡时会自动调起ourCardGroup'pumpCardEventAction
+        this.gameStageState = GameStageStateEnemu.myRounding;
+    },
+
+
+
 
 });
 

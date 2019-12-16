@@ -32,7 +32,7 @@ var res = {
 
     //地图相关
     bg5x5_tmx       : "res/Map/55/chessMap5x5.tmx", //地图
-    crystal         : "res/piece/new/crystal.png",  //水晶
+
 
     //other
     God_png         : "res/Other/god.png",
@@ -76,6 +76,10 @@ var res = {
     //小卡
     cardHandBack        : "res/Card/Little/cardHandBack.png",//小卡背
     cardHand            : "res/Card/Little/sk1001.png",
+
+
+    //piece icon
+    crystal         : "res/piece/building/10001.png",  //水晶
 
 
 };
