@@ -14,7 +14,6 @@ var EnemuOtherLayer = {
     ALL     :99,//all
 };
 
-
 var GWCheckerboard = cc.TMXTiledMap.extend({
     campType                    : CampEnemu.BLACK,   //当前阵营
     tmxBgLayer                  : null, //bg 层
@@ -113,6 +112,7 @@ var GWCheckerboard = cc.TMXTiledMap.extend({
     //     this.eventTouchPickUpCardInHandAction(card);
     // },
 
+    //选中卡牌
     pickUpDataInHand:function(data){
         cc.log("pickUpCardInHand");
         this.selectHandCardData = data;//选中卡data
@@ -708,6 +708,7 @@ var GWCheckerboard = cc.TMXTiledMap.extend({
             rect.y + piece.anchorY * size.height
         )
         this.tiledMapLeaveArray[piece.mapPos.x][piece.mapPos.y] = CampEnemu.NONE;
+
         var duration = 0.5;//播放时间
         var move = null;//移动进入
         if(animType == ChessAnimeEnemu.FADEIN){//选取动画类型
@@ -723,7 +724,9 @@ var GWCheckerboard = cc.TMXTiledMap.extend({
             move = cc.moveTo(duration, p);
         }
         piece.runAction(move);//1.执行动画**2.播放完要移除
+        piece.setMapPos(result.cel,result.row);
         this.tiledMapLeaveArray[result.cel][result.row] = piece.campType;//映射地图
+
         //渲染层级
         var localZor = LocalZorderEnemu.CHESS -1 - piece.mapPos.y;
         piece.setLocalZOrder(localZor);

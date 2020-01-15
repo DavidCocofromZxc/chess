@@ -4,10 +4,6 @@
     <list default="true" id="2fdf7443-8d24-419e-acd9-71236268c457" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Custom/Checkerboard/GWCheckerboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Custom/Checkerboard/GWCheckerboard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Custom/Piece/GWMonster.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Custom/Piece/GWMonster.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Custom/Piece/GWPiece.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Custom/Piece/GWPiece.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tool/XCTool.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tool/XCTool.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Utils/Enemu.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/Enemu.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -29,8 +25,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Tool/XCTool.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="578">
-              <caret line="34" column="12" selection-start-line="34" selection-start-column="12" selection-end-line="34" selection-end-column="12" />
+            <state relative-caret-position="-56">
+              <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
             </state>
           </provider>
         </entry>
@@ -65,8 +61,17 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Custom/Checkerboard/GWCheckerboard.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="261">
-              <caret line="375" column="41" lean-forward="true" selection-start-line="375" selection-start-column="41" selection-end-line="375" selection-end-column="41" />
+            <state relative-caret-position="271">
+              <caret line="731" column="39" selection-start-line="731" selection-start-column="39" selection-end-line="731" selection-end-column="39" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Scene/TestWorkScene.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="4131">
+              <caret line="243" column="31" selection-start-line="243" selection-start-column="31" selection-end-line="243" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -74,8 +79,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Utils/Enemu.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1207">
-              <caret line="71" column="4" selection-start-line="71" selection-start-column="4" selection-end-line="71" selection-end-column="4" />
+            <state relative-caret-position="612">
+              <caret line="36" column="4" selection-start-line="36" selection-start-column="4" selection-end-line="36" selection-end-column="4" />
             </state>
           </provider>
         </entry>
@@ -83,8 +88,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Custom/Piece/GWPiece.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="493">
-              <caret line="29" column="4" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="4" />
+            <state relative-caret-position="5644">
+              <caret line="332" column="4" selection-start-line="332" selection-start-column="4" selection-end-line="332" selection-end-column="4" />
             </state>
           </provider>
         </entry>
@@ -119,11 +124,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>pickUpCardInHand</find>
-      <find>pickUpDataInHand</find>
-      <find>eventTouchBlankAction</find>
-      <find>pumpingOneCardAnim</find>
-      <find>tiledMapRectArray</find>
       <find>chessInMapX</find>
       <find>p</find>
       <find>MAPSH</find>
@@ -141,14 +141,19 @@
       <find>CampEnemu</find>
       <find>OwnerEnemu</find>
       <find>camp_Type</find>
-      <find>tiledMapLeaveArray</find>
       <find>joinPieceInCheckerboard</find>
-      <find>arrayFriendsSurvivalChess</find>
       <find>eventTouchSummonChessStartAction</find>
       <find>棋子</find>
       <find>joinChessPiecesInCheckBoard</find>
       <find>XCLookModel</find>
       <find>movePiecesInChess</find>
+      <find>arrayMoveLayerInMap</find>
+      <find>绘制</find>
+      <find>showLookCard</find>
+      <find>strobj</find>
+      <find>arrayFriendsSurvivalChess</find>
+      <find>leaveList</find>
+      <find>tiledMapLeaveArray</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -238,7 +243,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -324,6 +328,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -792,12 +797,13 @@
       <workItem from="1577157071032" duration="1619000" />
       <workItem from="1577234950443" duration="650000" />
       <workItem from="1577259180705" duration="381000" />
-      <workItem from="1579073280310" duration="132000" />
+      <workItem from="1579073280310" duration="1785000" />
+      <workItem from="1579075093434" duration="392000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="543490000" />
+    <option name="totallyTimeSpent" value="545535000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -893,16 +899,6 @@
           <url>file://$PROJECT_DIR$/frameworks/cocos2d-html5/external/socketio/socket.io.js</url>
           <line>311</line>
           <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/Custom/Checkerboard/GWCheckerboard.js</url>
-          <line>380</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/Custom/Checkerboard/GWCheckerboard.js</url>
-          <line>391</line>
-          <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -1091,13 +1087,6 @@
     <entry file="http://localhost:63342/chess/src/Custom/Checkerboard/GWCheckerboard.js">
       <provider selected="true" editor-type-id="httpFileEditor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Scene/TestWorkScene.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1258">
-          <caret line="74" column="14" selection-start-line="74" selection-start-column="14" selection-end-line="74" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Custom/Checkerboard/GWGameCheckerboard.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
@@ -1114,13 +1103,6 @@
     </entry>
     <entry file="http://localhost:63342/chess/src/Custom/Piece/GWPiece.js">
       <provider selected="true" editor-type-id="httpFileEditor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Tool/XCTool.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="34" column="12" selection-start-line="34" selection-start-column="12" selection-end-line="34" selection-end-column="12" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/frameworks/cocos2d-html5/external/socketio/socket.io.min.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -1143,17 +1125,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Utils/Enemu.js">
+    <entry file="file://$PROJECT_DIR$/src/Scene/TestWorkScene.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1207">
-          <caret line="71" column="4" selection-start-line="71" selection-start-column="4" selection-end-line="71" selection-end-column="4" />
+        <state relative-caret-position="4131">
+          <caret line="243" column="31" selection-start-line="243" selection-start-column="31" selection-end-line="243" selection-end-column="31" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Custom/Piece/GWPiece.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="29" column="4" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="4" />
+        <state relative-caret-position="5644">
+          <caret line="332" column="4" selection-start-line="332" selection-start-column="4" selection-end-line="332" selection-end-column="4" />
         </state>
       </provider>
     </entry>
@@ -1171,10 +1153,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Tool/XCTool.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-56">
+          <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Utils/Enemu.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="612">
+          <caret line="36" column="4" selection-start-line="36" selection-start-column="4" selection-end-line="36" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Custom/Checkerboard/GWCheckerboard.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="261">
-          <caret line="375" column="41" lean-forward="true" selection-start-line="375" selection-start-column="41" selection-end-line="375" selection-end-column="41" />
+        <state relative-caret-position="271">
+          <caret line="731" column="39" selection-start-line="731" selection-start-column="39" selection-end-line="731" selection-end-column="39" />
         </state>
       </provider>
     </entry>
