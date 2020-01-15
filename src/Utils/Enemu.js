@@ -69,8 +69,6 @@ let COLOR_ALLOWSUMMON = cc.color(102,182,129,255*0.4);
 
 //渲染 层级控制
 let LocalZorderEnemu = {
-
-
     CHESS8          :   211,
     CHESS7          :   212,
     CHESS6          :   213,

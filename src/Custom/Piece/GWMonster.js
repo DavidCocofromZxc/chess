@@ -74,8 +74,8 @@ var GWMonster = GWPiece.extend({
             movePos.y = y;
         }
         //本次增量
-        let inx = movePos.x - this.chessInMapX;
-        let iny = movePos.y - this.chessInMapY;
+        let inx = movePos.x - this.mapPos.x;
+        let iny = movePos.y - this.mapPos.y;
         //
         if(Math.abs(inx) <= Math.abs(iny)){
             if(iny > 0){//向上

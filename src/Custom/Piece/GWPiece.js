@@ -343,85 +343,86 @@ var GWPiece = cc.Sprite.extend({
     },
 
 
-    // 移动棋子在Map中到pos位置
-    moveInMap:function(pos,y){
-        this.pickDown();
-        var movePos = {x:0,y:0};
-        if( y === undefined){
-            movePos = pos;
-        }else{
-            movePos.x = pos;
-            movePos.y = y;
-        }
-        //本次增量
-        let inx = movePos.x - this.mapPos.x;
-        let iny = movePos.y - this.mapPos.y;
 
-
-
-        //50
-        var size = 50;//MAPSH.getTileSize();
-        var duration = 0.5;//以后做成系统配置
-        var rect = this.parent.tiledMapRectArray[movePos.y][movePos.x];
-        var p = cc.p(
-            rect.x + this.anchorX * size.width,
-            rect.y + this.anchorY * size.height)
-        var move = cc.moveTo(duration,p);
-        this.runAction(move);
-
-
-        //粒子效果
-        // var name = "res/Chess/Particle/blackFire2.plist";
-        // if(this.campColor == CampEnemu.WHITE){
-        //     name = "res/Chess/Particle/blackFire3.plist";
-        // }
-        //
-        // var particle2 = new cc.ParticleSystem(name);
-        // this.addChild(particle2);
-        // particle2.duration = duration;
-        // particle2.setPosition(this.width/2,this.height/2);
-
-
-
-        //渲染层级
-        var localZor = LocalZorderEnemu.CHESS;
-        switch (iny) {
-            case 0:
-                localZor = LocalZorderEnemu.CHESS0;
-                break;
-            case 1:
-                localZor = LocalZorderEnemu.CHESS1;
-                break;
-            case 2:
-                localZor = LocalZorderEnemu.CHESS2;
-                break;
-            case 3:
-                localZor = LocalZorderEnemu.CHESS3;
-                break;
-            case 4:
-                localZor = LocalZorderEnemu.CHESS4;
-                break;
-            case 5:
-                localZor = LocalZorderEnemu.CHESS5;
-                break;
-            case 6:
-                localZor = LocalZorderEnemu.CHESS6;
-                break;
-            case 7:
-                localZor = LocalZorderEnemu.CHESS7;
-                break;
-            case 8:
-                localZor = LocalZorderEnemu.CHESS8;
-                break;
-            default:
-                break;
-        }
-        this.setLocalZOrder(localZor);
-
-        // this.chessInMapX = movePos.x;
-        // this.chessInMapY = movePos.y;
-        this.mapPos = movePos;
-    },
+    // // 移动棋子在Map中到pos位置
+    // moveInMap:function(pos,y){
+    //     this.pickDown();
+    //     var movePos = {x:0,y:0};
+    //     if( y === undefined){
+    //         movePos = pos;
+    //     }else{
+    //         movePos.x = pos;
+    //         movePos.y = y;
+    //     }
+    //     //本次增量
+    //     let inx = movePos.x - this.mapPos.x;
+    //     let iny = movePos.y - this.mapPos.y;
+    //
+    //
+    //
+    //     //50
+    //     var size = 50;//MAPSH.getTileSize();
+    //     var duration = 0.5;//以后做成系统配置
+    //     var rect = this.parent.tiledMapRectArray[movePos.y][movePos.x];
+    //     var p = cc.p(
+    //         rect.x + this.anchorX * size.width,
+    //         rect.y + this.anchorY * size.height)
+    //     var move = cc.moveTo(duration,p);
+    //     this.runAction(move);
+    //
+    //
+    //     //粒子效果
+    //     // var name = "res/Chess/Particle/blackFire2.plist";
+    //     // if(this.campColor == CampEnemu.WHITE){
+    //     //     name = "res/Chess/Particle/blackFire3.plist";
+    //     // }
+    //     //
+    //     // var particle2 = new cc.ParticleSystem(name);
+    //     // this.addChild(particle2);
+    //     // particle2.duration = duration;
+    //     // particle2.setPosition(this.width/2,this.height/2);
+    //
+    //
+    //
+    //     //渲染层级
+    //     var localZor = LocalZorderEnemu.CHESS;
+    //     switch (iny) {
+    //         case 0:
+    //             localZor = LocalZorderEnemu.CHESS0;
+    //             break;
+    //         case 1:
+    //             localZor = LocalZorderEnemu.CHESS1;
+    //             break;
+    //         case 2:
+    //             localZor = LocalZorderEnemu.CHESS2;
+    //             break;
+    //         case 3:
+    //             localZor = LocalZorderEnemu.CHESS3;
+    //             break;
+    //         case 4:
+    //             localZor = LocalZorderEnemu.CHESS4;
+    //             break;
+    //         case 5:
+    //             localZor = LocalZorderEnemu.CHESS5;
+    //             break;
+    //         case 6:
+    //             localZor = LocalZorderEnemu.CHESS6;
+    //             break;
+    //         case 7:
+    //             localZor = LocalZorderEnemu.CHESS7;
+    //             break;
+    //         case 8:
+    //             localZor = LocalZorderEnemu.CHESS8;
+    //             break;
+    //         default:
+    //             break;
+    //     }
+    //     this.setLocalZOrder(localZor);
+    //
+    //     // this.chessInMapX = movePos.x;
+    //     // this.chessInMapY = movePos.y;
+    //     this.mapPos = movePos;
+    // },
 
 
 

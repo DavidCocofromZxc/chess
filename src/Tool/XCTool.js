@@ -15,17 +15,30 @@ var XCLog = function (strobj,obj) {
     if(obj.constructor === Array){
         var list = obj;
         cc.log("XCLog--------------------------------------------------------------------------------------------");
-        for (var i = 0 ; i < list.length ; i++){
+        // for (var i = 0 ; i < list.length ; i++){
+        //     var celStr = "";
+        //     for (var j = 0 ; j < list[i].length ; j++){
+        //         var str = "";
+        //         if(j == 0){
+        //             str += "「" + list[i][j];
+        //         }else if( j == (list[i].length -1) ){
+        //             str += list[i][j] + "」";
+        //         }else{
+        //             str += list[i][j] + " ";
+        //         }
+        //         for(;str.length < 11 ;){
+        //             str += " ";
+        //         }
+        //         celStr += str;
+        //     }
+        //     cc.log(i,celStr);
+        // }
+
+        for (var i = list.length -1 ; i >= 0 ; i--){
             var celStr = "";
             for (var j = 0 ; j < list[i].length ; j++){
                 var str = "";
-                if(j == 0){
-                    str += "「" + list[i][j];
-                }else if( j == (list[i].length -1) ){
-                    str += list[i][j] + "」";
-                }else{
-                    str += list[i][j] + " ";
-                }
+                    str += list[j][i] + " ";
                 for(;str.length < 11 ;){
                     str += " ";
                 }
@@ -104,7 +117,8 @@ var XCLogDirectionArray = function(array){
 };
 
 /**
- * attack = 4
+ *
+ attack = 4
  attackRange = 1
  attackTimes = 1
  createdAt = "2019-04-22 14:36:00"
