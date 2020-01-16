@@ -29,11 +29,15 @@ var SummoningStateEnemu = {
     inHand:0,
     inCheckerboard:1,
 };
-
 //棋子出现动画类型
 var ChessAnimeEnemu = {
     MOVE     :"move",    // 移动进入
     FADEIN   :"FADEIN",  // 淡出
+};
+//棋子操作执行类型
+var EnemuPieceOperate = {
+    SUMMON   :"summon",
+    MOVE     :"move",
 };
 
 var GWPiece = cc.Sprite.extend({
@@ -69,6 +73,7 @@ var GWPiece = cc.Sprite.extend({
     defultColor     :null,                              //默认颜色，用于取消选中时找回
     myCard          :null,      //用于跟踪卡
 
+    oldLocalZOrder     :200,//用于棋子记录渲染等级，影响在场景中的覆盖等级
     //这里用fileName构造
     ctor: function (fileName,rect,rotated) {
         this._super(fileName,rect,rotated);
@@ -106,6 +111,8 @@ var GWPiece = cc.Sprite.extend({
      * */
     //选中棋子
     pickUp:function(){
+        this.oldLocalZOrder = this._localZOrder;
+        this.setLocalZOrder(this.oldLocalZOrder + 10);
         this.setScale(this.enlargeCoefficient);
         this.setOpacity(220);
         // this.setColor(cc.color(166,174,209));
@@ -114,6 +121,7 @@ var GWPiece = cc.Sprite.extend({
     },
     //放下棋子
     pickDown:function(){
+        this.setLocalZOrder(this.oldLocalZOrder);
         this.setColor(this.defultColor);
         this.setScale(1.0);
         this.setOpacity(255);

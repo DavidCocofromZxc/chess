@@ -552,126 +552,26 @@ var GWCheckerboard = cc.TMXTiledMap.extend({
     // 初始化棋盘 -水晶/国王
     //还在修改中
     initGameCrystal:function () {
-        //模拟位置
-        var selfkingPos = {cel:4,row:0};
-        var otherkingPos = {cel:4,row:8};
-
-
-        //我方水晶
-        var selfking = GWPiece.initPiece(ChessTypeEnemu.CRYSTAL);
-        this.addChild(selfking,LocalZorderEnemu.CHESS);
-        this.arrayFriendsSurvivalChess.push(selfking);//加入队友棋子
-        this.tiledMapLeaveArray[selfkingPos.x][selfkingPos.y] = CampEnemu.BLACK;//映射地图
-        this.joinPieceInCheckerboard(selfking,ChessAnimeEnemu.FADEIN,selfkingPos);
-        //<>
-        //敌方水晶
-        var otherking = GWPiece.initPiece(ChessTypeEnemu.CRYSTAL);
-        this.addChild(otherking,LocalZorderEnemu.CHESS);
-        this.arrayEnemySurvivalChess.push(otherking);//加入敌方棋子
-        this.tiledMapLeaveArray[otherkingPos.x][otherkingPos.y] = CampEnemu.WHITE;
-        this.joinPieceInCheckerboard(otherking,ChessAnimeEnemu.FADEIN,otherkingPos);
-        //颜色设置
-        otherking.setColor(cc.color(100,100,100));
+        cc.log("待修改");
+        // //模拟位置
+        // var selfkingPos = {cel:4,row:0};
+        // var otherkingPos = {cel:4,row:8};
+        // //我方水晶
+        // var selfking = GWPiece.initPiece(ChessTypeEnemu.CRYSTAL);
+        // this.addChild(selfking,LocalZorderEnemu.CHESS);
+        // this.arrayFriendsSurvivalChess.push(selfking);//加入队友棋子
+        // this.tiledMapLeaveArray[selfkingPos.x][selfkingPos.y] = CampEnemu.BLACK;//映射地图
+        // this.joinPieceInCheckerboard(selfking,ChessAnimeEnemu.FADEIN,selfkingPos);
+        // //<>
+        // //敌方水晶
+        // var otherking = GWPiece.initPiece(ChessTypeEnemu.CRYSTAL);
+        // this.addChild(otherking,LocalZorderEnemu.CHESS);
+        // this.arrayEnemySurvivalChess.push(otherking);//加入敌方棋子
+        // this.tiledMapLeaveArray[otherkingPos.x][otherkingPos.y] = CampEnemu.WHITE;
+        // this.joinPieceInCheckerboard(otherking,ChessAnimeEnemu.FADEIN,otherkingPos);
+        // //颜色设置
+        // otherking.setColor(cc.color(100,100,100));
     },
-    /**
-     *  棋子加入到棋盘中：
-     * ID 棋子ID，X要加入的棋盘位置，Y要加入的棋盘位置
-     */
-    // joinPiece:function(ID,X,Y){
-    //     var pos = {x:X,y:Y};
-    //     var piece = GWPiece.initPiece(ID);
-    //     this.addChild(piece,LocalZorderEnemu.CHESS);
-    //     this.arrayFriendsSurvivalChess.push(piece);//加入队友棋子
-    //     this.tiledMapLeaveArray[pos.x][pos.y] = CampEnemu.BLACK;//映射地图
-    //     piece.joinInMap(pos.x,pos.y,ChessAnimeEnemu.FADEIN);//加入到4，0，淡出
-    // },
-    /**
-     *  棋子加入到棋盘中：
-     * piece 要加入的棋子
-     * animType 要选用的动画类型 ChessAnimeEnemu
-     */
-    //加入到棋盘中某位置
-    joinPieceInCheckerboard:function (piece,animType,result) {
-        piece.pickDown();//本身先还原//防止存在放大等
-        piece.setMapPos(result.cel,result.row);
-        this.addChild(piece,LocalZorderEnemu.CHESS);//加入到棋盘中
-        var size = this.getTileSize(); //50
-        var rect = this.tiledMapRectArray[piece.mapPos.y][piece.mapPos.x];
-        //获得位置
-        var p = cc.p(
-            rect.x + piece.anchorX * size.width,
-            rect.y + piece.anchorY * size.height
-        )
-        //
-        var duration = 0.5;
-        //移动进入
-        var move = null ;
-        //选取动画类型
-        if(animType == ChessAnimeEnemu.FADEIN){
-            piece.setOpacity(0);
-            piece.setPosition(p);
-            move = cc.fadeIn(duration * 3)
-            //particle_blackFire
-            var particleA = new cc.ParticleSystem(res.particle_blackFire);
-            piece.addChild(particleA,999);//在棋子上加入粒子效果
-            particleA.setAnchorPoint(0.5,0.5);
-            particleA.setPosition(piece.width/2, piece.height/2 -10);
-        }else{//默认move进入
-            move = cc.moveTo(duration, p);
-        }
-        piece.runAction(move);//*********播放完要移除
-        this.tiledMapLeaveArray[piece.mapPos.x][piece.mapPos.y] = piece.campType;//映射地图
-        //渲染层级
-        var localZor = LocalZorderEnemu.CHESS -1 - piece.mapPos.y;
-        piece.setLocalZOrder(localZor);
-        //
-        piece.StateSummoning = SummoningStateEnemu.inCheckerboard;//召唤状态
-        switch (piece.campType) {
-            case CampEnemu.BLACK :
-                this.arrayFriendsSurvivalChess.push(piece);//加入队友棋子
-                break;
-            case CampEnemu.WHITE :
-                this.arrayEnemySurvivalChess.push(piece);
-                break;
-            default:
-                this.arrayFriendsSurvivalChess.push(piece);
-                break;
-        }
-    },
-    //加入到棋盘中某位置
-    movePieceInCheckerboard:function (piece,animType,result) {
-        piece.pickDown();//本身先还原
-        var size = this.getTileSize(); //50
-        var rect = this.tiledMapRectArray[result.row][result.cel];
-        //目标位置
-        var p = cc.p(
-            rect.x + piece.anchorX * size.width,
-            rect.y + piece.anchorY * size.height
-        )
-        this.tiledMapLeaveArray[piece.mapPos.x][piece.mapPos.y] = CampEnemu.NONE;
-        var duration = 0.5;//播放时间
-        var move = null;//移动进入
-        if(animType == ChessAnimeEnemu.FADEIN){//选取动画类型
-            piece.setOpacity(0);
-            piece.setPosition(p);
-            move = cc.fadeIn(duration * 3)
-            //particle_blackFire
-            var particleA = new cc.ParticleSystem(res.particle_blackFire);
-            piece.addChild(particleA,999);//在棋子上加入粒子效果
-            particleA.setAnchorPoint(0.5,0.5);
-            particleA.setPosition(piece.width/2, piece.height/2 -10);
-        }else{//默认move进入
-            move = cc.moveTo(duration, p);
-        }
-        piece.runAction(move);//1.执行动画**2.播放完要移除
-        piece.setMapPos(result.cel,result.row);
-        this.tiledMapLeaveArray[result.cel][result.row] = piece.campType;//映射地图
-
-        //渲染层级
-        var localZor = LocalZorderEnemu.CHESS -1 - piece.mapPos.y;
-        piece.setLocalZOrder(localZor);
-    },
-    //加入到棋盘中某位置
     /**
      * operatePieceInCheckerboard 操作棋子在甲板上
      * type     操作类型 0join 1move
@@ -681,28 +581,38 @@ var GWCheckerboard = cc.TMXTiledMap.extend({
      * */
     operatePieceInCheckerboard:function (type,piece,animType,result) {
         piece.pickDown();//本身先还原//防止存在放大、染色等
-        piece.setMapPos(result.cel,result.row);
-        this.addChild(piece,LocalZorderEnemu.CHESS);//加入到棋盘中
+        //棋格位置
+        let oldLoc = piece.mapPos;
+        let newLoc = {x:result.cel,y:result.row};
         //计算位置
         let size = this.getTileSize(); //50
-        let rect = this.tiledMapRectArray[piece.mapPos.y][piece.mapPos.x];//取出对应rect
-        let p = cc.p(rect.x + piece.anchorX * size.width, rect.y + piece.anchorY * size.height);
-        //动画执行
-        piece.runAnimaTypeAction(animType,p);
-        //修改地图
-        this.tiledMapLeaveArray[piece.mapPos.x][piece.mapPos.y] = piece.campType;
-        //修改阵营
-        this.pieceJoinCamp(piece);
+        let rect = this.tiledMapRectArray[result.row][result.cel];//
+        let pLoc = cc.p(rect.x + piece.anchorX * size.width, rect.y + piece.anchorY * size.height);
+
+        piece.setMapPos(newLoc.x,newLoc.y);
+        this.tiledMapLeaveArray[newLoc.x][newLoc.y] = piece.campType;//映射地图
+        piece.runAnimaTypeAction(animType,pLoc);//动画执行
         piece.setLocalZOrder(LocalZorderEnemu.CHESS -1 - piece.mapPos.y);//渲染层级修改
+        switch (type) {
+            case EnemuPieceOperate.SUMMON:
+                this.addChild(piece,LocalZorderEnemu.CHESS);//加入到棋盘中
+                this.pieceJoinCamp(piece); //修改阵营
+                break;
+            case EnemuPieceOperate.MOVE:
+                this.tiledMapLeaveArray[oldLoc.x][oldLoc.y] = CampEnemu.NONE;
+                break;
+            default:
+                break;
+        }
     },
     //棋子加入棋盘 -多用于召唤
     joinPiecesInChess:function(data,result){
         let piece = new GWMonster(data);
         piece.campType = this.campType;// <配置 ***  这里可能逻辑有问题>
-        this.operatePieceInCheckerboard("join",piece,ChessAnimeEnemu.FADEIN,result);
+        this.operatePieceInCheckerboard("summon",piece,ChessAnimeEnemu.FADEIN,result);
     },
     movePiecesInChess:function (piece,result) {
-        this.movePieceInCheckerboard(piece,ChessAnimeEnemu.MOVE,result);
+        this.operatePieceInCheckerboard("move",piece,ChessAnimeEnemu.MOVE,result);
     },
     //阵营修改-以后可能存在其他阵营:类似中立，类似抢夺等等
     pieceJoinCamp:function (piece) {

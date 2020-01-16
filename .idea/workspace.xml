@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2fdf7443-8d24-419e-acd9-71236268c457" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Custom/Checkerboard/GWCheckerboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Custom/Checkerboard/GWCheckerboard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Custom/Checkerboard/GWMatchCheckerboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Custom/Checkerboard/GWMatchCheckerboard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Custom/Piece/GWPiece.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Custom/Piece/GWPiece.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -24,8 +27,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Custom/Checkerboard/GWCheckerboard.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="681" column="30" selection-start-line="681" selection-start-column="4" selection-end-line="681" selection-end-column="30" />
+            <state relative-caret-position="674">
+              <caret line="615" column="6" selection-start-line="615" selection-start-column="6" selection-end-line="615" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -33,8 +36,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Custom/Checkerboard/GWMatchCheckerboard.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="17" column="40" lean-forward="true" selection-start-line="17" selection-start-column="40" selection-end-line="17" selection-end-column="40" />
+            <state relative-caret-position="493">
+              <caret line="29" column="52" selection-start-line="29" selection-start-column="52" selection-end-line="29" selection-end-column="52" />
             </state>
           </provider>
         </entry>
@@ -42,8 +45,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Custom/Piece/GWPiece.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="279">
-              <caret line="60" column="37" selection-start-line="60" selection-start-column="37" selection-end-line="60" selection-end-column="37" />
+            <state relative-caret-position="8806">
+              <caret line="518" column="16" selection-start-line="518" selection-start-column="16" selection-end-line="518" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/frameworks/cocos2d-html5/cocos2d/core/base-nodes/CCNode.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="39763">
+              <caret line="2339" column="4" selection-start-line="2339" selection-start-column="4" selection-end-line="2339" selection-end-column="4" />
             </state>
           </provider>
         </entry>
@@ -163,8 +175,8 @@
         <option value="$PROJECT_DIR$/src/Utils/Enemu.js" />
         <option value="$PROJECT_DIR$/src/Custom/Piece/GWMonster.js" />
         <option value="$PROJECT_DIR$/src/Tool/XCTool.js" />
-        <option value="$PROJECT_DIR$/src/Custom/Checkerboard/GWMatchCheckerboard.js" />
         <option value="$PROJECT_DIR$/src/Custom/Piece/GWPiece.js" />
+        <option value="$PROJECT_DIR$/src/Custom/Checkerboard/GWMatchCheckerboard.js" />
         <option value="$PROJECT_DIR$/src/Custom/Checkerboard/GWCheckerboard.js" />
       </list>
     </option>
@@ -188,6 +200,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -273,7 +286,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -747,11 +759,15 @@
       <workItem from="1579136503485" duration="1592000" />
       <workItem from="1579138136659" duration="1676000" />
       <workItem from="1579139945592" duration="1788000" />
+      <workItem from="1579141757744" duration="605000" />
+      <workItem from="1579143895073" duration="1788000" />
+      <workItem from="1579145719808" duration="1171000" />
+      <workItem from="1579152275561" duration="597000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="551198000" />
+    <option name="totallyTimeSpent" value="555359000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -764,6 +780,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="822" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16772375" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -846,11 +863,6 @@
           <url>file://$PROJECT_DIR$/frameworks/cocos2d-html5/external/socketio/socket.io.js</url>
           <line>311</line>
           <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/Custom/Checkerboard/GWCheckerboard.js</url>
-          <line>564</line>
-          <option name="timeStamp" value="9" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -1006,13 +1018,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frameworks/cocos2d-html5/cocos2d/core/base-nodes/CCNode.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="27676">
-          <caret line="1628" column="4" selection-start-line="1628" selection-start-column="4" selection-end-line="1628" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Custom/GWMessage.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="526">
@@ -1102,31 +1107,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Scene/LoginScene.js">
+    <entry file="file://$PROJECT_DIR$/src/Custom/Checkerboard/GWCheckerboard.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1394">
-          <caret line="82" column="51" selection-start-line="82" selection-start-column="51" selection-end-line="82" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Custom/Piece/GWPiece.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="60" column="37" selection-start-line="60" selection-start-column="37" selection-end-line="60" selection-end-column="37" />
+        <state relative-caret-position="674">
+          <caret line="615" column="6" selection-start-line="615" selection-start-column="6" selection-end-line="615" selection-end-column="6" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Custom/Checkerboard/GWMatchCheckerboard.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="40" lean-forward="true" selection-start-line="17" selection-start-column="40" selection-end-line="17" selection-end-column="40" />
+        <state relative-caret-position="493">
+          <caret line="29" column="52" selection-start-line="29" selection-start-column="52" selection-end-line="29" selection-end-column="52" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Custom/Checkerboard/GWCheckerboard.js">
+    <entry file="file://$PROJECT_DIR$/src/Custom/Piece/GWPiece.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="681" column="30" selection-start-line="681" selection-start-column="4" selection-end-line="681" selection-end-column="30" />
+        <state relative-caret-position="8806">
+          <caret line="518" column="16" selection-start-line="518" selection-start-column="16" selection-end-line="518" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frameworks/cocos2d-html5/cocos2d/core/base-nodes/CCNode.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="39763">
+          <caret line="2339" column="4" selection-start-line="2339" selection-start-column="4" selection-end-line="2339" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Scene/LoginScene.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1394">
+          <caret line="82" column="51" selection-start-line="82" selection-start-column="51" selection-end-line="82" selection-end-column="51" />
         </state>
       </provider>
     </entry>

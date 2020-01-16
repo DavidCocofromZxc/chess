@@ -15,13 +15,16 @@ var GWMatchCheckerboard = GWCheckerboard.extend({
         king.campType = CampEnemu.BLACK;
         //模拟移动结果//由配置决定
         let selfResult = {isInMap:true,cel:4,row:0,x:200,y:0};
-        this.operatePieceInCheckerboard("join",king,ChessAnimeEnemu.FADEIN,selfResult);//joinPieceInCheckerboard
+        // this.operatePieceInCheckerboard("join",king,ChessAnimeEnemu.FADEIN,selfResult);//joinPieceInCheckerboard
+
+        this.operatePieceInCheckerboard("summon",king,ChessAnimeEnemu.FADEIN,selfResult);
         //敌方
         let dKing = GWPiece.initPiece(ChessTypeEnemu.BLACK_CRYSTAL);
         dKing.campType = CampEnemu.WHITE;
         //模拟移动结果//由配置决定
         let otherResult = {isInMap:true,cel:4,row:8,x:200,y:400};//由配置决定
-        this.operatePieceInCheckerboard("join",dKing,ChessAnimeEnemu.FADEIN,otherResult);
+        this.operatePieceInCheckerboard("summon",dKing,ChessAnimeEnemu.FADEIN,otherResult);
+
     },
     //发起召唤
     eventTouchSummonChessStartAction:function(data){
