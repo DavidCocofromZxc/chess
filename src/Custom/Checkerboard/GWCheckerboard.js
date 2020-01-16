@@ -682,33 +682,24 @@ var GWCheckerboard = cc.TMXTiledMap.extend({
     operatePieceInCheckerboard:function (type,piece,animType,result) {
         piece.pickDown();//本身先还原//防止存在放大、染色等
         piece.setMapPos(result.cel,result.row);
-        //
-        // 视图部分
-        //
         this.addChild(piece,LocalZorderEnemu.CHESS);//加入到棋盘中
-        let localZor = LocalZorderEnemu.CHESS -1 - piece.mapPos.y;
-        piece.setLocalZOrder(localZor);//渲染层级修改
-        //
-        // //计算位置
+        //计算位置
         let size = this.getTileSize(); //50
         let rect = this.tiledMapRectArray[piece.mapPos.y][piece.mapPos.x];//取出对应rect
         let p = cc.p(rect.x + piece.anchorX * size.width, rect.y + piece.anchorY * size.height);
         //动画执行
         piece.runAnimaTypeAction(animType,p);
-        //
-        //  数据部分
-        //  修改映射
-        //
-        this.tiledMapLeaveArray[piece.mapPos.x][piece.mapPos.y] = piece.campType;//映射地图
-        // piece.StateSummoning = SummoningStateEnemu.inCheckerboard;//召唤状态
+        //修改地图
+        this.tiledMapLeaveArray[piece.mapPos.x][piece.mapPos.y] = piece.campType;
+        //修改阵营
         this.pieceJoinCamp(piece);
+        piece.setLocalZOrder(LocalZorderEnemu.CHESS -1 - piece.mapPos.y);//渲染层级修改
     },
     //棋子加入棋盘 -多用于召唤
     joinPiecesInChess:function(data,result){
-        var piece = new GWMonster(data);
-        // piece.setMapPos(result.cel,result.row);
+        let piece = new GWMonster(data);
         piece.campType = this.campType;// <配置 ***  这里可能逻辑有问题>
-        this.joinPieceInCheckerboard(piece,ChessAnimeEnemu.FADEIN,result);
+        this.operatePieceInCheckerboard("join",piece,ChessAnimeEnemu.FADEIN,result);
     },
     movePiecesInChess:function (piece,result) {
         this.movePieceInCheckerboard(piece,ChessAnimeEnemu.MOVE,result);
