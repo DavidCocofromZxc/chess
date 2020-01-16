@@ -5,46 +5,38 @@
  * 棋盘基础类/地图类
  *
  * */
-
-
 //其他层枚举
 var EnemuOtherLayer = {
     MOVE    :0, //移动层
     SUMMON  :1, //召唤层
     ALL     :99,//all
 };
-
 var GWCheckerboard = cc.TMXTiledMap.extend({
     campType                    : CampEnemu.BLACK,   //当前阵营
     tmxBgLayer                  : null, //bg 层
     selectChess                 : null, //选中棋子
     selectHandCardData          : null, //选中牌data
-
+    //
     tiledMapRectArray           : [],   //地图rect数组，存储瓦片的rect信息
     tiledMapLeaveArray          : [],   //地图映射数组，存储瓦片的占用状态，有无棋子等等
-
     //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
     arrayFriendsSurvivalChess   : [],   //black Array
     arrayEnemySurvivalChess     : [],   //white Array
     //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-
     arraySummonLayerInMap       : [],   //临时-召唤区域layer数组
     arrayMoveLayerInMap         : [],   //临时-移动区域layer数组
-
     ctor: function (){
         //数据初始化
         this.campType       = ""; //
         this.tmxBgLayer     = null;
         this.selectChess    = null;
         this.selectHandCardData = null;
-
+        //
         this.tiledMapRectArray  = [];
         this.tiledMapLeaveArray = [];
-
-
+        //
         this.arrayFriendsSurvivalChess  = [];
         this.arrayEnemySurvivalChess    = [];
-
         //
         this.arraySummonLayerInMap      = [];
         this.arrayMoveLayerInMap        = [];
@@ -94,11 +86,6 @@ var GWCheckerboard = cc.TMXTiledMap.extend({
             }
         }
     },
-
-
-
-
-
     /**
      *  手牌区域-互动方法
      *
@@ -124,8 +111,6 @@ var GWCheckerboard = cc.TMXTiledMap.extend({
         cc.log("cancelPickUpCardInHand");
         this.restoreScene();
     },
-
-
     /**
      * touch event 用于上层方法传递事件
      * */
@@ -143,7 +128,6 @@ var GWCheckerboard = cc.TMXTiledMap.extend({
             this.selectHandCardData = null;
         }
     },
-
     //touch event
     onTouchBegan:function (touch,event) {
         // return this.customOnTouchBegan(touch,event);// false 会使点击失败
@@ -155,8 +139,6 @@ var GWCheckerboard = cc.TMXTiledMap.extend({
         var self = (event === undefined)? this : event.getCurrentTarget();  //当前主体
         var posInNode = self.convertToNodeSpace(touch.getLocation());       //在当前node中 点击位置
         var rect = cc.rect(0,0,self.width,self.height); //在当前坐标系中允许点击的范围
-
-
         //点击在棋盘外-执行取消操作
         if(!(cc.rectContainsPoint(rect,posInNode))){    //判断是否在允许的点击范围内
             self.restoreScene();//还原操作
@@ -245,15 +227,6 @@ var GWCheckerboard = cc.TMXTiledMap.extend({
                         this.eventTouchChessAction(1,currentChess);
                     }
             }
-
-
-
-
-
-
-
-
-
             // //说明需要召唤
             // if(this.selectHandCardData != null){
             //     cc.log("当前有选中手牌,准备进行发动");
@@ -385,7 +358,6 @@ var GWCheckerboard = cc.TMXTiledMap.extend({
             for (var j = 0,rangesLen = ranges.length; j < rangesLen ; j++){
                 let rang = ranges[j];//获取召唤单格
                 let isAllow = true;//默认允许加入
-
                 // < 循环体三：1.遍历每当前结果list中是否重复 >
                 //重复判断：
                 for ( var r = 0,resultLen = result.length ; r < resultLen ;r++){
@@ -423,10 +395,8 @@ var GWCheckerboard = cc.TMXTiledMap.extend({
         var mappings = chess.getMovingRange();//获得移动区域
         // 过滤目标映射中，已含棋子的映射，将其标记，并返回// mappings目标格坐标list
         for( var i = 0 ; i < mappings.length ; i++ ){
-
             // < 判断 目标位置 -有无存活我方棋子 >
             var isSureChess = false;
-
             // < 利用映射 判断目标位置 是否存在棋子 >
             var leave = this.tiledMapLeaveArray[mappings[i].x][mappings[i].y];
             if( leave == CampEnemu.BLACK || leave == CampEnemu.WHITE ){
@@ -442,8 +412,6 @@ var GWCheckerboard = cc.TMXTiledMap.extend({
         }
         this.drawMapLayerArray(result,EnemuOtherLayer.MOVE);
     },
-
-
     //绘制layer
     drawMapLayerArray:function(array,layerType ){
         //绘制
@@ -451,16 +419,13 @@ var GWCheckerboard = cc.TMXTiledMap.extend({
             let pos = array[i].posInMap; //获取映射
             //要注意这里是x-y相反
             let rect = this.tiledMapRectArray[pos.y][pos.x];//通过映射获取rect
-
             let userColor = array[i].isAllow?ALLOWPLACE_COLOR:NOT_ALLOWPLACE_COLOR;
-
             var layer = new cc.LayerColor(userColor,
                 // this.tmxMap.getTileSize().width,
                 // this.tmxMap.getTileSize().height);
                 this.getTileSize().width,
                 this.getTileSize().height);
             layer.setPosition(rect.x,rect.y);
-
             if(layerType == EnemuOtherLayer.MOVE){
                 this.arrayMoveLayerInMap.push({layer:layer,pos:pos,hasPiece:!array[i].isAllow});
             }
@@ -489,8 +454,6 @@ var GWCheckerboard = cc.TMXTiledMap.extend({
             this.arraySummonLayerInMap = [];
         }
     },
-
-
     //传入点击位置
     pickUpChessInMapPoint:function(pos,y){
         var posInNode = new cc.p(0,0);
@@ -519,14 +482,11 @@ var GWCheckerboard = cc.TMXTiledMap.extend({
             }
         }
     },
-
-
     // 根据坐标获取在地图中的信息 返回所点击的瓦片信息
     getInfoFromMapByPos : function(x, y){
         cc.assert(y !== undefined, "GPMainLayer.getInfoFromMapByPos(): Y坐标不能为空！");
         var isInMap = false;
         var index = {x : -1, y : -1};
-
         var rect = null;
         for (var i = 0; i < this.tiledMapRectArray.length; i++) {
             for (var j = 0; j < this.tiledMapRectArray[i].length; j++) {
@@ -549,8 +509,6 @@ var GWCheckerboard = cc.TMXTiledMap.extend({
             y : index.y
         };
     },
-
-
     /**
      * Custom 自定义虚函数 用于重写or回调
      * */
@@ -559,10 +517,8 @@ var GWCheckerboard = cc.TMXTiledMap.extend({
         cc.log("无继承 发起召唤 失败");
         return false;
     },
-
     //触摸事件 - 召唤棋子结束回调
     eventTouchSummonChessEndAction:function(state){
-
     },
     //触摸事件 - 棋子移动开始回调
     eventTouchMoveChessStartAction:function(state){
@@ -570,7 +526,6 @@ var GWCheckerboard = cc.TMXTiledMap.extend({
     },
     //触摸事件 - 棋子移动结束回调
     eventTouchMoveChessEndAction:function(state){
-
     },
     //触摸事件 - 点击空白回调
     eventTouchBlankAction:function(){
@@ -584,15 +539,9 @@ var GWCheckerboard = cc.TMXTiledMap.extend({
     eventTouchPickUpCardInHandAction:function (chess) {
 
     },
-
     eventClickOutside:function(){
         cc.log("无继承 点击棋盘外");
     },
-
-
-
-
-
     /**
      * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
      *  棋子相关
@@ -601,33 +550,29 @@ var GWCheckerboard = cc.TMXTiledMap.extend({
      */
     //  <*独立方法*>
     // 初始化棋盘 -水晶/国王
+    //还在修改中
     initGameCrystal:function () {
         //模拟位置
-        var selfkingPos = {x:4,y:0};
-        var otherkingPos = {x:4,y:8};
+        var selfkingPos = {cel:4,row:0};
+        var otherkingPos = {cel:4,row:8};
+
+
         //我方水晶
         var selfking = GWPiece.initPiece(ChessTypeEnemu.CRYSTAL);
-        selfking.mapPos = selfkingPos;
         this.addChild(selfking,LocalZorderEnemu.CHESS);
         this.arrayFriendsSurvivalChess.push(selfking);//加入队友棋子
         this.tiledMapLeaveArray[selfkingPos.x][selfkingPos.y] = CampEnemu.BLACK;//映射地图
-        // selfking.joinInMap(selfkingPos.x,selfkingPos.y,ChessAnimeEnemu.FADEIN);//加入到4，0，淡出
-        this.joinPieceInCheckerboard(selfking,ChessAnimeEnemu.FADEIN);
-
+        this.joinPieceInCheckerboard(selfking,ChessAnimeEnemu.FADEIN,selfkingPos);
+        //<>
         //敌方水晶
         var otherking = GWPiece.initPiece(ChessTypeEnemu.CRYSTAL);
-        otherking.mapPos = otherkingPos;
         this.addChild(otherking,LocalZorderEnemu.CHESS);
         this.arrayEnemySurvivalChess.push(otherking);//加入敌方棋子
         this.tiledMapLeaveArray[otherkingPos.x][otherkingPos.y] = CampEnemu.WHITE;
-        // otherking.joinInMap(otherkingPos.x,otherkingPos.y,ChessAnimeEnemu.FADEIN);
-        this.joinPieceInCheckerboard(otherking,ChessAnimeEnemu.FADEIN);
+        this.joinPieceInCheckerboard(otherking,ChessAnimeEnemu.FADEIN,otherkingPos);
         //颜色设置
         otherking.setColor(cc.color(100,100,100));
     },
-
-
-
     /**
      *  棋子加入到棋盘中：
      * ID 棋子ID，X要加入的棋盘位置，Y要加入的棋盘位置
@@ -640,21 +585,18 @@ var GWCheckerboard = cc.TMXTiledMap.extend({
     //     this.tiledMapLeaveArray[pos.x][pos.y] = CampEnemu.BLACK;//映射地图
     //     piece.joinInMap(pos.x,pos.y,ChessAnimeEnemu.FADEIN);//加入到4，0，淡出
     // },
-
-
     /**
      *  棋子加入到棋盘中：
      * piece 要加入的棋子
      * animType 要选用的动画类型 ChessAnimeEnemu
      */
     //加入到棋盘中某位置
-    joinPieceInCheckerboard:function (piece,animType) {
-        piece.pickDown();//本身先还原
+    joinPieceInCheckerboard:function (piece,animType,result) {
+        piece.pickDown();//本身先还原//防止存在放大等
+        piece.setMapPos(result.cel,result.row);
         this.addChild(piece,LocalZorderEnemu.CHESS);//加入到棋盘中
-        // var size = MAPSH.getTileSize();
         var size = this.getTileSize(); //50
         var rect = this.tiledMapRectArray[piece.mapPos.y][piece.mapPos.x];
-
         //获得位置
         var p = cc.p(
             rect.x + piece.anchorX * size.width,
@@ -696,7 +638,6 @@ var GWCheckerboard = cc.TMXTiledMap.extend({
                 break;
         }
     },
-
     //加入到棋盘中某位置
     movePieceInCheckerboard:function (piece,animType,result) {
         piece.pickDown();//本身先还原
@@ -708,7 +649,6 @@ var GWCheckerboard = cc.TMXTiledMap.extend({
             rect.y + piece.anchorY * size.height
         )
         this.tiledMapLeaveArray[piece.mapPos.x][piece.mapPos.y] = CampEnemu.NONE;
-
         var duration = 0.5;//播放时间
         var move = null;//移动进入
         if(animType == ChessAnimeEnemu.FADEIN){//选取动画类型
@@ -731,18 +671,60 @@ var GWCheckerboard = cc.TMXTiledMap.extend({
         var localZor = LocalZorderEnemu.CHESS -1 - piece.mapPos.y;
         piece.setLocalZOrder(localZor);
     },
-
-
+    //加入到棋盘中某位置
+    /**
+     * operatePieceInCheckerboard 操作棋子在甲板上
+     * type     操作类型 0join 1move
+     * piece    需要移动的棋子
+     * animType 动画类型 ChessAnimeEnemu
+     * result   需要执行的结果（多为结构体直接包含）
+     * */
+    operatePieceInCheckerboard:function (type,piece,animType,result) {
+        piece.pickDown();//本身先还原//防止存在放大、染色等
+        piece.setMapPos(result.cel,result.row);
+        //
+        // 视图部分
+        //
+        this.addChild(piece,LocalZorderEnemu.CHESS);//加入到棋盘中
+        let localZor = LocalZorderEnemu.CHESS -1 - piece.mapPos.y;
+        piece.setLocalZOrder(localZor);//渲染层级修改
+        //
+        // //计算位置
+        let size = this.getTileSize(); //50
+        let rect = this.tiledMapRectArray[piece.mapPos.y][piece.mapPos.x];//取出对应rect
+        let p = cc.p(rect.x + piece.anchorX * size.width, rect.y + piece.anchorY * size.height);
+        //动画执行
+        piece.runAnimaTypeAction(animType,p);
+        //
+        //  数据部分
+        //  修改映射
+        //
+        this.tiledMapLeaveArray[piece.mapPos.x][piece.mapPos.y] = piece.campType;//映射地图
+        // piece.StateSummoning = SummoningStateEnemu.inCheckerboard;//召唤状态
+        this.pieceJoinCamp(piece);
+    },
     //棋子加入棋盘 -多用于召唤
     joinPiecesInChess:function(data,result){
-        var chess = new GWMonster(data);
-        chess.setMapPos(result.cel,result.row);
-        chess.campType = this.campType;// <配置 ***  这里可能逻辑有问题>
-        this.joinPieceInCheckerboard(chess,ChessAnimeEnemu.FADEIN);
+        var piece = new GWMonster(data);
+        // piece.setMapPos(result.cel,result.row);
+        piece.campType = this.campType;// <配置 ***  这里可能逻辑有问题>
+        this.joinPieceInCheckerboard(piece,ChessAnimeEnemu.FADEIN,result);
     },
-
-
     movePiecesInChess:function (piece,result) {
         this.movePieceInCheckerboard(piece,ChessAnimeEnemu.MOVE,result);
+    },
+    //阵营修改-以后可能存在其他阵营:类似中立，类似抢夺等等
+    pieceJoinCamp:function (piece) {
+        switch (piece.campType) {
+            case CampEnemu.BLACK :
+                this.arrayFriendsSurvivalChess.push(piece);//加入队友棋子
+                break;
+            case CampEnemu.WHITE :
+                this.arrayEnemySurvivalChess.push(piece);
+                break;
+            default:
+                this.arrayFriendsSurvivalChess.push(piece);
+                break;
+        }
     }
 });

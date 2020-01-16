@@ -32,7 +32,6 @@ var SummoningStateEnemu = {
 
 //棋子出现动画类型
 var ChessAnimeEnemu = {
-
     MOVE     :"move",    // 移动进入
     FADEIN   :"FADEIN",  // 淡出
 };
@@ -59,12 +58,12 @@ var GWPiece = cc.Sprite.extend({
     chessID         :-99999,
 
     movingDistance  :1,//移动范围
-    movingDirection :[1,1,1,1,0,0,0,0],//移动8方向
+    movingDirection :[1,1,1,1,1,1,1,1],//移动8方向
 
     summonDistance  :1,//召唤范围
     summonDirection :[1,1,1,1,0,0,0,0],//召唤8方向
 
-    StateSummoning  :SummoningStateEnemu.inHand,        //召唤状态（当前在手中、还是在棋盘上、未来可能有更多分类）
+    // StateSummoning  :SummoningStateEnemu.inHand,        //召唤状态（当前在手中、还是在棋盘上、未来可能有更多分类）
     enlargeCoefficient:1.1,                             //缩放比例
 
     defultColor     :null,                              //默认颜色，用于取消选中时找回
@@ -101,13 +100,10 @@ var GWPiece = cc.Sprite.extend({
     //     }
     //     return piece;
     // },
-
-
     /**
      *  操作fun
      *
      * */
-
     //选中棋子
     pickUp:function(){
         this.setScale(this.enlargeCoefficient);
@@ -116,7 +112,6 @@ var GWPiece = cc.Sprite.extend({
         this.setColor(cc.color(241,234,219));
         this._isPickUp = true;
     },
-
     //放下棋子
     pickDown:function(){
         this.setColor(this.defultColor);
@@ -124,7 +119,6 @@ var GWPiece = cc.Sprite.extend({
         this.setOpacity(255);
         this._isPickUp = false;
     },
-
 
     //可移动区域
     //获得可移动点数组
@@ -185,8 +179,6 @@ var GWPiece = cc.Sprite.extend({
         return incrementValue;
     },
 
-
-
     //可召唤区域
     //获得可召唤点
     getSummonRange:function(){
@@ -246,14 +238,11 @@ var GWPiece = cc.Sprite.extend({
         return incrementValue;
     },
 
-
     //获取棋子移动规则
     // getChessMoveMobile:function(){
-
         /*
         *  这里的循环大小 7、8应该要通过map获得
         * */
-
         // var incrementValue = [];
         // var selfpoint = {x:this.chessInMapY,y:this.chessInMapX};//当前位置
         // //步法规则
@@ -327,9 +316,6 @@ var GWPiece = cc.Sprite.extend({
         // return  result;
     // },
 
-
-
-
     setMapPos:function(pos,y){
         var movePos = {x:0,y:0};
         if( y === undefined){
@@ -341,8 +327,6 @@ var GWPiece = cc.Sprite.extend({
         // this.chessInMapX
         this.mapPos = movePos;
     },
-
-
 
     // // 移动棋子在Map中到pos位置
     // moveInMap:function(pos,y){
@@ -505,15 +489,9 @@ var GWPiece = cc.Sprite.extend({
     //     this.mapPos = movePos;
     // },
 
-
-
-
-
-
     // setChessInMapY:function (value) {
     //
     // },
-
     lookUpCard:function () {
         // this.addChild(Card);
         // Card.setPosition(0,0);
@@ -523,22 +501,43 @@ var GWPiece = cc.Sprite.extend({
             this.myCard = new GWCard();
         }
         return this.myCard;
+    },
+    /**
+     *  根据animType类型执行动画
+     *  animType    动画类型    ChessAnimeEnemu
+     *  point       动画执行位置
+     * */
+    runAnimaTypeAction:function(animType,point){
+        let p = point;
+        let duration = 0.5;//配置获得
+        let admin = null;//执行动画声明//移动进入
+        //选取动画类型
+        switch (animType) {
+            case ChessAnimeEnemu.FADEIN:
+                this.setOpacity(0);
+                this.setPosition(p);
+                admin = cc.fadeIn(duration * 3)
+                //在棋子中加入粒子动画-以后可以改成，对应棋子有对应的粒子，业务上类似于出场动画的概念
+                //获取粒子文件
+                let particleA = new cc.ParticleSystem(res.particle_blackFire);
+                this.addChild(particleA,999);//在棋子上加入粒子效果
+                particleA.setAnchorPoint(0.5,0.5);
+                particleA.setPosition(this.width/2, this.height/2 -10);
+                break;
+            default:
+                admin = cc.moveTo(duration, p);
+                break;
+        }
+        this.runAction(admin);//*********播放完要移除//查看移除语句是否补齐
     }
-
-
-
 });
-
-
 
 //工厂模式-
 //根据ID去分拣类
 //0-20000为建筑棋子，20000以上为怪物棋子
 GWPiece.initPiece = function(chessID){
-
     var piece = null;
     var pieceName = "";
-
     //通过id进行Data绑定
     //需要完成 ：构造，data绑定，图片的Anchor
     if(chessID >= 0){
@@ -548,11 +547,6 @@ GWPiece.initPiece = function(chessID){
             //
             piece = new GWBuilding(pieceName);
             piece.setAnchorPoint(0.5,0);//默认修改瞄点
-
-
-
-
-
         }else{//怪物棋子类
             switch (chessID) {
                 case 20001:
