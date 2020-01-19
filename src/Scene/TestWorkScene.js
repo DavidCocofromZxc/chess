@@ -83,7 +83,7 @@ var TestWorkLayer = BaseLayer.extend({
     },
     //加载棋盘
     loadCheckerboard:function () {
-        var node = new GWMatchCheckerboard();
+        let node = new GWMatchCheckerboard();
         this.addChild(node,LocalZorderEnemu.MAP);
         node.setAnchorPoint(0,0);
         node.setPosition(   (cc.winSize.width - node.width)/2,
@@ -204,7 +204,7 @@ var TestWorkLayer = BaseLayer.extend({
         //绑定取消事件
         hand.cancelSeleCard = function () {
             cc.log("cancelSeleCard");
-            this.checkerboard.cancelPickUpCardInHand();
+            // this.checkerboard.cancelPickUpCardInHand();
         }.bind(this);
         this.ourCardsHandBox = hand;
 
@@ -263,14 +263,36 @@ var TestWorkLayer = BaseLayer.extend({
      /**
      *  delegate 相关
      */
-    //棋盘 delegate
-    //发起召唤的回调
+    //棋盘 delegate //发起召唤的回调
+
     eventTouchSummonChessStartAction:function(data){
         //法力消耗判断
         let bool = this.ourEnergy.subtractPowerCount(data.energy);
         let str = bool?"你消耗了"+ data.energy +"点能量":"你的能量不足";
         this.sysMailbox.sendMessage(str);
         return bool;
+    },
+    //触摸事件 - 选中棋子
+    // ***
+    eventTouchChessAction:function(state,obj){
+        if(state == 1){
+            switch (obj.pieceType) {
+                case  PieceTypeEnemu.BASE:
+                    cc.log(state,obj);
+                    break;
+                case  PieceTypeEnemu.BUILDING:
+                    cc.log(state,obj);
+                    break;
+                case  PieceTypeEnemu.MONSTER:
+                    cc.log(state,obj);
+                    this.showLookCard(null);
+                    break;
+                default:
+                    break;
+            }
+        }else{
+            cc.log("收起");
+        }
     },
     //召唤结束的回调
     eventTouchSummonChessEndAction:function(state,data){

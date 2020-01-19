@@ -110,7 +110,7 @@ var GameLayer = BaseLayer.extend({
     },
     //加载棋盘
     loadCheckerboard:function () {
-        var node = new GWGameCheckerboard();
+        let node = new GWGameCheckerboard();
         this.addChild(node,LocalZorderEnemu.MAP);
         node.setAnchorPoint(0,0);
         node.setPosition(   (cc.winSize.width - node.width)/2,
@@ -220,8 +220,7 @@ var GameLayer = BaseLayer.extend({
         var sideWidth = 20; //添加边距
         var hand = new GWCardsHandBox();//ancher 0,1    //透明手牌区域，常用于己方。
         this.addChild(hand,LocalZorderEnemu.UI);
-        hand.setPosition(   this.checkerboard.x - sideWidth,
-                            this.checkerboard.y);
+        hand.setPosition(this.checkerboard.x - sideWidth, this.checkerboard.y);
         hand.setContentSize(this.checkerboard.width + 2*sideWidth,100);
         //绑定 手牌中的选卡选中事件
         hand.selectCard = function(data){
@@ -365,14 +364,34 @@ var GameLayer = BaseLayer.extend({
     /**
      *  delegate 相关
      */
-    //棋盘 delegate
-    //发起召唤的回调
+    // 棋盘 delegate //发起召唤的回调
     eventTouchSummonChessStartAction:function(data){
         // //法力消耗判断
         let bool = this.ourEnergy.subtractPowerCount(data.energy);
         let str = bool?"你消耗了"+ data.energy +"点能量":"你的能量不足";
         this.sysMailbox.sendMessage(str);
         return bool;
+    },
+    // *** 触摸事件 - 选中棋子
+    eventTouchChessAction:function(state,obj){
+        if(state == 1){
+            switch (obj.pieceType) {
+                case  PieceTypeEnemu.BASE:
+                    cc.log(state,obj);
+                    break;
+                case  PieceTypeEnemu.BUILDING:
+                    cc.log(state,obj);
+                    break;
+                case  PieceTypeEnemu.MONSTER:
+                    cc.log(state,obj);
+                    this.showLookCard(null);
+                    break;
+                default:
+                    break;
+            }
+        }else{
+            cc.log("收起");
+        }
     },
     //召唤结束的回调
     eventTouchSummonChessEndAction:function(state,data){
