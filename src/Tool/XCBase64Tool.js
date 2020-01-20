@@ -1,3 +1,9 @@
+
+
+/**
+ *  加密类
+ *
+ * */
 var XCBase64 =
     {
         _keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",

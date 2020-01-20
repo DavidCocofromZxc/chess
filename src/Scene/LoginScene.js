@@ -17,7 +17,7 @@ var LoginLayer = cc.Layer.extend({
         this.loginBmob();//用户登录bmob
         //ctor
         this._super();
-        this.loadUI();
+        // this.loadUI();
         return true;
     },
     loadUI:function () {
@@ -59,13 +59,15 @@ var LoginLayer = cc.Layer.extend({
         menu.runAction(fadeIn);
     },
     loginBmob:function(){
+        var self = this;
         Bmob.initialize("ef0729f131d45699c3173d3fa16fe307", "05d0be62242c7a63ddcb2566253eaefd");
         Bmob.User.login('admin','12345').then(res => {
-            console.log(res)
+            console.log("bmob 登录成功",res);
             // XCData.getInstance();//初始化
             XCDATA();
+            self.loadUI();
         }).catch(err => {
-            console.log(err)
+            console.log("bmob 加载失败",err);
         });
     },
     //Actions

@@ -1,61 +1,31 @@
 
 
-// var MonsterData;
-//
-// var XCData = {
-//
-//
-//
-// };
-
-
-
+/**
+ * 数据类
+ *
+ * */
 let EnemuDataUrl = {
     monsterData     :   0,
     monsterUIData   :   1,
 };
 
-
-// var XCDATA = function() {
-//
-//     this.MONSTER_DATATABLE = [];
-//     this.MONSTER_UITABLE   = [];
-//
-//     // Bmob
-//     const monsterDataQuery = Bmob.Query("monsterData");
-//     monsterDataQuery.find().then(res => {
-//         this.MONSTER_DATATABLE = res;
-//     });
-//
-//     const monsterUIDataQuery = Bmob.Query("monsterUI");
-//     monsterUIDataQuery.find().then(res => {
-//         this.MONSTER_UITABLE = res;
-//     });
-//
-// };
-
-//
 function XCDATA(){
-
     // 如果已存在对应的实例
     if(typeof XCDATA.instance === 'object'){
-        return XCDATA.instance
+        return XCDATA.instance;
     }
-
+    //
     this.MONSTER_DATATABLE = [];
     this.MONSTER_UITABLE   = [];
-
     //Bmob
     const monsterDataQuery = Bmob.Query("monsterData");
     monsterDataQuery.find().then(res => {
         this.MONSTER_DATATABLE = res;
     });
-
     const monsterUIDataQuery = Bmob.Query("monsterUI");
     monsterUIDataQuery.find().then(res => {
         this.MONSTER_UITABLE = res;
     });
-
     // XCDATA
     XCDATA.findMonsterData = function(objectID){
         var monsterData = null;
@@ -103,57 +73,5 @@ function XCDATA(){
 
     // 缓存
     XCDATA.instance = this;
-
-    return this
+    return this;
 };
-
-
-
-
-
-// var XCData = ( function(){
-//         var unique;
-//         // var MonsterData;
-//
-//         function getInstance(){
-//             if( unique === undefined ){
-//                 unique = new Construct();
-//             }
-//             return unique;
-//         }
-//
-//         function Construct(){
-//             // ... 生成单例的构造函数的代码
-//             // this.MonsterData = Bmob.Query("monsterData");
-//         }
-//
-//
-//
-//
-//         return {
-//             getInstance : getInstance
-//         }
-//     }
-// )();
-
-
-
-//
-// var XCData = cc.Class.extend({
-//     // var unit :null;
-//     unique : null,
-//     // fun
-//     // ctor:
-//     ctor:function (){
-//         this.
-//     },
-//
-//
-//     getInstance:function () {
-//         if( unique === undefined ){
-//             unique = new XCData();
-//         }
-//         return unique;
-//     },
-//
-// });

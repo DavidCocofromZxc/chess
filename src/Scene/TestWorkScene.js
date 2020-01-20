@@ -179,13 +179,14 @@ var TestWorkLayer = BaseLayer.extend({
         //
         var ourEnergy = new GWEnergyBox(10);
         this.addChild(ourEnergy,LocalZorderEnemu.UI);
-        ourEnergy.setPosition(this.checkerboard.x + this.checkerboard.width,this.checkerboard.y);
+        ourEnergy.setAnchorPoint(1,0)
+        ourEnergy.setPosition(this.checkerboard.x,this.checkerboard.y);
         this.ourEnergy = ourEnergy;
         //
         var otherEnergy = new GWEnergyBox(10);
         this.addChild(otherEnergy,LocalZorderEnemu.UI);
-        otherEnergy.setAnchorPoint(1,1)
-        otherEnergy.setPosition( this.checkerboard.x , this.checkerboard.y + this.checkerboard.height);
+        otherEnergy.setAnchorPoint(0,1)
+        otherEnergy.setPosition( this.checkerboard.x + this.checkerboard.width, this.checkerboard.y + this.checkerboard.height);
         this.otherEnergy = otherEnergy;
     },
     //加载手牌区域
@@ -239,7 +240,7 @@ var TestWorkLayer = BaseLayer.extend({
         card.setAnchorPoint(0,0);
         this.lookCard = card;
         //
-        var data = XCDATA.findMonsterData(model.objectId);
+        let data = XCDATA.findMonsterData(model.objectId);
         card.changeUiData(data,model);//设置数据
         this.checkerboard.pickUpDataInHand(data);//选卡传入
         //

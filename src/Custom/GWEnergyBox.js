@@ -9,24 +9,19 @@
 
 
 var GWEnergyBox = ccui.Layout.extend({
-
-
     initPowerCount  : 1, //默认初始法力值
     maxPowerCount   : 10,//最大法力值
-
-    powerCount      : 0, //法力计数
-
+    powerCount      : 0, //法力计数//初始0
     ctor: function(count) {
         this.initPowerCount = 1;
         this.maxPowerCount  = 10;
         this.powerCount     = 0;
-
-        var pCount = count||this.initPowerCount;//默认1点法力初始化
+        let pCount = count||this.initPowerCount;//默认1点法力初始化
 
         this._super();
         this.setAnchorPoint(0,0);
         this.setLayoutType(ccui.Layout.LINEAR_VERTICAL);
-        //高亮
+        // //高亮
         // this.setBackGroundColorType(ccui.Layout.BG_COLOR_SOLID);
         // this.setBackGroundColor(cc.color(0,200,0));
         // this.setBackGroundColorOpacity(255 *0.5);
@@ -70,5 +65,4 @@ var GWEnergyBox = ccui.Layout.extend({
         this.width = hand.width;
         this.height = (hand.height + 2*jw) * this.powerCount;
     },
-
 });

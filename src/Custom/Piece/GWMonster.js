@@ -11,7 +11,7 @@
 var GWMonster = GWPiece.extend({
 
     //基础模型
-    model           : null,
+    // model           : null,
     //动画帧
     framesUp        : [],
     framesDown      : [],
@@ -25,40 +25,49 @@ var GWMonster = GWPiece.extend({
     currentAttackTimes     :0, //当前剩余攻击次数
 
     ctor: function (model,fileName,rect,rotated) {
-
-        this.model          = null;
+        // this.model          = null;
         this.framesUp       = [];
         this.framesDown     = [];
         this.framesLeft     = [];
         this.framesRight    = [];
         this.framesDefult   = [];
-
         this.roundMaxMoveTimes     = 1;
         this.roundMaxAttackTimes   = 1;
         this.currentMoveTimes      = 0;
         this.currentAttackTimes    = 0;
+        // var monsterName = "" //+ chessID;
+        // if(model != null || model !== undefined){
+        //     monsterName = "" + model.ID;
+        //     this.model = model;
+        //     this.roundMaxMoveTimes = model.moveTimes;
+        //     this.roundMaxAttackTimes = model.attackTimes;
+        //     this.currentMoveTimes =  this.roundMaxMoveTimes;
+        //     this.currentAttackTimes =  this.roundMaxAttackTimes;
+        // }
+        // this._super("#monster" + monsterFileName + "_1.png",rect,rotated);
 
-        var monsterName = "" //+ chessID;
-        if(model != null || model !== undefined){
-            monsterName = "" + model.ID;
-            this.model = model;
-            this.roundMaxMoveTimes = model.moveTimes;
-            this.roundMaxAttackTimes = model.attackTimes;
-            this.currentMoveTimes =  this.roundMaxMoveTimes;
-            this.currentAttackTimes =  this.roundMaxAttackTimes;
+        // if()
+
+
+
+        //棋子
+        if(model == null || model === undefined){
+            this._super(null,res.defaultMonster,rect,rotated);
+        }else{
+            this._super(model,"res/piece/monster/qz"+model.ID+".png",rect,rotated);
         }
+        //部分数据初始化&修改
+        this.enlargeCoefficient = 2;//缩放比例//修改父类数据
+        this.pieceType = PieceTypeEnemu.MONSTER;
+        this.roundMaxMoveTimes = this.model.moveTimes;
+        this.roundMaxAttackTimes = this.model.attackTimes;
+        this.currentMoveTimes =  this.roundMaxMoveTimes;
+        this.currentAttackTimes =  this.roundMaxAttackTimes;
+        //动画
         var monsterFileName = "26";
         var plistName = "res/piece/monster" + monsterFileName + ".plist";
         var pngName = "res/piece/monster" + monsterFileName + ".png";
         cc.spriteFrameCache.addSpriteFrames(plistName,pngName);
-        // this._super("#monster" + monsterFileName + "_1.png",rect,rotated);
-        if(monsterName == ""){
-            this._super(res.defaultMonster,rect,rotated);
-        }else{
-            this._super("res/piece/monster/qz"+model.ID+".png",rect,rotated);
-        }
-        this.enlargeCoefficient = 2;//缩放比例
-        this.pieceType = PieceTypeEnemu.MONSTER;
         this.loadAnimation(monsterFileName);
         return true;
     },

@@ -14,7 +14,7 @@ var GWCheckerboard = cc.TMXTiledMap.extend({
     campType                    : CampEnemu.BLACK,   //当前阵营
     tmxBgLayer                  : null, //bg 层
     selectChess                 : null, //选中棋子
-    selectHandCardData          : null, //选中牌data
+    selectHandCardData          : null, //选中牌data -用于沟通手牌和棋盘的传递
     //
     tiledMapRectArray           : [],   //地图rect数组，存储瓦片的rect信息
     tiledMapLeaveArray          : [],   //地图映射数组，存储瓦片的占用状态，有无棋子等等
@@ -430,9 +430,14 @@ var GWCheckerboard = cc.TMXTiledMap.extend({
     //触摸事件 - 点击空白回调
     //***
     eventTouchChessAction:function(state){
-        //state -1 意味着取消点击，其他则是PieceTypeEnemu
-        cc.log("无继承 ",state);
+        cc.log("无继承 ",state);     //state -1 意味着取消点击，其他则是PieceTypeEnemu
     },
+    //***触摸事件 -手牌中选中手牌
+    eventTouchPickUpCardInHandAction:function (chess) {
+        cc.log("无继承，选中牌",chess);
+    },
+
+
     //触摸事件 - 召唤棋子结束回调
     eventTouchSummonChessEndAction:function(state){
     },
@@ -447,9 +452,7 @@ var GWCheckerboard = cc.TMXTiledMap.extend({
     eventTouchBlankAction:function(){
         cc.log("无继承 点击棋盘空白处");
     },
-    //触摸事件 -手牌中选中手牌
-    eventTouchPickUpCardInHandAction:function (chess) {
-    },
+
     eventClickOutside:function(){
         cc.log("无继承 点击棋盘外");
     },

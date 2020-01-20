@@ -57,3 +57,8 @@ I'm making a chess game with cocos-js. You can link me QQ num 670633205.
     3.召唤卡牌时，左侧的法力值闪烁以提示用户当前费用更好，可否召唤颜色不同。
     4.在喵点时，最好有提示框。
     5.卡牌上应该有费用、攻击、移动等图标。
+    
+    
+1.19
+    GameScene做场景类的开发
+    TestScene做棋盘类的开发

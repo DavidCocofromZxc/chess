@@ -49,8 +49,6 @@ var XCLog = function (strobj,obj) {
         cc.log("-------------------------------------------------------------------------------棋盘专用打印类");
     }
 };
-
-
 //返回字符串宽度
 var XCReturnStringWidth = function (text,fontName, fontSize,maxWidth){
 
@@ -78,7 +76,6 @@ var XCReturnStringWidth = function (text,fontName, fontSize,maxWidth){
         return {w:0,h:0,str:text};
     }
 };
-
 //打印 数据信息
 var XCLookModel = function (obj) {
     if(obj === undefined){
@@ -101,7 +98,6 @@ var XCLookModel = function (obj) {
         cc.log("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<Model专用打印类");
     }
 };
-
 var XCLogDirectionArray = function(array){
       if(array.length !== 8){
           cc.log("error XCLogDirectionArray func");
@@ -115,6 +111,149 @@ var XCLogDirectionArray = function(array){
           cc.log("|",array[5],array[1],array[7],"|");
       }
 };
+
+
+//
+// //检查合法性
+// var XCCheckModelLegal = function (model) {
+//     if(model == null){
+//        cc.log("model 不合法！");
+//        return false;
+//     }
+//     if(model.objectId == null){
+//         cc.log("objectId 不合法！");
+//     return false;
+//     }
+//     if(model.ID == null){
+//         cc.log("ID 不合法！");
+//         return false;
+//     }
+//     if(model.name == null){
+//         cc.log("name 不合法！");
+//         return false;
+//     }
+//     if(model.dsc == null){
+//         cc.log("dsc 不合法！");
+//         return false;
+//     }
+//     if(model.specials == null){
+//         cc.log("specials 不合法！");
+//         return false;
+//     }
+//     if(model.energy == null){
+//         cc.log("specials 不合法！");
+//         return false;
+//     }
+//     if(model.health == null){
+//         cc.log("specials 不合法！");
+//         return false;
+//     }
+//     if(model.attack == null){
+//         cc.log("specials 不合法！");
+//         return false;
+//     }
+//     if(model.attackTimes == null || model.attackTimes == []){
+//         cc.log("specials 不合法！");
+//         return false;
+//     }
+//     if(model.attackRange == null || model.attackRange == []){
+//         cc.log("specials 不合法！");
+//         return false;
+//     }
+//     if(model.movement == null ){
+//         cc.log("specials 不合法！");
+//         return false;
+//     }
+//     if(model.moveTimes == null ){
+//         cc.log("specials 不合法！");
+//         return false;
+//     }
+//     if(model.moveDirection == null || model.attackRange == []){
+//         cc.log("specials 不合法！");
+//         return false;
+//     }
+//     if(model.summonRange == null ){
+//         cc.log("specials 不合法！");
+//         return false;
+//     }
+//     if(model.summonDirection == null || model.attackRange == []){
+//         cc.log("specials 不合法！");
+//         return false;
+//     }
+//     return true;
+// };
+//
+// //检查合法性
+// var XCDefaultModel = function () {
+//     var model = new cc.object();
+//     model
+//
+//     if(model == null){
+//         cc.log("model 不合法！");
+//         return false;
+//     }
+//     if(model.objectId == null){
+//         cc.log("objectId 不合法！");
+//         return false;
+//     }
+//     if(model.ID == null){
+//         cc.log("ID 不合法！");
+//         return false;
+//     }
+//     if(model.name == null){
+//         cc.log("name 不合法！");
+//         return false;
+//     }
+//     if(model.dsc == null){
+//         cc.log("dsc 不合法！");
+//         return false;
+//     }
+//     if(model.specials == null){
+//         cc.log("specials 不合法！");
+//         return false;
+//     }
+//     if(model.energy == null){
+//         cc.log("specials 不合法！");
+//         return false;
+//     }
+//     if(model.health == null){
+//         cc.log("specials 不合法！");
+//         return false;
+//     }
+//     if(model.attack == null){
+//         cc.log("specials 不合法！");
+//         return false;
+//     }
+//     if(model.attackTimes == null || model.attackTimes == []){
+//         cc.log("specials 不合法！");
+//         return false;
+//     }
+//     if(model.attackRange == null || model.attackRange == []){
+//         cc.log("specials 不合法！");
+//         return false;
+//     }
+//     if(model.movement == null ){
+//         cc.log("specials 不合法！");
+//         return false;
+//     }
+//     if(model.moveTimes == null ){
+//         cc.log("specials 不合法！");
+//         return false;
+//     }
+//     if(model.moveDirection == null || model.attackRange == []){
+//         cc.log("specials 不合法！");
+//         return false;
+//     }
+//     if(model.summonRange == null ){
+//         cc.log("specials 不合法！");
+//         return false;
+//     }
+//     if(model.summonDirection == null || model.attackRange == []){
+//         cc.log("specials 不合法！");
+//         return false;
+//     }
+//     return true;
+// }
 
 /**
  *

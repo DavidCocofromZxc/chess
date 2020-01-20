@@ -77,3 +77,72 @@ var GWMonsterData = cc.Class.extend({
         this.summonDirection = obj.summonDirection || [1, 1, 1, 1, 0, 0, 0, 0];
     },
 });
+
+//检查合法性
+GWMonsterData.checkModelLegal = function (model) {
+    if(model == null || !( typeof model === "object") ){
+        cc.log("model 不合法！");
+        return false;
+    }
+    if(model.objectId == null){
+        cc.log("objectId 不合法！");
+        return false;
+    }
+    if(model.ID == null){
+        cc.log("ID 不合法！");
+        return false;
+    }
+    if(model.name == null){
+        cc.log("name 不合法！");
+        return false;
+    }
+    if(model.dsc == null){
+        cc.log("dsc 不合法！");
+        return false;
+    }
+    if(model.specials == null){
+        cc.log("specials 不合法！");
+        return false;
+    }
+    if(model.energy == null){
+        cc.log("energy 不合法！");
+        return false;
+    }
+    if(model.health == null){
+        cc.log("health 不合法！");
+        return false;
+    }
+    if(model.attack == null){
+        cc.log("attack 不合法！");
+        return false;
+    }
+    if(model.attackTimes == null ){
+        cc.log("attackTimes 不合法！");
+        return false;
+    }
+    if(model.attackRange == null ){
+        cc.log("attackRange 不合法！");
+        return false;
+    }
+    if(model.movement == null ){
+        cc.log("movement 不合法！");
+        return false;
+    }
+    if(model.moveTimes == null ){
+        cc.log("moveTimes 不合法！");
+        return false;
+    }
+    if(model.moveDirection == null || model.moveDirection == []){
+        cc.log("moveDirection 不合法！");
+        return false;
+    }
+    if(model.summonRange == null || model.summonRange == []){
+        cc.log("summonRange 不合法！");
+        return false;
+    }
+    if(model.summonDirection == null || model.summonDirection == []){
+        cc.log("summonDirection 不合法！");
+        return false;
+    }
+    return true;
+};
