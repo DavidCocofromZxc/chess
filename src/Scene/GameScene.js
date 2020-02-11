@@ -28,9 +28,7 @@ let GameStageStateEnemu = {
 
     oppositeRound       :   40,
     stagnation          :   -99,
-
 };
-
 
 var GameLayer = BaseLayer.extend({
     // var GameLayer = cc.Layer.extend({
@@ -49,11 +47,9 @@ var GameLayer = BaseLayer.extend({
     ourEnergy           :   null,   //我方能量槽
     otherEnergy         :   null,   //对方能量槽
 
-
     gameStageState      :   GameStageStateEnemu.stagnation,//
     lookCard            :   null,
     isAllowControl      :   false,  //控制是否允许点击
-
 
     currentRoundSurplusTime :   10,     //当前决策时间
     currentCountdownTime    :   10,     //剩下倒计时时间
@@ -97,7 +93,6 @@ var GameLayer = BaseLayer.extend({
         this.loadEnergy();          //构造法力
         this.loadHandCard();        //构造手牌区
         this.loadGroup();           //构造卡组
-
 
         //方便测试
         // this.registerTouchEvent();

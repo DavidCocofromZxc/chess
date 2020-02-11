@@ -130,7 +130,9 @@ var TestWorkLayer = BaseLayer.extend({
     //加载双方卡组
     loadGroup:function(){
         //模拟数据流
-        var ourflow = "OXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2Nlg=";
+        //MTAwMjEwMDIxMDAy
+        //OXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2Nlg
+        var ourflow = "MTAwMi0xMDAyLTEwMDItMTAwMg==";
         //我方卡组
         var ourGroup  = new GWCardGroupSelf(ourflow);
         this.addChild(ourGroup,LocalZorderEnemu.UI);
@@ -139,13 +141,13 @@ var TestWorkLayer = BaseLayer.extend({
             this.checkerboard.y);
         //注册抽卡完成时候的回调事件
         ourGroup.pumpCardEventAction = function (cardID) {
-            var cardData = XCDATA.findMonsterData(cardID);  //找到对应Data
+            let cardData = XCDATA.findMonsterData(cardID);  //找到对应Data
             this.ourCardsHandBox.addCard(cardData);         //置入手牌中
         }.bind(this);
         this.ourCardGroup = ourGroup;
 
         //模拟数据流
-        var otherflow = "OXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2Nlg=";
+        var otherflow = "MTAwMi0xMDAyLTEwMDItMTAwMg==";
         //对方卡组
         var otherCardGroup  = new GWCardGroupOther(otherflow);
         this.addChild(otherCardGroup,LocalZorderEnemu.UI);
@@ -199,7 +201,9 @@ var TestWorkLayer = BaseLayer.extend({
         hand.setContentSize(this.checkerboard.width + 2*sideWidth,100);
         //绑定 手牌中的选卡选中事件
         hand.selectCard = function(data){
-            this.showLookCard(data);
+            let model = this.showLookCard(data);
+            this.checkerboard.pickUpDataInHand(model);//选卡传入
+            XCLookModel(model);
         }.bind(this);
 
         //绑定取消事件
@@ -238,13 +242,11 @@ var TestWorkLayer = BaseLayer.extend({
         this.addChild(card,LocalZorderEnemu.CARD);
         card.setPosition(this.checkerboard.x + this.checkerboard.width + 10 ,100);
         card.setAnchorPoint(0,0);
-        this.lookCard = card;
+        this.lookCard = card;//重新记录
         //
-        let data = XCDATA.findMonsterData(model.objectId);
+        let data = XCDATA.findMonsterData(model.ID);
         card.changeUiData(data,model);//设置数据
-        this.checkerboard.pickUpDataInHand(data);//选卡传入
-        //
-        XCLookModel(model);
+        return data;// 可用可不用
     },
     //注册触摸事件
     registerTouchEvent:function(){
@@ -286,7 +288,7 @@ var TestWorkLayer = BaseLayer.extend({
                     break;
                 case  PieceTypeEnemu.MONSTER:
                     cc.log(state,obj);
-                    this.showLookCard(null);
+                    this.showLookCard(obj.dataModel);
                     break;
                 default:
                     break;

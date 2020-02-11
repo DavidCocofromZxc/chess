@@ -109,23 +109,23 @@ var ChessTypeEnemu = {
      * */
 
 
-    CRYSTAL         :10001,         // 水晶
-    BLACK_CRYSTAL   :10002,
-    SNOW            :20001,         // 小雪
+    CRYSTAL         :1000,         // 水晶
+    BLACK_CRYSTAL   :1001,
+    SNOW            :20001,         // 小雪 --其实已经废掉
 
 
     NONE            :-99999,//无类型
 
 
-    //下面无用
-
-    NONE        :"none",    // 无
-    PAWN        :"pawn",   // 兵
-    ROOK        :"rook",   // 黑车
-    KNIGHT      :"knight",   // 黑骑
-    BISHOP      :"bishop",   // 黑主教
-    KING        :"king",   // 黑皇
-    QUEEN       :"queen",   // 黑后
+    // //下面无用
+    //
+    // NONE        :"none",    // 无
+    // PAWN        :"pawn",   // 兵
+    // ROOK        :"rook",   // 黑车
+    // KNIGHT      :"knight",   // 黑骑
+    // BISHOP      :"bishop",   // 黑主教
+    // KING        :"king",   // 黑皇
+    // QUEEN       :"queen",   // 黑后
 
 };
 

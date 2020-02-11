@@ -54,7 +54,7 @@ var GWCardGroup = cc.Sprite.extend({
         if(count == 0) return;
         this.pumpingOneCardAnim(function(){
             cc.log("pumpingOneCardAnim callback");
-            var card = this.pumpingOneCard();
+            let card = this.pumpingOneCard();
             this.pumpCardEventAction(card); //调起-抽卡事件
             this.pumpingCard(count -1);
         }.bind(this));
@@ -69,7 +69,7 @@ var GWCardGroup = cc.Sprite.extend({
     // <私有>抽一张卡
     pumpingOneCard:function () {
         //抽卡动画
-        var targetCard = this.cardList.shift();             //抽出第一个元素
+        let targetCard = this.cardList.shift();             //抽出第一个元素
         this.mainLabel.string = "" + this.cardList.length;  //调整卡组总数-显示
         return targetCard;                                  //返回这张卡
     },

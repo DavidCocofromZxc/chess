@@ -31,7 +31,7 @@ function XCDATA(){
         var monsterData = null;
         for(var i = 0 ,len = this.MONSTER_DATATABLE.length; i<len ;i++){
             var obj = this.MONSTER_DATATABLE[i];
-            if(obj.objectId == objectID){
+            if(obj.ID == objectID){
                 monsterData = obj;
                 break;
             }

@@ -11,8 +11,8 @@
 
 var GWBuilding = GWPiece.extend({
 
-    ctor: function (fileName,rect,rotated) {
-        this._super(fileName,rect,rotated);
+    ctor: function (model,fileName,rect,rotated) {
+        this._super(model,fileName,rect,rotated);
         this.pieceType = PieceTypeEnemu.BUILDING;
         return true;
     },

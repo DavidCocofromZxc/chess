@@ -48,25 +48,26 @@ var GWMonster = GWPiece.extend({
 
         // if()
 
-
-
         //棋子
         if(model == null || model === undefined){
             this._super(null,res.defaultMonster,rect,rotated);
-        }else{
-            this._super(model,"res/piece/monster/qz"+model.ID+".png",rect,rotated);
+        }
+        else{
+            // this._super(model,"res/piece/monster/qz"+model.ID+".png",rect,rotated);
+            this._super(model,"res/piece/monster/qz"+"1001"+".png",rect,rotated);
+            //暂时仅有1001图片
         }
         //部分数据初始化&修改
         this.enlargeCoefficient = 2;//缩放比例//修改父类数据
         this.pieceType = PieceTypeEnemu.MONSTER;
-        this.roundMaxMoveTimes = this.model.moveTimes;
-        this.roundMaxAttackTimes = this.model.attackTimes;
+        this.roundMaxMoveTimes = this.dataModel.moveTimes;
+        this.roundMaxAttackTimes = this.dataModel.attackTimes;
         this.currentMoveTimes =  this.roundMaxMoveTimes;
         this.currentAttackTimes =  this.roundMaxAttackTimes;
         //动画
-        var monsterFileName = "26";
-        var plistName = "res/piece/monster" + monsterFileName + ".plist";
-        var pngName = "res/piece/monster" + monsterFileName + ".png";
+        let monsterFileName = "26";
+        let plistName = "res/piece/monster" + monsterFileName + ".plist";
+        let pngName = "res/piece/monster" + monsterFileName + ".png";
         cc.spriteFrameCache.addSpriteFrames(plistName,pngName);
         this.loadAnimation(monsterFileName);
         return true;

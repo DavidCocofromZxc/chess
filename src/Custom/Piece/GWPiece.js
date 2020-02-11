@@ -85,8 +85,11 @@ var GWPiece = cc.Sprite.extend({
         //     this.dataModel = model;
         // }
 
-        if(!GWMonsterData.checkModelLegal(model)){
+        cc.log(GWMonsterData.checkModelLegal(model));
 
+        if(GWMonsterData.checkModelLegal(model)){
+            this.dataModel = new GWMonsterData(model);
+            cc.log("dataModel",this.dataModel);
         }
         // return ;
 
@@ -288,27 +291,43 @@ var GWPiece = cc.Sprite.extend({
 //工厂模式-
 //根据ID去分拣类
 //0-20000为建筑棋子，20000以上为怪物棋子
-GWPiece.initPiece = function(chessID){
+GWPiece.initPiece = function(chessID,model){
     var piece = null;
-    var pieceName = "";
+    var pieceId = "";
+    var pieceModel = "";
+    cc.log(typeof chessID);
+    cc.log(chessID);
+
+    // if(model == null || (typeof model ))
+    if(typeof chessID == "number"){
+        pieceId = chessID;
+        pieceModel = XCDATA.findMonsterData(chessID);
+    }else if(typeof  chessID == "object"){
+        pieceId = chessID.ID;
+        pieceModel = chessID;
+    }
+
     //通过id进行Data绑定
     //需要完成 ：构造，data绑定，图片的Anchor
     if(chessID >= 0){
         if(chessID < 20000 ){//基础棋子类
             //
-            pieceName = "res/piece/building/"+ chessID + ".png";  //水晶//res.crystal;
+            // var pieceName = "res/piece/building/"+ pieceId + ".png";  //水晶//res.crystal;
+            // var cardData = XCDATA.findMonsterData(cardID);
+            // pieceModel =
             //
-            piece = new GWBuilding(pieceName);
+
+            piece = new GWBuilding(pieceModel,"res/piece/building/"+ pieceId + ".png");
             piece.setAnchorPoint(0.5,0);//默认修改瞄点
         }else{//怪物棋子类
             switch (chessID) {
                 case 20001:
-                    pieceName = "26";
+                    // pieceName = "26";
                     break;
                 default:
                     break;
             }
-            piece = new GWMonster(pieceName);
+            piece = new GWMonster(pieceModel,"26");
         }
     }else {
         console.log("棋子创建异常");

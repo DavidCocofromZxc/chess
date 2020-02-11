@@ -42,11 +42,11 @@ var GWCardsHandBox = ccui.Layout.extend({
     //cardUIData不存在则使用默认,isBack是否使用背面默认不用背面
     addCard:function (cardData) {
         //组合小卡url
-        var skUrl = "res/Card/Little/sk"+cardData.ID+".png"
+        let skUrl = "res/Card/Little/sk"+cardData.ID+".png"
         //获得小卡res
-        var cardUrl = (cardData === undefined || cardData == null)?res.cardHand:skUrl;
+        let cardUrl = (cardData === undefined || cardData == null)?res.cardHand:skUrl;
         //构造小卡
-        var hand = new GWHandCard(cardUrl,false);//ancher 0,1
+        let hand = new GWHandCard(cardUrl,false);//ancher 0,1
         //数据对象处理
         // var index = this.cardList.length;
         this.cardList.push({card:hand,index:0,data:cardData});//对象和数据 均放入list

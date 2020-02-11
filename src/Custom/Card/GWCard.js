@@ -191,7 +191,7 @@ var GWCard = cc.Sprite.extend({
 
     changeUiData:function(data,uiData){
 
-        var texture = cc.textureCache.addImage("res/Card/monster/gw1001.png");
+        let texture = cc.textureCache.addImage("res/Card/monster/gw" + data.ID +".png");
         this.originalPainting.setTexture(texture);
         //原画
         //Card/monster/gw1001.png
@@ -209,9 +209,9 @@ var GWCard = cc.Sprite.extend({
         //描述
         let leftSpacing         = 20;   //左侧间距
         let cardBottomHeight    = 93;   //卡底部高度 ok
-        var dscPoint    = cc.p(leftSpacing,cardBottomHeight -30);     //描述  //？30
-        var text = data.dsc;//
-        var sizeStr = XCReturnStringWidth(text,this.fontName,this.desFontSize,180);
+        let dscPoint    = cc.p(leftSpacing,cardBottomHeight -30);     //描述  //？30
+        let text = data.dsc;//
+        let sizeStr = XCReturnStringWidth(text,this.fontName,this.desFontSize,180);
         this.dscLabel.setString(sizeStr.str);
         this.dscLabel.setPosition(dscPoint.x,dscPoint.y - sizeStr.h);
     },

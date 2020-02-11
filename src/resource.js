@@ -70,16 +70,16 @@ var res = {
     kaT_FJ             : "res/Card/Base/TX_FJ.png",//反击
 
     //card原画
-    guaiwu0001          : "res/Card/monster/gw1001.png",
+    // guaiwu0001          : "res/Card/monster/gw1002.png",
     monsterDefault      : "res/Card/monster/monsterDefault.png",
 
     //小卡
     cardHandBack        : "res/Card/Little/cardHandBack.png",//小卡背
-    cardHand            : "res/Card/Little/sk1001.png",
+    cardHand            : "res/Card/Little/sk1002.png",
 
 
     //piece icon
-    crystal         : "res/piece/building/10001.png",  //水晶
+    crystal         : "res/piece/building/1000.png",  //水晶
 
 
 };
