@@ -61,8 +61,6 @@ var GWPiece = cc.Sprite.extend({
     oldLocalZOrder     :200,//用于棋子记录渲染等级，影响在场景中的覆盖等级
 
 
-
-
     dataModel       :null,
     //<<<<<<<<<<<<<<<<< 国王骰 data >>>>>>>>>>>>>>>>>>>>>>
 
@@ -73,7 +71,6 @@ var GWPiece = cc.Sprite.extend({
 
     summonDistance  :1,//召唤范围
     summonDirection :[1,1,1,1,0,0,0,0],//召唤8方向
-
 
     //<<<<<<<<<<<<<<<<< 国王骰 data >>>>>>>>>>>>>>>>>>>>>>
     //这里用fileName构造
@@ -89,9 +86,12 @@ var GWPiece = cc.Sprite.extend({
 
         if(GWMonsterData.checkModelLegal(model)){
             this.dataModel = new GWMonsterData(model);
-            cc.log("dataModel",this.dataModel);
+            // cc.log("dataModel",this.dataModel);
+            this.movingDistance = this.dataModel.movement;
+            this.movingDirection = this.dataModel.moveDirection;
+            this.summonDistance = this.dataModel.summonRange;
+            this.summonDirection = this.dataModel.summonDirection;
         }
-        // return ;
 
         this._super(fileName,rect,rotated);
         this.defultColor = this.getColor();//记录原始颜色
@@ -120,8 +120,7 @@ var GWPiece = cc.Sprite.extend({
         this._isPickUp = false;
     },
 
-    //可移动区域
-    //获得可移动点数组
+    //可移动区域 //获得可移动点数组
     getMovingRange:function(){
         var incrementValue = [];
         var selfpoint = this.mapPos;//{x:this.chessInMapX,y:this.chessInMapY};//当前位置
@@ -133,7 +132,7 @@ var GWPiece = cc.Sprite.extend({
                 var tagretY = 0;
                 //如果方向规则不同意
                 if(!this.movingDirection[j]){
-                    break;
+                    continue;
                 }
                 switch (j) {
                     case DirectionEnemu.up:

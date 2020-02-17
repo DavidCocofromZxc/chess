@@ -173,6 +173,7 @@ var GWCheckerboard = cc.TMXTiledMap.extend({
                     this.eventTouchBlankAction();//发出回调
                     return false;
                 }
+                //<移动范围已展开>
                 if(self.arrayMoveLayerInMap.length > 0 && self.selectChess != null){
                     cc.log("移动棋子");
                     if(self.resultContainsMoveLayer(result)){
@@ -191,7 +192,7 @@ var GWCheckerboard = cc.TMXTiledMap.extend({
                                 // this.eventTouchMoveChessEndAction(2,chess);
                             }
                         }else{
-                            this.eventTouchMoveChessStartAction(0);//发出开始移动的失败的回调
+                            this.eventTouchChessMoveFailAction();//发出开始移动的失败的回调
                         }
                     }
                     self.restoreScene();//还原操作
@@ -441,9 +442,9 @@ var GWCheckerboard = cc.TMXTiledMap.extend({
     //触摸事件 - 召唤棋子结束回调
     eventTouchSummonChessEndAction:function(state){
     },
-    //触摸事件 - 棋子移动开始回调
-    eventTouchMoveChessStartAction:function(state){
-
+    //触摸事件 - 棋子移动失败
+    eventTouchChessMoveFailAction:function(){
+        cc.log("无继承 棋子移动失败，移动次数用尽");
     },
     //触摸事件 - 棋子移动结束回调
     eventTouchMoveChessEndAction:function(state){
@@ -507,6 +508,7 @@ var GWCheckerboard = cc.TMXTiledMap.extend({
                 break;
             case EnemuPieceOperate.MOVE:
                 this.tiledMapLeaveArray[oldLoc.x][oldLoc.y] = CampEnemu.NONE;
+                piece.currentMoveTimes--;
                 break;
             default:
                 break;
