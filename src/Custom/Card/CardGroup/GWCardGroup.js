@@ -52,6 +52,11 @@ var GWCardGroup = cc.Sprite.extend({
     pumpingCard:function (count) {
         //递归 count 次
         if(count == 0) return;
+        //如果牌被耗尽则停止抽卡
+        if(this.cardList.length == 0){
+            this.cardExhaust();//<***>这里要加入疲劳事件
+            return;
+        }
         this.pumpingOneCardAnim(function(){
             cc.log("pumpingOneCardAnim callback");
             let card = this.pumpingOneCard();
@@ -68,6 +73,11 @@ var GWCardGroup = cc.Sprite.extend({
 
     // <私有>抽一张卡
     pumpingOneCard:function () {
+        //如果牌被耗尽则停止抽卡
+        if(this.cardList.length == 0){
+            this.cardExhaust();//<***>这里要加入疲劳事件
+            return;
+        }
         //抽卡动画
         let targetCard = this.cardList.shift();             //抽出第一个元素
         this.mainLabel.string = "" + this.cardList.length;  //调整卡组总数-显示
@@ -78,6 +88,13 @@ var GWCardGroup = cc.Sprite.extend({
     pumpCardEventAction:function (cardID) {
         cc.log("pumpCardAction:",cardID);
     },
+
+    //卡牌抽完<***>这里要加入疲劳事件
+    cardExhaust:function () {
+        //发出一个事件
+        this.mainLabel.setOpacity(0);
+        this.setOpacity(0);
+    }
 
 
 });

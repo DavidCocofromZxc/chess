@@ -2,9 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2fdf7443-8d24-419e-acd9-71236268c457" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Custom/GWPlayerController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Custom/Checkerboard/GWCheckerboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Custom/Checkerboard/GWCheckerboard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Custom/Piece/GWPiece.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Custom/Piece/GWPiece.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project.json" beforeDir="false" afterPath="$PROJECT_DIR$/project.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Custom/Card/CardGroup/GWCardGroup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Custom/Card/CardGroup/GWCardGroup.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Custom/Card/GWCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Custom/Card/GWCard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Custom/GWEnergyBox.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Custom/GWEnergyBox.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Custom/UI/GWButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Custom/GWRoundEndButton.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Scene/GameScene.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scene/GameScene.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Scene/TestWorkScene.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scene/TestWorkScene.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -24,19 +30,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Custom/GWBloodBox.js">
+        <entry file="file://$PROJECT_DIR$/src/Scene/TestWorkScene.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="22" column="12" selection-start-line="22" selection-start-column="12" selection-end-line="22" selection-end-column="12" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Custom/Checkerboard/GWGameCheckerboard.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2091">
-              <caret line="123" column="23" selection-start-line="123" selection-start-column="23" selection-end-line="123" selection-end-column="23" />
+            <state relative-caret-position="361">
+              <caret line="72" column="31" lean-forward="true" selection-start-line="72" selection-start-column="31" selection-end-line="72" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -44,55 +41,78 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Scene/GameScene.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1615">
-              <caret line="95" selection-start-line="95" selection-end-line="95" />
+            <state relative-caret-position="237">
+              <caret line="141" column="8" selection-start-line="141" selection-start-column="8" selection-end-line="149" selection-end-column="31" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Scene/TestWorkScene.js">
+        <entry file="file://$PROJECT_DIR$/src/resource.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5848">
-              <caret line="344" column="73" selection-start-line="344" selection-start-column="73" selection-end-line="344" selection-end-column="73" />
+            <state relative-caret-position="1241">
+              <caret line="73" column="59" selection-start-line="73" selection-start-column="59" selection-end-line="73" selection-end-column="59" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Custom/Checkerboard/GWCheckerboard.js">
+        <entry file="file://$PROJECT_DIR$/project.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="784">
-              <caret line="231" column="29" selection-start-line="231" selection-start-column="29" selection-end-line="231" selection-end-column="29" />
+            <state relative-caret-position="375">
+              <caret line="36" lean-forward="true" selection-start-line="36" selection-end-line="36" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Custom/Piece/GWPiece.js">
+        <entry file="file://$PROJECT_DIR$/src/Custom/GWRoundEndButton.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="183">
-              <caret line="131" column="30" selection-start-line="131" selection-start-column="30" selection-end-line="131" selection-end-column="30" />
+            <state relative-caret-position="153">
+              <caret line="9" column="32" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Custom/Data/GWMonsterData.js">
+        <entry file="file://$PROJECT_DIR$/src/Custom/GWPlayerController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="76" column="24" selection-start-line="76" selection-start-column="13" selection-end-line="76" selection-end-column="24" />
+            <state relative-caret-position="119">
+              <caret line="7" column="22" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="22" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Custom/Piece/GWMonster.js">
+        <entry file="file://$PROJECT_DIR$/src/Custom/GWEnergyBox.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="236">
-              <caret line="55" column="43" selection-start-line="55" selection-start-column="43" selection-end-line="55" selection-end-column="43" />
+            <state relative-caret-position="986">
+              <caret line="58" column="50" selection-start-line="58" selection-start-column="50" selection-end-line="58" selection-end-column="50" />
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Custom/GWMailbox.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="850">
+              <caret line="50" selection-start-line="50" selection-end-line="50" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Custom/GWMessage.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="663">
+              <caret line="39" column="4" selection-start-line="39" selection-start-column="4" selection-end-line="39" selection-end-column="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Custom/GWText.js">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -107,13 +127,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>StateSummoning</find>
-      <find>手</find>
-      <find>手牌</find>
-      <find>eventTouchSummonChessStartAction</find>
-      <find>loadCheckerboard:function () {</find>
-      <find>法力</find>
-      <find>model</find>
       <find>selectHandCardData</find>
       <find>enlargeCoefficient</find>
       <find>pieceType</find>
@@ -137,6 +150,13 @@
       <find>drawChessMovingLayer</find>
       <find>getMovingRange</find>
       <find>pickUpChessInMapPoint</find>
+      <find>eventTouchSummonChessStartAction</find>
+      <find>card.changeUiData(data,model);//设置数据</find>
+      <find>this.ourCardsHandBox.addCard(cardData);</find>
+      <find>dt</find>
+      <find>this.dt</find>
+      <find>isAllowControl</find>
+      <find>btnRound</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -153,8 +173,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/Custom/GWCard/GWCard.js" />
-        <option value="$PROJECT_DIR$/src/zzz/Chess.js" />
         <option value="$PROJECT_DIR$/src/Custom/Card/GWHandCardGroup.js" />
         <option value="$PROJECT_DIR$/src/Custom/GWBloodStrip.js" />
         <option value="$PROJECT_DIR$/src/Custom/Card/GWEnergyBox.js" />
@@ -179,31 +197,33 @@
         <option value="$PROJECT_DIR$/src/Custom/GWMessage.js" />
         <option value="$PROJECT_DIR$/src/Custom/GWMailbox.js" />
         <option value="$PROJECT_DIR$/src/Scene/NetWorkScene.js" />
-        <option value="$PROJECT_DIR$/src/Custom/UI/GWButton.js" />
         <option value="$PROJECT_DIR$/src/Custom/UI/GWTGold.ts" />
         <option value="$PROJECT_DIR$/src/Custom/UI/GWGold.js" />
         <option value="$PROJECT_DIR$/src/Custom/Checkerboard/GWGameCheckerboard.js" />
-        <option value="$PROJECT_DIR$/project.json" />
         <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/src/Custom/GWEnergyBox.js" />
         <option value="$PROJECT_DIR$/src/Tool/XCBase64Tool.js" />
         <option value="$PROJECT_DIR$/src/Scene/LoginScene.js" />
         <option value="$PROJECT_DIR$/src/Tool/XCTool.js" />
         <option value="$PROJECT_DIR$/src/Custom/Piece/GWBuilding.js" />
-        <option value="$PROJECT_DIR$/src/Scene/GameScene.js" />
         <option value="$PROJECT_DIR$/src/Custom/Checkerboard/GWMatchCheckerboard.js" />
         <option value="$PROJECT_DIR$/src/Utils/Enemu.js" />
         <option value="$PROJECT_DIR$/src/Tool/XCData.js" />
-        <option value="$PROJECT_DIR$/src/Custom/Card/CardGroup/GWCardGroup.js" />
         <option value="$PROJECT_DIR$/src/Custom/GWBloodBox.js" />
         <option value="$PROJECT_DIR$/src/Custom/Card/CardsHandBox/GWCardsHandBox.js" />
         <option value="$PROJECT_DIR$/src/resource.js" />
-        <option value="$PROJECT_DIR$/src/Custom/Card/GWCard.js" />
         <option value="$PROJECT_DIR$/src/Custom/Piece/GWMonster.js" />
         <option value="$PROJECT_DIR$/src/Custom/Data/GWMonsterData.js" />
-        <option value="$PROJECT_DIR$/src/Scene/TestWorkScene.js" />
         <option value="$PROJECT_DIR$/src/Custom/Checkerboard/GWCheckerboard.js" />
         <option value="$PROJECT_DIR$/src/Custom/Piece/GWPiece.js" />
+        <option value="$PROJECT_DIR$/src/Custom/GWEnergyBox.js" />
+        <option value="$PROJECT_DIR$/src/Custom/Card/GWCard.js" />
+        <option value="$PROJECT_DIR$/src/Custom/Card/CardGroup/GWCardGroup.js" />
+        <option value="$PROJECT_DIR$/src/Custom/UI/GWButton.js" />
+        <option value="$PROJECT_DIR$/src/Scene/GameScene.js" />
+        <option value="$PROJECT_DIR$/src/Custom/GWPlayerController.js" />
+        <option value="$PROJECT_DIR$/project.json" />
+        <option value="$PROJECT_DIR$/src/Scene/TestWorkScene.js" />
+        <option value="$PROJECT_DIR$/src/Custom/GWRoundEndButton.js" />
       </list>
     </option>
   </component>
@@ -226,7 +246,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -250,14 +269,7 @@
               <item name="chess" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="Custom" type="462c0819:PsiDirectoryNode" />
-              <item name="Checkerboard" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="chess" type="b2602c69:ProjectViewProjectNode" />
-              <item name="chess" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Custom" type="462c0819:PsiDirectoryNode" />
-              <item name="Piece" type="462c0819:PsiDirectoryNode" />
+              <item name="UI" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="chess" type="b2602c69:ProjectViewProjectNode" />
@@ -269,6 +281,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -282,11 +295,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/Custom" />
       <recent name="$PROJECT_DIR$/src/Custom/Card/CardGroup" />
       <recent name="$PROJECT_DIR$/res/Card/Little" />
       <recent name="$PROJECT_DIR$/res/card/Base" />
       <recent name="$PROJECT_DIR$/src/Custom/Card/GWCardHandBox" />
-      <recent name="$PROJECT_DIR$/res/UI" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -776,12 +789,15 @@
       <workItem from="1581450162620" duration="229000" />
       <workItem from="1581902606385" duration="7000" />
       <workItem from="1581902731851" duration="1184000" />
-      <workItem from="1581904418982" duration="787000" />
+      <workItem from="1581904418982" duration="1763000" />
+      <workItem from="1581906229969" duration="972000" />
+      <workItem from="1581908045822" duration="1820000" />
+      <workItem from="1581909912963" duration="1574000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="589450000" />
+    <option name="totallyTimeSpent" value="594792000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -794,15 +810,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="822" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18604651" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18604651" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32771084" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49928468" weight="0.32876712" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.49400985" visible="true" weight="0.38219178" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49400985" weight="0.38219178" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.4989429" weight="0.32739726" />
@@ -899,65 +914,10 @@
           <line>311</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
-        <line-breakpoint type="javascript">
-          <url>file://$PROJECT_DIR$/src/Custom/Card/CardGroup/GWCardGroup.js</url>
-          <line>56</line>
-          <option name="timeStamp" value="31" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/Custom/Piece/GWPiece.js</url>
-          <line>124</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="42" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/project.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="663">
-          <caret line="39" selection-start-line="39" selection-end-line="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Custom/GWMessage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="526">
-          <caret line="39" column="4" selection-start-line="39" selection-start-column="4" selection-end-line="39" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Custom/GWMailbox.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="453">
-          <caret line="50" lean-forward="true" selection-start-line="50" selection-end-line="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="http://localhost:63342/chess/src/Custom/Checkerboard/GWCheckerboard.js">
-      <provider selected="true" editor-type-id="httpFileEditor" />
-    </entry>
-    <entry file="http://localhost:63342/chess/src/Custom/Piece/GWPiece.js">
-      <provider selected="true" editor-type-id="httpFileEditor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Custom/GWEnergyBox.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="25" selection-start-line="25" selection-start-column="25" selection-end-line="25" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="646">
-            <caret line="63" column="20" selection-start-line="63" selection-start-column="20" selection-end-line="63" selection-end-column="20" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/frameworks/cocos2d-x/cocos/scripting/js-bindings/auto/api/jsb_cocos2dx_ui_auto_api.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -995,9 +955,6 @@
           <caret line="17673" selection-start-line="17673" selection-end-line="17673" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Custom/UI/GWButton.js">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/frameworks/cocos2d-html5/cocos2d/core/base-nodes/CCNode.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -1072,31 +1029,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frameworks/cocos2d-html5/external/socketio/socket.io.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="498" lean-forward="true" selection-start-line="2" selection-start-column="498" selection-end-line="2" selection-end-column="498" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Custom/Card/CardGroup/GWCardGroupSelf.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="12" column="4" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Custom/Card/CardGroup/GWCardGroup.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="969">
-          <caret line="57" column="17" selection-start-line="57" selection-start-column="17" selection-end-line="57" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/resource.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="73" column="59" lean-forward="true" selection-start-line="73" selection-start-column="59" selection-end-line="73" selection-end-column="59" />
         </state>
       </provider>
     </entry>
@@ -1145,13 +1081,6 @@
     <entry file="file://$PROJECT_DIR$/res/Card/Base/TX_FJ.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Custom/Card/GWCard.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/res/Card/monster/monsterDefault.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -1172,45 +1101,121 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Scene/GameScene.js">
+    <entry file="file://$PROJECT_DIR$/frameworks/cocos2d-html5/external/socketio/socket.io.min.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1615">
-          <caret line="95" selection-start-line="95" selection-end-line="95" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Scene/TestWorkScene.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5848">
-          <caret line="344" column="73" selection-start-line="344" selection-start-column="73" selection-end-line="344" selection-end-column="73" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Custom/Piece/GWMonster.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="55" column="43" selection-start-line="55" selection-start-column="43" selection-end-line="55" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Custom/Data/GWMonsterData.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="76" column="24" selection-start-line="76" selection-start-column="13" selection-end-line="76" selection-end-column="24" />
+        <state relative-caret-position="34">
+          <caret line="2" column="473" selection-start-line="2" selection-start-column="473" selection-end-line="2" selection-end-column="473" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Custom/Checkerboard/GWCheckerboard.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="784">
-          <caret line="231" column="29" selection-start-line="231" selection-start-column="29" selection-end-line="231" selection-end-column="29" />
+        <state relative-caret-position="2567">
+          <caret line="151" column="20" selection-start-line="151" selection-start-column="20" selection-end-line="151" selection-end-column="20" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Custom/Piece/GWPiece.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
-          <caret line="131" column="30" selection-start-line="131" selection-start-column="30" selection-end-line="131" selection-end-column="30" />
+        <state relative-caret-position="2431">
+          <caret line="143" column="45" selection-start-line="143" selection-start-column="45" selection-end-line="143" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Custom/Data/GWMonsterData.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1292">
+          <caret line="76" column="24" selection-start-line="76" selection-start-column="13" selection-end-line="76" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Custom/Piece/GWMonster.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="935">
+          <caret line="55" column="43" selection-start-line="55" selection-start-column="43" selection-end-line="55" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Custom/Card/GWCard.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="194" column="44" lean-forward="true" selection-start-line="194" selection-start-column="44" selection-end-line="194" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Custom/Card/CardGroup/GWCardGroup.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="94" column="37" lean-forward="true" selection-start-line="94" selection-start-column="37" selection-end-line="94" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Custom/GWDialogue.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resource.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1241">
+          <caret line="73" column="59" selection-start-line="73" selection-start-column="59" selection-end-line="73" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Custom/GWEnergyBox.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="986">
+          <caret line="58" column="50" selection-start-line="58" selection-start-column="50" selection-end-line="58" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Custom/GWMailbox.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="850">
+          <caret line="50" selection-start-line="50" selection-end-line="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Custom/GWMessage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="663">
+          <caret line="39" column="4" selection-start-line="39" selection-start-column="4" selection-end-line="39" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="36" lean-forward="true" selection-start-line="36" selection-end-line="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Custom/GWPlayerController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="22" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Custom/GWText.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Scene/GameScene.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="237">
+          <caret line="141" column="8" selection-start-line="141" selection-start-column="8" selection-end-line="149" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Scene/TestWorkScene.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="72" column="31" lean-forward="true" selection-start-line="72" selection-start-column="31" selection-end-line="72" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Custom/GWRoundEndButton.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="32" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
         </state>
       </provider>
     </entry>

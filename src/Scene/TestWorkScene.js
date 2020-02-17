@@ -22,7 +22,6 @@ var TestWorkLayer = BaseLayer.extend({
     ourCardGroup        :   null,   //我方卡组
     otherCardGroup      :   null,   //对方卡组
 
-    dt  : 0,//暂时记录时间
 
     gameStageState      :   GameStageStateEnemu.stagnation,//
 
@@ -46,18 +45,34 @@ var TestWorkLayer = BaseLayer.extend({
         this.ourCardGroup   =   null;   //我方卡组
         this.otherCardGroup =   null;   //对方卡组
 
-        this.dt = 0;
         this.isAllowControl = false;
         //test
-        // this.bgColorLayer.setBackGroundColorType(ccui.Layout.BG_COLOR_SOLID);
-        // this.bgColorLayer.setBackGroundColor(cc.color(100,100,100));
-        // this.bgColorLayer.setBackGroundColorOpacity(255);
+        this.bgColorLayer.setBackGroundColorType(ccui.Layout.BG_COLOR_SOLID);
+        this.bgColorLayer.setBackGroundColor(cc.color(100,100,100));
+        this.bgColorLayer.setBackGroundColorOpacity(255);
 
-        this.test();
-
+        // this.test();
+        this.test1();
 
         return true;
     },
+    test1:function () {
+        var button  = new GWPlayerController("回合结束");
+        this.addChild(button,LocalZorderEnemu.UI);
+        button.setAnchorPoint(0.5,0.5);
+        button.setPosition( cc.winSize.width/2,cc.winSize.height/2);
+
+        button.addClickFlipAnimCustomEvent(
+            function(){
+                this.gameStageState = GameStageStateEnemu.otherRound;
+            },function (){
+                button.setTitleText("对方回合");
+                // button.setTouchEnabled(false);
+                button.setColor(cc.color(100,100,100));
+            });
+        this.btnRound = button;
+    },
+
 
     test:function () {
         this.loadCheckerboard();    //构造棋盘
@@ -81,6 +96,7 @@ var TestWorkLayer = BaseLayer.extend({
         // this.scheduleUpdate();      //开启调度
         // this.gameStageState = GameStageStateEnemu.notStart; //初始化游戏状态
     },
+
     //加载棋盘
     loadCheckerboard:function () {
         let node = new GWMatchCheckerboard();
@@ -111,7 +127,7 @@ var TestWorkLayer = BaseLayer.extend({
     },
     //加载"回合"按钮
     loadRoundButton:function(){
-        var button  = new GWButton("回合结束");
+        var button  = new GWRoundEndButton("回合结束");
         this.addChild(button,LocalZorderEnemu.UI);
         button.setAnchorPoint(0,0.5);
         button.setPosition( this.checkerboard.x + this.checkerboard.width + 5,//20缝隙
@@ -130,8 +146,6 @@ var TestWorkLayer = BaseLayer.extend({
     //加载双方卡组
     loadGroup:function(){
         //模拟数据流
-        //MTAwMjEwMDIxMDAy
-        //OXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2Nlg
         var ourflow = "MTAwMi0xMDAyLTEwMDItMTAwMg==";
         //我方卡组
         var ourGroup  = new GWCardGroupSelf(ourflow);
@@ -160,7 +174,6 @@ var TestWorkLayer = BaseLayer.extend({
             this.otherCardsHandBox.addCard(cardData);
         }.bind(this);
         this.otherCardGroup = otherCardGroup;
-        // this.otherCardGroup.pumpingCard(1);
     },
     //加载双方血条
     loadBlood:function(){
@@ -353,7 +366,6 @@ var TestWorkLayer = BaseLayer.extend({
         return true;//native下必须有return，否则触发次数会有问题
     },
 
-
     onTouchMoved:function (touch,event) {
         cc.log("onTouchMoved");
     },
@@ -364,8 +376,6 @@ var TestWorkLayer = BaseLayer.extend({
         this._super();
         console.log("GameScene onExit:");
     },
-
-
 
     /**>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
      /**
@@ -428,7 +438,6 @@ var TestWorkLayer = BaseLayer.extend({
         }
     },
 
-
     //准备开始游戏
     readyToStartGame:function(){
         this.gameStageState = GameStageStateEnemu.notStarting;
@@ -476,7 +485,6 @@ var TestWorkLayer = BaseLayer.extend({
         },this);
     },
 
-
     //抽卡
     pumpingCard:function(){
         this.gameStageState = GameStageStateEnemu.pumpingCard;
@@ -486,12 +494,7 @@ var TestWorkLayer = BaseLayer.extend({
         this.ourCardGroup.pumpingCard(1); //抽卡时会自动调起ourCardGroup'pumpCardEventAction
         this.gameStageState = GameStageStateEnemu.myRounding;
     },
-
-
-
-
 });
-
 
 var TestWorkScene = BaseScene.extend({
     onEnter:function () {

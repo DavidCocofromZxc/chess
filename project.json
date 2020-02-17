@@ -32,6 +32,8 @@
         "src/Custom/GWDialogue.js",
         "src/Custom/GWBloodBox.js",
         "src/Custom/GWEnergyBox.js",
+        "src/Custom/GWRoundEndButton.js",
+        "src/Custom/GWPlayerController.js",
 
         "src/Custom/Checkerboard/GWCheckerboard.js",
         "src/Custom/Checkerboard/GWIntroduceCheckerboard.js",
@@ -54,7 +56,6 @@
         "src/Custom/Card/CardsHandBox/GWCardsHandBox.js",
         "src/Custom/Card/CardsHandBox/GWCardsHandBlackBox.js",
 
-        "src/Custom/UI/GWButton.js",
         "src/Custom/UI/GWGold.js"
     ]
 }

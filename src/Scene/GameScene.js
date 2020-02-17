@@ -133,7 +133,7 @@ var GameLayer = BaseLayer.extend({
     },
     //加载"回合"按钮
     loadRoundButton:function(){
-        var button  = new GWButton("回合结束");
+        var button  = new GWRoundEndButton("回合结束");
         this.addChild(button,LocalZorderEnemu.UI);
         button.setAnchorPoint(0,0.5);
         button.setPosition( this.checkerboard.x + this.checkerboard.width + 5,//20缝隙
@@ -152,7 +152,7 @@ var GameLayer = BaseLayer.extend({
     //加载双方卡组
     loadGroup:function(){
         //模拟数据流
-        var ourflow = "OXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2Nlg=";
+        var ourflow = "MTAwMi0xMDAyLTEwMDItMTAwMg==";
         //我方卡组
         var ourGroup  = new GWCardGroupSelf(ourflow);
         this.addChild(ourGroup,LocalZorderEnemu.UI);
@@ -161,13 +161,14 @@ var GameLayer = BaseLayer.extend({
                                 this.checkerboard.y);
         //注册抽卡完成时候的回调事件
         ourGroup.pumpCardEventAction = function (cardID) {
+            cc.log("cardID:",cardID);
             var cardData = XCDATA.findMonsterData(cardID);  //找到对应Data
             this.ourCardsHandBox.addCard(cardData);         //置入手牌中
         }.bind(this);
         this.ourCardGroup = ourGroup;
 
         //模拟数据流
-        var otherflow = "OXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2Nlg=";
+        var otherflow = "MTAwMi0xMDAyLTEwMDItMTAwMg==";
         //对方卡组
         var otherCardGroup  = new GWCardGroupOther(otherflow);
         this.addChild(otherCardGroup,LocalZorderEnemu.UI);
@@ -262,7 +263,7 @@ var GameLayer = BaseLayer.extend({
         card.setAnchorPoint(0,0);
         this.lookCard = card;
         //
-        var data = XCDATA.findMonsterData(model.objectId);
+        var data = XCDATA.findMonsterData(model.ID);
         card.changeUiData(data,model);//设置数据
         this.checkerboard.pickUpDataInHand(data);//选卡传入
         //

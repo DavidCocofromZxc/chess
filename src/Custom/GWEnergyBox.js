@@ -41,7 +41,7 @@ var GWEnergyBox = ccui.Layout.extend({
     },
     //减
     subtractPowerCount:function(count){
-        if(this.powerCount > count){
+        if(this.powerCount >= count){
             this.powerCount -= count;
             this.setPowerUI();
             return true;
@@ -53,9 +53,10 @@ var GWEnergyBox = ccui.Layout.extend({
     setPowerUI:function () {
         this.removeAllChildren();//
         let jw = 1;//爱心之间的间距
+        var hand = new ccui.ImageView(res.energy);
         for(var i = 0  ;i < this.powerCount ;i++){
             //卡片构造加入
-            var hand = new ccui.ImageView(res.energy);
+            hand = new ccui.ImageView(res.energy);
             this.addChild(hand);
             var lpl = new ccui.LinearLayoutParameter();
             hand.setLayoutParameter(lpl);

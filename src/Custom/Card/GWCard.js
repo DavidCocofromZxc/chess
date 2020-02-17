@@ -100,8 +100,6 @@ var GWCard = cc.Sprite.extend({
         let bottomSpacing       = 25;   //底部间距
 
 
-
-
         //<* 适配 计算点 *>
         //原画点：卡宽/2
         var artPoint    = cc.p(cardWidth/2,cardBottomHeight +cardWaistHeight +cardBodyHeight/2);    //ancher(0.5,0.5)
@@ -111,8 +109,6 @@ var GWCard = cc.Sprite.extend({
         var gjPoint     = cc.p(leftSpacing,bottomSpacing);                //攻击点
         var smPoint     = cc.p(leftSpacing +180 ,bottomSpacing);     //生命点
         var dscPoint    = cc.p(leftSpacing,cardBottomHeight -30);     //描述  //？30
-
-
 
         //<* 图构 *>
         var kaA = new cc.Sprite(res.kakuang);//monsterDefault
@@ -127,7 +123,6 @@ var GWCard = cc.Sprite.extend({
         // var kaD = new cc.Sprite(res.kadi);
         // kaD.setPosition(0,0);
         // kaD.setAnchorPoint(0,0);
-
 
         //原画
         var gw = new cc.Sprite(res.monsterDefault);//monsterDefault
@@ -162,8 +157,6 @@ var GWCard = cc.Sprite.extend({
         this.addChild(smLbl,101);
         this.lifeLabel = smLbl;
 
-
-
         //
         //名称
         var name = new cc.LabelTTF(this.nameText,this.fontName ,this.nameFontSize);
@@ -171,7 +164,7 @@ var GWCard = cc.Sprite.extend({
         this.addChild(name,101);
         this.nameLabel = name;
 
-        var text = this.desText
+        var text = this.desText;
         var sizeStr = XCReturnStringWidth(text,this.fontName,this.desFontSize,180);
 
         //描述
@@ -216,7 +209,6 @@ var GWCard = cc.Sprite.extend({
         this.dscLabel.setPosition(dscPoint.x,dscPoint.y - sizeStr.h);
     },
 
-
     remove:function () {
 
         this.fyLabel.removeFromParent();
@@ -225,7 +217,5 @@ var GWCard = cc.Sprite.extend({
         this.attackLabel.removeFromParent();
         this.lifeLabel.removeFromParent();
     },
-
-
 });
 
