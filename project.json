@@ -26,6 +26,8 @@
         "src/Tool/XCBase64Tool.js",
         "src/Tool/XCData.js",
 
+
+
         "src/Custom/GWText.js",
         "src/Custom/GWMessage.js",
         "src/Custom/GWMailbox.js",
@@ -56,6 +58,10 @@
         "src/Custom/Card/CardsHandBox/GWCardsHandBox.js",
         "src/Custom/Card/CardsHandBox/GWCardsHandBlackBox.js",
 
-        "src/Custom/UI/GWGold.js"
+        "src/Custom/UI/GWGold.js",
+
+
+        "src/Custom/GameManager/PlayerManager.js",
+        "src/Custom/GameManager/ConfigureManager.js"
     ]
 }

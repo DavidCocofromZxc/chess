@@ -94,6 +94,20 @@ var GameLayer = BaseLayer.extend({
         this.loadHandCard();        //构造手牌区
         this.loadGroup();           //构造卡组
 
+        switch (ConfigureManager.debugState) {
+            case 0:
+                cc.log("调试模式");
+                this.loadPlayerButton();
+                this.loadAddMonsterButton();
+                break;
+            case 1:
+                cc.log("测试模式");
+                break;
+            default:
+                cc.log("试玩模式");
+                break;
+        }
+
         //方便测试
         // this.registerTouchEvent();
         //通知棋盘 摆放国王
@@ -133,22 +147,19 @@ var GameLayer = BaseLayer.extend({
     },
     //加载"回合"按钮
     loadRoundButton:function(){
-        var button  = new GWRoundEndButton("回合结束");
+        var button  = new GWRoundEndButton();
         this.addChild(button,LocalZorderEnemu.UI);
         button.setAnchorPoint(0,0.5);
-        button.setPosition( this.checkerboard.x + this.checkerboard.width + 5,//20缝隙
+        button.setPosition( this.checkerboard.x + this.checkerboard.width + 20,//20缝隙
                             this.checkerboard.y + this.checkerboard.height/2);
 
         button.addClickFlipAnimCustomEvent(
             function(){
                 this.gameStageState = GameStageStateEnemu.otherRound;
-            },function (){
-                button.setTitleText("对方回合");
-                button.setTouchEnabled(false);
-                button.setColor(cc.color(100,100,100));
             });
         this.btnRound = button;
     },
+
     //加载双方卡组
     loadGroup:function(){
         //模拟数据流
@@ -231,6 +242,8 @@ var GameLayer = BaseLayer.extend({
         }.bind(this);
         this.ourCardsHandBox = hand;
 
+
+
         var sideWidth = 20; //添加边距
         var otherHand = new GWCardsHandBlackBox();//ancher 0,1  //黑背手牌区域，常用于对方。
         this.addChild(otherHand,LocalZorderEnemu.UI);
@@ -269,6 +282,42 @@ var GameLayer = BaseLayer.extend({
         //
         XCLookModel(model);
     },
+
+
+    /**
+     *  调试模式   //加载"控制权"按钮
+     * */
+    loadPlayerButton:function(){
+        var button  = new GWPlayerController();
+        this.addChild(button,LocalZorderEnemu.UI);
+        button.setAnchorPoint(1,0.5);
+        button.setPosition( this.checkerboard.x - 20,//20缝隙
+            this.checkerboard.y + this.checkerboard.height/2);
+
+        button.addClickFlipAnimCustomEvent(
+            function(){
+                this.gameStageState = GameStageStateEnemu.otherRound;
+            });
+        this.btnRound = button;
+    },
+
+    loadAddMonsterButton:function(){
+        let self = this;
+        var button = new ccui.Button(res.baceButton);
+        button.setTitleText("添加稻草人");
+        this.addChild(button,LocalZorderEnemu.UI);
+        button.setAnchorPoint(1,0.5);
+        button.setPosition(this.btnRound.x,this.btnRound.y - this.btnRound.height - 20);
+        // button.addTouchEventListener(function(){
+        button.addClickEventListener(function(){
+            cc.log("yeah!");
+            this.checkerboard.returnRandomPleace();
+        });
+    },
+
+
+
+
 
     /**
      * 主循环梳理:
@@ -315,9 +364,15 @@ var GameLayer = BaseLayer.extend({
         this.sysMailbox.sendMessage("裁判投币决定先后手");
         this.textLabel.addShowText( "裁判投币决定先后手",function () {
             cc.log("textlabel 裁判");
-            var jb = new GWGold();
+            var jb = new GWGold();//硬币
             this.addChild(jb,LocalZorderEnemu.DialogueGold);
-            jb.setPosition(screen.width / 2, screen.height / 2);
+            jb.setPosition(cc.winSize.width / 2, cc.winSize.height / 2);
+            if(jb.width > cc.winSize.width/3){
+                jb.width = cc.winSize.width/3;
+            }
+            if(jb.height > cc.winSize.height/3){
+                jb.height = cc.winSize.height/3;
+            }
 
             var self = this;
             var result =  jb.playCoinAnimation(
@@ -332,7 +387,6 @@ var GameLayer = BaseLayer.extend({
                     jb.removeFromParent();
                     //模拟先手情况
                     self.gameStageState = GameStageStateEnemu.myRound;//stagnation//start
-                    cc.log("yeah");
                 });
         },this);
     },
@@ -347,76 +401,15 @@ var GameLayer = BaseLayer.extend({
         this.gameStageState = GameStageStateEnemu.myRounding;
     },
 
-    //交换回合
-    exchangeRound:function(){
-
-        // this.gameStageState =
-        // this.textLabel.addShowText( "抽卡");
-        // this.sysMailbox.sendMessage("抽卡");
-        // //卡组中取出1张牌
-        // this.ourCardGroup.pumpingCard(1);
-    },
-
-    /**>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    /**
-     *  delegate 相关
-     */
-    // 棋盘 delegate //发起召唤的回调
-    eventTouchSummonChessStartAction:function(data){
-        // //法力消耗判断
-        let bool = this.ourEnergy.subtractPowerCount(data.energy);
-        let str = bool?"你消耗了"+ data.energy +"点能量":"你的能量不足";
-        this.sysMailbox.sendMessage(str);
-        return bool;
-    },
-    // *** 触摸事件 - 选中棋子
-    eventTouchChessAction:function(state,obj){
-        if(state == 1){
-            switch (obj.pieceType) {
-                case  PieceTypeEnemu.BASE:
-                    cc.log(state,obj);
-                    break;
-                case  PieceTypeEnemu.BUILDING:
-                    cc.log(state,obj);
-                    break;
-                case  PieceTypeEnemu.MONSTER:
-                    cc.log(state,obj);
-                    this.showLookCard(null);
-                    break;
-                default:
-                    break;
-            }
-        }else{
-            cc.log("收起");
-        }
-    },
-    //召唤结束的回调
-    eventTouchSummonChessEndAction:function(state,data){
-        switch (state) {
-            case 0:
-                break;
-            case 1:
-                break;
-            case 2:
-                this.ourCardsHandBox.releaseCard();
-                this.sysMailbox.sendMessage("成功召唤\""+ data.name+"\"");
-                break;
-            default:
-                break;
-        }
-    },
-
-
-    //触摸事件 - 棋子移动开始回调
-    eventTouchMoveChessStartAction:function(state){
-        switch (state) {
-            case 0:
-                this.sysMailbox.sendMessage("无法移动！行动次数不足");
-                break;
-            default:
-                break;
-        }
-    },
+    // //交换回合
+    // exchangeRound:function(){
+    //
+    //     // this.gameStageState =
+    //     // this.textLabel.addShowText( "抽卡");
+    //     // this.sysMailbox.sendMessage("抽卡");
+    //     // //卡组中取出1张牌
+    //     // this.ourCardGroup.pumpingCard(1);
+    // },
 
     /**>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
     /**
@@ -478,6 +471,69 @@ var GameLayer = BaseLayer.extend({
 
     },
 
+
+
+
+    /**>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+     /**
+     *  delegate 相关
+     */
+    // 棋盘 delegate //发起召唤的回调
+    eventTouchSummonChessStartAction:function(data){
+        // //法力消耗判断
+        let bool = this.ourEnergy.subtractPowerCount(data.energy);
+        let str = bool?"你消耗了"+ data.energy +"点能量":"你的能量不足";
+        this.sysMailbox.sendMessage(str);
+        return bool;
+    },
+    // *** 触摸事件 - 选中棋子
+    eventTouchChessAction:function(state,obj){
+        if(state == 1){
+            switch (obj.pieceType) {
+                case  PieceTypeEnemu.BASE:
+                    cc.log(state,obj);
+                    break;
+                case  PieceTypeEnemu.BUILDING:
+                    cc.log(state,obj);
+                    break;
+                case  PieceTypeEnemu.MONSTER:
+                    cc.log(state,obj);
+                    this.showLookCard(null);
+                    break;
+                default:
+                    break;
+            }
+        }else{
+            cc.log("收起");
+        }
+    },
+    //召唤结束的回调
+    eventTouchSummonChessEndAction:function(state,data){
+        switch (state) {
+            case 0:
+                break;
+            case 1:
+                break;
+            case 2:
+                this.ourCardsHandBox.releaseCard();
+                this.sysMailbox.sendMessage("成功召唤\""+ data.name+"\"");
+                break;
+            default:
+                break;
+        }
+    },
+
+
+    //触摸事件 - 棋子移动开始回调
+    eventTouchMoveChessStartAction:function(state){
+        switch (state) {
+            case 0:
+                this.sysMailbox.sendMessage("无法移动！行动次数不足");
+                break;
+            default:
+                break;
+        }
+    },
 
 
     /**>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>

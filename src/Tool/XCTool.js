@@ -77,6 +77,7 @@ var XCReturnStringWidth = function (text,fontName, fontSize,maxWidth){
     }
 };
 //打印 数据信息
+//专用打印模型的类
 var XCLookModel = function (obj) {
     if(obj === undefined){
         cc.log("obj error");
@@ -98,6 +99,7 @@ var XCLookModel = function (obj) {
         cc.log("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<Model专用打印类");
     }
 };
+//
 var XCLogDirectionArray = function(array){
       if(array.length !== 8){
           cc.log("error XCLogDirectionArray func");

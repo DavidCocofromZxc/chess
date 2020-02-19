@@ -44,7 +44,7 @@ var GWGold = ccui.ImageView.extend({
             }else{
                 actionList = actionList.concat(anmin1,anminB,anmin2);
             }
-            cc.log(i);
+            // cc.log(i);
         }
         cc.log(zf);
         //

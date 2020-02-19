@@ -34,38 +34,57 @@ var GWCardsHandBlackBox = ccui.Layout.extend({
         // this.setBackGroundColorOpacity(255 *0.8);
         return true;
     },
+
     //加入到手牌<小牌>
     //UI data
     //cardUIData不存在则使用默认,isBack是否使用背面默认不用背面
     addCard:function (cardData) {
         //
-        var skUrl = "res/Card/Little/sk"+cardData.ID+".png"
+        let skUrl = "res/Card/Little/sk"+cardData.ID+".png"
         //获得小卡res
-        var cardUrl = (cardData === undefined || cardData == null)?res.cardHand:skUrl;
+        let cardUrl = (cardData === undefined || cardData == null)?res.cardHand:skUrl;
         //卡片构造加入
         // var useBack = isBack||false;
-        var hand = new GWHandCard(cardUrl,true);//ancher 0,1
+        let hand = new GWHandCard(cardUrl,true);//ancher 0,1
         this.addChild(hand);
         //
         // var index = this.cardList.length;
         this.cardList.push({card:hand,index:0,data:cardData});//对象和数据 均放入list
         //< UI 调整>
-        this.setCardsHandBoxUI();
+        this.setCardsHandBoxUI(hand);
     },
+
     //UI重制
-    setCardsHandBoxUI:function(){
+    setCardsHandBoxUI:function(hand){
         //参数配置
         var maxWidth    = this.width;
-        var cardWidth   = 50//hand.width;
+        var cardWidth   = 50;//hand.width;
         var fx          = 10;   //缝隙
-        var bj          = (maxWidth - this.cardList.length * (cardWidth + fx))/2//边距
+        //边距//当卡牌数量决定时，边距已经决定
+        var bj          = (maxWidth - this.cardList.length * (cardWidth + fx))/2
+
+        if(bj < 0){
+            fx = 5;
+            bj = (maxWidth - this.cardList.length * (cardWidth + fx))/2;
+        }
+        //
+        if(hand !== undefined && (typeof hand === "object")){
+            // 调整hand 位置
+            // 主要目的是为了保证hand已经在this区域中，可以让后面的调整动画变完整
+            var y           = this.height - fx;
+            // hand.setPosition(maxWidth - cardWidth,y);
+            hand.setPosition(cardWidth,y);
+        }
+
         //遍历修改位置
         for(var i = 0 ,len = this.cardList.length;i < len; i++){
             this.cardList[i].index = i;
             var hand = this.cardList[i].card;
-            var x = bj + i *(cardWidth + fx);
+            // var x = bj + i *(cardWidth + fx);
+            var x = this.width - bj - (i + 1)*(cardWidth +fx)
             var y = this.height - fx;
-            hand.setPosition(x,y);
+            // hand.setPosition(x,y);
+            hand.runAction(cc.moveTo(0.5,x,y));
         }
     },
 

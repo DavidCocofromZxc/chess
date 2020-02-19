@@ -98,7 +98,6 @@ var XCBase64 =
         arrayDecode:function (e) {
             return XCBase64.decode(e).split('-');
         }
-
     };
 
 

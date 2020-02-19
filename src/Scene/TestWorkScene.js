@@ -8,12 +8,6 @@
  *
  * */
 
-// import Bmob from "hydrogen-js-sdk"
-// import Bmob from  ""
-// window.io;
-// var SocketIO = SocketIO || window.io;
-// var mvs ;
-
 var TestWorkLayer = BaseLayer.extend({
     socketIO    :null,
 
@@ -21,7 +15,6 @@ var TestWorkLayer = BaseLayer.extend({
     otherCardsHandBox   :   null,   //对方手卡区域
     ourCardGroup        :   null,   //我方卡组
     otherCardGroup      :   null,   //对方卡组
-
 
     gameStageState      :   GameStageStateEnemu.stagnation,//
 
@@ -66,13 +59,12 @@ var TestWorkLayer = BaseLayer.extend({
             function(){
                 this.gameStageState = GameStageStateEnemu.otherRound;
             },function (){
-                button.setTitleText("对方回合");
-                // button.setTouchEnabled(false);
-                button.setColor(cc.color(100,100,100));
+                // button.setTitleText("对方回合");
+                // // button.setTouchEnabled(false);
+                // button.setColor(cc.color(100,100,100));
             });
         this.btnRound = button;
     },
-
 
     test:function () {
         this.loadCheckerboard();    //构造棋盘
@@ -86,7 +78,6 @@ var TestWorkLayer = BaseLayer.extend({
 
         // this.checkerboard.initGameCrystal();
         // this.showLookCard();
-
         //test
         this.ourCardGroup.pumpingCard(1); //抽卡时会自动调起ourCardGroup'pumpCardEventAction
         this.checkerboard.initGameCrystal();

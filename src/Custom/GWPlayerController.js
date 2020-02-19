@@ -7,11 +7,15 @@
 
 var GWPlayerController = ccui.Button.extend({
 
-    ctor: function (text) {
+    state: 0,
+    defultColor:null,
+
+    ctor: function () {
         this._super();
         this.loadTextures(res.baceButton,"","");//
-        this.setTitleText(text);
         this.setAnchorPoint(0,0);
+        this.defultColor = this.getColor();//记录原始颜色
+        this.setState(0);
         return true;
     },
 
@@ -30,6 +34,7 @@ var GWPlayerController = ccui.Button.extend({
                 if(middleAction !== undefined && (typeof middleAction ==="function")){
                     middleAction();
                 }
+                this.changeState();
             },this);
             //翻转动画结束
             var anminC = cc.scaleTo(0.3,1,1);
@@ -42,5 +47,26 @@ var GWPlayerController = ccui.Button.extend({
             var sequence = cc.sequence(anminA,anminB,anminC,anminD);
             this.runAction(sequence);
         }.bind(this));
-    }
+    },
+
+    changeState:function(){
+        if(this.state == 0){
+            this.setState(1);//state = 1;
+        }else{
+            this.setState(0);
+        }
+    },
+
+    setState:function (state) {
+        if(state == 0){
+            this.setTitleText("控制我方");
+            this.setTouchEnabled(true);
+            this.setColor(this.defultColor);
+        }else{
+            this.setTitleText("控制对方");
+            this.setTouchEnabled(true);
+            this.setColor(cc.color(180,180,180));
+        }
+        this.state = state;
+    },
 });

@@ -461,7 +461,6 @@ var GWCheckerboard = cc.TMXTiledMap.extend({
      * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
      *  棋子相关
      * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-     * 遗弃方法
      */
     //  <*独立方法*>
     // 初始化棋盘 -水晶/国王
@@ -536,5 +535,20 @@ var GWCheckerboard = cc.TMXTiledMap.extend({
                 this.arrayFriendsSurvivalChess.push(piece);
                 break;
         }
-    }
+    },
+
+
+    /**
+     * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+     *  棋盘相关
+     * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+     */
+
+    returnRandomPleace:function (){
+        // XCLog("leaveList:",self.tiledMapLeaveArray);//格式化打印棋盘状态
+        XCLog("tiledMapRectArray",this.tiledMapRectArray);
+        XCLog("tiledMapLeaveArray",this.tiledMapLeaveArray);
+        XCLog("arrayFriendsSurvivalChess",this.arrayFriendsSurvivalChess);
+        XCLog("arrayEnemySurvivalChess",this.arrayEnemySurvivalChess);
+    },
 });

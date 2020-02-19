@@ -63,6 +63,7 @@ var GWCardsHandBox = ccui.Layout.extend({
         var cardWidth   = this.cardWidth;       //每张手牌宽度
         var fx          = this.cardFX;          //缝隙
         var bj          = (maxWidth - this.cardList.length * (cardWidth + fx))/2;//边距
+
         if(bj < 0){
             fx = 5;
             bj = (maxWidth - this.cardList.length * (cardWidth + fx))/2;
