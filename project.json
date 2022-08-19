@@ -9,59 +9,57 @@
     "renderMode" : 0,
     "engineDir":"frameworks/cocos2d-html5",
 
-    "modules" : ["cocos2d","ccui","external","bmobSDK","matchvsSDK"],
+    "modules" : ["cocos2d","ccui","external","bmobSDK","matchvsSDK","leancloud-storage/core"],
 
     "jsList" : [
         "src/resource.js",
 
-        "src/Scene/BaseScene.js",
-        "src/Scene/LoginScene.js",
-        "src/Scene/GodScene.js",
-        "src/Scene/GameScene.js",
-        "src/Scene/TestWorkScene.js",
+        "src/scene/BaseScene.js",
+        "src/scene/LoginScene.js",
+        "src/scene/GodScene.js",
+        "src/scene/GameScene.js",
+        "src/scene/TestWorkScene.js",
+
+        "src/utils/Enemu.js",
+
+        "src/tool/XCTool.js",
+        "src/tool/XCBase64Tool.js",
+        "src/tool/XCData.js",
+
+        "src/mode/GWText.js",
+        "src/mode/GWMessage.js",
+        "src/mode/GWMailbox.js",
+        "src/mode/GWDialogue.js",
+        "src/mode/GWBloodBox.js",
+        "src/mode/GWEnergyBox.js",
+        "src/mode/GWRoundEndButton.js",
+        "src/mode/GWPlayerController.js",
+
+        "src/mode/Checkerboard/GWCheckerboard.js",
+        "src/mode/Checkerboard/GWIntroduceCheckerboard.js",
+        "src/mode/Checkerboard/GWGameCheckerboard.js",
+        "src/mode/Checkerboard/GWMatchCheckerboard.js",
+
+        "src/mode/Piece/GWPiece.js",
+        "src/mode/Piece/GWMonster.js",
+        "src/mode/Piece/GWBuilding.js",
+
+        "src/mode/Data/GWMonsterData.js",
+
+        "src/mode/Card/GWCard.js",
+        "src/mode/Card/CardGroup/GWCardGroup.js",
+        "src/mode/Card/CardGroup/GWCardGroupSelf.js",
+        "src/mode/Card/CardGroup/GWCardGroupOther.js",
 
 
-        "src/Utils/Enemu.js",
-        "src/Tool/XCTool.js",
-        "src/Tool/XCBase64Tool.js",
-        "src/Tool/XCData.js",
+        "src/mode/Card/GWHandCard.js",
+        "src/mode/Card/CardsHandBox/GWCardsHandBox.js",
+        "src/mode/Card/CardsHandBox/GWCardsHandBlackBox.js",
+
+        "src/mode/UI/GWGold.js",
 
 
-
-        "src/Custom/GWText.js",
-        "src/Custom/GWMessage.js",
-        "src/Custom/GWMailbox.js",
-        "src/Custom/GWDialogue.js",
-        "src/Custom/GWBloodBox.js",
-        "src/Custom/GWEnergyBox.js",
-        "src/Custom/GWRoundEndButton.js",
-        "src/Custom/GWPlayerController.js",
-
-        "src/Custom/Checkerboard/GWCheckerboard.js",
-        "src/Custom/Checkerboard/GWIntroduceCheckerboard.js",
-        "src/Custom/Checkerboard/GWGameCheckerboard.js",
-        "src/Custom/Checkerboard/GWMatchCheckerboard.js",
-
-        "src/Custom/Piece/GWPiece.js",
-        "src/Custom/Piece/GWMonster.js",
-        "src/Custom/Piece/GWBuilding.js",
-
-        "src/Custom/Data/GWMonsterData.js",
-
-        "src/Custom/Card/GWCard.js",
-        "src/Custom/Card/CardGroup/GWCardGroup.js",
-        "src/Custom/Card/CardGroup/GWCardGroupSelf.js",
-        "src/Custom/Card/CardGroup/GWCardGroupOther.js",
-
-
-        "src/Custom/Card/GWHandCard.js",
-        "src/Custom/Card/CardsHandBox/GWCardsHandBox.js",
-        "src/Custom/Card/CardsHandBox/GWCardsHandBlackBox.js",
-
-        "src/Custom/UI/GWGold.js",
-
-
-        "src/Custom/GameManager/PlayerManager.js",
-        "src/Custom/GameManager/ConfigureManager.js"
+        "src/mode/GameManager/PlayerManager.js",
+        "src/mode/GameManager/ConfigureManager.js"
     ]
 }
