@@ -13,19 +13,15 @@
 
     "jsList" : [
         "src/resource.js",
-
         "src/scene/BaseScene.js",
         "src/scene/LoginScene.js",
         "src/scene/GodScene.js",
         "src/scene/GameScene.js",
         "src/scene/TestWorkScene.js",
-
         "src/utils/Enemu.js",
-
         "src/tool/XCTool.js",
         "src/tool/XCBase64Tool.js",
         "src/tool/XCData.js",
-
         "src/mode/GWText.js",
         "src/mode/GWMessage.js",
         "src/mode/GWMailbox.js",
@@ -34,32 +30,23 @@
         "src/mode/GWEnergyBox.js",
         "src/mode/GWRoundEndButton.js",
         "src/mode/GWPlayerController.js",
-
-        "src/mode/Checkerboard/GWCheckerboard.js",
-        "src/mode/Checkerboard/GWIntroduceCheckerboard.js",
-        "src/mode/Checkerboard/GWGameCheckerboard.js",
-        "src/mode/Checkerboard/GWMatchCheckerboard.js",
-
-        "src/mode/Piece/GWPiece.js",
-        "src/mode/Piece/GWMonster.js",
-        "src/mode/Piece/GWBuilding.js",
-
-        "src/mode/Data/GWMonsterData.js",
-
-        "src/mode/Card/GWCard.js",
-        "src/mode/Card/CardGroup/GWCardGroup.js",
-        "src/mode/Card/CardGroup/GWCardGroupSelf.js",
-        "src/mode/Card/CardGroup/GWCardGroupOther.js",
-
-
-        "src/mode/Card/GWHandCard.js",
-        "src/mode/Card/CardsHandBox/GWCardsHandBox.js",
-        "src/mode/Card/CardsHandBox/GWCardsHandBlackBox.js",
-
-        "src/mode/UI/GWGold.js",
-
-
-        "src/mode/GameManager/PlayerManager.js",
-        "src/mode/GameManager/ConfigureManager.js"
+        "src/mode/checkerboard/GWCheckerboard.js",
+        "src/mode/checkerboard/GWIntroduceCheckerboard.js",
+        "src/mode/checkerboard/GWGameCheckerboard.js",
+        "src/mode/checkerboard/GWMatchCheckerboard.js",
+        "src/mode/piece/GWPiece.js",
+        "src/mode/piece/GWMonster.js",
+        "src/mode/piece/GWBuilding.js",
+        "src/mode/data/GWMonsterData.js",
+        "src/mode/card/GWCard.js",
+        "src/mode/card/CardGroup/GWCardGroup.js",
+        "src/mode/card/CardGroup/GWCardGroupSelf.js",
+        "src/mode/card/CardGroup/GWCardGroupOther.js",
+        "src/mode/card/GWHandCard.js",
+        "src/mode/card/CardsHandBox/GWCardsHandBox.js",
+        "src/mode/card/CardsHandBox/GWCardsHandBlackBox.js",
+        "src/mode/ui/GWGold.js",
+        "src/mode/gameManager/PlayerManager.js",
+        "src/mode/gameManager/ConfigureManager.js"
     ]
 }

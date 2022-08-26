@@ -70,3 +70,8 @@ I'm making a chess game with cocos-js. You can link me QQ num 670633205.
             1.json  -> 只允许native
             2.用代码去写    ->工作量大 不易更改
             3.sqlite
+
+8.26
+    尝试修改cocos run
+    ->>改使用python方案
+    ->>需要调整加载优先级

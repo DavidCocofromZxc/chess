@@ -29,6 +29,11 @@ var BaseLayer = cc.Layer.extend({
         this.loadBgColorLayer();//bgColor
         return true;
     },
+
+    /** -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * load
+    -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=  */
+
     //加载button
     loadButton:function(){
         var btn = new ccui.Button(res.leftArrow_png);
@@ -47,11 +52,26 @@ var BaseLayer = cc.Layer.extend({
         var bg = new ccui.Layout();
         this.addChild(bg,0);
         bg.setAnchorPoint(0,0);
-        // bg.setBackGroundColorType(ccui.Layout.BG_COLOR_SOLID);
-        // bg.setBackGroundColor(cc.color(100,100,100));
-        // bg.setBackGroundColorOpacity(255);
-        bg.setContentSize(cc.winSize.width,cc.winSize.height);
         this.bgColorLayer = bg;
+    },
+
+    /** -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * other
+    -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=  */
+
+    //设置白
+    setWhiteStyleBg:function(){
+        if(this.bgColorLayer ==  null){
+            var bg = new ccui.Layout();
+            this.addChild(bg,0);
+            bg.setAnchorPoint(0,0);
+            bg.setContentSize(cc.winSize.width,cc.winSize.height);
+            this.bgColorLayer = bg;
+        
+        }
+        this.bgColorLayer.setBackGroundColorType(ccui.Layout.BG_COLOR_SOLID);
+        this.bgColorLayer.setBackGroundColor(cc.color(100,100,100));
+        this.bgColorLayer.setBackGroundColorOpacity(255);
     },
     //显示加载条&加载状态
     showLoading:function(){
@@ -74,23 +94,24 @@ var BaseLayer = cc.Layer.extend({
     //停止加载
     stopLoading:function(){
         if(this.loading != null){
-            // var load = new cc.Sprite(res.loading);
-            // this.addChild(load,999);
-            // load.setAnchorPoint(0.5,0.5);
-            // load.setPosition(cc.winSize.width/2,cc.winSize.height/2);
-            // this.loading = load;
             this.loading.stopAllActions();
-            // this.isShowloading = false;
             this.loading.removeFromParent();
             this.loading = null;
         }
         if(this.isShowloading != false){
-            // this.loading.stopAllActions();
             this.isShowloading = false;
-            // this.loading.removeFromParent();
-            // this.loading = null;
         }
     },
+
+
+    /** -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * touch event 
+    -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=  */
+
+    /**
+     * 好像是无效的
+    */
+
     //touch事件
     onTouchEvent :function(sender,type){
         switch (type) {
