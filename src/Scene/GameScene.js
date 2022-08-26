@@ -11,24 +11,24 @@
  *
  * */
 
-//游戏阶段状态
-let GameStageStateEnemu = {
-    // < *ing > 是用于 *挂起的中转状态，
-    // eg：notStart进入后，直接notStarting，防止轮训器不断轮训notStart进入
-    notStart            :   0,
-    notStarting         :   10,
+// //游戏阶段状态
+// let GameStageStateEnemu = {
+//     // < *ing > 是用于 *挂起的中转状态，
+//     // eg：notStart进入后，直接notStarting，防止轮训器不断轮训notStart进入
+//     notStart            :   0,
+//     notStarting         :   10,
 
-    start               :   20,
-    starting            :   21,
+//     start               :   20,
+//     starting            :   21,
 
-    myRound             :   30,
-    myRounding          :   31,
-    pumpingCard         :   32,
-    otherRound          :   33,
+//     myRound             :   30,
+//     myRounding          :   31,
+//     pumpingCard         :   32,
+//     otherRound          :   33,
 
-    oppositeRound       :   40,
-    stagnation          :   -99,
-};
+//     oppositeRound       :   40,
+//     stagnation          :   -99,
+// };
 
 var GameLayer = BaseLayer.extend({
     // var GameLayer = cc.Layer.extend({

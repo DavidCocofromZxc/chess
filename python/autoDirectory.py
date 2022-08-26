@@ -1,7 +1,7 @@
 ###
 #
 #
-#	根目录生成工具
+#	jsList 目录生成工具
 #
 #
 ###
@@ -33,15 +33,22 @@ def jsonHandle(filelistString):
 # 获得文件列表
 def fileList(path,file):
 	targetString = "";
-	targetString +=  "{\"jsList\":[";
+	earthString = "";
+	firstString = "";#后期改成数组
+
 	filelist = os.walk(path + file)
 	for dirpath,f, filenames in filelist:
-		print("!!!",filenames,type(filenames));
 		for filename in filenames:
 			wzpath = os.path.join(dirpath, filename);
 			wzpath = wzpath.replace(path,"");
 			wzpath = "\"" + wzpath + "\",\n"; 
-			targetString += wzpath;
+			if(filename == "Enemu.js"):#
+				firstString +=wzpath;
+			elif("Base" in filename ):
+				earthString += wzpath;
+			else:
+				targetString += wzpath;
+	targetString = "{\"jsList\":[" + firstString + earthString + targetString;
 	count = len(targetString) - 2;
 	targetString = targetString[0:count];
 	targetString += "]}";
@@ -75,11 +82,11 @@ if __name__ == "__main__":
 	dirs = os.listdir('..');
 	if(checkEnvironment(dirs)):
 		path = path + "/";
-		print("\n\n\n");
-		fileList(path,TARGET_DIRECTORY);
-		print("\n\n\n");
+		# print("\n\n\n");
+		# print(fileList(path,TARGET_DIRECTORY));
+		# print("\n\n\n");
 
-		# jsonHandle(fileList(path,TARGET_DIRECTORY));
+		jsonHandle(fileList(path,TARGET_DIRECTORY));
 		
 # eg.  
 # {
