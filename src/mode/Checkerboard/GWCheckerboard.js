@@ -91,12 +91,12 @@ var GWCheckerboard = cc.TMXTiledMap.extend({
      */
     //  <*独立方法*>
     // Card 应该传入UI Node 而不是数据对象
-    // pickUpCardInHand:function(card){
-    //     cc.log("pickUpCardInHand");
-    //     this.selectHandCardData = card;//选中卡
-    //     this.drawMapCurrentSummonLayer();//绘制召唤区域
-    //     this.eventTouchPickUpCardInHandAction(card);
-    // },
+    pickUpCardInHand:function(card){
+        cc.log("pickUpCardInHand",card);
+        this.selectHandCardData = card;//选中卡
+        this.drawMapCurrentSummonLayer();//绘制召唤区域
+        this.eventTouchPickUpCardInHandAction(card);
+    },
 
     //选中卡牌
     pickUpDataInHand:function(data){
@@ -159,7 +159,7 @@ var GWCheckerboard = cc.TMXTiledMap.extend({
                         if(campType !== CampEnemu.NONE){
                             cc.log("有棋子，无法召唤召唤");
                         }else{
-                            cc.log("无棋子，召唤条件满足");
+                            cc.log("无棋子，召唤条件满足",self.selectHandCardData);
                             //目标数据
                             let data = self.selectHandCardData;
                             //发起召唤-召唤条件判断

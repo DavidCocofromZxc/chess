@@ -24,12 +24,12 @@ var GodLayer = BaseLayer.extend({
         this.lookCard = null;
 
         this._super();
-        this.loadBody();
-        this.loadLabel();
-        // this.loadCheckerboard();
-        // this.loadGroup();
-        this.loadContentList();
-        this.registerEvent();
+        this.loadBody();    //加载对话主体
+        this.loadLabel();    //加载对话文字
+        // this.loadCheckerboard(); //加载棋盘
+        // this.loadGroup();     //加载卡组
+        this.loadContentList(); //加载对话内容list
+        this.registerEvent();   //注册事件
         return true;
     },
     /*
@@ -67,23 +67,28 @@ var GodLayer = BaseLayer.extend({
     //加载卡组
     loadGroup:function(){
         //模拟数据流
-        var ourflow = "OXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2Nlg=";
+        // var ourflow = "OXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2Nlg=";
         //我方卡组
-        var ourGroup  = new GWCardGroup(ourflow);
+        var ourGroup  = new GWCardGroup();
         this.addChild(ourGroup,LocalZorderEnemu.UI);
         ourGroup.setPosition(  this.checkerboard.x + this.checkerboard.width + 20,//缝隙
             this.checkerboard.y);
+        console.log("loadGroup",ourGroup);
         //抽卡事件
         ourGroup.pumpCardAction = function (cardID) {
-            this.showLoading();
-            XCDATA().MONSTER_UITABLE.get(cardID).then(res => {
-                console.log(res)
-                this.cardsHandBox.addCard(res);
-                this.stopLoading();
-            }).catch(err => {
-                console.log(err)
-                this.stopLoading();
-            });
+            console.log("ourGroup.pumpCardAction cardID:",cardID);
+            // this.showLoading();
+            var data = JSDataTool.monster[cardID];
+            // data.setModel("9rYH666X","ceshi",[0],"nothing to here");
+            // // console.log("ourGroup.pumpCardAction: ",XCDATA().MONSTER_UITABLE);
+            // // XCDATA().MONSTER_UITABLE.get(cardID).then(res => {
+            //     console.log("pumpCardAction",data,"| cardID",cardID);
+                this.cardsHandBox.addCard(data);
+                // this.stopLoading();
+            // }).catch(err => {
+                // console.log(err)
+                // this.stopLoading();
+            // });
         }.bind(this);
         this.ourCardGroup = ourGroup;
         // this.ourCardGroup.setOpacity(0.1 *255);
@@ -100,16 +105,18 @@ var GodLayer = BaseLayer.extend({
         this.cardsHandBox = hand;
         //绑定选中事件
         hand.selectCard = function(data){
-            if(this.lookCard != null){
-                this.lookCard.removeFromParent();
-                this.lookCard = null;
-            }
-            var card = new GWCard();
-            this.addChild(card,LocalZorderEnemu.CARD);
-            card.setPosition(this.checkerboard.x + this.checkerboard.width + 10 ,100);
-            card.setAnchorPoint(0,0);
-            this.lookCard = card;
-            this.checkerboard.pickUpCardInHand(card);
+            this.showLookCard(data);
+            // console.log("selectCard data:",data,"lookCard",this.lookCard);
+            // if(this.lookCard != null){
+            //     this.lookCard.removeFromParent();
+            //     this.lookCard = null;
+            // }
+            // var card = new GWCard();
+            // this.addChild(card,LocalZorderEnemu.CARD);
+            // card.setPosition(this.checkerboard.x + this.checkerboard.width + 10 ,100);
+            // card.setAnchorPoint(0,0);
+            // this.lookCard = card;
+            // this.checkerboard.pickUpCardInHand(card);
         }.bind(this);
         //绑定取消事件
         hand.cancelSeleCard = function () {
@@ -117,6 +124,33 @@ var GodLayer = BaseLayer.extend({
             this.checkerboard.cancelPickUpCardInHand();
         }.bind(this);
     },
+
+
+    //侧栏-展示卡牌
+    showLookCard:function(model){
+        //如果当前已有在展示的卡牌、先移除
+        if(this.lookCard != null){
+            this.lookCard.removeFromParent();
+            this.lookCard = null;
+        }
+
+        //构造
+        var card = new GWCard();
+        this.addChild(card,LocalZorderEnemu.CARD);
+        card.setPosition(this.checkerboard.x + this.checkerboard.width + 10 ,100);
+        card.setAnchorPoint(0,0);
+        this.lookCard = card;
+
+        //
+        var data = JSDataTool.monster[1002];//new GWMonsterData();// XCDATA.findMonsterData(model.ID);
+        // data.setModel("9rYH666X","ceshi",[0],"nothing to here");
+        console.log("|||:",data,model);
+        card.changeUiData(data,model);//设置数据
+        this.checkerboard.pickUpDataInHand(data);//选卡传入
+        //
+        // XCLookModel(model);
+    },
+
     //加载对话内容list
     loadContentList:function(){
         this.contentList = [

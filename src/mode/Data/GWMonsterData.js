@@ -43,7 +43,28 @@ var GWMonsterData = cc.Class.extend({
     moveTimes       :   0,
 
 
+    //默认产生一个对象 模型
+    setModel: function (objectId, name, specials, dsc) {
+        // console.log("GWMonsterData 构造",objectId, name, specials, dsc);
+        this.objectId = objectId || "";
+        this.name = name || "";
+        this.specials = specials || [0];
+        this.dsc = dsc || "暂时没有描述";
+        this.attack =  1;
+        this.health =  1;
+        this.movement = 1;
+        this.summonRang =  1;
+        this.moveDirection =  [1, 1, 1, 1, 1, 1, 1, 1];
+        this.summonDirection = [1, 1, 1, 1, 0, 0, 0, 0];
+        //
+        this.ID = 1;
+        this.energy = 1;
+        this.attackTimes = 1;
+        this.attackRange = 1;
+        this.moveTimes = 1;
 
+        return true;
+    },
 
     // ctor:function (model,objectId,name,specials,dsc,attack,health,movement,moveDirection,summonRang,summonDirection) {
     //     if(model == null && (typeof model == "object")){
@@ -119,6 +140,7 @@ var GWMonsterData = cc.Class.extend({
 
 //检查合法性
 GWMonsterData.checkModelLegal = function (model) {
+    return true;
     if(model == null || !( typeof model === "object") ){
         cc.log("model 不合法！");
         return false;

@@ -173,7 +173,7 @@ var GameLayer = BaseLayer.extend({
         //注册抽卡完成时候的回调事件
         ourGroup.pumpCardEventAction = function (cardID) {
             cc.log("cardID:",cardID);
-            var cardData = XCDATA.findMonsterData(cardID);  //找到对应Data
+            var cardData = JSDataTool.monster[cardID];// XCDATA.findMonsterData(cardID);  //找到对应Data
             this.ourCardsHandBox.addCard(cardData);         //置入手牌中
         }.bind(this);
         this.ourCardGroup = ourGroup;
@@ -188,7 +188,7 @@ var GameLayer = BaseLayer.extend({
                                             this.checkerboard.y + this.checkerboard.height);
         //抽卡事件
         otherCardGroup.pumpCardEventAction = function (cardID) {
-            var cardData = XCDATA.findMonsterData(cardID);
+            var cardData = JSDataTool.monster[cardID];//XCDATA.findMonsterData(cardID);
             this.otherCardsHandBox.addCard(cardData);
         }.bind(this);
         this.otherCardGroup = otherCardGroup;
@@ -269,18 +269,22 @@ var GameLayer = BaseLayer.extend({
             this.lookCard.removeFromParent();
             this.lookCard = null;
         }
+
         //构造
         var card = new GWCard();
         this.addChild(card,LocalZorderEnemu.CARD);
         card.setPosition(this.checkerboard.x + this.checkerboard.width + 10 ,100);
         card.setAnchorPoint(0,0);
         this.lookCard = card;
+
         //
-        var data = XCDATA.findMonsterData(model.ID);
+        var data = JSDataTool.monster[1002];//new GWMonsterData();// XCDATA.findMonsterData(model.ID);
+        // data.setModel("9rYH666X","ceshi",[0],"nothing to here");
+        console.log("|||:",data,model);
         card.changeUiData(data,model);//设置数据
         this.checkerboard.pickUpDataInHand(data);//选卡传入
         //
-        XCLookModel(model);
+        // XCLookModel(model);
     },
 
 

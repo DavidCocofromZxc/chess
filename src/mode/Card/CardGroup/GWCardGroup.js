@@ -20,11 +20,16 @@ var GWCardGroup = cc.Sprite.extend({
 
     ctor: function(flow) {
         this.mainLabel = null;
-        this.cardList  = (flow === undefined)?[]: XCBase64.arrayDecode(flow);//flow不存在则使用默认
+        this.cardList = ["1002","1002","1002","1001"];//(flow === undefined)?["1002,1002,1002,1001"]: XCBase64.arrayDecode(flow);//flow不存在则使用默认
         this.drawCardAnimationDuration  = 0.5;
         this.drawCardDistance           = 100;
         this.drawCardAnimationZoomRatio = 0.65;
 
+        // cc.log("ctor1: functio :",this.cardList);
+        // cc.log("ctor2: functio :",this.cardList.count);
+        // var ourflow = "OXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2NlgtOXJZSDY2Nlg=";
+        // cc.log("ctor3: :",XCBase64.arrayDecode(ourflow));
+        
         this._super(res.cardGroup);
         this.loadLabel();
         this.setAnchorPoint(0,0);
@@ -78,6 +83,7 @@ var GWCardGroup = cc.Sprite.extend({
             this.cardExhaust();//<***>这里要加入疲劳事件
             return;
         }
+        console.log("cardList",this.cardList);
         //抽卡动画
         let targetCard = this.cardList.shift();             //抽出第一个元素
         this.mainLabel.string = "" + this.cardList.length;  //调整卡组总数-显示
@@ -87,6 +93,7 @@ var GWCardGroup = cc.Sprite.extend({
     // <虚函数> 抽卡事件-用于返回抽出的卡
     pumpCardEventAction:function (cardID) {
         cc.log("pumpCardAction:",cardID);
+        this.pumpCardAction(cardID);
     },
 
     //卡牌抽完<***>这里要加入疲劳事件

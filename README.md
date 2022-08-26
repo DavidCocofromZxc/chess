@@ -62,3 +62,11 @@ I'm making a chess game with cocos-js. You can link me QQ num 670633205.
 1.19
     GameScene做场景类的开发
     TestScene做棋盘类的开发
+
+
+2022.8.25
+    单机化
+    data处理：
+            1.json  -> 只允许native
+            2.用代码去写    ->工作量大 不易更改
+            3.sqlite

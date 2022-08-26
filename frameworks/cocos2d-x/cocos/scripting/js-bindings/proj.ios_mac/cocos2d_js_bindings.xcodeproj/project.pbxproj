@@ -475,6 +475,7 @@
 				1A5410A418B785A10016A3AF /* libjscocos2d Mac.a */,
 				1A119E4118BDF19200352BAA /* manual */,
 				507B427D1C31DCC60067B53E /* libjscocos2d tvOS.a */,
+				9057B92F28B36BB2001FC614 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -714,6 +715,14 @@
 				4B22F4A81B159A7A0044C14E /* jsb_cocos2dx_experimental_webView_manual.h */,
 			);
 			name = experimental;
+			sourceTree = "<group>";
+		};
+		9057B92F28B36BB2001FC614 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				4BE089EA1ADF967400D65D4B /* jsb_cocos2dx_experimental_webView_manual.h */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		BA9FD5CF1BAC0A4600996C85 /* component */ = {
@@ -989,6 +998,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = 1551A334158F2AB200E66CFE;
@@ -1283,6 +1293,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				ARCHS = arm64;
 				EXECUTABLE_PREFIX = "";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -1303,6 +1314,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				ARCHS = arm64;
 				EXECUTABLE_PREFIX = "";
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (

@@ -16,6 +16,10 @@ var GWIntroduceCheckerboard = GWCheckerboard.extend({
     },
 
 
+    eventTouchSummonChessStartAction:function(data){
+        return true;
+    },
+
 
     //触摸事件 - 召唤棋子回调
     eventTouchSummonChessAction:function(state,obj){

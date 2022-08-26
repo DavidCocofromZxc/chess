@@ -14,12 +14,27 @@ var LoginLayer = cc.Layer.extend({
         //data init
         this._beginParticle = null;
         this._titleNameList = ["教程入口","AI游戏","匹配游戏","测试入口"];
-        this.dbLoad();//用户登录bmob
-        //ctor
         this._super();
+
+        this.dbLoad();//用户登录bmob
         // this.loadUI();
         return true;
     },
+
+    dbLoad:function(){
+        var self = this;
+        JSDataTool.init();
+        self.loadUI();
+        // Bmob.initialize("ef0729f131d45699c3173d3fa16fe307", "05d0be62242c7a63ddcb2566253eaefd");
+        // Bmob.User.login('admin','12345').then(res => {
+            // console.log("bmob 登录成功",res);
+            // XCDATA();
+            // self.loadUI();
+        // }).catch(err => {
+        //     console.log("bmob 加载失败",err);
+        // });
+    },
+
     loadUI:function () {
         this.removeAllChildren();
         //背景
@@ -59,24 +74,6 @@ var LoginLayer = cc.Layer.extend({
         menu.runAction(fadeIn);
     },
 
-    dbLoad:function(){
-        var self = this;
-        AV.init({
-            appId: "bCBzAbLFlei2O1fK14gpQVfE-gzGzoHsz",
-            appKey: "JUoz2JkwwU2hruTsU8jvEyOl",
-            serverURL: "https://please-replace-with-your-customized.domain.com"
-          });
-
-        // Bmob.initialize("ef0729f131d45699c3173d3fa16fe307", "05d0be62242c7a63ddcb2566253eaefd");
-        // Bmob.User.login('admin','12345').then(res => {
-        //     console.log("bmob 登录成功",res);
-        //     XCData.getInstance();//初始化
-        //     XCDATA();
-        //     self.loadUI();
-        // }).catch(err => {
-        //     console.log("bmob 加载失败",err);
-        // });
-    },
     //Actions
     btn0Action:function(){
         cc.log("touch beginAction");
@@ -118,8 +115,8 @@ var LoginLayer = cc.Layer.extend({
         // if(XCDATA.instance.MONSTER_DATATABLE === undefined || XCDATA.instance.MONSTER_UITABLE === undefined){
         //     return false
         // }
-        // if(  XCDATA.instance.MONSTER_DATATABLE.length > 0 & XCDATA.instance.MONSTER_UITABLE.length > 0){
-        //     return true;
+        // if(  XCDATA.instance.MONSTER_DATATABLE.length >= 0 & XCDATA.instance.MONSTER_UITABLE.length >= 0){
+            return true;
         // }else{
         //     return false;
         // }

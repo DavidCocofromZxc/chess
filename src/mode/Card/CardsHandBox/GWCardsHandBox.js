@@ -42,7 +42,8 @@ var GWCardsHandBox = ccui.Layout.extend({
     //cardUIData不存在则使用默认,isBack是否使用背面默认不用背面
     addCard:function (cardData) {
         //组合小卡url
-        let skUrl = "res/Card/Little/sk"+cardData.ID+".png"
+        // let skUrl = "res/Card/Little/sk"+cardData.ID+".png"
+        let skUrl = "res/Card/Little/sk1002.png"
         //获得小卡res
         let cardUrl = (cardData === undefined || cardData == null)?res.cardHand:skUrl;
         //构造小卡
