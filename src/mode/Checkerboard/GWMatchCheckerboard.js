@@ -1,5 +1,5 @@
 
-var GWMatchCheckerboard = GWCheckerboard.extend({
+var GWMatchCheckerboard = GWBaseCheckerboard.extend({
     //可以不用，但是有这两个数组更方便
     arrayFriendsSurvivalChess   : [],   //black Array
     arrayEnemySurvivalChess     : [],   //white Array
@@ -14,11 +14,11 @@ var GWMatchCheckerboard = GWCheckerboard.extend({
         let selfResult = {isInMap:true,cel:4,row:0,x:200,y:0};
         let otherResult = {isInMap:true,cel:4,row:8,x:200,y:400};//由配置决定
         //我方
-        let king = GWPiece.initPiece(ChessTypeEnemu.CRYSTAL);
+        let king = GWBasePiece.initPiece(ChessTypeEnemu.CRYSTAL);
         king.campType = CampEnemu.BLACK;
         this.operatePieceInCheckerboard("summon",king,ChessAnimeEnemu.FADEIN,selfResult);
         //敌方
-        let dKing = GWPiece.initPiece(ChessTypeEnemu.BLACK_CRYSTAL);
+        let dKing = GWBasePiece.initPiece(ChessTypeEnemu.BLACK_CRYSTAL);
         dKing.campType = CampEnemu.WHITE;
         this.operatePieceInCheckerboard("summon",dKing,ChessAnimeEnemu.FADEIN,otherResult);
     },

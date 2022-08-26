@@ -8,7 +8,7 @@
  * */
 
 
-var GWMonster = GWPiece.extend({
+var GWMonster = GWBasePiece.extend({
 
     //基础模型
     // model           : null,

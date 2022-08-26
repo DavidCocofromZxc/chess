@@ -40,7 +40,7 @@ var EnemuPieceOperate = {
     MOVE     :"move",
 };
 
-var GWPiece = cc.Sprite.extend({
+var GWBasePiece = cc.Sprite.extend({
     pieceType       : PieceTypeEnemu.BASE,  //棋子类型：基础,野兽
     campType        : CampEnemu.UNKNOWN,
     //other
@@ -290,7 +290,7 @@ var GWPiece = cc.Sprite.extend({
 //工厂模式-
 //根据ID去分拣类
 //0-20000为建筑棋子，20000以上为怪物棋子
-GWPiece.initPiece = function(obj){
+GWBasePiece.initPiece = function(obj){
     var piece = null;
     var pieceId = "";
     var pieceModel = "";

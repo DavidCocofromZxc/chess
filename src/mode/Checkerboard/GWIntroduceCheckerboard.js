@@ -7,7 +7,7 @@
  * */
 
 
-var GWIntroduceCheckerboard = GWCheckerboard.extend({
+var GWIntroduceCheckerboard = GWBaseCheckerboard.extend({
 
 
     ctor: function (){

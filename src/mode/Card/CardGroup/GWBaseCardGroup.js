@@ -8,7 +8,7 @@
 
 
 
-var GWCardGroup = cc.Sprite.extend({
+var GWBaseCardGroup = cc.Sprite.extend({
     //UI about
     mainLabel         : null,   //顶部label
     drawCardAnimationDuration   : 0.5,  //抽卡动画持续时间

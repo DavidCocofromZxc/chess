@@ -7,10 +7,7 @@
  * */
 
 
-//GWCardGroup.pumpingOneCardAnim -->> GWCardGroupSelf.pumpingOneCardAnim
-
-
-var GWCardGroupSelf = GWCardGroup.extend({
+var GWCardGroupSelf = GWBaseCardGroup.extend({
 
     ctor: function(flow) {
         this._super(flow);

@@ -9,7 +9,7 @@
 
 
 
-var GWBuilding = GWPiece.extend({
+var GWBuilding = GWBasePiece.extend({
 
     ctor: function (model,fileName,rect,rotated) {
         this._super(model,fileName,rect,rotated);

@@ -8,7 +8,7 @@
 
 
 
-var GWCardGroupOther = GWCardGroup.extend({
+var GWCardGroupOther = GWBaseCardGroup.extend({
 
     ctor: function(flow) {
         this._super(flow);

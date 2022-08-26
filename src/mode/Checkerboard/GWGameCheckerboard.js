@@ -7,7 +7,7 @@
 
 
 
-var GWGameCheckerboard = GWCheckerboard.extend({
+var GWGameCheckerboard = GWBaseCheckerboard.extend({
 
     delegate            :null,
 

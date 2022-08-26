@@ -61,7 +61,7 @@ var GodLayer = BaseLayer.extend({
     },
     //加载卡组
     loadGroup: function () {
-        var ourGroup = new GWCardGroup();//我方卡组
+        var ourGroup = new GWBaseCardGroup();//我方卡组
         this.addChild(ourGroup, LocalZorderEnemu.UI);
         ourGroup.setPosition(this.checkerboard.x + this.checkerboard.width + 20,//缝隙
             this.checkerboard.y);
