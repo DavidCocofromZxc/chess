@@ -35,7 +35,7 @@ var BaseLayer = cc.Layer.extend({
 
     //加载button
     loadButton:function(){
-        var btn = new ccui.Button(res.leftArrow_png);
+        var btn = new ccui.Button(res.iconLeftArrow);
         btn.setScale(2,2);
         this.addChild(btn,999);
         let bj = 5;//边距

@@ -306,15 +306,14 @@ var GameLayer = BaseLayer.extend({
 
     loadAddMonsterButton:function(){
         let self = this;
-        var button = new ccui.Button(res.baceButton);
+        var button = new ccui.Button(res.baseButton);
         button.setTitleText("添加稻草人");
         this.addChild(button,LocalZorderEnemu.UI);
         button.setAnchorPoint(1,0.5);
         button.setPosition(this.btnRound.x,this.btnRound.y - this.btnRound.height - 20);
         // button.addTouchEventListener(function(){
         button.addClickEventListener(function(){
-            cc.log("yeah!");
-            this.checkerboard.returnRandomPleace();
+            self.checkerboard.returnRandomPleace();
         });
     },
 

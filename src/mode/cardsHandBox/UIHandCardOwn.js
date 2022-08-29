@@ -45,7 +45,7 @@ var UIHandCardOwn = ccui.Layout.extend({
         // let skUrl = "res/Card/Little/sk"+cardData.ID+".png"
         let skUrl = "res/Card/Little/sk1002.png"
         //获得小卡res
-        let cardUrl = (cardData === undefined || cardData == null)?res.cardHand:skUrl;
+        let cardUrl = (cardData === undefined || cardData == null)?res.sk1002:skUrl;
         //构造小卡
         let hand = new UIHandCard(cardUrl,false);//ancher 0,1
         //数据对象处理

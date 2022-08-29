@@ -42,7 +42,7 @@ var UIBaseCheckerboard = cc.TMXTiledMap.extend({
         //模拟数据
         this.campType = CampEnemu.BLACK;   //默认黑色持方  >>初始化我方持方//配置
         //地图构造
-        this._super(res.bg5x5_tmx);
+        this._super(res.chessMap5x5);
         //其他构造
         this.loadTiledMap();        // 初始化部分参数+记录
         this.loadMapRectArray();    // 地图区域 rectArray 构造
@@ -519,6 +519,7 @@ var UIBaseCheckerboard = cc.TMXTiledMap.extend({
         piece.campType = this.campType;// <配置 ***  这里可能逻辑有问题>
         this.operatePieceInCheckerboard("summon",piece,ChessAnimeEnemu.FADEIN,result);
     },
+    //
     movePiecesInChess:function (piece,result) {
         this.operatePieceInCheckerboard("move",piece,ChessAnimeEnemu.MOVE,result);
     },

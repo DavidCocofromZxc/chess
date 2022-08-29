@@ -111,7 +111,7 @@ var UICard = cc.Sprite.extend({
         var dscPoint    = cc.p(leftSpacing,cardBottomHeight -30);     //描述  //？30
 
         //<* 图构 *>
-        var kaA = new cc.Sprite(res.kakuang);//monsterDefault
+        var kaA = new cc.Sprite(res.kakuang);
         kaA.setPosition(0,0);
         kaA.setAnchorPoint(0,0);
         var kaB = new cc.Sprite(res.katiao);
@@ -125,7 +125,7 @@ var UICard = cc.Sprite.extend({
         // kaD.setAnchorPoint(0,0);
 
         //原画
-        var gw = new cc.Sprite(res.monsterDefault);//monsterDefault
+        var gw = new cc.Sprite(res.monsterDefault);
         gw.setPosition(artPoint.x,artPoint.y);
         gw.setAnchorPoint(0.5,0.5);
         this.originalPainting = gw;

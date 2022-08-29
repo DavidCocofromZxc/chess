@@ -51,8 +51,8 @@ var TestWorkLayer = BaseLayer.extend({
     },
     test1: function () {
         var a = 1001;
-        console.log(JSTool.monster[a]);
-        console.log(typeof(JSTool.monster[a]));
+        // console.log(JSDataTool.monster[a]);
+        // console.log(typeof(JSDataTool.monster[a]));
         // console.log(XCDataTool.monster[002]);
         // console.log(XCDataTool.monster[2]);
     },

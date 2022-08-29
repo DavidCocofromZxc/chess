@@ -50,7 +50,7 @@ var UIPieceMonster = UIBasePiece.extend({
 
         //棋子
         if(model == null || model === undefined){
-            this._super(null,res.defaultMonster,rect,rotated);
+            this._super(null,res.qz1001,rect,rotated);
         }
         else{
             // this._super(model,"res/piece/monster/qz"+model.ID+".png",rect,rotated);

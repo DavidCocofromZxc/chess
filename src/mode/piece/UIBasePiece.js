@@ -82,11 +82,8 @@ var UIBasePiece = cc.Sprite.extend({
         //     this.dataModel = model;
         // }
 
-        cc.log(DMonsterData.checkModelLegal(model));
-
         if(DMonsterData.checkModelLegal(model)){
             this.dataModel = new DMonsterData(model);
-            // cc.log("dataModel",this.dataModel);
             this.movingDistance = this.dataModel.movement;
             this.movingDirection = this.dataModel.moveDirection;
             this.summonDistance = this.dataModel.summonRange;
@@ -274,7 +271,7 @@ var UIBasePiece = cc.Sprite.extend({
                 admin = cc.fadeIn(duration * 3)
                 //在棋子中加入粒子动画-以后可以改成，对应棋子有对应的粒子，业务上类似于出场动画的概念
                 //获取粒子文件
-                let particleA = new cc.ParticleSystem(res.particle_blackFire);
+                let particleA = new cc.ParticleSystem(res.blackFire2x);
                 this.addChild(particleA,999);//在棋子上加入粒子效果
                 particleA.setAnchorPoint(0.5,0.5);
                 particleA.setPosition(this.width/2, this.height/2 -10);

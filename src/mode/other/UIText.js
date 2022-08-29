@@ -199,7 +199,7 @@ var UIText = ccui.Text.extend({
 
     //加载button
     loadButton:function(){
-        var arrow = new ccui.Button(res.downArrow_png);
+        var arrow = new ccui.Button(res.iconDownArrow);
         arrow.setTouchEnabled(true);
         arrow.setAnchorPoint(0,0);
         arrow.setVisible(false);

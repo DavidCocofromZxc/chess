@@ -12,7 +12,7 @@ var GWRoundEndButton = ccui.Button.extend({
 
     ctor: function () {
         this._super();
-        this.loadTextures(res.baceButton,"","");//
+        this.loadTextures(res.baseButton,"","");//
         this.setAnchorPoint(0,0);
         this.defultColor = this.getColor();//记录原始颜色
         this.setState(0);

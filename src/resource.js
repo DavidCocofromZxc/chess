@@ -25,64 +25,63 @@
 var res = {
 
     //Game UI
-    baceButton: "res/UI/baceButton.png",
+    baseButton: "res/UI/baseButton.png",
     cardGroup: "res/UI/cardGroup.png",
-    cardGroupSingle: "res/UI/cardGroupSingle@15x.png",
+    cardGroupSingle: "res/UI/cardGroupSingle.png",
     loading: "res/UI/loading.png", //加载
 
     //地图相关
-    bg5x5_tmx: "res/Map/55/chessMap5x5.tmx", //地图
+    chessMap5x5: "res/Map/55/chessMap5x5.tmx", //地图
 
 
     //other
     god: "res/Other/god.png",
-    downArrow_png: "res/Other/iconDownArrow.png",
-    leftArrow_png: "res/Other/iconLeftArrow.png",
+    iconDownArrow: "res/Other/iconDownArrow.png",
+    iconLeftArrow: "res/Other/iconLeftArrow.png",
     redHeart: "res/Other/redHeart.png",
     energy: "res/Other/energy.png",
-    gold16z: "res/Other/Gold/gold16_z.png",
-    gold16f: "res/Other/Gold/gold16_f.png",
+    gold16z: "res/Other/Gold/gold16z.png",
+    gold16f: "res/Other/Gold/gold16f.png",
 
 
     //monster 棋子
-    monster_plist_26: "res/piece/monster26.plist",
-    monster_png_26: "res/piece/monster26.png",
-    defaultMonster: "res/piece/monster/qz1001.png",
-    monster1001: "res/piece/monster/qz1001.png",
+    // monster_plist_26: "res/piece/monster26.plist",
+    // monster_png_26: "res/piece/monster26.png",
+    qz1001: "res/piece/monster/qz1001.png",
+    // monster1001: "res/piece/monster/qz1001.png",
 
     //粒子
-    particle_move_piantou: "res/Particle/piantouAnim.plist",
-    particle_blackFire: "res/Particle/blackFire2x.plist",
+    piantouAnim: "res/Particle/piantouAnim.plist",
+    blackFire2x: "res/Particle/blackFire2x.plist",
 
     //卡组成 UI
-    kadi: "res/Card/Base/kaBasedi.png",
-    kaditiao: "res/Card/Base/kaBaseditiao.png",
-    kakuang: "res/Card/Base/kaBasekuang.png",
-    katiao: "res/Card/Base/kaBasetiao.png",
+    kadi: "res/Card/Base/kadi.png",
+    kaditiao: "res/Card/Base/kaditiao.png",
+    kakuang: "res/Card/Base/kakuang.png",
+    katiao: "res/Card/Base/katiao.png",
 
     //卡组成 基础icon
-    kaFY: "res/Card/Base/kaIconF.png",//费用
-    kaGJL: "res/Card/Base/kaIconG.png",//攻击力
-    kaYDL: "res/Card/Base/kaIconM.png",//移动力
-    kaSMZ: "res/Card/Base/kaIconS.png",//生命值
+    kaFY: "res/Card/Base/kaFY.png",//费用
+    kaGJL: "res/Card/Base/kaGJL.png",//攻击力
+    kaYDL: "res/Card/Base/kaYDL.png",//移动力
+    kaSMZ: "res/Card/Base/kaSMZ.png",//生命值
 
     //卡组成 特性
-    kaT_FJ: "res/Card/Base/TX_FJ.png",//反击
+    kaT_FJ: "res/Card/Base/kaT_FJ.png",//反击
 
     //card原画
-    // guaiwu0001          : "res/Card/monster/gw1002.png",
     monsterDefault: "res/Card/monster/monsterDefault.png",
 
     //小卡
     cardHandBack: "res/Card/Little/cardHandBack.png",//小卡背
-    cardHand: "res/Card/Little/sk1002.png",
+    sk1002: "res/Card/Little/sk1002.png",
 
 
     //piece icon
-    crystal: "res/piece/building/1000.png",  //水晶
+    // crystal: "res/piece/building/1000.png",  //水晶
 
     //json
-    datajson:"res/json/data.json",
+    // datajson:"res/json/data.json",
 
 };
 
