@@ -103,6 +103,6 @@
 	<key>tangentialAcceleration</key>
 	<real>-1000</real>
 	<key>textureFileName</key>
-	<string>piantouAnim.png</string>
+	<string>piantouAnimpng.png</string>
 </dict>
 </plist>

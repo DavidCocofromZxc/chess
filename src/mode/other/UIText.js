@@ -211,10 +211,7 @@ var UIText = ccui.Text.extend({
         this.btnDownArrow = arrow;
     },
 
-
-
     refreshUIFrames:function(){
-
         if(this.btnDownArrow != null){
             this.btnDownArrow.setPosition(this.width + 5,5);
         }

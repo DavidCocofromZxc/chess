@@ -6,8 +6,6 @@
  *  专用法力类- 手牌区域
  *
  * */
-
-
 var GWEnergyBox = ccui.Layout.extend({
     initPowerCount  : 1, //默认初始法力值
     maxPowerCount   : 10,//最大法力值

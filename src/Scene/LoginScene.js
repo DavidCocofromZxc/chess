@@ -39,7 +39,7 @@ var LoginLayer = cc.Layer.extend({
         this.removeAllChildren();
         //背景
         //粒子
-        var particle = new cc.ParticleSystem(res.piantouAnim);
+        var particle = new cc.ParticleSystem(res.piantouAnimplist);
         this.addChild(particle);
         particle.setPosition(   this.width/2,
                                         this.height/4 * 3);

@@ -271,7 +271,7 @@ var UIBasePiece = cc.Sprite.extend({
                 admin = cc.fadeIn(duration * 3)
                 //在棋子中加入粒子动画-以后可以改成，对应棋子有对应的粒子，业务上类似于出场动画的概念
                 //获取粒子文件
-                let particleA = new cc.ParticleSystem(res.blackFire2x);
+                let particleA = new cc.ParticleSystem(res.blackFire2xplist);
                 this.addChild(particleA,999);//在棋子上加入粒子效果
                 particleA.setAnchorPoint(0.5,0.5);
                 particleA.setPosition(this.width/2, this.height/2 -10);
@@ -308,7 +308,7 @@ UIBasePiece.initPiece = function(obj){
     //需要完成 ：构造，data绑定，图片的Anchor
     if(obj >= 0){
         if(obj < 20000 ){//基础棋子类
-            piece = new UIPieceBuilding(pieceModel,"res/piece/building/"+ pieceId + ".png");
+            piece = new UIPieceBuilding(pieceModel,"res/piece/building/picon"+ pieceId + ".png");
             piece.setAnchorPoint(0.5,0);//默认修改瞄点
         }else{//怪物棋子类
             switch (chessID) {

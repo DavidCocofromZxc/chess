@@ -449,23 +449,23 @@ var GameLayer = BaseLayer.extend({
                     //允许行动-开放注册
                     this.registerTouchEvent();
                 }
-                //计时开始
-                this.currentRoundSurplusTime -= dt;
-                //如果计时 进入倒计时 -则读秒
-                if(this.currentRoundSurplusTime < this.currentCountdownTime ){
-                    cc.log("roundSurplusTime:",this.currentRoundSurplusTime,"this.countdownBeginTime:",this.currentCountdownTime);
-                    this.sysMailbox.sendMessage(parseInt(this.currentCountdownTime));
-                    this.currentCountdownTime -= 1;//每读一次，读秒次数量/时间-1
-                }
-                //读秒时间耗尽-说明我方回合时间到-进入搁置状态
-                if(this.currentCountdownTime < 0 ){
-                    //搁置-时间到-进入对方回合
-                    this.gameStageState = GameStageStateEnemu.stagnation;
-                    this.sysMailbox.sendMessage("回合结束");
-                    //时间重制
-                    this.currentRoundSurplusTime    = this.roundSurplusTime;
-                    this.currentCountdownTime       = this.countdownTime;
-                }
+                // 计时开始
+                // this.currentRoundSurplusTime -= dt;
+                // //如果计时 进入倒计时 -则读秒
+                // if(this.currentRoundSurplusTime < this.currentCountdownTime ){
+                //     cc.log("roundSurplusTime:",this.currentRoundSurplusTime,"this.countdownBeginTime:",this.currentCountdownTime);
+                //     this.sysMailbox.sendMessage(parseInt(this.currentCountdownTime));
+                //     this.currentCountdownTime -= 1;//每读一次，读秒次数量/时间-1
+                // }
+                // //读秒时间耗尽-说明我方回合时间到-进入搁置状态
+                // if(this.currentCountdownTime < 0 ){
+                //     //搁置-时间到-进入对方回合
+                //     this.gameStageState = GameStageStateEnemu.stagnation;
+                //     this.sysMailbox.sendMessage("回合结束");
+                //     //时间重制
+                //     this.currentRoundSurplusTime    = this.roundSurplusTime;
+                //     this.currentCountdownTime       = this.countdownTime;
+                // }
                 break;
             case  GameStageStateEnemu.otherRound:
                 break;

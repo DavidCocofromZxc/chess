@@ -19,7 +19,7 @@ TARGET_JSON = "project.json";
 def jsonHandle(filelistString):
 	path = os.path.dirname(os.path.abspath('.'));
 	path = path + "/" + TARGET_JSON;
-	print("path:",path);	
+	# print("path:",path);	
 	json_str = "";
 	with open(path, "r") as f:
 		json_str = json.load(f);
@@ -61,7 +61,7 @@ def checkEnvironment(dirs):
 	hasjson = False;
 
 	for file in dirs:
-		print("file:",file);
+		# print("file:",file);
 		if(file == TARGET_DIRECTORY):
 			hassrc = True;
 			if(hasjson):

@@ -7,7 +7,6 @@
  *
  * */
 
-
 //游戏阶段状态
 let GameStageStateEnemu = {
     // < *ing > 是用于 *挂起的中转状态，
@@ -27,11 +26,8 @@ let GameStageStateEnemu = {
     stagnation          :   -99,
 };
 
-
 let ALLOWPLACE_COLOR = cc.color(61,153,209,255*0.4);
 let NOT_ALLOWPLACE_COLOR = cc.color(219,54,71,255*0.4);
-
-
 
 //localZOrder 影响node渲染顺序 越大越晚渲染 ，越靠近屏幕
 let CHESS_LOCAL_ZORDER = 999; //棋子渲染层级
@@ -41,18 +37,10 @@ let LAYER_LOCAL_ZORDER = 21;  //落子范围/区域层级  //绿区
 // let localZorder_Dialogue     =   10
 // let localZorder_DialogueText =   15
 
-
-
-
-var TILE_MAP_SIZE = 32;
-
-
-
-
+// var TILE_MAP_SIZE = 32;
 
 // 阵营 /落子状态
 var CampEnemu = {
-
     NONE    :"none",    //无棋子
     BLACK   :"black",   //黑棋子
     WHITE   :"white",   //白棋子
@@ -66,8 +54,6 @@ var CampEnemu = {
     // SUM_ALL     :"all_sum",  //无棋但都可以召唤
 
 };
-
-
 
 //<<<<<<<<<< 国王骰 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 //<<<<<<<<<< 国王骰 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -83,8 +69,6 @@ var CampEnemu = {
 
 
 let COLOR_ALLOWSUMMON = cc.color(102,182,129,255*0.4);
-
-
 
 //渲染 层级控制
 let LocalZorderEnemu = {
@@ -106,36 +90,23 @@ let LocalZorderEnemu = {
     DialogueGold    :   230,
     DialogueText    :   250,
 };
-
-
+//
 let PieceTypeEnemu = {
-
     BASE            :   0,//基础棋子
     BUILDING        :   1,//建筑物棋子
     MONSTER         :   2,//怪物棋子
 };
-
-
-
-
-
 //棋子类型
 var ChessTypeEnemu = {
-
     /**
      * key:ABCDE
      * A:棋子类型   BC：棋子种族编号   DE：棋子独立编号
      * */
-
-
     CRYSTAL         :1000,         // 水晶
     BLACK_CRYSTAL   :1001,
     SNOW            :20001,         // 小雪 --其实已经废掉
 
-
     NONE            :-99999,//无类型
-
-
     // //下面无用
     //
     // NONE        :"none",    // 无
@@ -145,7 +116,6 @@ var ChessTypeEnemu = {
     // BISHOP      :"bishop",   // 黑主教
     // KING        :"king",   // 黑皇
     // QUEEN       :"queen",   // 黑后
-
 };
 
 
