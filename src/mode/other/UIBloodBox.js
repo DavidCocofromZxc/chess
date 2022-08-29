@@ -8,7 +8,7 @@
  * */
 
 
-var GWBloodBox = ccui.Layout.extend({
+var UIBloodBox = ccui.Layout.extend({
     heartCount  :   0,
     ctor: function() {
         this.heartCount = 0;

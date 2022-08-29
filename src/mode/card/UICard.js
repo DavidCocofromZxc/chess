@@ -8,7 +8,7 @@
 
 
 
-var GWCard = cc.Sprite.extend({
+var UICard = cc.Sprite.extend({
     //组件
     fyLabel         : null,
     nameLabel       : null,

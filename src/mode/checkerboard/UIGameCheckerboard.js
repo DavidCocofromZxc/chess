@@ -7,7 +7,7 @@
 
 
 
-var GWGameCheckerboard = GWBaseCheckerboard.extend({
+var UIGameCheckerboard = UIBaseCheckerboard.extend({
 
     delegate            :null,
 

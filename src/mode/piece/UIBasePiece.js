@@ -40,7 +40,7 @@ var EnemuPieceOperate = {
     MOVE     :"move",
 };
 
-var GWBasePiece = cc.Sprite.extend({
+var UIBasePiece = cc.Sprite.extend({
     pieceType       : PieceTypeEnemu.BASE,  //棋子类型：基础,野兽
     campType        : CampEnemu.UNKNOWN,
     //other
@@ -82,10 +82,10 @@ var GWBasePiece = cc.Sprite.extend({
         //     this.dataModel = model;
         // }
 
-        cc.log(GWMonsterData.checkModelLegal(model));
+        cc.log(DMonsterData.checkModelLegal(model));
 
-        if(GWMonsterData.checkModelLegal(model)){
-            this.dataModel = new GWMonsterData(model);
+        if(DMonsterData.checkModelLegal(model)){
+            this.dataModel = new DMonsterData(model);
             // cc.log("dataModel",this.dataModel);
             this.movingDistance = this.dataModel.movement;
             this.movingDirection = this.dataModel.moveDirection;
@@ -253,7 +253,7 @@ var GWBasePiece = cc.Sprite.extend({
     },
     showCard:function () {
         if(this.myCard == null){
-            this.myCard = new GWCard();
+            this.myCard = new UICard();
         }
         return this.myCard;
     },
@@ -290,7 +290,7 @@ var GWBasePiece = cc.Sprite.extend({
 //工厂模式-
 //根据ID去分拣类
 //0-20000为建筑棋子，20000以上为怪物棋子
-GWBasePiece.initPiece = function(obj){
+UIBasePiece.initPiece = function(obj){
     var piece = null;
     var pieceId = "";
     var pieceModel = "";
@@ -311,7 +311,7 @@ GWBasePiece.initPiece = function(obj){
     //需要完成 ：构造，data绑定，图片的Anchor
     if(obj >= 0){
         if(obj < 20000 ){//基础棋子类
-            piece = new GWBuilding(pieceModel,"res/piece/building/"+ pieceId + ".png");
+            piece = new UIPieceBuilding(pieceModel,"res/piece/building/"+ pieceId + ".png");
             piece.setAnchorPoint(0.5,0);//默认修改瞄点
         }else{//怪物棋子类
             switch (chessID) {
@@ -321,7 +321,7 @@ GWBasePiece.initPiece = function(obj){
                 default:
                     break;
             }
-            piece = new GWMonster(pieceModel,"26");
+            piece = new UIPieceMonster(pieceModel,"26");
         }
     }else {
         console.log("棋子创建异常");

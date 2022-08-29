@@ -91,7 +91,7 @@ var JSDataTool = {
 //     var ii = Math.random() * 10 + 1;
 //     console.log("Math.random", ii);
 //     for (var count = 0; count < ii; count++) {
-//         var data = new GWMonsterData();
+//         var data = new DMonsterData();
 //         data.setModel("9rYH666X", "ceshi", [0], "nothing to here");
 //         this.MONSTER_DATATABLE.push(data);
 //     }

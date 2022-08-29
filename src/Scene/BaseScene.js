@@ -9,7 +9,6 @@
  *
  * */
 
-
 var BaseLayer = cc.Layer.extend({
 
     backButton      :null,

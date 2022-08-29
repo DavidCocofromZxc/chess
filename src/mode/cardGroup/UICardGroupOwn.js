@@ -2,13 +2,12 @@
 
 /**
  *
- *  专用卡组类 -other
+ *  专用卡组类 -self
  *
  * */
 
 
-
-var GWCardGroupOther = GWBaseCardGroup.extend({
+var UICardGroupOwn = UIBaseCardGroup.extend({
 
     ctor: function(flow) {
         this._super(flow);
@@ -17,13 +16,15 @@ var GWCardGroupOther = GWBaseCardGroup.extend({
 
     // <私有>抽卡动画
     pumpingOneCardAnim:function(callback){
+        console.log("UICardGroupOwn pumpingOneCardAnim")
+        //构造一张手牌小卡
         var cardSingle = new cc.Sprite(res.cardGroupSingle);
         this.addChild(cardSingle);
         cardSingle.setPosition(this.width/2 ,this.height/2);
-        var move = cc.moveBy(this.drawCardAnimationDuration,cc.p(0,1 * this.drawCardDistance));
+        var move = cc.moveBy(this.drawCardAnimationDuration,cc.p(0,-1 * this.drawCardDistance));
         var scale = cc.scaleBy(this.drawCardAnimationDuration,this.drawCardAnimationZoomRatio);
         var spawn = cc.spawn(move,scale);
-        var move2 = cc.moveBy(this.drawCardAnimationDuration,cc.p( 1 * 50,0));
+        var move2 = cc.moveBy(this.drawCardAnimationDuration,cc.p( -1 * 50,0));
         var fadeOut = cc.fadeOut(this.drawCardAnimationDuration);
         //结束时执行
         var call = cc.callFunc(callback);

@@ -4,7 +4,7 @@
 
 //专用的人物对话类
 
-var GWDialogue = cc.Sprite.extend({
+var UIDialogue = cc.Sprite.extend({
 
     ctor: function (fileName,rect,rotated) {
         this._super(fileName,rect,rotated);

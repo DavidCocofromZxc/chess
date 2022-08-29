@@ -3,12 +3,13 @@
 
 /**
  *
+ *  /测试用类 暂时不用/
  *  专用手牌类- 对方手牌区域
  *
  * */
 
 
-var GWCardsHandBlackBox = ccui.Layout.extend({
+var UIHandCardOther = ccui.Layout.extend({
     /**
      * cardList 结构:
      * {
@@ -46,7 +47,7 @@ var GWCardsHandBlackBox = ccui.Layout.extend({
         let cardUrl = (cardData === undefined || cardData == null)?res.cardHand:skUrl;
         //卡片构造加入
         // var useBack = isBack||false;
-        let hand = new GWHandCard(cardUrl,true);//ancher 0,1
+        let hand = new UIHandCard(cardUrl,true);//ancher 0,1
         this.addChild(hand);
         //
         // var index = this.cardList.length;

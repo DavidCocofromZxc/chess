@@ -4,7 +4,7 @@
  *  专用手牌类- 手牌区域
  *
  * */
-var GWCardsHandBox = ccui.Layout.extend({
+var UIHandCardOwn = ccui.Layout.extend({
     /**
      * cardList 结构:
      * {
@@ -47,7 +47,7 @@ var GWCardsHandBox = ccui.Layout.extend({
         //获得小卡res
         let cardUrl = (cardData === undefined || cardData == null)?res.cardHand:skUrl;
         //构造小卡
-        let hand = new GWHandCard(cardUrl,false);//ancher 0,1
+        let hand = new UIHandCard(cardUrl,false);//ancher 0,1
         //数据对象处理
         // var index = this.cardList.length;
         this.cardList.push({card:hand,index:0,data:cardData});//对象和数据 均放入list

@@ -7,7 +7,7 @@
  * */
 
 
-var GWIntroduceCheckerboard = GWBaseCheckerboard.extend({
+var UIIntroduceCheckerboard = UIBaseCheckerboard.extend({
 
 
     ctor: function (){

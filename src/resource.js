@@ -35,7 +35,7 @@ var res = {
 
 
     //other
-    God_png: "res/Other/god.png",
+    god: "res/Other/god.png",
     downArrow_png: "res/Other/iconDownArrow.png",
     leftArrow_png: "res/Other/iconLeftArrow.png",
     redHeart: "res/Other/redHeart.png",

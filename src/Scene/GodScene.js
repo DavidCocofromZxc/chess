@@ -32,7 +32,7 @@ var GodLayer = BaseLayer.extend({
     },
     //加载对话主体
     loadBody: function () {
-        var node = new GWDialogue(res.God_png);
+        var node = new UIDialogue(res.god);
         this.addChild(node, LocalZorderEnemu.Dialogue);
         node.setPosition(cc.winSize.width / 2, cc.winSize.height / 2);
         this.nodeSprite = node;
@@ -45,14 +45,14 @@ var GodLayer = BaseLayer.extend({
     },
     //加载对话文字
     loadLabel: function () {
-        var text = new GWText();
+        var text = new UIText();
         this.addChild(text, LocalZorderEnemu.DialogueText);
         text.setPosition(cc.winSize.width / 2, cc.winSize.height / 2 - 100);
         this.textLabel = text;
     },
     //加载棋盘
     loadCheckerboard: function () {
-        var node = new GWIntroduceCheckerboard();
+        var node = new UIIntroduceCheckerboard();
         this.addChild(node);
         node.setAnchorPoint(0, 0);
         node.setPosition((cc.winSize.width - node.width) / 2,
@@ -61,7 +61,7 @@ var GodLayer = BaseLayer.extend({
     },
     //加载卡组
     loadGroup: function () {
-        var ourGroup = new GWBaseCardGroup();//我方卡组
+        var ourGroup = new UIBaseCardGroup();//我方卡组
         this.addChild(ourGroup, LocalZorderEnemu.UI);
         ourGroup.setPosition(this.checkerboard.x + this.checkerboard.width + 20,//缝隙
             this.checkerboard.y);
@@ -77,7 +77,7 @@ var GodLayer = BaseLayer.extend({
     //加载手牌区域
     loadHandCard: function () {
         var sideWidth = 20; //添加边宽
-        var hand = new GWCardsHandBox();//ancher 0,1
+        var hand = new UIHandCardOwn();//ancher 0,1
         this.addChild(hand, LocalZorderEnemu.UI);
         hand.setPosition(this.checkerboard.x - sideWidth,
             this.checkerboard.y);
@@ -103,7 +103,7 @@ var GodLayer = BaseLayer.extend({
             this.lookCard.removeFromParent();
             this.lookCard = null;
         }
-        var card = new GWCard();
+        var card = new UICard();
         this.addChild(card, LocalZorderEnemu.CARD);
         card.setPosition(this.checkerboard.x + this.checkerboard.width + 10, 100);
         card.setAnchorPoint(0, 0);

@@ -20,7 +20,7 @@
  *
  * */
 
-var GWMonsterData = cc.Class.extend({
+var DMonsterData = cc.Class.extend({
 
     objectId        :   "",
     name            :   "???",
@@ -139,7 +139,7 @@ var GWMonsterData = cc.Class.extend({
 // };
 
 //检查合法性
-GWMonsterData.checkModelLegal = function (model) {
+DMonsterData.checkModelLegal = function (model) {
     return true;
     if(model == null || !( typeof model === "object") ){
         cc.log("model 不合法！");

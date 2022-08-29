@@ -1,7 +1,7 @@
 
 
 
-var GWGold = ccui.ImageView.extend({
+var UIGold = ccui.ImageView.extend({
     oldColor        : null,
 
     ctor: function () {

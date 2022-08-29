@@ -12,7 +12,7 @@
 
 
 
-var GWText = ccui.Text.extend({
+var UIText = ccui.Text.extend({
 
 
     btnDownArrow        : null,//对话旁的提示小箭头//

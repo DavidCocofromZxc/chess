@@ -119,7 +119,7 @@ var GameLayer = BaseLayer.extend({
     },
     //加载棋盘
     loadCheckerboard:function () {
-        let node = new GWGameCheckerboard();
+        let node = new UIGameCheckerboard();
         this.addChild(node,LocalZorderEnemu.MAP);
         node.setAnchorPoint(0,0);
         node.setPosition(   (cc.winSize.width - node.width)/2,
@@ -165,7 +165,7 @@ var GameLayer = BaseLayer.extend({
         //模拟数据流
         var ourflow = "MTAwMi0xMDAyLTEwMDItMTAwMg==";
         //我方卡组
-        var ourGroup  = new GWCardGroupSelf(ourflow);
+        var ourGroup  = new UICardGroupOwn(ourflow);
         this.addChild(ourGroup,LocalZorderEnemu.UI);
         ourGroup.setPosition( //缝隙20
                 this.checkerboard.x + this.checkerboard.width + 20,
@@ -181,7 +181,7 @@ var GameLayer = BaseLayer.extend({
         //模拟数据流
         var otherflow = "MTAwMi0xMDAyLTEwMDItMTAwMg==";
         //对方卡组
-        var otherCardGroup  = new GWCardGroupOther(otherflow);
+        var otherCardGroup  = new UICardGroupOther(otherflow);
         this.addChild(otherCardGroup,LocalZorderEnemu.UI);
         otherCardGroup.setAnchorPoint(1,1);
         otherCardGroup.setPosition(  this.checkerboard.x - 20,
@@ -196,13 +196,12 @@ var GameLayer = BaseLayer.extend({
     },
     //加载双方血条
     loadBlood:function(){
-        //
-        var blood = new GWBloodBox();
+        var blood = new UIBloodBox();
         this.addChild(blood,LocalZorderEnemu.UI);
         blood.setPosition(this.checkerboard.x + this.checkerboard.width/2,this.checkerboard.y);
         this.ourBloodBar = blood;
         //
-        var otherBloodBar = new GWBloodBox();
+        var otherBloodBar = new UIBloodBox();
         this.addChild(otherBloodBar,LocalZorderEnemu.UI + 10);
         otherBloodBar.setPosition( this.checkerboard.x + this.checkerboard.width/2,
                                     this.checkerboard.y + this.checkerboard.height + 20);
@@ -226,7 +225,7 @@ var GameLayer = BaseLayer.extend({
     //加载手牌区域
     loadHandCard:function(){
         var sideWidth = 20; //添加边距
-        var hand = new GWCardsHandBox();//ancher 0,1    //透明手牌区域，常用于己方。
+        var hand = new UIHandCardOwn();//ancher 0,1    //透明手牌区域，常用于己方。
         this.addChild(hand,LocalZorderEnemu.UI);
         hand.setPosition(this.checkerboard.x - sideWidth, this.checkerboard.y);
         hand.setContentSize(this.checkerboard.width + 2*sideWidth,100);
@@ -245,7 +244,7 @@ var GameLayer = BaseLayer.extend({
 
 
         var sideWidth = 20; //添加边距
-        var otherHand = new GWCardsHandBlackBox();//ancher 0,1  //黑背手牌区域，常用于对方。
+        var otherHand = new UIHandCardOther();//ancher 0,1  //黑背手牌区域，常用于对方。
         this.addChild(otherHand,LocalZorderEnemu.UI);
         otherHand.setAnchorPoint(0,0);
         otherHand.setPosition(   this.checkerboard.x - sideWidth,
@@ -271,14 +270,14 @@ var GameLayer = BaseLayer.extend({
         }
 
         //构造
-        var card = new GWCard();
+        var card = new UICard();
         this.addChild(card,LocalZorderEnemu.CARD);
         card.setPosition(this.checkerboard.x + this.checkerboard.width + 10 ,100);
         card.setAnchorPoint(0,0);
         this.lookCard = card;
 
         //
-        var data = JSDataTool.monster[1002];//new GWMonsterData();// XCDATA.findMonsterData(model.ID);
+        var data = JSDataTool.monster[1002];//new DMonsterData();// XCDATA.findMonsterData(model.ID);
         // data.setModel("9rYH666X","ceshi",[0],"nothing to here");
         console.log("|||:",data,model);
         card.changeUiData(data,model);//设置数据
@@ -368,7 +367,7 @@ var GameLayer = BaseLayer.extend({
         this.sysMailbox.sendMessage("裁判投币决定先后手");
         this.textLabel.addShowText( "裁判投币决定先后手",function () {
             cc.log("textlabel 裁判");
-            var jb = new GWGold();//硬币
+            var jb = new UIGold();
             this.addChild(jb,LocalZorderEnemu.DialogueGold);
             jb.setPosition(cc.winSize.width / 2, cc.winSize.height / 2);
             if(jb.width > cc.winSize.width/3){

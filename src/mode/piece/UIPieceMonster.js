@@ -8,7 +8,7 @@
  * */
 
 
-var GWMonster = GWBasePiece.extend({
+var UIPieceMonster = UIBasePiece.extend({
 
     //基础模型
     // model           : null,

@@ -10,7 +10,7 @@ var EnemuOtherLayer = {
     SUMMON  :1, //召唤层
     ALL     :99,//all
 };
-var GWBaseCheckerboard = cc.TMXTiledMap.extend({
+var UIBaseCheckerboard = cc.TMXTiledMap.extend({
     campType                    : CampEnemu.BLACK,   //当前阵营
     tmxBgLayer                  : null, //bg 层
     selectChess                 : null, //选中棋子
@@ -471,11 +471,11 @@ var GWBaseCheckerboard = cc.TMXTiledMap.extend({
         let selfResult = {isInMap:true,cel:4,row:0,x:200,y:0};
         let otherResult = {isInMap:true,cel:4,row:8,x:200,y:400};//由配置决定
         //我方
-        let king = GWBasePiece.initPiece(ChessTypeEnemu.CRYSTAL);
+        let king = UIBasePiece.initPiece(ChessTypeEnemu.CRYSTAL);
         king.campType = CampEnemu.BLACK;
         this.operatePieceInCheckerboard("summon",king,ChessAnimeEnemu.FADEIN,selfResult);
         //敌方
-        let dKing = GWBasePiece.initPiece(ChessTypeEnemu.BLACK_CRYSTAL);
+        let dKing = UIBasePiece.initPiece(ChessTypeEnemu.BLACK_CRYSTAL);
         dKing.campType = CampEnemu.WHITE;
         this.operatePieceInCheckerboard("summon",dKing,ChessAnimeEnemu.FADEIN,otherResult);
     },
@@ -515,7 +515,7 @@ var GWBaseCheckerboard = cc.TMXTiledMap.extend({
     },
     //棋子加入棋盘 -多用于召唤
     joinPiecesInChess:function(data,result){
-        let piece = new GWMonster(data);
+        let piece = new UIPieceMonster(data);
         piece.campType = this.campType;// <配置 ***  这里可能逻辑有问题>
         this.operatePieceInCheckerboard("summon",piece,ChessAnimeEnemu.FADEIN,result);
     },

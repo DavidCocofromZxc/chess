@@ -8,7 +8,7 @@
  * */
 
 
-var GWHandCard = cc.Sprite.extend({
+var UIHandCard = cc.Sprite.extend({
     ctor: function(resuUrl,isBack) {
         var show = isBack || false;
         //true则使用默认背面

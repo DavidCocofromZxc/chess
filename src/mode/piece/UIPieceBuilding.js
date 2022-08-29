@@ -9,7 +9,7 @@
 
 
 
-var GWBuilding = GWBasePiece.extend({
+var UIPieceBuilding = UIBasePiece.extend({
 
     ctor: function (model,fileName,rect,rotated) {
         this._super(model,fileName,rect,rotated);
