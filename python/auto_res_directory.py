@@ -17,28 +17,20 @@ from sqlite3 import connect
 
 TARGET_DIRECTORY = "res";
 TARGET_LEGITIMACY = "src";
-TARGET_JSON = "resource22.js";
+TARGET_JSON = "resource.js";
 
 # json操作
-
-
 def jsonHandle(filelistString):
 	path = os.path.dirname(os.path.abspath('.'));
-	path = path + "/" + TARGET_JSON;
-	# print("path:",path);
-	json_str = "";
-	with open(path, "r") as f:
-		json_str = json.load(f);
-		jj = json.loads(filelistString);
-		json_str["jsList"] = jj["jsList"];
+	path = path + "/" + TARGET_LEGITIMACY + "/" + TARGET_JSON;
+	# print("path:",path,filelistString);
 	with open(path, "w") as f:
-		json.dump(json_str, f)
+		# print("open w");
+		f.write(filelistString);
 	return;
-
 
 # 获得文件列表
 def getFileListString(path, file):
-	# print("path:", path);
 	targetString = "";
 	earthString = """
 var res = {
@@ -52,15 +44,12 @@ for (var i in res) {
 	""";  # 后期改成数组
 
 	filelist = os.walk(path + file)
-
 	for dirpath, f, filenames in filelist:
-		print("-=-=-=:dd:", dirpath, f, filenames);
 		for filename in filenames:
 			wzpath = os.path.join(dirpath, filename);
 			wzpath = wzpath.replace(path, "");
 			wzpath = "\"" + wzpath + "\",\n";
 			fname = filename.split(".")[0];
-			# print("fname",filename);
 			if(fname == "" or len(fname) <= 0):
 				connect;
 			else:
@@ -76,10 +65,10 @@ def checkEnvironment():
 
 # main
 if __name__ == "__main__":
-	# dirs = os.listdir('..');
 	if(checkEnvironment()):
 		path = os.path.dirname(os.path.abspath('.'));
-		path +=  "/";#+ "/" + "resource22.js";
+		path +=  "/";
 		print("\n\n");
-		print(getFileListString(path,TARGET_DIRECTORY));
+		jsonHandle(getFileListString(path,TARGET_DIRECTORY))
+		print("res success!");
 		print("\n\n");

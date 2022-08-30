@@ -82,4 +82,7 @@ if __name__ == "__main__":
 	dirs = os.listdir('..');
 	if(checkEnvironment(dirs)):
 		path = path + "/";
+		print("\n\n");
 		jsonHandle(getFileListString(path,TARGET_DIRECTORY));
+		print("src success!");
+		print("\n\n");

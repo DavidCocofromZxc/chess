@@ -308,7 +308,7 @@ UIBasePiece.initPiece = function(obj){
     //需要完成 ：构造，data绑定，图片的Anchor
     if(obj >= 0){
         if(obj < 20000 ){//基础棋子类
-            piece = new UIPieceBuilding(pieceModel,"res/piece/building/picon"+ pieceId + ".png");
+            piece = new UIPieceBuilding(pieceModel,"res/piece/building/building"+ pieceId + ".png");
             piece.setAnchorPoint(0.5,0);//默认修改瞄点
         }else{//怪物棋子类
             switch (chessID) {
