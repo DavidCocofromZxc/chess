@@ -91,7 +91,7 @@ var TestWorkLayer = BaseLayer.extend({
     },
     //加载信息框
     loadMessageView: function () {
-        var messageView = new GWMailbox();
+        var messageView = new UIMailbox();
         this.addChild(messageView, LocalZorderEnemu.UI);
         messageView.setPosition(35, 10);
         messageView.width = 200;
@@ -102,14 +102,14 @@ var TestWorkLayer = BaseLayer.extend({
     },
     //加载对话文字
     loadLabel: function () {
-        var text = new GWMessage();
+        var text = new UIMessage();
         this.addChild(text, LocalZorderEnemu.DialogueText);
         text.setPosition(cc.winSize.width / 2, cc.winSize.height / 2);
         this.textLabel = text;
     },
     //加载"回合"按钮
     loadRoundButton: function () {
-        var button = new GWRoundEndButton("回合结束");
+        var button = new UIRoundEndButton("回合结束");
         this.addChild(button, LocalZorderEnemu.UI);
         button.setAnchorPoint(0, 0.5);
         button.setPosition(this.checkerboard.x + this.checkerboard.width + 5,//20缝隙
@@ -130,7 +130,7 @@ var TestWorkLayer = BaseLayer.extend({
         //模拟数据流
         var ourflow = "MTAwMi0xMDAyLTEwMDItMTAwMg==";
         //我方卡组
-        var ourGroup = new UICardGroupOwn(ourflow);
+        var ourGroup = new UIBaseCardGroup(ourflow);
         this.addChild(ourGroup, LocalZorderEnemu.UI);
         ourGroup.setPosition( //缝隙20
             this.checkerboard.x + this.checkerboard.width + 20,
@@ -145,7 +145,7 @@ var TestWorkLayer = BaseLayer.extend({
         //模拟数据流
         var otherflow = "MTAwMi0xMDAyLTEwMDItMTAwMg==";
         //对方卡组
-        var otherCardGroup = new UICardGroupOther(otherflow);
+        var otherCardGroup = new UIBaseCardGroup(otherflow);
         this.addChild(otherCardGroup, LocalZorderEnemu.UI);
         otherCardGroup.setAnchorPoint(1, 1);
         otherCardGroup.setPosition(this.checkerboard.x - 20,
@@ -172,13 +172,13 @@ var TestWorkLayer = BaseLayer.extend({
     //加载双方法力
     loadEnergy: function () {
         //
-        var ourEnergy = new GWEnergyBox(10);
+        var ourEnergy = new UIEnergyBox(10);
         this.addChild(ourEnergy, LocalZorderEnemu.UI);
         ourEnergy.setAnchorPoint(1, 0)
         ourEnergy.setPosition(this.checkerboard.x, this.checkerboard.y);
         this.ourEnergy = ourEnergy;
         //
-        var otherEnergy = new GWEnergyBox(10);
+        var otherEnergy = new UIEnergyBox(10);
         this.addChild(otherEnergy, LocalZorderEnemu.UI);
         otherEnergy.setAnchorPoint(0, 1)
         otherEnergy.setPosition(this.checkerboard.x + this.checkerboard.width, this.checkerboard.y + this.checkerboard.height);
@@ -187,7 +187,7 @@ var TestWorkLayer = BaseLayer.extend({
     //加载手牌区域
     loadHandCard: function () {
         var sideWidth = 20; //添加边距
-        var hand = new UIHandCardOwn();//ancher 0,1    //透明手牌区域，常用于己方。
+        var hand = new UIHandCardBox();//ancher 0,1    //透明手牌区域，常用于己方。
         this.addChild(hand, LocalZorderEnemu.UI);
         hand.setPosition(this.checkerboard.x - sideWidth,
             this.checkerboard.y);
@@ -207,7 +207,7 @@ var TestWorkLayer = BaseLayer.extend({
         this.ourCardsHandBox = hand;
 
         var sideWidth = 20; //添加边距
-        var otherHand = new UIHandCardOther();//ancher 0,1  //黑背手牌区域，常用于对方。
+        var otherHand = new UIHandCardBox();//ancher 0,1  //黑背手牌区域，常用于对方。
         this.addChild(otherHand, LocalZorderEnemu.UI);
         otherHand.setAnchorPoint(0, 0);
         otherHand.setPosition(this.checkerboard.x - sideWidth,

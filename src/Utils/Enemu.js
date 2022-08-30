@@ -39,11 +39,12 @@ let LAYER_LOCAL_ZORDER = 21;  //落子范围/区域层级  //绿区
 
 // var TILE_MAP_SIZE = 32;
 
-// 阵营 /落子状态
+// 阵营 
 var CampEnemu = {
     NONE    :"none",    //无棋子
     BLACK   :"black",   //黑棋子
     WHITE   :"white",   //白棋子
+
     UNKNOWN :"unKonwn", //未知棋子
     NENTRAL :"neutral", //中立敌对棋子
     PEACE   :"peace",   //中立和平棋子

@@ -5,7 +5,7 @@
  * 回合结束button类
  * */
 
-var GWRoundEndButton = ccui.Button.extend({
+var UIRoundEndButton = ccui.Button.extend({
 
     roundState: 0,//state 0我的回合，1对方回合
     defaultColor:null,

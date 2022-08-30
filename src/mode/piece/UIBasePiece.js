@@ -1,13 +1,6 @@
-
-
-
-/*
-* 专用棋子类
-* */
-
 /**
  *
- *  棋子基础类
+ *  专用棋子- 棋子基础类
  *
  * */
 
@@ -23,7 +16,6 @@ var DirectionEnemu = {
     upRight:6,
     downRight:7,
 };
-
 //召唤状态
 var SummoningStateEnemu = {
     inHand:0,
@@ -116,7 +108,6 @@ var UIBasePiece = cc.Sprite.extend({
         this.setOpacity(255);
         this._isPickUp = false;
     },
-
     //可移动区域 //获得可移动点数组
     getMovingRange:function(){
         var incrementValue = [];
@@ -174,7 +165,6 @@ var UIBasePiece = cc.Sprite.extend({
         }
         return incrementValue;
     },
-
     //可召唤区域
     //获得可召唤点
     getSummonRange:function(){
@@ -233,6 +223,7 @@ var UIBasePiece = cc.Sprite.extend({
         }
         return incrementValue;
     },
+    //
     setMapPos:function(pos,y){
         var movePos = {x:0,y:0};
         if( y === undefined){
@@ -241,13 +232,14 @@ var UIBasePiece = cc.Sprite.extend({
             movePos.x = pos;
             movePos.y = y;
         }
-        // this.chessInMapX
         this.mapPos = movePos;
     },
+    //
     lookUpCard:function () {
         // this.addChild(Card);
         // Card.setPosition(0,0);
     },
+    //
     showCard:function () {
         if(this.myCard == null){
             this.myCard = new UICard();
@@ -283,7 +275,6 @@ var UIBasePiece = cc.Sprite.extend({
         this.runAction(admin);//*********播放完要移除//查看移除语句是否补齐
     }
 });
-
 //工厂模式-
 //根据ID去分拣类
 //0-20000为建筑棋子，20000以上为怪物棋子
@@ -302,7 +293,6 @@ UIBasePiece.initPiece = function(obj){
         pieceId = obj.ID;
         pieceModel = obj;
     }
-
     // TODO:待完善
     //通过id进行Data绑定
     //需要完成 ：构造，data绑定，图片的Anchor

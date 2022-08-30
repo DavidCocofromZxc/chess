@@ -6,10 +6,8 @@
  * */
 
 var GWPlayerController = ccui.Button.extend({
-
     state: 0,
     defultColor:null,
-
     ctor: function () {
         this._super();
         this.loadTextures(res.baseButton,"","");//
@@ -18,7 +16,7 @@ var GWPlayerController = ccui.Button.extend({
         this.setState(0);
         return true;
     },
-
+    //
     addClickFlipAnimCustomEvent:function(beforeAction,
                                          middleAction,
                                          afterAction,){

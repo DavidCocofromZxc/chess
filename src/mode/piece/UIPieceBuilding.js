@@ -1,13 +1,8 @@
-
-
-
 /**
  *
  *  棋子类 ->建筑物棋子类
  *
  * */
-
-
 
 var UIPieceBuilding = UIBasePiece.extend({
 

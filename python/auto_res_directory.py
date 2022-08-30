@@ -1,7 +1,7 @@
 ###
 #
 #
-#	project‘jsList 目录生成工具
+#	resource【】生成工具
 #
 #
 ###
@@ -11,7 +11,7 @@ from curses.ascii import NUL
 from math import fabs
 from operator import truediv
 import os
-import json
+# import json
 from pickle import TRUE
 from sqlite3 import connect
 
@@ -60,8 +60,11 @@ for (var i in res) {
 #  合法性 检查
 def checkEnvironment():
 	path = os.path.dirname(os.path.abspath('.'));
-	path +=  "/" + TARGET_LEGITIMACY + "/" + "resource22.js";
+	path +=  "/" + TARGET_LEGITIMACY + "/" + "resource.js";
+	if(os.path.exists(path) == False):
+		print("checkEnvironment fails")
 	return os.path.exists(path);
+	
 
 # main
 if __name__ == "__main__":

@@ -1,13 +1,8 @@
-
-
-
 /**
  *
  *  棋子类 ->怪物棋子类
  *
  * */
-
-
 var UIPieceMonster = UIBasePiece.extend({
 
     //基础模型

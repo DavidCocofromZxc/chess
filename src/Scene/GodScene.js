@@ -77,7 +77,7 @@ var GodLayer = BaseLayer.extend({
     //加载手牌区域
     loadHandCard: function () {
         var sideWidth = 20; //添加边宽
-        var hand = new UIHandCardOwn();//ancher 0,1
+        var hand = new UIHandCardBox();//ancher 0,1
         this.addChild(hand, LocalZorderEnemu.UI);
         hand.setPosition(this.checkerboard.x - sideWidth,
             this.checkerboard.y);

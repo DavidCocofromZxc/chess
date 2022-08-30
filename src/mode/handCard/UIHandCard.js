@@ -3,10 +3,9 @@
 
 /**
  *
- *  专用手牌类-单卡
+ *  专用手牌类- 单卡
  *
  * */
-
 
 var UIHandCard = cc.Sprite.extend({
     ctor: function(resuUrl,isBack) {

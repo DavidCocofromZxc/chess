@@ -29,7 +29,6 @@ def jsonHandle(filelistString):
 		json.dump(json_str,f)
 	return ;
 
-
 # 获得文件列表
 def getFileListString(path,file):
 	targetString = "";
@@ -54,14 +53,12 @@ def getFileListString(path,file):
 	targetString += "]}";
 	return targetString;
 
-
 #  合法性 检查
-def checkEnvironment(dirs):
+def checkEnvironment():
+	dirs = os.listdir('..');
 	hassrc = False;
 	hasjson = False;
-
 	for file in dirs:
-		# print("file:",file);
 		if(file == TARGET_DIRECTORY):
 			hassrc = True;
 			if(hasjson):
@@ -75,12 +72,10 @@ def checkEnvironment(dirs):
 	else:
 		return False;
 
-
 # main
 if __name__ == "__main__":
-	path = os.path.dirname(os.path.abspath('.'));
-	dirs = os.listdir('..');
-	if(checkEnvironment(dirs)):
+	if(checkEnvironment()):
+		path = os.path.dirname(os.path.abspath('.'));
 		path = path + "/";
 		print("\n\n");
 		jsonHandle(getFileListString(path,TARGET_DIRECTORY));
