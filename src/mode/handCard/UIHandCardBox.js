@@ -184,7 +184,6 @@ var UIHandCardBox = ccui.Layout.extend({
      * }
      * */
     findTouchCard: function (posInNode) {
-        cc.log("findTouchCard", posInNode);
         for (var i = 0, len = this.cardList.length; i < len; i++) {
             var cardData = this.cardList[i];//
             var card = cardData.card;

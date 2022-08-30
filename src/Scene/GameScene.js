@@ -269,18 +269,14 @@ var GameLayer = BaseLayer.extend({
             this.lookCard.removeFromParent();
             this.lookCard = null;
         }
-
         //构造
         var card = new UICard();
         this.addChild(card, LocalZorderEnemu.CARD);
         card.setPosition(this.checkerboard.x + this.checkerboard.width + 10, 100);
         card.setAnchorPoint(0, 0);
         this.lookCard = card;
-
         //
         var data = JSDataTool.monster[1002];//new DMonsterData();// XCDATA.findMonsterData(model.ID);
-        // data.setModel("9rYH666X","ceshi",[0],"nothing to here");
-        console.log("|||:", data, model);
         card.changeUiData(data, model);//设置数据
         this.checkerboard.pickUpDataInHand(data);//选卡传入
         //

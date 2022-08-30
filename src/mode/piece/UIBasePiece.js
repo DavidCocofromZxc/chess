@@ -31,7 +31,7 @@ var EnemuPieceOperate = {
     SUMMON   :"summon",
     MOVE     :"move",
 };
-
+//
 var UIBasePiece = cc.Sprite.extend({
     pieceType       : PieceTypeEnemu.BASE,  //棋子类型：基础,野兽
     campType        : CampEnemu.UNKNOWN,
@@ -42,38 +42,29 @@ var UIBasePiece = cc.Sprite.extend({
     // chessInMapX     :0,
     // chessInMapY     :0,
     mapPos          :{x:0,y:0},
-
+    //
     _isPickUp       :false,//当前到选中状态
     // StateSummoning  :SummoningStateEnemu.inHand,        //召唤状态（当前在手中、还是在棋盘上、未来可能有更多分类）
     enlargeCoefficient:1.1,                             //缩放比例
-
+    //
     defultColor     :null,                              //默认颜色，用于取消选中时找回
     myCard          :null,      //用于跟踪卡
-
+    //
     oldLocalZOrder     :200,//用于棋子记录渲染等级，影响在场景中的覆盖等级
-
-
     dataModel       :null,
     //<<<<<<<<<<<<<<<<< 国王骰 data >>>>>>>>>>>>>>>>>>>>>>
-
     chessID         :-99999,
-
     movingDistance  :1,//移动范围
     movingDirection :[1,1,1,1,1,1,1,1],//移动8方向
-
     summonDistance  :1,//召唤范围
     summonDirection :[1,1,1,1,0,0,0,0],//召唤8方向
-
     //<<<<<<<<<<<<<<<<< 国王骰 data >>>>>>>>>>>>>>>>>>>>>>
-    //这里用fileName构造
     ctor: function (model,fileName,rect,rotated) {
-
         // if(!XCCheckModelLegal(model)){
         //     this.dataModel =
         // }else{
         //     this.dataModel = model;
         // }
-
         if(DMonsterData.checkModelLegal(model)){
             this.dataModel = new DMonsterData(model);
             this.movingDistance = this.dataModel.movement;
@@ -81,22 +72,21 @@ var UIBasePiece = cc.Sprite.extend({
             this.summonDistance = this.dataModel.summonRange;
             this.summonDirection = this.dataModel.summonDirection;
         }
-
         this._super(fileName,rect,rotated);
         this.defultColor = this.getColor();//记录原始颜色
         return;
     },
-    /**
-     *  操作fun
-     *
-     * */
+
+    /** -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * 操作func
+    -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=  */
+
     //选中棋子
     pickUp:function(){
         this.oldLocalZOrder = this._localZOrder;
         this.setLocalZOrder(this.oldLocalZOrder + 10);
         this.setScale(this.enlargeCoefficient);
         this.setOpacity(220);
-        // this.setColor(cc.color(166,174,209));
         this.setColor(cc.color(241,234,219));
         this._isPickUp = true;
     },
@@ -165,11 +155,12 @@ var UIBasePiece = cc.Sprite.extend({
         }
         return incrementValue;
     },
-    //可召唤区域
-    //获得可召唤点
+    //可召唤区域//获得可召唤点
     getSummonRange:function(){
         var incrementValue = [];
         var selfpoint = this.mapPos;//{x:this.chessInMapX,y:this.chessInMapY};//当前位置
+        console.log("getsuoomon",this.summonDistance);
+        console.log("getsuoomon",this.summonDirection);
         //距离 （移动格数）
         for (var i = 1;i <= this.summonDistance ; i++){
             //方向

@@ -159,7 +159,6 @@ var UICard = cc.Sprite.extend({
     },
     //
     changeUiData:function(data,uiData){
-        console.log("changeUiData",data);
         // let texture = cc.textureCache.addImage("res/Card/monster/gw" + data.ID +".png");
         let texture = cc.textureCache.addImage("res/Card/monster/gw1002.png");
         this.originalPainting.setTexture(texture);

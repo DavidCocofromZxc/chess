@@ -62,7 +62,7 @@ var JSDataTool = {
                 movement: 2,
                 moveTimes: 1,
                 moveDirection: [1, 1, 1, 1, 1, 1, 1, 1],
-                summonRange: 0,
+                summonRange: 1,
                 summonTimes: 1,
                 summonDirection: [1, 1, 1, 1, 0, 0, 0, 0],
                 attackRange: 1,

@@ -263,7 +263,7 @@ var UIBaseCheckerboard = cc.TMXTiledMap.extend({
     //绘制当前召唤区域
     drawMapCurrentSummonLayer:function(){
         var result = [];
-        cc.log(this.arrayFriendsSurvivalChess.length);
+        cc.log("drawMapCurrentSummonLayer",this.arrayFriendsSurvivalChess.length,this.arrayFriendsSurvivalChess);
         // < 三层循环：>
         // < 循环体一：遍历友方棋子 ->获得所有友方棋子的可召唤位置list >
         for (var i = 0 ,len = this.arrayFriendsSurvivalChess.length; i < len;i++ ){
