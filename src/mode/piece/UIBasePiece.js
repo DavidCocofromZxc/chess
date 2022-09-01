@@ -159,8 +159,6 @@ var UIBasePiece = cc.Sprite.extend({
     getSummonRange:function(){
         var incrementValue = [];
         var selfpoint = this.mapPos;//{x:this.chessInMapX,y:this.chessInMapY};//当前位置
-        console.log("getsuoomon",this.summonDistance);
-        console.log("getsuoomon",this.summonDirection);
         //距离 （移动格数）
         for (var i = 1;i <= this.summonDistance ; i++){
             //方向

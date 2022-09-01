@@ -6,14 +6,7 @@
 #
 ###
 
-from cmath import log
-from curses.ascii import NUL
-from math import fabs
-from operator import truediv
 import os
-# import json
-from pickle import TRUE
-from sqlite3 import connect
 
 TARGET_DIRECTORY = "res";
 TARGET_LEGITIMACY = "src";
@@ -23,9 +16,7 @@ TARGET_JSON = "resource.js";
 def jsonHandle(filelistString):
 	path = os.path.dirname(os.path.abspath('.'));
 	path = path + "/" + TARGET_LEGITIMACY + "/" + TARGET_JSON;
-	# print("path:",path,filelistString);
 	with open(path, "w") as f:
-		# print("open w");
 		f.write(filelistString);
 	return;
 
@@ -51,7 +42,7 @@ for (var i in res) {
 			wzpath = "\"" + wzpath + "\",\n";
 			fname = filename.split(".")[0];
 			if(fname == "" or len(fname) <= 0):
-				connect;
+				continue;
 			else:
 				targetString += fname + ":" + wzpath;
 	targetString = earthString + targetString + overString;

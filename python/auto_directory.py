@@ -6,9 +6,6 @@
 #
 ###
 
-from cmath import log
-from math import fabs
-from operator import truediv
 import os
 import json
 
@@ -19,7 +16,6 @@ TARGET_JSON = "project.json";
 def jsonHandle(filelistString):
 	path = os.path.dirname(os.path.abspath('.'));
 	path = path + "/" + TARGET_JSON;
-	# print("path:",path);	
 	json_str = "";
 	with open(path, "r") as f:
 		json_str = json.load(f);

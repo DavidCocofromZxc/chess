@@ -54,7 +54,7 @@ var JSDataTool = {
                 objectId: "1002",
                 name: "沉默番兵",
                 specials: [0],
-                dsc: "jsdatatool沉默寡言的外来士兵",
+                dsc: "沉默寡言的外来士兵",
                 attack: 4,
                 health: 6,
                 energy: 0,

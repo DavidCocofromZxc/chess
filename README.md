@@ -115,8 +115,9 @@ I'm making a chess game with cocos-js. You can link me QQ num 670633205.
         -> 
         -> 合并相似 类
     3.代码优化
-    UIPieceMonster
-    checkerboard
+        <!-- UIPieceMonster -->
+        <!-- checkerboard -->
+        <!-- 网络 -->
         ->cardGroup 串流
         ->UIMailbox 做一个单例流
-    
+    4.要高点资源了
