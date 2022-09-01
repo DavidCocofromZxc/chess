@@ -30,18 +30,6 @@ var UIPieceMonster = UIBasePiece.extend({
         this.roundMaxAttackTimes   = 1;
         this.currentMoveTimes      = 0;
         this.currentAttackTimes    = 0;
-        // var monsterName = "" //+ chessID;
-        // if(model != null || model !== undefined){
-        //     monsterName = "" + model.ID;
-        //     this.model = model;
-        //     this.roundMaxMoveTimes = model.moveTimes;
-        //     this.roundMaxAttackTimes = model.attackTimes;
-        //     this.currentMoveTimes =  this.roundMaxMoveTimes;
-        //     this.currentAttackTimes =  this.roundMaxAttackTimes;
-        // }
-        // this._super("#monster" + monsterFileName + "_1.png",rect,rotated);
-
-        // if()
 
         //棋子
         if(model == null || model === undefined){
@@ -67,48 +55,68 @@ var UIPieceMonster = UIBasePiece.extend({
         this.loadAnimation(monsterFileName);
         return true;
     },
-
-
-    //怪物移动
-    moveInMap:function(pos,y){
-        var movePos = {x:0,y:0};
-        if( y === undefined){
-            movePos = pos;
-        }else{
-            movePos.x = pos;
-            movePos.y = y;
-        }
-        //本次增量
-        let inx = movePos.x - this.mapPos.x;
-        let iny = movePos.y - this.mapPos.y;
-        //
-        if(Math.abs(inx) <= Math.abs(iny)){
-            if(iny > 0){//向上
-                this.doActionUp();
-            }else{//向下
-                this.doActionDown();
-            }
-        }else{
-            if(inx > 0){//向左
-                this.doActionRight();
-            }else{//向右
-                this.doActionLeft();
-            }
-        }
-        this.currentMoveTimes --;
-        this._super(pos,y);
-        // if(this.currentMoveTimes != 0){
-        //     this.currentMoveTimes --;
-        //     return true;
-        // }else{
-        //     return false;
-        // }
-        // this.currentMoveTimes --;
-        // if(this)
-        // return
+    //召唤动画
+    summonAnimation:function(point,duration){
+        let anim = this._super(point,duration);
+        //在棋子中加入粒子动画-以后可以改成，对应棋子有对应的粒子，业务上类似于出场动画的概念
+        //获取粒子文件
+        let particleA = new cc.ParticleSystem(res.blackFire2xplist);
+        this.addChild(particleA,999);//在棋子上加入粒子效果
+        particleA.setAnchorPoint(0.5,0.5);
+        particleA.setPosition(this.width/2, this.height/2 -10);
+        return anim;
+    },
+    //移动动画
+    moveAnimation:function(point,duration){
+        let anim = this._super(point,duration);
+        return anim;
     },
 
+    // //怪物移动
+    // moveInMap:function(pos,y){
+    //     var movePos = {x:0,y:0};
+    //     if( y === undefined){
+    //         movePos = pos;
+    //     }else{
+    //         movePos.x = pos;
+    //         movePos.y = y;
+    //     }
+    //     //本次增量
+    //     let inx = movePos.x - this.mapPos.x;
+    //     let iny = movePos.y - this.mapPos.y;
+    //     //
+    //     console.log("in:",inx,iny);
+    //     if(Math.abs(inx) <= Math.abs(iny)){
+    //         if(iny > 0){//向上
+    //             this.doActionUp();
+    //         }else{//向下
+    //             this.doActionDown();
+    //         }
+    //     }else{
+    //         if(inx > 0){//向左
+    //             this.doActionRight();
+    //         }else{//向右
+    //             this.doActionLeft();
+    //         }
+    //     }
+    //     this.currentMoveTimes --;
+    //     this._super(pos,y);
+    //     // if(this.currentMoveTimes != 0){
+    //     //     this.currentMoveTimes --;
+    //     //     return true;
+    //     // }else{
+    //     //     return false;
+    //     // }
+    //     // this.currentMoveTimes --;
+    //     // if(this)
+    //     // return
+    // },
 
+
+
+    /** -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     * loadAnimation
+    -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=  */
     //动画加载
     loadAnimation:function(monsterName){
 
@@ -155,45 +163,43 @@ var UIPieceMonster = UIBasePiece.extend({
         // var animate = cc.animate(animation).repeatForever();
         // this.runAction(animate);
     },
-
-
     /*
     *  animates
     * */
     doActionUp:function () {
-        this.stopAllActions();
+        console.log("doActionUp");
+        // this.stopAllActions();
         var animation = new cc.Animation(this.framesUp,0.4);
         animation.setRestoreOriginalFrame(true);
         var animate = cc.animate(animation);//.repeatForever();
         this.runAction(animate);
     },
     doActionDown:function () {
-        this.stopAllActions();
+        // this.stopAllActions();
         var animation = new cc.Animation(this.framesDown,0.4);
         animation.setRestoreOriginalFrame(true);
         var animate = cc.animate(animation);//.repeatForever();
         this.runAction(animate);
     },
     doActionLeft:function () {
-        this.stopAllActions();
+        // this.stopAllActions();
         var animation = new cc.Animation(this.framesLeft,0.4);
         animation.setRestoreOriginalFrame(true);
         var animate = cc.animate(animation);//.repeatForever();
         this.runAction(animate);
     },
     doActionRight:function () {
-        this.stopAllActions();
+        // this.stopAllActions();
         var animation = new cc.Animation(this.framesRight,0.4);
         animation.setRestoreOriginalFrame(true);
         var animate = cc.animate(animation);//.repeatForever();
         this.runAction(animate);
     },
     doActionDefult:function () {
-        this.stopAllActions();
+        // this.stopAllActions();
         var animation = new cc.Animation(this.framesDefult,0.4);
         animation.setRestoreOriginalFrame(true);
         var animate = cc.animate(animation);//.repeatForever();
         this.runAction(animate);
     },
-
 });

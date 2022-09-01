@@ -147,7 +147,7 @@ var UIBaseCheckerboard = cc.TMXTiledMap.extend({
         //点击在棋盘内
         var result = self.getInfoFromMapByPos(posInNode.x, posInNode.y);//根据posInNode 获取瓦片信息
         if (result.isInMap) {// 触摸到地图区域内
-            XCLog("leaveList:",self.tiledMapLeaveArray);//格式化打印棋盘状态
+            // XCLog("leaveList:",self.tiledMapLeaveArray);//格式化打印棋盘状态
             //是否点击空白区域
             if(self.tiledMapLeaveArray[result.cel][result.row] == CampEnemu.NONE){
                 //召唤区域已展开&手上拿着牌--<配置 其实这里是发动牌>

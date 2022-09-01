@@ -14,7 +14,7 @@ var XCLog = function (strobj,obj) {
     }
     if(obj.constructor === Array){
         var list = obj;
-        cc.log("XCLog--------------------------------------------------------------------------------------------");
+        cc.log("XCLog----------------------------------------");
         // for (var i = 0 ; i < list.length ; i++){
         //     var celStr = "";
         //     for (var j = 0 ; j < list[i].length ; j++){

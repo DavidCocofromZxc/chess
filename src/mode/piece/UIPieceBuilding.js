@@ -11,5 +11,15 @@ var UIPieceBuilding = UIBasePiece.extend({
         this.pieceType = PieceTypeEnemu.BUILDING;
         return true;
     },
+    //召唤动画
+    summonAnimation:function(point,duration){
+        let anim = this._super(point,duration);
+        return anim;
+    },
+    //移动动画
+    moveAnimation:function(point,duration){
+        let anim = this._super(point,duration);
+        return anim;
+    },
 
 });

@@ -248,22 +248,32 @@ var UIBasePiece = cc.Sprite.extend({
         switch (animType) {
             case ChessAnimeEnemu.FADEIN:
                 this.setOpacity(0);
-                this.setPosition(p);
-                admin = cc.fadeIn(duration * 3)
-                //在棋子中加入粒子动画-以后可以改成，对应棋子有对应的粒子，业务上类似于出场动画的概念
-                //获取粒子文件
-                let particleA = new cc.ParticleSystem(res.blackFire2xplist);
-                this.addChild(particleA,999);//在棋子上加入粒子效果
-                particleA.setAnchorPoint(0.5,0.5);
-                particleA.setPosition(this.width/2, this.height/2 -10);
+                this.setPosition(p);        
+                admin = this.summonAnimation(point,duration);
+                break;
+            case ChessAnimeEnemu.MOVE:
+                admin = this.moveAnimation(point,duration);
                 break;
             default:
                 admin = cc.moveTo(duration, p);
                 break;
         }
         this.runAction(admin);//*********播放完要移除//查看移除语句是否补齐
-    }
+    },
+    //召唤动画
+    // <虚函数> 抽卡事件-用于返回抽出的卡
+    summonAnimation:function(point,duration){
+        return cc.fadeIn(duration * 3)
+    },
+    //移动动画
+    // <虚函数> 抽卡事件-用于返回抽出的卡
+    moveAnimation:function(point,duration){
+        return cc.moveTo(duration, point);
+    },
 });
+
+//TODO:戴完善
+
 //工厂模式-
 //根据ID去分拣类
 //0-20000为建筑棋子，20000以上为怪物棋子
@@ -283,9 +293,8 @@ UIBasePiece.initPiece = function(obj){
         pieceModel = obj;
     }
     // TODO:待完善
-    //通过id进行Data绑定
-    //需要完成 ：构造，data绑定，图片的Anchor
     if(obj >= 0){
+        console.log("棋子创建",obj);
         if(obj < 20000 ){//基础棋子类
             piece = new UIPieceBuilding(pieceModel,"res/piece/building/building"+ pieceId + ".png");
             piece.setAnchorPoint(0.5,0);//默认修改瞄点
