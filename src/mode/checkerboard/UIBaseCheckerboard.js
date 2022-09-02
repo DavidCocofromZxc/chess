@@ -92,7 +92,7 @@ var UIBaseCheckerboard = cc.TMXTiledMap.extend({
     //  <*独立方法*>
     // Card 应该传入UI Node 而不是数据对象
     pickUpCardInHand:function(card){
-        cc.log("pickUpCardInHand",card);
+        cc.log("pickUpCardInHand:",card);
         this.selectHandCardData = card;//选中卡
         this.drawMapCurrentSummonLayer();//绘制召唤区域
         this.eventTouchPickUpCardInHandAction(card);
@@ -100,7 +100,7 @@ var UIBaseCheckerboard = cc.TMXTiledMap.extend({
 
     //选中卡牌
     pickUpDataInHand:function(data){
-        cc.log("pickUpCardInHand");
+        cc.log("pickUpDataInHand:",data);
         this.selectHandCardData = data;//选中卡data
         this.drawMapCurrentSummonLayer();//绘制召唤区域
         this.eventTouchPickUpCardInHandAction(data);
@@ -188,7 +188,7 @@ var UIBaseCheckerboard = cc.TMXTiledMap.extend({
                             }else{//CampEnemu.NONE //目标区域无棋子，允许落子"
                                 cc.log("目标区域无棋子，允许落子：",layerRect);
                                 self.movePiecesInChess(self.selectChess,result);
-                                XCLog("leaveList:",self.tiledMapLeaveArray);
+                                // XCLog("leaveList:",self.tiledMapLeaveArray);
                                 // this.eventTouchMoveChessEndAction(2,chess);
                             }
                         }else{
@@ -515,6 +515,7 @@ var UIBaseCheckerboard = cc.TMXTiledMap.extend({
     },
     //棋子加入棋盘 -多用于召唤
     joinPiecesInChess:function(data,result){
+        cc.log("joinPiecesInChess:",data);
         let piece = new UIPieceMonster(data);
         piece.campType = this.campType;// <配置 ***  这里可能逻辑有问题>
         this.operatePieceInCheckerboard("summon",piece,ChessAnimeEnemu.FADEIN,result);

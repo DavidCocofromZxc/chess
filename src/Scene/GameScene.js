@@ -163,9 +163,9 @@ var GameLayer = BaseLayer.extend({
     //加载双方卡组
     loadGroup: function () {
         //模拟数据流
-        // var ourflow = "MTAwMi0xMDAyLTEwMDItMTAwMg==";
+        var cardList = JSDataTool.cardList;
         //我方卡组
-        var ourGroup = new UIBaseCardGroup();
+        var ourGroup = new UIBaseCardGroup(cardList);
         this.addChild(ourGroup, LocalZorderEnemu.UI);
 
         ourGroup.drawCardDirection = DrawCardDirectionEnum.Down;
@@ -181,9 +181,9 @@ var GameLayer = BaseLayer.extend({
         this.ourCardGroup = ourGroup;
 
         //模拟数据流
-        // var otherflow = "MTAwMi0xMDAyLTEwMDItMTAwMg==";
+        var otherCardList = JSDataTool.cardList;
         //对方卡组
-        var otherCardGroup = new UIBaseCardGroup();
+        var otherCardGroup = new UIBaseCardGroup(otherCardList);
         this.addChild(otherCardGroup, LocalZorderEnemu.UI);
         otherCardGroup.drawCardDirection = DrawCardDirectionEnum.Up;
         otherCardGroup.setAnchorPoint(1, 1);
@@ -264,6 +264,7 @@ var GameLayer = BaseLayer.extend({
 
     //侧栏-展示卡牌
     showLookCard: function (model) {
+        cc.log("showLookCard",model);
         //如果当前已有在展示的卡牌、先移除
         if (this.lookCard != null) {
             this.lookCard.removeFromParent();
@@ -275,10 +276,10 @@ var GameLayer = BaseLayer.extend({
         card.setPosition(this.checkerboard.x + this.checkerboard.width + 10, 100);
         card.setAnchorPoint(0, 0);
         this.lookCard = card;
-        //
+        //<TODO:模拟，因为没这么多原图>
         var data = JSDataTool.monster[1002];//new DMonsterData();// XCDATA.findMonsterData(model.ID);
         card.changeUiData(data, model);//设置数据
-        this.checkerboard.pickUpDataInHand(data);//选卡传入
+        this.checkerboard.pickUpDataInHand(model);//选卡传入
         //
         // XCLookModel(model);
     },

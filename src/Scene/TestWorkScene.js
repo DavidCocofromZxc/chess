@@ -128,9 +128,9 @@ var TestWorkLayer = BaseLayer.extend({
     //加载双方卡组
     loadGroup: function () {
         //模拟数据流
-        var ourflow = "MTAwMi0xMDAyLTEwMDItMTAwMg==";
+        var cardList = JSDataTool.cardList;
         //我方卡组
-        var ourGroup = new UIBaseCardGroup(ourflow);
+        var ourGroup = new UIBaseCardGroup(cardList);
         this.addChild(ourGroup, LocalZorderEnemu.UI);
         ourGroup.setPosition( //缝隙20
             this.checkerboard.x + this.checkerboard.width + 20,
@@ -143,9 +143,9 @@ var TestWorkLayer = BaseLayer.extend({
         this.ourCardGroup = ourGroup;
 
         //模拟数据流
-        var otherflow = "MTAwMi0xMDAyLTEwMDItMTAwMg==";
+        var othercardList = JSDataTool.cardList;
         //对方卡组
-        var otherCardGroup = new UIBaseCardGroup(otherflow);
+        var otherCardGroup = new UIBaseCardGroup(othercardList);
         this.addChild(otherCardGroup, LocalZorderEnemu.UI);
         otherCardGroup.setAnchorPoint(1, 1);
         otherCardGroup.setPosition(this.checkerboard.x - 20,

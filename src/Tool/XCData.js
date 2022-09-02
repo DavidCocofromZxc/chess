@@ -17,61 +17,116 @@ let EnemuDataUrl = {
  * 逐步替换XCData
  * */
 var JSDataTool = {
+    cardList:[1802,1802,1802],
     monster: {
-        1001: null,
-        1002: null,
+        1001: {
+            objectId: "1001",
+            name: "水晶",
+            dsc: "训练场景所用的国王棋子",
+            specials: [1],
+            attack: 0,
+            health: 1,
+            energy: 0,
+            //
+            movement: 0,
+            moveTimes: 1,
+            moveDirection: [0, 0, 0, 0, 0, 0, 0, 0],
+            summonRang: 1,
+            summonTimes: 1,
+            summonDirection: [1, 1, 1, 1, 0, 0, 0, 0],
+            attackRange: 0,
+            attackTimes: 0,
+            attackDirection: [0, 0, 0, 0, 0, 0, 0, 0],
+        },
+        1002: {
+            objectId: "1002",
+            name: "沉默番兵",
+            specials: [0],
+            dsc: "沉默寡言的外来士兵",
+            attack: 4,
+            health: 6,
+            energy: 0,
+            //
+            movement: 2,
+            moveTimes: 99,
+            moveDirection: [1, 1, 1, 1, 1, 1, 1, 1],
+            summonRange: 1,
+            summonTimes: 1,
+            summonDirection: [1, 1, 1, 1, 0, 0, 0, 0],
+            attackRange: 1,
+            attackTimes: 1,
+            attackDirection: [1, 1, 1, 1, 0, 0, 0, 0],
+        },
+        1802: {
+            objectId: "1802",
+            name: "胖老鼠",
+            specials: [0],
+            dsc: "肥头大耳的老鼠",
+            attack: 1,
+            health: 3,
+            energy: 0,
+            //
+            movement: 2,
+            moveTimes: 99,
+            moveDirection: [1, 1, 1, 1, 0, 0, 0, 0],
+            summonRange: 1,
+            summonTimes: 1,
+            summonDirection: [1, 1, 1, 1, 0, 0, 0, 0],
+            attackRange: 1,
+            attackTimes: 1,
+            attackDirection: [1, 1, 1, 1, 0, 0, 0, 0],
+        },
     },
     init: function () {
         //模拟
         console.log("JSDataTool init");
-        var monster1001 = new DMonsterData(
-            {
-                objectId: "1001",
-                name: "水晶",
-                dsc: "训练场景所用的国王棋子",
-                specials: [1],
-                attack: 0,
-                health: 1,
-                energy: 0,
+        // var monster1001 = new DMonsterData(
+        //     {
+        //         objectId: "1001",
+        //         name: "水晶",
+        //         dsc: "训练场景所用的国王棋子",
+        //         specials: [1],
+        //         attack: 0,
+        //         health: 1,
+        //         energy: 0,
 
-                movement: 0,
-                moveTimes: 1,
-                moveDirection: [0, 0, 0, 0, 0, 0, 0, 0],
+        //         movement: 0,
+        //         moveTimes: 1,
+        //         moveDirection: [0, 0, 0, 0, 0, 0, 0, 0],
 
-                summonRang: 1,
-                summonTimes: 1,
-                summonDirection: [1, 1, 1, 1, 0, 0, 0, 0],
+        //         summonRang: 1,
+        //         summonTimes: 1,
+        //         summonDirection: [1, 1, 1, 1, 0, 0, 0, 0],
 
-                attackRange: 0,
-                attackTimes: 0,
-                attackDirection: [0, 0, 0, 0, 0, 0, 0, 0],
-            },
-        );
-        this.monster[1001] = monster1001;
+        //         attackRange: 0,
+        //         attackTimes: 0,
+        //         attackDirection: [0, 0, 0, 0, 0, 0, 0, 0],
+        //     },
+        // );
+        // this.monster[1001] = monster1001;
 
-        var monster1002 = new DMonsterData(
-            {
-                objectId: "1002",
-                name: "沉默番兵",
-                specials: [0],
-                dsc: "沉默寡言的外来士兵",
-                attack: 4,
-                health: 6,
-                energy: 0,
+        // var monster1002 = new DMonsterData(
+        //     {
+        //         objectId: "1002",
+        //         name: "沉默番兵",
+        //         specials: [0],
+        //         dsc: "沉默寡言的外来士兵",
+        //         attack: 4,
+        //         health: 6,
+        //         energy: 0,
 
-                movement: 2,
-                moveTimes: 1,
-                moveDirection: [1, 1, 1, 1, 1, 1, 1, 1],
-                summonRange: 1,
-                summonTimes: 1,
-                summonDirection: [1, 1, 1, 1, 0, 0, 0, 0],
-                attackRange: 1,
-                attackTimes: 1,
-                attackDirection: [1, 1, 1, 1, 0, 0, 0, 0],
-            },
-        );
-        this.monster[1002] = monster1002;
-
+        //         movement: 2,
+        //         moveTimes: 1,
+        //         moveDirection: [1, 1, 1, 1, 1, 1, 1, 1],
+        //         summonRange: 1,
+        //         summonTimes: 1,
+        //         summonDirection: [1, 1, 1, 1, 0, 0, 0, 0],
+        //         attackRange: 1,
+        //         attackTimes: 1,
+        //         attackDirection: [1, 1, 1, 1, 0, 0, 0, 0],
+        //     },
+        // );
+        // this.monster[1002] = monster1002;
         return true;
     }
 };

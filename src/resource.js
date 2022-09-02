@@ -39,6 +39,8 @@ monster26:"res/piece/monster26.png",
 qz1001:"res/piece/monster/qz1001.png",
 building1001:"res/piece/building/building1001.png",
 building1000:"res/piece/building/building1000.png",
+monter1802plist:"res/piece/frame/1802.plist",
+monter1802png:"res/piece/frame/1802.png",
 
 	};
 var g_resources = [];

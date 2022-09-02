@@ -22,9 +22,9 @@ var UIBaseCardGroup = cc.Sprite.extend({
     //data about
     cardList: [],     //卡列表
     //
-    ctor: function (flow) {
+    ctor: function (cardList) {
         this.mainLabel = null;
-        this.cardList = ["1002", "1002", "1002", "1001"];
+        this.cardList = cardList;
         this.drawCardAnimationDuration = 0.5;
         this.drawCardDistance = 100;
         this.drawCardAnimationZoomRatio = 0.65;
